@@ -8,19 +8,19 @@
 
 #import "Alcatraz.h"
 
+@interface Alcatraz(){}
+@property (strong, nonatomic) NSBundle *bundle;
+@end
+
 @implementation Alcatraz
 
 
 + (void)pluginDidLoad:(NSBundle *)plugin {
-    [self createSingleton];
-    NSLog(@"Alcatraz Loaded!: %@", plugin);
-}
-
-+ (void)createSingleton {
-    static id sharedPlugin = nil;
+    static Alcatraz *sharedPlugin = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedPlugin = [[self alloc] init];
+        sharedPlugin.bundle = plugin;
     });
 }
 
@@ -45,14 +45,23 @@
 
 - (void)openPluginManagerWindow
 {
-    NSRect frame = NSRectFromCGRect(CGRectMake(200, 200, 500, 500));
     
-    NSWindow *panel = [[NSWindow alloc] initWithContentRect:frame
-                                                  styleMask:NSUtilityWindowMask | NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask
-                                                    backing:NSBackingStoreBuffered
-                                                      defer:NO];
+    NSArray *topLevelObjects;
+    [self.bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&topLevelObjects];
     
-    [panel makeKeyAndOrderFront:self];
+    NSLog(@"top level objects: %@", topLevelObjects);
+    
+//    [topLevelObjects[0] makeKeyAndOrderFront:self];
+    
+//    NSRect frame = NSRectFromCGRect(CGRectMake(200, 200, 500, 500));
+//    
+//    NSWindow *panel = [[NSWindow alloc] initWithContentRect:frame
+//                                                  styleMask:NSUtilityWindowMask | NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask
+//                                                    backing:NSBackingStoreBuffered
+//                                                      defer:NO];
+//    NSTableView *tableView = [[NSTableView alloc] initWithFrame:panel.frame];
+//    [panel makeKeyAndOrderFront:self];
+    
 }
 
 - (void)dealloc {
