@@ -11,6 +11,13 @@
 		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
 		890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 890A4B49171F031300AFE577 /* InfoPlist.strings */; };
 		890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 890A4B4D171F031300AFE577 /* Alcatraz.m */; };
+		8994E5D7171F410E0061B598 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5D6171F410E0061B598 /* Plugin.m */; };
+		8994E5DA171F41840061B598 /* PluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5D9171F41840061B598 /* PluginInstaller.m */; };
+		8994E5E5171F443D0061B598 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5E4171F443D0061B598 /* Template.m */; };
+		8994E5E8171F44570061B598 /* ColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5E7171F44570061B598 /* ColorScheme.m */; };
+		8994E5EA171F45730061B598 /* Package.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5E9171F45730061B598 /* Package.m */; };
+		8994E5ED171F45F50061B598 /* ColorSchemeInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5EC171F45F50061B598 /* ColorSchemeInstaller.m */; };
+		8994E5F0171F46100061B598 /* TemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5EF171F46100061B598 /* TemplateInstaller.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +30,21 @@
 		890A4B4C171F031300AFE577 /* Alcatraz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alcatraz.h; sourceTree = "<group>"; };
 		890A4B4D171F031300AFE577 /* Alcatraz.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alcatraz.m; sourceTree = "<group>"; };
 		890A4B4F171F031300AFE577 /* Alcatraz-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Alcatraz-Prefix.pch"; sourceTree = "<group>"; };
+		8994E5D5171F410E0061B598 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
+		8994E5D6171F410E0061B598 /* Plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin.m; sourceTree = "<group>"; };
+		8994E5D8171F41840061B598 /* PluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginInstaller.h; sourceTree = "<group>"; };
+		8994E5D9171F41840061B598 /* PluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginInstaller.m; sourceTree = "<group>"; };
+		8994E5DC171F42270061B598 /* Installer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Installer.h; sourceTree = "<group>"; };
+		8994E5DF171F431D0061B598 /* Package.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Package.h; sourceTree = "<group>"; };
+		8994E5E3171F443D0061B598 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
+		8994E5E4171F443D0061B598 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
+		8994E5E6171F44570061B598 /* ColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorScheme.h; sourceTree = "<group>"; };
+		8994E5E7171F44570061B598 /* ColorScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorScheme.m; sourceTree = "<group>"; };
+		8994E5E9171F45730061B598 /* Package.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Package.m; sourceTree = "<group>"; };
+		8994E5EB171F45F50061B598 /* ColorSchemeInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSchemeInstaller.h; sourceTree = "<group>"; };
+		8994E5EC171F45F50061B598 /* ColorSchemeInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSchemeInstaller.m; sourceTree = "<group>"; };
+		8994E5EE171F46100061B598 /* TemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateInstaller.h; sourceTree = "<group>"; };
+		8994E5EF171F46100061B598 /* TemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateInstaller.m; sourceTree = "<group>"; };
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +90,8 @@
 		890A4B46171F031300AFE577 /* Alcatraz */ = {
 			isa = PBXGroup;
 			children = (
+				8994E5E2171F442E0061B598 /* Packages */,
+				8994E5DB171F41CB0061B598 /* Installers */,
 				892C7DD7171F2A2000A21B12 /* Controllers */,
 				890A4B4C171F031300AFE577 /* Alcatraz.h */,
 				890A4B4D171F031300AFE577 /* Alcatraz.m */,
@@ -92,6 +116,35 @@
 			children = (
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8994E5DB171F41CB0061B598 /* Installers */ = {
+			isa = PBXGroup;
+			children = (
+				8994E5DC171F42270061B598 /* Installer.h */,
+				8994E5D8171F41840061B598 /* PluginInstaller.h */,
+				8994E5D9171F41840061B598 /* PluginInstaller.m */,
+				8994E5EB171F45F50061B598 /* ColorSchemeInstaller.h */,
+				8994E5EC171F45F50061B598 /* ColorSchemeInstaller.m */,
+				8994E5EE171F46100061B598 /* TemplateInstaller.h */,
+				8994E5EF171F46100061B598 /* TemplateInstaller.m */,
+			);
+			name = Installers;
+			sourceTree = "<group>";
+		};
+		8994E5E2171F442E0061B598 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				8994E5DF171F431D0061B598 /* Package.h */,
+				8994E5E9171F45730061B598 /* Package.m */,
+				8994E5E6171F44570061B598 /* ColorScheme.h */,
+				8994E5E7171F44570061B598 /* ColorScheme.m */,
+				8994E5D5171F410E0061B598 /* Plugin.h */,
+				8994E5D6171F410E0061B598 /* Plugin.m */,
+				8994E5E3171F443D0061B598 /* Template.h */,
+				8994E5E4171F443D0061B598 /* Template.m */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +211,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */,
+				8994E5D7171F410E0061B598 /* Plugin.m in Sources */,
+				8994E5DA171F41840061B598 /* PluginInstaller.m in Sources */,
+				8994E5E5171F443D0061B598 /* Template.m in Sources */,
+				8994E5E8171F44570061B598 /* ColorScheme.m in Sources */,
+				8994E5EA171F45730061B598 /* Package.m in Sources */,
+				8994E5ED171F45F50061B598 /* ColorSchemeInstaller.m in Sources */,
+				8994E5F0171F46100061B598 /* TemplateInstaller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
