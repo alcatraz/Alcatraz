@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface Package :NSObject
+
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSURL *url;
+
 @property (nonatomic) BOOL isInstalled;
+
 @end
