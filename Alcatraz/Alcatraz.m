@@ -11,8 +11,12 @@
 @implementation Alcatraz
 
 
-+ (void)pluginDidLoad:(NSBundle *)plugin
-{
++ (void)pluginDidLoad:(NSBundle *)plugin {
+    [self createSingleton];
+    NSLog(@"Alcatraz Loaded!: %@", plugin);
+}
+
++ (void)createSingleton {
     static id sharedPlugin = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -20,32 +24,38 @@
     });
 }
 
-- (id)init
-{
-    if (self = [super init]) {
-        // Create menu items, initialize UI, etc.
-
-        // Sample Menu Item:
-        NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"File"];
-        if (viewMenuItem) {
-            [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-            NSMenuItem *sample = [[[NSMenuItem alloc] initWithTitle:@"Do Action" action:@selector(doMenuAction) keyEquivalent:@""] autorelease];
-            [sample setTarget:self];
-            [[viewMenuItem submenu] addItem:sample];
-        }
-    }
+- (id)init {
+    if (self = [super init])
+        [self createMenuItem];
+    
     return self;
 }
 
-// Sample Action, for menu item:
-- (void) doMenuAction
-{
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Hello, World" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
-    [alert runModal];
+- (void)createMenuItem {
+    NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"View"];
+    if (!viewMenuItem) return;
+    
+    [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+
+    NSMenuItem *sample = [[NSMenuItem alloc] initWithTitle:@"Plugin Manager" action:@selector(openPluginManagerWindow) keyEquivalent:@""];
+    [sample setTarget:self];
+    [[viewMenuItem submenu] addItem:sample];
+    [sample release];
 }
 
-- (void)dealloc
+- (void)openPluginManagerWindow
 {
+    NSRect frame = NSRectFromCGRect(CGRectMake(200, 200, 500, 500));
+    
+    NSWindow *panel = [[NSWindow alloc] initWithContentRect:frame
+                                                  styleMask:NSUtilityWindowMask | NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask
+                                                    backing:NSBackingStoreBuffered
+                                                      defer:NO];
+    
+    [panel makeKeyAndOrderFront:self];
+}
+
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
