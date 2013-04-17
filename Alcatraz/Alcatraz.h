@@ -8,6 +8,6 @@
 
 #import <AppKit/AppKit.h>
 
-@interface Alcatraz : NSObject
+@interface Alcatraz : NSObject<NSTableViewDataSource, NSTableViewDelegate>
 
 @end

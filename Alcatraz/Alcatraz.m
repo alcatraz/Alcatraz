@@ -32,41 +32,50 @@
 }
 
 - (void)createMenuItem {
-    NSMenuItem *viewMenuItem = [[NSApp mainMenu] itemWithTitle:@"View"];
-    if (!viewMenuItem) return;
-    
-    [[viewMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-
-    NSMenuItem *sample = [[NSMenuItem alloc] initWithTitle:@"Plugin Manager" action:@selector(openPluginManagerWindow) keyEquivalent:@""];
-    [sample setTarget:self];
-    [[viewMenuItem submenu] addItem:sample];
-    [sample release];
+    NSMenuItem *windowMenuItem = [[NSApp mainMenu] itemWithTitle:@"Window"];
+    NSMenuItem *pluginManagerItem = [[NSMenuItem alloc] initWithTitle:@"Plugin Manager"
+                                                               action:@selector(openPluginManagerWindow)
+                                                        keyEquivalent:@"P"];
+    pluginManagerItem.keyEquivalentModifierMask = NSCommandKeyMask | NSShiftKeyMask | NSAlternateKeyMask;
+    pluginManagerItem.target = self;
+    [windowMenuItem.submenu insertItem:pluginManagerItem
+                               atIndex:[windowMenuItem.submenu indexOfItemWithTitle:@"Organizer"] + 1];
+    [pluginManagerItem release];
 }
 
-- (void)openPluginManagerWindow
-{
+- (void)openPluginManagerWindow {
     
-    NSArray *topLevelObjects;
-    [self.bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&topLevelObjects];
+    NSArray *nibElements;
+    [self.bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&nibElements];
     
-    NSLog(@"top level objects: %@", topLevelObjects);
-    
-//    [topLevelObjects[0] makeKeyAndOrderFront:self];
-    
-//    NSRect frame = NSRectFromCGRect(CGRectMake(200, 200, 500, 500));
-//    
-//    NSWindow *panel = [[NSWindow alloc] initWithContentRect:frame
-//                                                  styleMask:NSUtilityWindowMask | NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask
-//                                                    backing:NSBackingStoreBuffered
-//                                                      defer:NO];
-//    NSTableView *tableView = [[NSTableView alloc] initWithFrame:panel.frame];
-//    [panel makeKeyAndOrderFront:self];
-    
+    NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return [evaluatedObject class] == [NSWindow class];
+    }];
+    NSWindow *window = [nibElements filteredArrayUsingPredicate:windowPredicate][0];
+    [window makeKeyAndOrderFront:self];
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
+
+#pragma mark - TableView delegate
+
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    return @[@"Marin",
+             @"Ivana",
+             @"Petra",
+             @"Marin",
+             @"Marin"
+             ][row];
+}
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    return 5;
+}
+
+
+
 
 @end
