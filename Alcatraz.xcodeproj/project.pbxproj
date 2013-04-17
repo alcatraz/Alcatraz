@@ -1,0 +1,278 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B42171F031300AFE577 /* AppKit.framework */; };
+		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
+		890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 890A4B49171F031300AFE577 /* InfoPlist.strings */; };
+		890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 890A4B4D171F031300AFE577 /* Alcatraz.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alcatraz.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		890A4B42171F031300AFE577 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		890A4B44171F031300AFE577 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		890A4B48171F031300AFE577 /* Alcatraz-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alcatraz-Info.plist"; sourceTree = "<group>"; };
+		890A4B4A171F031300AFE577 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		890A4B4C171F031300AFE577 /* Alcatraz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alcatraz.h; sourceTree = "<group>"; };
+		890A4B4D171F031300AFE577 /* Alcatraz.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alcatraz.m; sourceTree = "<group>"; };
+		890A4B4F171F031300AFE577 /* Alcatraz-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Alcatraz-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		890A4B3C171F031300AFE577 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */,
+				890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		890A4B36171F031300AFE577 = {
+			isa = PBXGroup;
+			children = (
+				890A4B46171F031300AFE577 /* Alcatraz */,
+				890A4B41171F031300AFE577 /* Frameworks */,
+				890A4B40171F031300AFE577 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		890A4B40171F031300AFE577 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		890A4B41171F031300AFE577 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				890A4B42171F031300AFE577 /* AppKit.framework */,
+				890A4B44171F031300AFE577 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		890A4B46171F031300AFE577 /* Alcatraz */ = {
+			isa = PBXGroup;
+			children = (
+				890A4B4C171F031300AFE577 /* Alcatraz.h */,
+				890A4B4D171F031300AFE577 /* Alcatraz.m */,
+				890A4B47171F031300AFE577 /* Supporting Files */,
+			);
+			path = Alcatraz;
+			sourceTree = "<group>";
+		};
+		890A4B47171F031300AFE577 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				890A4B48171F031300AFE577 /* Alcatraz-Info.plist */,
+				890A4B49171F031300AFE577 /* InfoPlist.strings */,
+				890A4B4F171F031300AFE577 /* Alcatraz-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		890A4B3E171F031300AFE577 /* Alcatraz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 890A4B52171F031300AFE577 /* Build configuration list for PBXNativeTarget "Alcatraz" */;
+			buildPhases = (
+				890A4B3B171F031300AFE577 /* Sources */,
+				890A4B3C171F031300AFE577 /* Frameworks */,
+				890A4B3D171F031300AFE577 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Alcatraz;
+			productName = Alcatraz;
+			productReference = 890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		890A4B37171F031300AFE577 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = mneorr.com;
+			};
+			buildConfigurationList = 890A4B3A171F031300AFE577 /* Build configuration list for PBXProject "Alcatraz" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 890A4B36171F031300AFE577;
+			productRefGroup = 890A4B40171F031300AFE577 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				890A4B3E171F031300AFE577 /* Alcatraz */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		890A4B3D171F031300AFE577 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		890A4B3B171F031300AFE577 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		890A4B49171F031300AFE577 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				890A4B4A171F031300AFE577 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		890A4B50171F031300AFE577 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		890A4B51171F031300AFE577 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		890A4B53171F031300AFE577 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Alcatraz/Alcatraz-Prefix.pch";
+				INFOPLIST_FILE = "Alcatraz/Alcatraz-Info.plist";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		890A4B54171F031300AFE577 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Alcatraz/Alcatraz-Prefix.pch";
+				INFOPLIST_FILE = "Alcatraz/Alcatraz-Info.plist";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		890A4B3A171F031300AFE577 /* Build configuration list for PBXProject "Alcatraz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				890A4B50171F031300AFE577 /* Debug */,
+				890A4B51171F031300AFE577 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		890A4B52171F031300AFE577 /* Build configuration list for PBXNativeTarget "Alcatraz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				890A4B53171F031300AFE577 /* Debug */,
+				890A4B54171F031300AFE577 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 890A4B37171F031300AFE577 /* Project object */;
+}
