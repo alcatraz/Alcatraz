@@ -46,9 +46,9 @@
 #pragma mark - Private
 
 - (void)unpackFromDictionary:(NSDictionary *)dictionary {
-    self.name = [dictionary[@"name"] copy];
-    self.description = [dictionary[@"description"] copy];
-    self.url = [[NSURL alloc] initWithString:dictionary[@"url"]];
+    self.name = dictionary[@"name"];
+    self.description = dictionary[@"description"];
+    _url = [[NSURL alloc] initWithString:dictionary[@"url"]];
 }
 
 
