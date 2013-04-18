@@ -35,7 +35,7 @@
         [packages addObject:plugin];
         [plugin release];
     }
-    for (NSDictionary *templateDict in packagesInDicts[@"templates"]) {
+    for (NSDictionary *templateDict in packagesInDicts[@"project_templates"]) {
         Template *template = [[Template alloc] initWithDictionary:templateDict];
         [packages addObject:template];
         [template release];
