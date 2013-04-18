@@ -7,6 +7,7 @@
 //
 
 #import "Alcatraz.h"
+#import "Downloader.h"
 // pull this out in a factory
 #import "Plugin.h"
 #import "ColorScheme.h"
@@ -33,7 +34,9 @@
     if (self = [super init]) {
         self.bundle = [plugin retain];
         [self createMenuItem];
-        [self fetchPlugins];
+        
+        @try { [self fetchPlugins]; }
+        @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
     return self;
 }
@@ -51,16 +54,18 @@
 - (void)fetchPlugins {
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
 
-    @try {
-        NSData *jsonData = [[NSData alloc] initWithContentsOfFile:[self.bundle pathForResource:@"packages" ofType:@"json"]];
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-        [self createPackagesFromDicts:json[@"packages"]];
-        [jsonData release];
-    }
-    @catch(NSException *exception) {
-        NSLog(@"I've heard you like exceptions... %@", exception);
-    }
+        
+    Downloader *downloader = [Downloader new];
+    downloader.bundle = self.bundle;
     
+    [downloader downloadPackageListAnd:^(NSDictionary *packageList) {
+        [self createPackagesFromDicts:packageList];
+    }
+                               failure:^(NSError *error) {
+       NSLog(@"Error while downloading packages! %@", error);
+    }];
+    
+    [downloader release];
     [pool drain];
 }
 

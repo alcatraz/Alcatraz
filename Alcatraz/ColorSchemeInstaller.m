@@ -22,4 +22,8 @@
     
 }
 
+- (BOOL)isPackageInstalled:(Package *)package {
+    return NO;
+}
+
 @end
