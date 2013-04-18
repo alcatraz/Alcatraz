@@ -121,7 +121,8 @@
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 
-    return [self.packages[row] name];
+    Package *package = self.packages[row];
+    return [[tableColumn.headerCell title] isEqualToString:@"Name"] ? [package name] : [package description];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
