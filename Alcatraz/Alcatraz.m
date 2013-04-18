@@ -23,11 +23,8 @@
 
 #import "Alcatraz.h"
 #import "Downloader.h"
-// pull this out in a factory
-#import "Plugin.h"
-#import "ColorScheme.h"
-#import "Template.h"
-//
+#import "Package.h"
+#import "PackageFactory.h"
 
 @interface Alcatraz(){}
 @property (nonatomic, retain) NSBundle *bundle;
@@ -68,44 +65,19 @@
 
 - (void)fetchPlugins {
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
-
-        
+    
     Downloader *downloader = [Downloader new];
     downloader.bundle = self.bundle;
-    
     [downloader downloadPackageListAnd:^(NSDictionary *packageList) {
-        [self createPackagesFromDicts:packageList];
+        
+        self.packages = [PackageFactory createPackagesFromDicts:packageList];
     }
-                               failure:^(NSError *error) {
+    failure:^(NSError *error) {
        NSLog(@"Error while downloading packages! %@", error);
     }];
     
     [downloader release];
     [pool drain];
-}
-
-- (void)createPackagesFromDicts:(NSDictionary *)packagesDict {
-
-    NSMutableArray *packages = [NSMutableArray new];
-
-    for (NSDictionary *pluginDict in packagesDict[@"plugins"]) {
-        Plugin *plugin = [[Plugin alloc] initWithDictionary:pluginDict];
-        [packages addObject:plugin];
-        [plugin release];
-    }
-    for (NSDictionary *templateDict in packagesDict[@"templates"]) {
-        Template *template = [[Template alloc] initWithDictionary:templateDict];
-        [packages addObject:template];
-        [template release];
-    }
-    for (NSDictionary *colorSchemeDict in packagesDict[@"color_schemes"]) {
-        ColorScheme *colorScheme = [[ColorScheme alloc] initWithDictionary:colorSchemeDict];
-        [packages addObject:colorScheme];
-        [colorScheme release];
-    }
-    
-    self.packages = packages;
-    [packages release];
 }
 
 - (void)createMenuItem {
@@ -121,7 +93,6 @@
 }
 
 - (void)openPluginManagerWindow {
-    
     NSArray *nibElements;
     [self.bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&nibElements];
     
@@ -135,7 +106,6 @@
 #pragma mark - TableView delegate
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-
     Package *package = self.packages[row];
     return [[tableColumn.headerCell title] isEqualToString:@"Name"] ? [package name] : [package description];
 }

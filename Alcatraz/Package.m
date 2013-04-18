@@ -36,10 +36,10 @@
 }
 
 - (void)dealloc {
-    [super dealloc];
     [self.name release];
     [self.description release];
     [self.url release];
+    [super dealloc];
 }
 
 

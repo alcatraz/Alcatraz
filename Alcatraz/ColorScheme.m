@@ -25,4 +25,8 @@
 
 @implementation ColorScheme
 
+- (id<Installer>)installer {
+    return nil;
+}
+
 @end

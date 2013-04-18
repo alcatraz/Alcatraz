@@ -24,4 +24,8 @@
 
 @implementation Plugin
 
+- (id<Installer>)installer {
+    
+}
+
 @end

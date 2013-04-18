@@ -25,4 +25,8 @@
 
 @implementation Template
 
+- (id<Installer>)installer {
+    return nil;
+}
+
 @end

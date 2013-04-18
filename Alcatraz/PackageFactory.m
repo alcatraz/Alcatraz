@@ -21,7 +21,32 @@
 // THE SOFTWARE.
 
 #import "PackageFactory.h"
+#import "Plugin.h"
+#import "ColorScheme.h"
+#import "Template.h"
 
 @implementation PackageFactory
+
++ (NSArray *)createPackagesFromDicts:(NSDictionary *)packagesInDicts {
+    NSMutableArray *packages = [NSMutableArray new];
+    
+    for (NSDictionary *pluginDict in packagesInDicts[@"plugins"]) {
+        Plugin *plugin = [[Plugin alloc] initWithDictionary:pluginDict];
+        [packages addObject:plugin];
+        [plugin release];
+    }
+    for (NSDictionary *templateDict in packagesInDicts[@"templates"]) {
+        Template *template = [[Template alloc] initWithDictionary:templateDict];
+        [packages addObject:template];
+        [template release];
+    }
+    for (NSDictionary *colorSchemeDict in packagesInDicts[@"color_schemes"]) {
+        ColorScheme *colorScheme = [[ColorScheme alloc] initWithDictionary:colorSchemeDict];
+        [packages addObject:colorScheme];
+        [colorScheme release];
+    }
+
+    return [packages autorelease];
+}
 
 @end

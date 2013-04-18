@@ -24,4 +24,6 @@
 
 @interface PackageFactory : NSObject
 
++ (NSArray *)createPackagesFromDicts:(NSDictionary *)packagesInDicts;
+
 @end
