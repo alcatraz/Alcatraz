@@ -7,10 +7,18 @@
 //
 
 #import "ColorSchemeInstaller.h"
-
+#import "ColorScheme.h"
 @implementation ColorSchemeInstaller
 
-- (void)installPackage:(Package *)package error:(NSError **)error {
+#pragma mark - Public
+
+- (void)installPackage:(ColorScheme *)package progress:(void (^)(CGFloat))progress
+            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+    
+}
+
+- (void)removePackage:(ColorScheme *)package progress:(void (^)(CGFloat))progress
+            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
     
 }
 

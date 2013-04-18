@@ -7,10 +7,19 @@
 //
 
 #import "TemplateInstaller.h"
+#import "Template.h"
 
 @implementation TemplateInstaller
 
-- (void)installPackage:(Package *)package error:(NSError **)error {
+#pragma mark - Public
+
+- (void)installPackage:(Template *)package progress:(void (^)(CGFloat))progress
+            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+    
+}
+
+- (void)removePackage:(Template *)package progress:(void (^)(CGFloat))progress
+           completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
     
 }
 

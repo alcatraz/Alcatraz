@@ -11,7 +11,15 @@
 
 @implementation PluginInstaller
 
-- (void)installPackage:(Package *)package error:(NSError **)error {
+#pragma mark - Public
+
+- (void)installPackage:(Plugin *)package progress:(void (^)(CGFloat))progress
+            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+    
+}
+
+- (void)removePackage:(Plugin *)package progress:(void (^)(CGFloat))progress
+           completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
     
 }
 
