@@ -13,7 +13,7 @@
         "description": "Xcode plugin for working without the main toolbar"
       }
     ],
-    "color_themes": [
+    "color_schemes": [
       {
         "name": "Humane",
         "url": "https://raw.github.com/jbrennan/xcode4themes/master/Humane.dvtcolortheme",
@@ -36,24 +36,24 @@
       },
       {
         "name": "Solarized_Light",
-        "repository": "https://github.com/jbrennan/xcode4themes",
+        "url": "https://github.com/jbrennan/xcode4themes",
         "description": "Solarized is a sixteen color palette (eight monotones, eight accent colors) designed for use with terminal and gui applications."
       },
       {
         "name": "Solarized_Dark",
-        "repository": "https://github.com/jbrennan/xcode4themes",
+        "url": "https://github.com/jbrennan/xcode4themes",
         "description": "Solarized is a sixteen color palette (eight monotones, eight accent colors) designed for use with terminal and gui applications."
       }
     ],
     "templates": [
       {
         "name": "AFNetworking templates",
-        "repository": "https://github.com/AFNetworking/Xcode-Project-Templates",
+        "url": "https://github.com/AFNetworking/Xcode-Project-Templates",
         "description": "Start Your Project Off Right, with CocoaPods & AFNetworking"
       },
       {
         "name": "Xcode plugin template",
-        "repository": "https://github.com/kattrali/Xcode4-Plugin-Template",
+        "url": "https://github.com/kattrali/Xcode4-Plugin-Template",
         "description": "Project Template for creating a plugin for Xcode4"
       }
     ]

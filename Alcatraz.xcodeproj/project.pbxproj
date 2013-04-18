@@ -11,6 +11,7 @@
 		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
 		890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 890A4B49171F031300AFE577 /* InfoPlist.strings */; };
 		890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 890A4B4D171F031300AFE577 /* Alcatraz.m */; };
+		893AAE381720092F00B75D0A /* packages.json in Resources */ = {isa = PBXBuildFile; fileRef = 893AAE371720092F00B75D0A /* packages.json */; };
 		8994E5D7171F410E0061B598 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5D6171F410E0061B598 /* Plugin.m */; };
 		8994E5DA171F41840061B598 /* PluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5D9171F41840061B598 /* PluginInstaller.m */; };
 		8994E5E5171F443D0061B598 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5E4171F443D0061B598 /* Template.m */; };
@@ -30,6 +31,7 @@
 		890A4B4C171F031300AFE577 /* Alcatraz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alcatraz.h; sourceTree = "<group>"; };
 		890A4B4D171F031300AFE577 /* Alcatraz.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alcatraz.m; sourceTree = "<group>"; };
 		890A4B4F171F031300AFE577 /* Alcatraz-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Alcatraz-Prefix.pch"; sourceTree = "<group>"; };
+		893AAE371720092F00B75D0A /* packages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = packages.json; sourceTree = "<group>"; };
 		8994E5D5171F410E0061B598 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
 		8994E5D6171F410E0061B598 /* Plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin.m; sourceTree = "<group>"; };
 		8994E5D8171F41840061B598 /* PluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginInstaller.h; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		890A4B46171F031300AFE577 /* Alcatraz */ = {
 			isa = PBXGroup;
 			children = (
+				893AAE361720092F00B75D0A /* Resources */,
 				8994E5E2171F442E0061B598 /* Packages */,
 				8994E5DB171F41CB0061B598 /* Installers */,
 				892C7DD7171F2A2000A21B12 /* Controllers */,
@@ -116,6 +119,14 @@
 			children = (
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		893AAE361720092F00B75D0A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				893AAE371720092F00B75D0A /* packages.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		8994E5DB171F41CB0061B598 /* Installers */ = {
@@ -200,6 +211,7 @@
 			files = (
 				890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */,
 				89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */,
+				893AAE381720092F00B75D0A /* packages.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

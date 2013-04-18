@@ -7,28 +7,85 @@
 //
 
 #import "Alcatraz.h"
+// pull this out in a factory
+#import "Plugin.h"
+#import "ColorScheme.h"
+#import "Template.h"
+//
 
 @interface Alcatraz(){}
-@property (strong, nonatomic) NSBundle *bundle;
+@property (nonatomic, retain) NSBundle *bundle;
+@property (nonatomic, retain) NSArray *packages;
 @end
 
 @implementation Alcatraz
 
 
 + (void)pluginDidLoad:(NSBundle *)plugin {
-    static Alcatraz *sharedPlugin = nil;
+    static Alcatraz *sharedPlugin;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedPlugin = [[self alloc] init];
-        sharedPlugin.bundle = plugin;
+        sharedPlugin = [[self alloc] initWithBundle:plugin];
     });
 }
 
-- (id)init {
-    if (self = [super init])
+- (id)initWithBundle:(NSBundle *)plugin {
+    if (self = [super init]) {
+        self.bundle = [plugin retain];
         [self createMenuItem];
-    
+        [self fetchPlugins];
+    }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.bundle release];
+    [self.packages release];
+    [super dealloc];
+}
+
+
+#pragma mark - Private
+
+- (void)fetchPlugins {
+    NSAutoreleasePool *pool = [NSAutoreleasePool new];
+
+    @try {
+        NSData *jsonData = [[NSData alloc] initWithContentsOfFile:[self.bundle pathForResource:@"packages" ofType:@"json"]];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        [self createPackagesFromDicts:json[@"packages"]];
+        [jsonData release];
+    }
+    @catch(NSException *exception) {
+        NSLog(@"I've heard you like exceptions... %@", exception);
+    }
+    
+    [pool drain];
+}
+
+- (void)createPackagesFromDicts:(NSDictionary *)packagesDict {
+
+    NSMutableArray *packages = [NSMutableArray new];
+
+    for (NSDictionary *pluginDict in packagesDict[@"plugins"]) {
+        Plugin *plugin = [[Plugin alloc] initWithDictionary:pluginDict];
+        [packages addObject:plugin];
+        [plugin release];
+    }
+    for (NSDictionary *templateDict in packagesDict[@"templates"]) {
+        Template *template = [[Template alloc] initWithDictionary:templateDict];
+        [packages addObject:template];
+        [template release];
+    }
+    for (NSDictionary *colorSchemeDict in packagesDict[@"color_schemes"]) {
+        ColorScheme *colorScheme = [[ColorScheme alloc] initWithDictionary:colorSchemeDict];
+        [packages addObject:colorScheme];
+        [colorScheme release];
+    }
+    
+    self.packages = packages;
+    [packages release];
 }
 
 - (void)createMenuItem {
@@ -55,24 +112,15 @@
     [window makeKeyAndOrderFront:self];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
-}
-
 #pragma mark - TableView delegate
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    return @[@"Marin",
-             @"Ivana",
-             @"Petra",
-             @"Marin",
-             @"Marin"
-             ][row];
+
+    return [self.packages[row] name];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return 5;
+    return self.packages.count;
 }
 
 

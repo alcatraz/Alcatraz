@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Package.h"
 
-@interface Template : NSObject
+@interface Template : Package
 
 @end

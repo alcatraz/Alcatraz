@@ -23,4 +23,8 @@
     
 }
 
+- (BOOL)isPackageInstalled:(Package *)package {
+    
+}
+
 @end
