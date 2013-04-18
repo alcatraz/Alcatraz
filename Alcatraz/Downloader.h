@@ -28,5 +28,6 @@
 @property NSBundle *bundle; // TODO: delete this when networking comes in
 
 - (void)downloadPackageListAnd:(void(^)(NSDictionary *packageList))completion failure:(void(^)(NSError *error))failure;
+- (void)downloadFileFromURL:(NSURL *)url completion:(void(^)(NSData *responseData))completion failure:(void(^)(NSError *error))failure;
 
 @end

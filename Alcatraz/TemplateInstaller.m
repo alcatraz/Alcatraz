@@ -33,7 +33,7 @@
     
 }
 
-- (void)removePackage:(Template *)package progress:(void (^)(CGFloat))progress
+- (void)removePackage:(Template *)package
            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
     
 }

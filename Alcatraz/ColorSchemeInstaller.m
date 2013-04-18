@@ -23,6 +23,8 @@
 
 #import "ColorSchemeInstaller.h"
 #import "ColorScheme.h"
+
+static NSString *const LOCAL_COLOR_SCHEMES_PATH = @"~/Library/Developer/Xcode/UserData/FontAndColorThemes";
 @implementation ColorSchemeInstaller
 
 #pragma mark - Public
@@ -30,15 +32,43 @@
 - (void)installPackage:(ColorScheme *)package progress:(void (^)(CGFloat))progress
             completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
     
+    Downloader *downloader = [Downloader new];
+    [downloader downloadFileFromURL:package.url
+     
+        completion:^(NSData *responseData) {
+            [self copyDownloadedThemeToFilesystem:responseData];
+            [downloader release];
+    }
+        failure:^(NSError *error) {
+            NSLog(@"Downloading color scheme failed :( %@", error);
+            [downloader release];
+    }];
 }
 
-- (void)removePackage:(ColorScheme *)package progress:(void (^)(CGFloat))progress
-            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+- (void)removePackage:(ColorScheme *)package
+           completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+
+    NSError *error;
     
+    [[NSFileManager sharedManager] removeItemAtPath:[self filePathForColorScheme:package] error:&error];
+    
+    if (error) failure(error);
+    else completion();
 }
 
 - (BOOL)isPackageInstalled:(Package *)package {
     return NO;
+}
+
+#pragma mark - Private
+
+- (void)copyDownloadedThemeToFilesystem:(NSData *)file {
+    
+}
+
+- (NSString *)filePathForColorScheme:(ColorScheme *)colorScheme {
+    return [NSString stringWithFormat:@"%@.dvcolortheme",
+            [NSString stringWithFormat:@"%@%@", LOCAL_COLOR_SCHEMES_PATH, colorScheme.name]];
 }
 
 @end

@@ -21,6 +21,7 @@
 		8994E5ED171F45F50061B598 /* ColorSchemeInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5EC171F45F50061B598 /* ColorSchemeInstaller.m */; };
 		8994E5F0171F46100061B598 /* TemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5EF171F46100061B598 /* TemplateInstaller.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
+		89F09609172086980033F3BE /* NSFileManager+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F09608172086980033F3BE /* NSFileManager+Alcatraz.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		8994E5EE171F46100061B598 /* TemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateInstaller.h; sourceTree = "<group>"; };
 		8994E5EF171F46100061B598 /* TemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateInstaller.m; sourceTree = "<group>"; };
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
+		89F09607172086980033F3BE /* NSFileManager+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Alcatraz.h"; sourceTree = "<group>"; };
+		89F09608172086980033F3BE /* NSFileManager+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Alcatraz.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 				896FCADA1720125D00246CBE /* Downloader.m */,
 				897DA168172028B700E11BCB /* PackageFactory.h */,
 				897DA169172028B700E11BCB /* PackageFactory.m */,
+				89F09607172086980033F3BE /* NSFileManager+Alcatraz.h */,
+				89F09608172086980033F3BE /* NSFileManager+Alcatraz.m */,
 			);
 			path = Alcatraz;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				8994E5F0171F46100061B598 /* TemplateInstaller.m in Sources */,
 				896FCADB1720125D00246CBE /* Downloader.m in Sources */,
 				897DA16A172028B700E11BCB /* PackageFactory.m in Sources */,
+				89F09609172086980033F3BE /* NSFileManager+Alcatraz.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

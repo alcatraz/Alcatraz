@@ -24,6 +24,7 @@
 #import <Foundation/Foundation.h>
 #import "Installer.h"
 
+@protocol Installer;
 @interface PluginInstaller : NSObject<Installer>
 
 @end

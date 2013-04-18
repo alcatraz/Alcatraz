@@ -22,6 +22,8 @@
 
 
 #import <Foundation/Foundation.h>
+#import "Downloader.h"
+#import "NSFileManager+Alcatraz.h"
 
 @class Package;
 
@@ -30,7 +32,7 @@
 - (void)installPackage:(Package *)package progress:(void(^)(CGFloat progress))progress
             completion:(void(^)(void))completion failure:(void(^)(NSError *error))failure;
 
-- (void)removePackage:(Package *)package progress:(void(^)(CGFloat progress))progress
+- (void)removePackage:(Package *)package
            completion:(void(^)(void))completion failure:(void(^)(NSError *error))failure;
 
 - (BOOL)isPackageInstalled:(Package *)package;

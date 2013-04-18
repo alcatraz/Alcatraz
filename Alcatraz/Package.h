@@ -38,8 +38,7 @@
 - (void)installWithProgress:(void(^)(CGFloat progress))progress
                  completion:(void(^)(void))completion failure:(void(^)(NSError *error))failure;
 
-- (void)removeWithProgress:(void(^)(CGFloat progress))progress
-                completion:(void(^)(void))completion failure:(void(^)(NSError *error))failure;
+- (void)removeAnd:(void(^)(void))completion failure:(void(^)(NSError *error))failure;
 
 
 /// To be overriden in subclasses. Each type of package has a different installer.
