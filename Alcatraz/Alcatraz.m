@@ -95,7 +95,7 @@
 - (void)openPluginManagerWindow {
     NSArray *nibElements;
     [self.bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&nibElements];
-    
+
     NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return [evaluatedObject class] == [NSWindow class];
     }];
@@ -107,7 +107,17 @@
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     Package *package = self.packages[row];
-    return [[tableColumn.headerCell title] isEqualToString:@"Name"] ? [package name] : [package description];
+    
+    if ([[tableColumn.headerCell title] isEqualToString:@"Name"])
+        return package.name;
+
+    else if ([[tableColumn.headerCell title] isEqualToString:@"Type"])
+        return package.type;
+    
+    else if ([[tableColumn.headerCell title] isEqualToString:@"Description"])
+        return package.description;
+
+    return @(package.isInstalled);
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {

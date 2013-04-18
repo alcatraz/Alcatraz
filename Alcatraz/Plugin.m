@@ -22,10 +22,16 @@
 
 #import "Plugin.h"
 
+static NSString *const PLUGIN = @"Plugin";
+
 @implementation Plugin
 
 - (id<Installer>)installer {
-    
+    return nil;
+}
+
+- (NSString *)type {
+    return PLUGIN;
 }
 
 @end

@@ -29,4 +29,8 @@
     return nil;
 }
 
+- (NSString *)type {
+    return @"Template";
+}
+
 @end

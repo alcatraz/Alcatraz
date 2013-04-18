@@ -23,10 +23,16 @@
 
 #import "ColorScheme.h"
 
+static NSString *const COLOR_SCHEME = @"Color Scheme";
+
 @implementation ColorScheme
 
 - (id<Installer>)installer {
     return nil;
+}
+
+- (NSString *)type {
+    return COLOR_SCHEME;
 }
 
 @end

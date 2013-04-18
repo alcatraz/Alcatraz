@@ -24,7 +24,7 @@
 #import "Installer.h"
 
 @implementation Package
-@dynamic isInstalled;
+@dynamic isInstalled, type;
 
 - (id)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
