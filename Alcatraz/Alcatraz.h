@@ -24,4 +24,5 @@
 
 @interface Alcatraz : NSObject<NSTableViewDataSource, NSTableViewDelegate>
 
+@property (nonatomic, retain) NSArray *packages;
 @end
