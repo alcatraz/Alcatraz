@@ -69,4 +69,9 @@
     [[self installer] removePackage:self completion:completion failure:failure];
 }
 
+- (id<Installer>)installer {
+    
+    @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Each package has to return a different installer!" userInfo:nil];
+}
+
 @end
