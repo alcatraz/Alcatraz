@@ -49,7 +49,7 @@
 
 - (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
-        self.bundle = [plugin retain];
+        self.bundle = plugin;
         self.filterPredicate = [NSPredicate predicateWithValue:YES];
         [self createMenuItem];
         
