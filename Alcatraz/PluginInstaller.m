@@ -62,12 +62,8 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 
 - (void)clonePlugin:(Plugin *)plugin completion:(void(^)(void))completion failure:(void (^)(NSError *))failure {
 
-    NSString *output = [Shell executeCommand:[self whichGit] withArguments:@[@"clone", plugin.remotePath, plugin.name]];
+    NSString *output = [Shell executeCommand:@"/usr/local/bin/git" withArguments:@[@"clone", plugin.remotePath, plugin.name]];
     NSLog(@"Git clone returned: %@", output);
-}
-
-- (NSString *)whichGit {
-    return [Shell executeCommand:@"/usr/bin/ruby" withArguments:@[@"-e 'print `which git`'"]];
 }
 
 - (NSString *)pathForClonedPlugin:(Plugin *)plugin {

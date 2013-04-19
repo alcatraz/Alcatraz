@@ -28,17 +28,16 @@
     NSTask *shellTask = [NSTask new];
     NSPipe *pipe = [NSPipe pipe];
     
-    NSArray *shellArguments = [command componentsSeparatedByString:@" "][0];
-    [shellTask setLaunchPath:shellArguments[0]];
-    [shellTask setArguments:[shellArguments objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, shellArguments.count - 1)]]];
+    [shellTask setLaunchPath:command];
+    [shellTask setArguments:arguments];
     [shellTask setStandardOutput:pipe];
-    [shellTask launch];
     
     NSData *data = [[pipe fileHandleForReading] readDataToEndOfFile];
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [shellTask launch];
     
-    [data release];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [shellTask release];
+    
     return [string autorelease];
 }
 
