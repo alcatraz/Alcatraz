@@ -33,7 +33,7 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
             completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
     
     Downloader *downloader = [Downloader new];
-    [downloader downloadFileFromURL:package.url completion:^(NSData *responseData) {
+    [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData) {
 
             [self installColorScheme:package withContents:responseData];
             completion();
@@ -56,7 +56,7 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
 
 - (BOOL)isPackageInstalled:(ColorScheme *)package {
     
-    return [[NSFileManager sharedManager] fileExistsAtPath:[self filePathForColorScheme:package] isDirectory:NO];
+    return [[NSFileManager sharedManager] fileExistsAtPath:[self filePathForColorScheme:package]];
 }
 
 #pragma mark - Private

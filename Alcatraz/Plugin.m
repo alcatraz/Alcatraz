@@ -21,13 +21,14 @@
 // THE SOFTWARE.
 
 #import "Plugin.h"
+#import "PluginInstaller.h"
 
 static NSString *const PLUGIN = @"Plugin";
 
 @implementation Plugin
 
 - (id<Installer>)installer {
-    return nil;
+    return [[PluginInstaller new] autorelease];
 }
 
 - (NSString *)type {

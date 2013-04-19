@@ -111,12 +111,19 @@
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
     
     Downloader *downloader = [Downloader new];
-    downloader.bundle = self.bundle;
     [downloader downloadPackageListAnd:^(NSDictionary *packageList) {
         
         self.packages = [PackageFactory createPackagesFromDicts:packageList];
         for (Package *package in self.packages) {
             NSLog(@"Package: %@ is installed? %@", package.name, @(package.isInstalled));
+            if ([package.name isEqualToString:@"OMMiniXcode"])
+                [package installWithProgress:^(CGFloat progress) {
+                    
+                } completion:^{
+                   NSLog(@"installed!!!! \0/ %@", package.name);
+                } failure:^(NSError *error) {
+                    NSLog(@"failed to install :( %@", package.name);
+                }];
         }
     }
     failure:^(NSError *error) {

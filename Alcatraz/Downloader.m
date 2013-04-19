@@ -39,8 +39,8 @@ static NSString *const PLUGINS_REPO_PATH = @"https://gist.github.com/mneorr/2af0
     }];
 }
 
-- (void)downloadFileFromURL:(NSURL *)url completion:(void(^)(NSData *responseData))completion failure:(void(^)(NSError *error))failure {
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url]
+- (void)downloadFileFromPath:(NSString *)remotePath completion:(void (^)(NSData *))completion failure:(void (^)(NSError *))failure {
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:remotePath]]
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *receivedData, NSError *error) {
                                if (error)

@@ -1,5 +1,5 @@
-// Downloader.h
-//
+// Shell.m
+// 
 // Copyright (c) 2013 mneorr.com
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -8,10 +8,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-//
+// 
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-//
+// 
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,12 +20,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "Shell.h"
 
-#import <Foundation/Foundation.h>
+@implementation Shell
 
-@interface Downloader : NSObject
-
-- (void)downloadPackageListAnd:(void(^)(NSDictionary *packageList))completion failure:(void(^)(NSError *error))failure;
-- (void)downloadFileFromPath:(NSString *)remotePath completion:(void(^)(NSData *responseData))completion failure:(void(^)(NSError *error))failure;
++ (NSString *)executeCommand:(NSString *)command withArguments:(NSArray *)arguments {
+    NSTask *shellTask = [NSTask new];
+    NSPipe *pipe = [NSPipe pipe];
+    
+    NSArray *shellArguments = [command componentsSeparatedByString:@" "][0];
+    [shellTask setLaunchPath:shellArguments[0]];
+    [shellTask setArguments:[shellArguments objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, shellArguments.count - 1)]]];
+    [shellTask setStandardOutput:pipe];
+    [shellTask launch];
+    
+    NSData *data = [[pipe fileHandleForReading] readDataToEndOfFile];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    [data release];
+    [shellTask release];
+    return [string autorelease];
+}
 
 @end

@@ -23,6 +23,7 @@
 
 #import "PluginInstaller.h"
 #import "Plugin.h"
+#import "Shell.h"
 
 static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 
@@ -30,28 +31,77 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 
 #pragma mark - Public
 
-
-// TODO: move to git and support updates.
-- (void)installPackage:(Plugin *)package progress:(void (^)(CGFloat))progress
+- (void)installPackage:(Plugin *)plugin progress:(void (^)(CGFloat))progress
             completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
-//    [Downloader download]
+
+    [self clonePlugin:plugin
+           completion:^{ [self buildPlugin:plugin completion:completion failure:failure]; }
+              failure:failure];
 }
 
 - (void)removePackage:(Plugin *)package
            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+    NSError *error;
+    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPlugin:package] error:&error];
     
+    error ? failure(error) : completion();
 }
 
 - (BOOL)isPackageInstalled:(Plugin *)package {
-    return [[NSFileManager sharedManager] fileExistsAtPath:[self filePathForPlugin:package] isDirectory:YES];
+    BOOL isDirectory;
+    return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPlugin:package] isDirectory:&isDirectory];
 }
 
 
 #pragma mark - Private
 
-- (NSString *)filePathForPlugin:(Plugin *)plugin {
+- (NSString *)pathForInstalledPlugin:(Plugin *)plugin {
     return [NSString stringWithFormat:@"%@.xcplugin",
             [NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), LOCAL_PLUGINS_RELATIVE_PATH, plugin.name]];
+}
+
+- (void)clonePlugin:(Plugin *)plugin completion:(void(^)(void))completion failure:(void (^)(NSError *))failure {
+
+    NSString *output = [Shell executeCommand:[self whichGit] withArguments:@[@"clone", plugin.remotePath, plugin.name]];
+    NSLog(@"Git clone returned: %@", output);
+}
+
+- (NSString *)whichGit {
+    return [Shell executeCommand:@"/usr/bin/ruby" withArguments:@[@"-e 'print `which git`'"]];
+}
+
+- (NSString *)pathForClonedPlugin:(Plugin *)plugin {
+    return [NSTemporaryDirectory() stringByAppendingPathComponent:plugin.name];
+}
+
+- (void)buildPlugin:(Plugin *)plugin completion:(void(^)(void))completion failure:(void (^)(NSError *))failure {
+    NSString *output = [Shell executeCommand:@"/usr/bin/xcodebuild" withArguments:@[@"-project", [self findXcodeprojPathForPlugin:plugin]]];
+    // TODO: parse output, see if it failed
+    NSLog(@"Xcodebuild output: %@", output);
+    completion();
+}
+
+
+- (NSString *)findXcodeprojPathForPlugin:(Plugin *)plugin {
+    NSAutoreleasePool *pool = [NSAutoreleasePool new];
+    @try {
+        NSString *path = [self pathForClonedPlugin:plugin];
+        NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:path];
+        NSLog(@"Enumerator: %@", enumerator);
+        
+        NSString *directoryEntry;
+        while (directoryEntry = [enumerator nextObject]) {
+            NSLog(@"Parsing directory entry... %@", directoryEntry);
+            if ([[directoryEntry substringWithRange:NSMakeRange(directoryEntry.length -1, -10)] isEqualToString:@".xcodeproj"]) {
+                NSLog(@"found xcodeproj!!!! %@", directoryEntry);
+                return directoryEntry;
+            }
+        }
+    }
+    @catch (NSException *exception) { NSLog(@"Exception with finding xcodeproj path! %@", exception); }
+    @finally { NSLog(@"draining..."); [pool drain]; }
+
+    return @"";
 }
 
 @end

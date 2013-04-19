@@ -11,6 +11,7 @@
 		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
 		890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 890A4B49171F031300AFE577 /* InfoPlist.strings */; };
 		890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 890A4B4D171F031300AFE577 /* Alcatraz.m */; };
+		892BE56B1721B8AD00F4E859 /* Shell.m in Sources */ = {isa = PBXBuildFile; fileRef = 892BE56A1721B8AD00F4E859 /* Shell.m */; };
 		896FCADB1720125D00246CBE /* Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 896FCADA1720125D00246CBE /* Downloader.m */; };
 		897DA16A172028B700E11BCB /* PackageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 897DA169172028B700E11BCB /* PackageFactory.m */; };
 		8994E5D7171F410E0061B598 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5D6171F410E0061B598 /* Plugin.m */; };
@@ -33,6 +34,8 @@
 		890A4B4C171F031300AFE577 /* Alcatraz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alcatraz.h; sourceTree = "<group>"; };
 		890A4B4D171F031300AFE577 /* Alcatraz.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alcatraz.m; sourceTree = "<group>"; };
 		890A4B4F171F031300AFE577 /* Alcatraz-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Alcatraz-Prefix.pch"; sourceTree = "<group>"; };
+		892BE5691721B8AD00F4E859 /* Shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shell.h; sourceTree = "<group>"; };
+		892BE56A1721B8AD00F4E859 /* Shell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shell.m; sourceTree = "<group>"; };
 		896FCAD91720125D00246CBE /* Downloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downloader.h; sourceTree = "<group>"; };
 		896FCADA1720125D00246CBE /* Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Downloader.m; sourceTree = "<group>"; };
 		897DA168172028B700E11BCB /* PackageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageFactory.h; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 				897DA169172028B700E11BCB /* PackageFactory.m */,
 				89F09607172086980033F3BE /* NSFileManager+Alcatraz.h */,
 				89F09608172086980033F3BE /* NSFileManager+Alcatraz.m */,
+				892BE5691721B8AD00F4E859 /* Shell.h */,
+				892BE56A1721B8AD00F4E859 /* Shell.m */,
 			);
 			path = Alcatraz;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				896FCADB1720125D00246CBE /* Downloader.m in Sources */,
 				897DA16A172028B700E11BCB /* PackageFactory.m in Sources */,
 				89F09609172086980033F3BE /* NSFileManager+Alcatraz.m in Sources */,
+				892BE56B1721B8AD00F4E859 /* Shell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

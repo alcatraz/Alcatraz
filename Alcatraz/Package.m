@@ -38,7 +38,7 @@
 - (void)dealloc {
     [self.name release];
     [self.description release];
-    [self.url release];
+    [self.remotePath release];
     [super dealloc];
 }
 
@@ -48,7 +48,7 @@
 - (void)unpackFromDictionary:(NSDictionary *)dictionary {
     self.name = dictionary[@"name"];
     self.description = dictionary[@"description"];
-    _url = [[NSURL alloc] initWithString:dictionary[@"url"]];
+    self.remotePath = dictionary[@"url"];
 }
 
 
