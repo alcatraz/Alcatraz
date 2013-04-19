@@ -34,9 +34,9 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 - (void)installPackage:(Plugin *)plugin progress:(void (^)(CGFloat))progress
             completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
 
-    //[self clonePlugin:plugin
-           //completion:^{ [self buildPlugin:plugin completion:completion failure:failure]; }
-              //failure:failure];
+    [self clonePlugin:plugin
+           completion:^{ [self buildPlugin:plugin completion:completion failure:failure]; }
+              failure:failure];
 }
 
 - (void)removePackage:(Plugin *)package
@@ -62,7 +62,7 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 
 - (void)clonePlugin:(Plugin *)plugin completion:(void(^)(void))completion failure:(void (^)(NSError *))failure {
 
-    NSString *output = [Shell executeCommand:@"/usr/local/bin/git" withArguments:@[@"clone", plugin.remotePath, plugin.name]];
+    NSString *output = [Shell executeCommand:@"/usr/bin/git" withArguments:@[@"clone", plugin.remotePath, plugin.name]];
     NSLog(@"Git clone returned: %@", output);
 }
 
