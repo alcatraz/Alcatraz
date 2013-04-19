@@ -22,6 +22,7 @@
 
 #import <AppKit/AppKit.h>
 
-@interface Alcatraz : NSObject<NSTableViewDataSource, NSTableViewDelegate>
+@interface Alcatraz : NSObject<NSTableViewDelegate>
 
+@property (nonatomic, retain) NSArray *packages;
 @end

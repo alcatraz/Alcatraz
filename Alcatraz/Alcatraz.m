@@ -28,7 +28,6 @@
 
 @interface Alcatraz(){}
 @property (nonatomic, retain) NSBundle *bundle;
-@property (nonatomic, retain) NSArray *packages;
 @end
 
 @implementation Alcatraz
@@ -102,29 +101,5 @@
     NSWindow *window = [nibElements filteredArrayUsingPredicate:windowPredicate][0];
     [window makeKeyAndOrderFront:self];
 }
-
-#pragma mark - TableView delegate
-
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    Package *package = self.packages[row];
-    
-    if ([[tableColumn.headerCell title] isEqualToString:@"Name"])
-        return package.name;
-
-    else if ([[tableColumn.headerCell title] isEqualToString:@"Type"])
-        return package.type;
-    
-    else if ([[tableColumn.headerCell title] isEqualToString:@"Description"])
-        return package.description;
-
-    return @(package.isInstalled);
-}
-
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return self.packages.count;
-}
-
-
-
 
 @end
