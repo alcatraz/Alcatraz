@@ -24,13 +24,17 @@
 #import "PluginInstaller.h"
 #import "Plugin.h"
 
+static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+
 @implementation PluginInstaller
 
 #pragma mark - Public
 
+
+// TODO: move to git and support updates.
 - (void)installPackage:(Plugin *)package progress:(void (^)(CGFloat))progress
             completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
-    
+//    [Downloader download]
 }
 
 - (void)removePackage:(Plugin *)package
@@ -38,8 +42,16 @@
     
 }
 
-- (BOOL)isPackageInstalled:(Package *)package {
-    return NO;
+- (BOOL)isPackageInstalled:(Plugin *)package {
+    return [[NSFileManager sharedManager] fileExistsAtPath:[self filePathForPlugin:package] isDirectory:YES];
+}
+
+
+#pragma mark - Private
+
+- (NSString *)filePathForPlugin:(Plugin *)plugin {
+    return [NSString stringWithFormat:@"%@.xcplugin",
+            [NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), LOCAL_PLUGINS_RELATIVE_PATH, plugin.name]];
 }
 
 @end
