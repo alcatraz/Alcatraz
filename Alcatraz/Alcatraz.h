@@ -22,7 +22,11 @@
 
 #import <AppKit/AppKit.h>
 
-@interface Alcatraz : NSObject<NSTableViewDelegate>
+@interface Alcatraz : NSObject<NSTableViewDelegate, NSControlTextEditingDelegate>
 
 @property (nonatomic, retain) NSArray *packages;
+@property (nonatomic, retain) NSPredicate *filterPredicate;
+@property (assign) IBOutlet NSSearchField *searchField;
+
+- (IBAction)filterPackagesByType:(id)sender;
 @end
