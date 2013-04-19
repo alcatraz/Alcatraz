@@ -24,7 +24,7 @@
 #import "ColorSchemeInstaller.h"
 #import "ColorScheme.h"
 
-static NSString *const LOCAL_COLOR_SCHEMES_PATH = @"~/Library/Developer/Xcode/UserData/FontAndColorThemes";
+static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/Xcode/UserData/FontAndColorThemes";
 @implementation ColorSchemeInstaller
 
 #pragma mark - Public
@@ -33,14 +33,14 @@ static NSString *const LOCAL_COLOR_SCHEMES_PATH = @"~/Library/Developer/Xcode/Us
             completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
     
     Downloader *downloader = [Downloader new];
-    [downloader downloadFileFromURL:package.url
-     
-        completion:^(NSData *responseData) {
-            [self copyDownloadedThemeToFilesystem:responseData];
+    [downloader downloadFileFromURL:package.url completion:^(NSData *responseData) {
+
+            [self installColorScheme:package withContents:responseData];
+            completion();
             [downloader release];
     }
         failure:^(NSError *error) {
-            NSLog(@"Downloading color scheme failed :( %@", error);
+            failure(error);
             [downloader release];
     }];
 }
@@ -49,26 +49,29 @@ static NSString *const LOCAL_COLOR_SCHEMES_PATH = @"~/Library/Developer/Xcode/Us
            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
 
     NSError *error;
-    
     [[NSFileManager sharedManager] removeItemAtPath:[self filePathForColorScheme:package] error:&error];
     
-    if (error) failure(error);
-    else completion();
+    error ? failure(error) : completion();
 }
 
-- (BOOL)isPackageInstalled:(Package *)package {
-    return NO;
+- (BOOL)isPackageInstalled:(ColorScheme *)package {
+    
+    return [[NSFileManager sharedManager] fileExistsAtPath:[self filePathForColorScheme:package] isDirectory:NO];
 }
 
 #pragma mark - Private
 
-- (void)copyDownloadedThemeToFilesystem:(NSData *)file {
-    
+- (void)installColorScheme:(ColorScheme *)colorScheme withContents:(NSData *)contents {
+    if ([[NSFileManager sharedManager] createFileAtPath:[self filePathForColorScheme:colorScheme] contents:contents attributes:nil])
+        NSLog(@"Color scheme installed!");
+    else
+        NSLog(@"There was a problem with installing the color scheme :(");
+
 }
 
 - (NSString *)filePathForColorScheme:(ColorScheme *)colorScheme {
-    return [NSString stringWithFormat:@"%@.dvcolortheme",
-            [NSString stringWithFormat:@"%@%@", LOCAL_COLOR_SCHEMES_PATH, colorScheme.name]];
+    return [NSString stringWithFormat:@"%@.dvtcolortheme",
+            [NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), LOCAL_COLOR_SCHEMES_RELATIVE_PATH, colorScheme.name]];
 }
 
 @end

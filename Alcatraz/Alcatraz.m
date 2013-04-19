@@ -70,6 +70,9 @@
     [downloader downloadPackageListAnd:^(NSDictionary *packageList) {
         
         self.packages = [PackageFactory createPackagesFromDicts:packageList];
+        for (Package *package in self.packages) {
+            NSLog(@"Package: %@ is installed? %@", package.name, @(package.isInstalled));
+        }
     }
     failure:^(NSError *error) {
        NSLog(@"Error while downloading packages! %@", error);
