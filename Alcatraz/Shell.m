@@ -32,8 +32,8 @@
     [shellTask setArguments:arguments];
     [shellTask setStandardOutput:pipe];
     
-    NSData *data = [[pipe fileHandleForReading] readDataToEndOfFile];
     [shellTask launch];
+    NSData *data = [[pipe fileHandleForReading] readDataToEndOfFile];
     
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [shellTask release];
