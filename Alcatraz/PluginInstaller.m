@@ -34,9 +34,9 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 - (void)installPackage:(Plugin *)plugin progress:(void (^)(CGFloat))progress
             completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
 
-    [self clonePlugin:plugin
-           completion:^{ [self buildPlugin:plugin completion:completion failure:failure]; }
-              failure:failure];
+    //[self clonePlugin:plugin
+           //completion:^{ [self buildPlugin:plugin completion:completion failure:failure]; }
+              //failure:failure];
 }
 
 - (void)removePackage:(Plugin *)package
