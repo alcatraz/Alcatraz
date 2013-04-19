@@ -26,6 +26,7 @@
 #import "Package.h"
 #import "PackageFactory.h"
 
+#define ALL_ITEMS_ID  @"AllItemsToolbarItem"
 #define PLUGIN_TAG    325
 #define SCHEME_TAG    326
 #define TEMPLATE_TAG  327
@@ -147,6 +148,7 @@
     }];
     NSWindow *window = [nibElements filteredArrayUsingPredicate:windowPredicate][0];
     [window makeKeyAndOrderFront:self];
+    [[window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
 }
 
 @end
