@@ -138,7 +138,7 @@
     NSMenuItem *windowMenuItem = [[NSApp mainMenu] itemWithTitle:@"Window"];
     NSMenuItem *pluginManagerItem = [[NSMenuItem alloc] initWithTitle:@"Plugin Manager"
                                                                action:@selector(openPluginManagerWindow)
-                                                        keyEquivalent:@"P"];
+                                                        keyEquivalent:@"9"];
     pluginManagerItem.keyEquivalentModifierMask = NSCommandKeyMask | NSShiftKeyMask | NSAlternateKeyMask;
     pluginManagerItem.target = self;
     [windowMenuItem.submenu insertItem:pluginManagerItem
