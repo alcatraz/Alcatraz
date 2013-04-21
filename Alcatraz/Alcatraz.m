@@ -58,7 +58,7 @@
     NSMenuItem *pluginManagerItem = [[NSMenuItem alloc] initWithTitle:@"Plugin Manager"
                                                                action:@selector(openPluginManagerWindow)
                                                         keyEquivalent:@"9"];
-    pluginManagerItem.keyEquivalentModifierMask = NSCommandKeyMask | NSShiftKeyMask | NSAlternateKeyMask;
+    pluginManagerItem.keyEquivalentModifierMask = NSCommandKeyMask | NSShiftKeyMask;
     pluginManagerItem.target = self;
     [windowMenuItem.submenu insertItem:pluginManagerItem
                                atIndex:[windowMenuItem.submenu indexOfItemWithTitle:@"Organizer"] + 1];
