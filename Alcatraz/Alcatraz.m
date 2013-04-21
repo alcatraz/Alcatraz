@@ -56,7 +56,7 @@
 
 - (void)createMenuItem {
     NSMenuItem *windowMenuItem = [[NSApp mainMenu] itemWithTitle:@"Window"];
-    NSMenuItem *pluginManagerItem = [[NSMenuItem alloc] initWithTitle:@"Plugin Manager"
+    NSMenuItem *pluginManagerItem = [[NSMenuItem alloc] initWithTitle:@"Package Manager"
                                                                action:@selector(openPluginManagerWindow)
                                                         keyEquivalent:@"9"];
     pluginManagerItem.keyEquivalentModifierMask = NSCommandKeyMask | NSShiftKeyMask;
