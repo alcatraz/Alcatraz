@@ -26,9 +26,12 @@
 #import "PackageFactory.h"
 
 #define ALL_ITEMS_ID  @"AllItemsToolbarItem"
-#define PLUGIN_TAG    325
-#define SCHEME_TAG    326
-#define TEMPLATE_TAG  327
+static int const PLUGIN_TAG   = 325;
+static int const SCHEME_TAG   = 326;
+static int const TEMPLATE_TAG = 327;
+static int const INSTALLING_STATE = -1;
+static int const INSTALLED_STATE = 1;
+static int const NOT_INSTALLED_STATE = 0;
 
 @interface PluginWindowController()
 @property (nonatomic, retain) NSString *selectedPackageType;
@@ -53,7 +56,6 @@
 }
 
 - (IBAction)filterPackagesByType:(id)sender {
-    NSLog(@"Filter by %ld", (long)[sender tag]);
     switch ([sender tag]) {
         case PLUGIN_TAG:   self.selectedPackageType = @"Plugin";       break;
         case SCHEME_TAG:   self.selectedPackageType = @"Color Scheme"; break;
@@ -64,7 +66,39 @@
     [self updatePredicate];
 }
 
-- (void) controlTextDidChange:(NSNotification *) note {
+- (IBAction)checkboxPressed:(NSButton *)checkbox {
+
+    Package *package = self.packages[[self.tableView rowForView:checkbox]];
+    
+    if (checkbox.state == INSTALLED_STATE)
+        [self removePackage:package andUpdateCheckbox:checkbox];
+    else
+        [self installPackage:package andUpdateCheckbox:checkbox];
+}
+
+- (void)removePackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
+    [package removeAnd:^{
+        NSLog(@"Package uninstalled! %@", package.name);
+//        [checkbox setState:NOT_INSTALLED_STATE];
+    } failure:^(NSError *error) {
+        NSLog(@"Package failed to uninstall! %@", package.name);
+    }];
+}
+
+- (void)installPackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
+//    [checkbox setState:INSTALLING_STATE];
+    [package installWithProgress:^(CGFloat progress) {
+        
+    } completion:^{
+        NSLog(@"Package installed! %@", package.name);
+//        [checkbox setState:INSTALLED_STATE];
+    } failure:^(NSError *error) {
+        NSLog(@"Package failed to install! %@", package.name);
+//        [checkbox setState:NOT_INSTALLED_STATE];
+    }];
+}
+
+- (void)controlTextDidChange:(NSNotification *) note {
     [self updatePredicate];
 }
 

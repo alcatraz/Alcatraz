@@ -49,6 +49,7 @@
     
     [shellTask setTerminationHandler:^(NSTask *task) {
         NSLog(@"Shell task terminated! %@ %@", command, arguments);
+//        NSLog(@"Leftover from file handle: %@", [self.fileHandle read]);
         [task release];
     }];
     NSLog(@"Launching Shell task! %@ %@", command, arguments);
@@ -57,7 +58,6 @@
 
 - (void)thereIsNewShellOutput:(NSNotification *)notification {
     NSLog(@"New shell output! %@", notification.debugDescription);
-    
     NSData *data = nil;
     while ((data = [self.fileHandle availableData]) && [data length]){
         NSLog(@"HA! %@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);

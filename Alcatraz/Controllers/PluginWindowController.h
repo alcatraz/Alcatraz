@@ -27,7 +27,9 @@
 @property (nonatomic, retain) NSArray *packages;
 @property (nonatomic, retain) NSPredicate *filterPredicate;
 @property (assign) IBOutlet NSSearchField *searchField;
+@property (assign) IBOutlet NSTableView *tableView;
 
 - (IBAction)filterPackagesByType:(id)sender;
+- (IBAction)checkboxPressed:(NSButton *)sender;
 
 @end
