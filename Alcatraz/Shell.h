@@ -24,6 +24,6 @@
 
 @interface Shell : NSObject
 
-+ (NSString *)executeCommand:(NSString *)command withArguments:(NSArray *)arguments;
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments;
 
 @end

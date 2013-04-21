@@ -22,23 +22,50 @@
 
 #import "Shell.h"
 
+@interface Shell(){}
+@property (nonatomic, retain) NSFileHandle *fileHandle;
+@end
+
 @implementation Shell
 
-+ (NSString *)executeCommand:(NSString *)command withArguments:(NSArray *)arguments {
-    NSTask *shellTask = [NSTask new];
+- (void)dealloc {
+    [self.fileHandle release];
+    [super dealloc];
+}
+
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments {
     NSPipe *pipe = [NSPipe pipe];
-    
+    NSTask *shellTask = [NSTask new];
     [shellTask setLaunchPath:command];
     [shellTask setArguments:arguments];
     [shellTask setStandardOutput:pipe];
     
+    self.fileHandle = [pipe fileHandleForReading];
+    [self.fileHandle waitForDataInBackgroundAndNotify];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(thereIsNewShellOutput:)
+                                                 name:NSFileHandleDataAvailableNotification
+                                               object:nil];
+    
+    [shellTask setTerminationHandler:^(NSTask *task) {
+        NSLog(@"Shell task terminated! %@ %@", command, arguments);
+        [task release];
+    }];
+    NSLog(@"Launching Shell task! %@ %@", command, arguments);
     [shellTask launch];
-    NSData *data = [[pipe fileHandleForReading] readDataToEndOfFile];
-    
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    [shellTask release];
-    
-    return [string autorelease];
 }
+
+- (void)thereIsNewShellOutput:(NSNotification *)notification {
+    NSLog(@"New shell output! %@", notification.debugDescription);
+    
+    NSData *data = nil;
+    while ((data = [self.fileHandle availableData]) && [data length]){
+        NSLog(@"HA! %@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
+    }
+}
+
+#pragma mark - Private
+
+
 
 @end

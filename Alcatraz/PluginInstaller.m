@@ -27,7 +27,21 @@
 
 static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 
+
+@interface PluginInstaller (){}
+@property (strong, nonatomic) Shell *shell;
+@end
+
 @implementation PluginInstaller
+
+- (id)init {
+    self = [super init];
+    if (!self) return nil;
+    
+    self.shell = [Shell new];
+    
+    return self;
+}
 
 #pragma mark - Public
 
@@ -62,8 +76,7 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 
 - (void)clonePlugin:(Plugin *)plugin completion:(void(^)(void))completion failure:(void (^)(NSError *))failure {
 
-    NSString *output = [Shell executeCommand:@"/usr/bin/git" withArguments:@[@"clone", plugin.remotePath, plugin.name]];
-    NSLog(@"Git clone returned: %@", output);
+    [self.shell executeCommand:@"/usr/bin/git" withArguments:@[@"clone", plugin.remotePath, plugin.name]];
 }
 
 - (NSString *)pathForClonedPlugin:(Plugin *)plugin {
@@ -71,9 +84,8 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 }
 
 - (void)buildPlugin:(Plugin *)plugin completion:(void(^)(void))completion failure:(void (^)(NSError *))failure {
-    NSString *output = [Shell executeCommand:@"/usr/bin/xcodebuild" withArguments:@[@"-project", [self findXcodeprojPathForPlugin:plugin]]];
+    [self.shell executeCommand:@"/usr/bin/xcodebuild" withArguments:@[@"-project", [self findXcodeprojPathForPlugin:plugin]]];
     // TODO: parse output, see if it failed
-    NSLog(@"Xcodebuild output: %@", output);
     completion();
 }
 
