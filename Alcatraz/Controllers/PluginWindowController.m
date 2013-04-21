@@ -29,9 +29,6 @@
 static int const PLUGIN_TAG   = 325;
 static int const SCHEME_TAG   = 326;
 static int const TEMPLATE_TAG = 327;
-static int const INSTALLING_STATE = -1;
-static int const INSTALLED_STATE = 1;
-static int const NOT_INSTALLED_STATE = 0;
 
 @interface PluginWindowController()
 @property (nonatomic, retain) NSString *selectedPackageType;
@@ -70,7 +67,7 @@ static int const NOT_INSTALLED_STATE = 0;
 
     Package *package = self.packages[[self.tableView rowForView:checkbox]];
     
-    if (checkbox.state == INSTALLED_STATE)
+    if (package.isInstalled)
         [self removePackage:package andUpdateCheckbox:checkbox];
     else
         [self installPackage:package andUpdateCheckbox:checkbox];
@@ -78,23 +75,22 @@ static int const NOT_INSTALLED_STATE = 0;
 
 - (void)removePackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
     [package removeAnd:^{
+        
         NSLog(@"Package uninstalled! %@", package.name);
-//        [checkbox setState:NOT_INSTALLED_STATE];
     } failure:^(NSError *error) {
+        
         NSLog(@"Package failed to uninstall! %@", package.name);
     }];
 }
 
 - (void)installPackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
-//    [checkbox setState:INSTALLING_STATE];
     [package installWithProgress:^(CGFloat progress) {
         
     } completion:^{
         NSLog(@"Package installed! %@", package.name);
-//        [checkbox setState:INSTALLED_STATE];
+        
     } failure:^(NSError *error) {
         NSLog(@"Package failed to install! %@", package.name);
-//        [checkbox setState:NOT_INSTALLED_STATE];
     }];
 }
 
