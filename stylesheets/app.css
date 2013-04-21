@@ -12,10 +12,10 @@
 
 body {
   background: #EBEEF2;
-  background: -moz-linear-gradient(top,  #EBEEF2 0%, #D4DAE3 100%);
-  background: -webkit-linear-gradient(top,  #EBEEF2 0%,#D4DAE3 100%);
-  background: -ms-linear-gradient(top,  #EBEEF2 0%,#D4DAE3 100%);
-  background: linear-gradient(to bottom,  #EBEEF2 0%,#D4DAE3 100%);
+  background: -moz-linear-gradient(top,  #EBEEF2 0%, #E6F0F0 100%);
+  background: -webkit-linear-gradient(top,  #EBEEF2 0%,#E6F0F0 100%);
+  background: -ms-linear-gradient(top,  #EBEEF2 0%,#E6F0F0 100%);
+  background: linear-gradient(to bottom,  #EBEEF2 0%,#E6F0F0 100%);
 
   font-family: Avenir, "Helvetica Neue", Arial, Helvetica, sans-serif;
   color: gray;
