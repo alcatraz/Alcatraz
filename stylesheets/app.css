@@ -82,8 +82,12 @@ footer {
   color: #7872A8;
 }
 
-.people {
+#people {
   float: right;
+}
+
+#project-links {
+  float: left;
 }
 
 #silhouette {
@@ -94,6 +98,7 @@ footer {
   background-size: 100%;
   bottom: 0;
   position: relative;
+  z-index: -1;
 }
 
 #footer-content {
@@ -134,5 +139,19 @@ footer {
     font-size: 80%;
     margin-top: -20px;
     margin-right: 20px;
+  }
+
+  #people, #project-links {
+    display:block;
+    text-align: center;
+    width: 100%;
+  }
+
+  #banner {
+    display: none;
+  }
+
+  #footer-content {
+    font-size: 0.7em;
   }
 }
