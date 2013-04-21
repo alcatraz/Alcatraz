@@ -22,6 +22,7 @@
 
 
 #import "Alcatraz.h"
+#import "PluginWindowController.h"
 
 @interface Alcatraz(){}
 @property (nonatomic, retain) NSBundle *bundle;
@@ -67,7 +68,7 @@
 
 - (void)openPluginManagerWindow {
     NSArray *nibElements;
-    [self.bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&nibElements];
+    [self.bundle loadNibNamed:@"PluginWindow" owner:[PluginWindowController new] topLevelObjects:&nibElements];
 
     NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return [evaluatedObject class] == [NSWindow class];

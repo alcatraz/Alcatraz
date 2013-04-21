@@ -36,9 +36,8 @@
 
 @implementation PluginWindowController
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    NSLog(@"init!!!");
-    if (self = [super initWithCoder:aDecoder]) {
+- (id)init {
+    if (self = [super init]) {
         self.filterPredicate = [NSPredicate predicateWithValue:YES];
         @try { [self fetchPlugins]; }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
