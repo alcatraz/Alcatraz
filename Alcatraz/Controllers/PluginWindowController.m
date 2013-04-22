@@ -31,7 +31,7 @@ static int const SCHEME_TAG   = 326;
 static int const TEMPLATE_TAG = 327;
 
 @interface PluginWindowController()
-@property (nonatomic, retain) NSString *selectedPackageType;
+@property (nonatomic) Class selectedPackageClass;
 @end
 
 @implementation PluginWindowController
@@ -47,7 +47,6 @@ static int const TEMPLATE_TAG = 327;
 
 - (void)dealloc {
     [self.packages release];
-    [self.selectedPackageType release];
     [self.filterPredicate release];
     [super dealloc];
 }
@@ -60,11 +59,11 @@ static int const TEMPLATE_TAG = 327;
 
 - (IBAction)filterPackagesByType:(id)sender {
     switch ([sender tag]) {
-        case PLUGIN_TAG:   self.selectedPackageType = @"Plugin";       break;
-        case SCHEME_TAG:   self.selectedPackageType = @"Color Scheme"; break;
-        case TEMPLATE_TAG: self.selectedPackageType = @"Template";     break;
+        case PLUGIN_TAG:   self.selectedPackageClass = NSClassFromString(@"Plugin"); break;
+        case SCHEME_TAG:   self.selectedPackageClass = NSClassFromString(@"ColorScheme"); break;
+        case TEMPLATE_TAG: self.selectedPackageClass = NSClassFromString(@"Template");  break;
             
-        default: self.selectedPackageType = nil;
+        default: self.selectedPackageClass = nil;
     }
     [self updatePredicate];
 }
@@ -114,12 +113,12 @@ static int const TEMPLATE_TAG = 327;
 - (void)updatePredicate {
     NSString *searchText = self.searchField.stringValue;
     // filter by type and search field text
-    if (self.selectedPackageType && searchText.length > 0) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:@"(name contains[cd] %@ OR description contains[cd] %@) AND (type = %@)", searchText, searchText, self.selectedPackageType];
+    if (self.selectedPackageClass && searchText.length > 0) {
+        self.filterPredicate = [NSPredicate predicateWithFormat:@"(name contains[cd] %@ OR description contains[cd] %@) AND (self isKindOfClass: %@)", searchText, searchText, self.selectedPackageClass];
         
         // filter by type
-    } else if (self.selectedPackageType) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:@"(type = %@)", self.selectedPackageType];
+    } else if (self.selectedPackageClass) {
+        self.filterPredicate = [NSPredicate predicateWithFormat:@"(self isKindOfClass: %@)", self.selectedPackageClass];
         
         // filter by search field text
     } else if (searchText.length > 0) {
