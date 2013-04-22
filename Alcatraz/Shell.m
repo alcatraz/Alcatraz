@@ -67,7 +67,6 @@
 
 - (void)tryToLaunchTask:(NSTask *)shellTask {
     @try {
-        NSLog(@"Launching Shell task! %@ %@", shellTask.launchPath, [shellTask.arguments componentsJoinedByString:@" "]);
         [shellTask launch];
         [shellTask waitUntilExit];
     }
