@@ -35,9 +35,11 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
     Downloader *downloader = [Downloader new];
     [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData) {
 
-            [self installColorScheme:package withContents:responseData];
-            completion();
-            [downloader release];
+        [self installColorScheme:package withContents:responseData] ?
+            completion() :
+            failure([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
+        
+        [downloader release];
     }
         failure:^(NSError *error) {
             failure(error);
@@ -46,9 +48,9 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
 }
 
 - (void)removePackage:(ColorScheme *)package
-           completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+           completion:(void (^)(void))completion failure:(void (^)(NSError *failureReason))failure {
 
-    NSError *error;
+    NSError *error = nil;
     [[NSFileManager sharedManager] removeItemAtPath:[self filePathForColorScheme:package] error:&error];
     
     error ? failure(error) : completion();
@@ -61,12 +63,11 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
 
 #pragma mark - Private
 
-- (void)installColorScheme:(ColorScheme *)colorScheme withContents:(NSData *)contents {
-    if ([[NSFileManager sharedManager] createFileAtPath:[self filePathForColorScheme:colorScheme] contents:contents attributes:nil])
-        NSLog(@"Color scheme installed!");
-    else
-        NSLog(@"There was a problem with installing the color scheme :(");
-
+- (BOOL)installColorScheme:(ColorScheme *)colorScheme withContents:(NSData *)contents {
+    BOOL installSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self filePathForColorScheme:colorScheme]
+                                                                    contents:contents
+                                                                  attributes:nil]);
+    return installSucceeded;
 }
 
 - (NSString *)filePathForColorScheme:(ColorScheme *)colorScheme {

@@ -36,9 +36,9 @@
 - (id)initWithDictionary:(NSDictionary *)dict;
 
 - (void)installWithProgress:(void(^)(CGFloat progress))progress
-                 completion:(void(^)(void))completion failure:(void(^)(NSError *error))failure;
+                 completion:(void(^)(NSError *failure))completion;
 
-- (void)removeAnd:(void(^)(void))completion failure:(void(^)(NSError *error))failure;
+- (void)removeWithCompletion:(void(^)(NSError *failure))completion;
 
 
 /// To be overriden in subclasses. Each type of package has a different installer.

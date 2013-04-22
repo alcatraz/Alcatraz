@@ -53,7 +53,7 @@
 			<object class="NSWindowTemplate" id="862941882">
 				<int key="NSWindowStyleMask">271</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 240}, {931, 680}}</string>
+				<string key="NSWindowRect">{{200, 250}, {931, 680}}</string>
 				<int key="NSWTFlags">611845120</int>
 				<string key="NSWindowTitle">Package Manager</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -572,7 +572,7 @@
 					<reference key="NSNextKeyView" ref="877562553"/>
 					<string key="NSReuseIdentifierKey">_NS:20</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>

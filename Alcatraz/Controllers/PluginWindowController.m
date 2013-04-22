@@ -52,6 +52,12 @@ static int const TEMPLATE_TAG = 327;
     [super dealloc];
 }
 
+- (void)windowDidLoad {
+    [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
+}
+
+#pragma mark - Bindings
+
 - (IBAction)filterPackagesByType:(id)sender {
     switch ([sender tag]) {
         case PLUGIN_TAG:   self.selectedPackageType = @"Plugin";       break;
@@ -73,29 +79,36 @@ static int const TEMPLATE_TAG = 327;
         [self installPackage:package andUpdateCheckbox:checkbox];
 }
 
+- (void)controlTextDidChange:(NSNotification *)note {
+    [self updatePredicate];
+}
+
+#pragma mark - Private
+
 - (void)removePackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
-    [package removeAnd:^{
-        
-        NSLog(@"Package uninstalled! %@", package.name);
-    } failure:^(NSError *error) {
-        
-        NSLog(@"Package failed to uninstall! %@", package.name);
+    [package removeWithCompletion:^(NSError *failure) {
+
+        if (failure) NSLog(@"Package failed to uninstall! %@", failure);
+        else         NSLog(@"Package uninstalled! %@", package.name);
+
+        [self reloadCheckbox:checkbox];
     }];
 }
 
 - (void)installPackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
-    [package installWithProgress:^(CGFloat progress) {
+
+    [package installWithProgress:^(CGFloat progress){} completion:^(NSError *failure) {
         
-    } completion:^{
-        NSLog(@"Package installed! %@", package.name);
+        if (failure) NSLog(@"Package failed to install :( %@", failure);
+        else         NSLog(@"Package installed! %@", package.name);
         
-    } failure:^(NSError *error) {
-        NSLog(@"Package failed to install! %@", package.name);
+        [self reloadCheckbox:checkbox];
     }];
 }
 
-- (void)controlTextDidChange:(NSNotification *) note {
-    [self updatePredicate];
+- (void)reloadCheckbox:(NSButton *)checkbox {
+    [self.tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:[self.tableView rowForView:checkbox]]
+                              columnIndexes:[NSIndexSet indexSetWithIndex:0]];
 }
 
 - (void)updatePredicate {
@@ -130,10 +143,6 @@ static int const TEMPLATE_TAG = 327;
     }];
     [downloader release];
     [pool drain];
-}
-
-- (void)windowDidLoad {
-    [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
 }
 
 @end

@@ -58,20 +58,31 @@
     return [[self installer] isPackageInstalled:self];
 }
 
-- (void)installWithProgress:(void(^)(CGFloat progress))progress
-                 completion:(void(^)(void))completion failure:(void(^)(NSError *error))failure {
+- (void)installWithProgress:(void (^)(CGFloat))progress completion:(void (^)(NSError *failure))completion {
 
-    [[self installer] installPackage:self progress:progress completion:completion failure:failure];
+    [[self installer] installPackage:self progress:progress completion:^{
+        completion(nil);
+    } failure:^(NSError *error) {
+        completion(error);
+    }];
 }
 
-- (void)removeAnd:(void(^)(void))completion failure:(void(^)(NSError *error))failure {
+- (void)removeWithCompletion:(void (^)(NSError *))completion {
 
-    [[self installer] removePackage:self completion:completion failure:failure];
+    [[self installer] removePackage:self completion:^{
+        completion(nil);
+    } failure:^(NSError *error) {
+        completion(error);
+    }];
 }
 
 - (id<Installer>)installer {
     
     @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Each package has to return a different installer!" userInfo:nil];
+}
+
+- (void)setIsInstalled:(BOOL)isInstalled {
+    
 }
 
 @end
