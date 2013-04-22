@@ -23,7 +23,7 @@
 
 #import "Downloader.h"
 
-static NSString *const PLUGINS_REPO_PATH = @"https://gist.github.com/mneorr/2af03afe633279f97afa/raw/packages.json";
+static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/mneorr/alcatraz-packages/master/packages.json";
 
 @implementation Downloader
 
