@@ -24,26 +24,11 @@
 #import "PluginInstaller.h"
 #import "Plugin.h"
 #import "Shell.h"
+#import "Git.h"
 
 static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 
-
-@interface PluginInstaller (){}
-@property (strong, nonatomic) Shell *shell;
-@end
-
 @implementation PluginInstaller
-
-- (id)init {
-    if (self = [super init]) {
-        self.shell = [Shell new];
-    }
-    return self;
-}
-- (void)dealloc {
-    [self.shell release];
-    [super dealloc];
-}
 
 #pragma mark - Public
 
@@ -78,28 +63,17 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 }
 
 - (void)clonePlugin:(Plugin *)plugin completion:(void(^)(void))completion failure:(void (^)(NSError *))failure {
-    // TODO: check if dir exists, `git fetch origin` , `git reset --hard origin/master`
-    //    [self deleteExistingClonedDirectoryForPlugin:plugin];
 
-    if ([self pluginIsAlreadyCloned:plugin]) {
-        [self.shell executeCommand:@"/usr/bin/git" withArguments:@[@"fetch", @"origin"]];
-        [self.shell executeCommand:@"/usr/bin/git" withArguments:@[@"reset", @"--hard", @"origin/master"] completion:^(NSString *output) {
-            completion();
-        }];
-    } else {
-        [self.shell executeCommand:@"/usr/bin/git" withArguments:[self gitCloneArgumentsForPlugin:plugin] completion:^(NSString *output) {
-            NSLog(@"SHELL OUTPUT: %@", output);
-            completion();
-        }];
-    }
+    if ([self pluginIsAlreadyCloned:plugin])
+        [Git updateLocalProject:[self pathForClonedPlugin:plugin]];
+    else
+        [Git clone:plugin.remotePath to:[self pathForClonedPlugin:plugin]];
+
+    completion();
 }
 
 - (BOOL)pluginIsAlreadyCloned:(Plugin *)plugin {
     return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForClonedPlugin:plugin]];
-}
-
-- (NSArray *)gitCloneArgumentsForPlugin:(Plugin *)plugin {
-    return @[@"clone", plugin.remotePath, [self pathForClonedPlugin:plugin], @"-c push.default=matching"];
 }
 
 - (NSString *)pathForClonedPlugin:(Plugin *)plugin {
@@ -107,15 +81,17 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 }
 
 - (void)buildPlugin:(Plugin *)plugin completion:(void(^)(void))completion failure:(void (^)(NSError *))failure {
-    
-    [self.shell executeCommand:@"/usr/bin/xcodebuild"
-                 withArguments:@[@"-project", [self findXcodeprojPathForPlugin:plugin]]
-                    completion:^(NSString *output) {
+    Shell *shell = [Shell new];
+
+    [shell executeCommand:@"/usr/bin/xcodebuild"
+            withArguments:@[@"-project", [self findXcodeprojPathForPlugin:plugin]]
+               completion:^(NSString *output) {
+
         NSLog(@"Xcodebuild output: %@", output);
         completion();
+        [shell release];
     }];
 }
-
 
 - (NSString *)findXcodeprojPathForPlugin:(Plugin *)plugin {
     NSAutoreleasePool *pool = [NSAutoreleasePool new];

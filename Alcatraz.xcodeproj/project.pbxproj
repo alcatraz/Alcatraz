@@ -21,6 +21,11 @@
 		8994E5EA171F45730061B598 /* Package.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5E9171F45730061B598 /* Package.m */; };
 		8994E5ED171F45F50061B598 /* ColorSchemeInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5EC171F45F50061B598 /* ColorSchemeInstaller.m */; };
 		8994E5F0171F46100061B598 /* TemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5EF171F46100061B598 /* TemplateInstaller.m */; };
+		8997D0CC172552C800E0F967 /* FileTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997D0CB172552C800E0F967 /* FileTemplate.m */; };
+		8997D0CF172552D000E0F967 /* ProjectTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997D0CE172552D000E0F967 /* ProjectTemplate.m */; };
+		8997D0D2172553DF00E0F967 /* ProjectTemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997D0D1172553DF00E0F967 /* ProjectTemplateInstaller.m */; };
+		8997D0D5172553EA00E0F967 /* FileTemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997D0D4172553EA00E0F967 /* FileTemplateInstaller.m */; };
+		8997D0D8172559D700E0F967 /* Git.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997D0D7172559D700E0F967 /* Git.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* PluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* PluginWindowController.m */; };
 		89F09609172086980033F3BE /* NSFileManager+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F09608172086980033F3BE /* NSFileManager+Alcatraz.m */; };
@@ -56,6 +61,16 @@
 		8994E5EC171F45F50061B598 /* ColorSchemeInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSchemeInstaller.m; sourceTree = "<group>"; };
 		8994E5EE171F46100061B598 /* TemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateInstaller.h; sourceTree = "<group>"; };
 		8994E5EF171F46100061B598 /* TemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateInstaller.m; sourceTree = "<group>"; };
+		8997D0CA172552C800E0F967 /* FileTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTemplate.h; sourceTree = "<group>"; };
+		8997D0CB172552C800E0F967 /* FileTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTemplate.m; sourceTree = "<group>"; };
+		8997D0CD172552D000E0F967 /* ProjectTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTemplate.h; sourceTree = "<group>"; };
+		8997D0CE172552D000E0F967 /* ProjectTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTemplate.m; sourceTree = "<group>"; };
+		8997D0D0172553DF00E0F967 /* ProjectTemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTemplateInstaller.h; sourceTree = "<group>"; };
+		8997D0D1172553DF00E0F967 /* ProjectTemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTemplateInstaller.m; sourceTree = "<group>"; };
+		8997D0D3172553EA00E0F967 /* FileTemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTemplateInstaller.h; sourceTree = "<group>"; };
+		8997D0D4172553EA00E0F967 /* FileTemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTemplateInstaller.m; sourceTree = "<group>"; };
+		8997D0D6172559D700E0F967 /* Git.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Git.h; sourceTree = "<group>"; };
+		8997D0D7172559D700E0F967 /* Git.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Git.m; sourceTree = "<group>"; };
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
 		89D40AFA1721CBD600A67BB3 /* PluginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginWindowController.h; path = Controllers/PluginWindowController.h; sourceTree = "<group>"; };
 		89D40AFB1721CBD600A67BB3 /* PluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluginWindowController.m; path = Controllers/PluginWindowController.m; sourceTree = "<group>"; };
@@ -120,6 +135,8 @@
 				89F09608172086980033F3BE /* NSFileManager+Alcatraz.m */,
 				892BE5691721B8AD00F4E859 /* Shell.h */,
 				892BE56A1721B8AD00F4E859 /* Shell.m */,
+				8997D0D6172559D700E0F967 /* Git.h */,
+				8997D0D7172559D700E0F967 /* Git.m */,
 			);
 			path = Alcatraz;
 			sourceTree = "<group>";
@@ -153,6 +170,10 @@
 				8994E5EC171F45F50061B598 /* ColorSchemeInstaller.m */,
 				8994E5EE171F46100061B598 /* TemplateInstaller.h */,
 				8994E5EF171F46100061B598 /* TemplateInstaller.m */,
+				8997D0D0172553DF00E0F967 /* ProjectTemplateInstaller.h */,
+				8997D0D1172553DF00E0F967 /* ProjectTemplateInstaller.m */,
+				8997D0D3172553EA00E0F967 /* FileTemplateInstaller.h */,
+				8997D0D4172553EA00E0F967 /* FileTemplateInstaller.m */,
 			);
 			name = Installers;
 			sourceTree = "<group>";
@@ -168,6 +189,10 @@
 				8994E5D6171F410E0061B598 /* Plugin.m */,
 				8994E5E3171F443D0061B598 /* Template.h */,
 				8994E5E4171F443D0061B598 /* Template.m */,
+				8997D0CA172552C800E0F967 /* FileTemplate.h */,
+				8997D0CB172552C800E0F967 /* FileTemplate.m */,
+				8997D0CD172552D000E0F967 /* ProjectTemplate.h */,
+				8997D0CE172552D000E0F967 /* ProjectTemplate.m */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -248,6 +273,11 @@
 				89F09609172086980033F3BE /* NSFileManager+Alcatraz.m in Sources */,
 				892BE56B1721B8AD00F4E859 /* Shell.m in Sources */,
 				89D40AFC1721CBD600A67BB3 /* PluginWindowController.m in Sources */,
+				8997D0CC172552C800E0F967 /* FileTemplate.m in Sources */,
+				8997D0CF172552D000E0F967 /* ProjectTemplate.m in Sources */,
+				8997D0D2172553DF00E0F967 /* ProjectTemplateInstaller.m in Sources */,
+				8997D0D5172553EA00E0F967 /* FileTemplateInstaller.m in Sources */,
+				8997D0D8172559D700E0F967 /* Git.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

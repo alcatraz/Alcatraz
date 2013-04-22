@@ -1,5 +1,5 @@
-// Template.m
-//
+// ProjectTemplateInstaller.m
+// 
 // Copyright (c) 2013 mneorr.com
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -8,10 +8,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-//
+// 
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-//
+// 
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,17 +20,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "ProjectTemplateInstaller.h"
+#import "ProjectTemplate.h"
 
-#import "Template.h"
+static NSString *const INSTALLED_PROJECT_TEMPLATES_RELATIVE_PATH = @"Library/Developer/Xcode/Templates/Application/Project Templates";
 
-@implementation Template
+@implementation ProjectTemplateInstaller
 
-- (id<Installer>)installer {
-    @throw [NSException exceptionWithName:@"Abstract installer" reason:@"Please use one of Template subclasses" userInfo:nil];
+#pragma mark - Abstract
+
+- (NSString *)pathForInstalledPackage:(Package *)package {
+    return [[NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PROJECT_TEMPLATES_RELATIVE_PATH]
+            stringByAppendingPathComponent:package.name];
 }
 
-- (NSString *)type {
-    return @"Template";
-}
 
 @end

@@ -23,7 +23,8 @@
 #import "PackageFactory.h"
 #import "Plugin.h"
 #import "ColorScheme.h"
-#import "Template.h"
+#import "ProjectTemplate.h"
+#import "FileTemplate.h"
 
 @implementation PackageFactory
 
@@ -36,7 +37,12 @@
         [plugin release];
     }
     for (NSDictionary *templateDict in packagesInDicts[@"project_templates"]) {
-        Template *template = [[Template alloc] initWithDictionary:templateDict];
+        Template *template = [[ProjectTemplate alloc] initWithDictionary:templateDict];
+        [packages addObject:template];
+        [template release];
+    }
+    for (NSDictionary *templateDict in packagesInDicts[@"file_templates"]) {
+        Template *template = [[FileTemplate alloc] initWithDictionary:templateDict];
         [packages addObject:template];
         [template release];
     }

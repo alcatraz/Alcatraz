@@ -70,8 +70,8 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
 }
 
 - (NSString *)pathForInstalledPackage:(Package *)package {
-    return [NSString stringWithFormat:@"%@.dvtcolortheme",
-            [NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), LOCAL_COLOR_SCHEMES_RELATIVE_PATH, package.name]];
+    return [[NSHomeDirectory() stringByAppendingPathComponent:LOCAL_COLOR_SCHEMES_RELATIVE_PATH]
+                               stringByAppendingPathComponent:[package.name stringByAppendingString:@".dvtcolortheme"]];
 }
 
 @end

@@ -31,12 +31,19 @@
 - (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments {
     [self executeCommand:command withArguments:arguments completion:^(NSString *output){}];
 }
-
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path {
+    [self executeCommand:command withArguments:arguments inWorkingDirectory:path completion:^(NSString *output){}];
+}
 - (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments completion:(void(^)(NSString *taskOutput))completion {
+    [self executeCommand:command withArguments:arguments inWorkingDirectory:nil completion:completion];
+}
+
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path completion:(void(^)(NSString *taskOutput))completion {
     _taskOutput = [NSMutableData new];
     NSPipe *outputPipe = [NSPipe pipe];
     NSTask *shellTask = [NSTask new];
-    
+ 
+    if (path) [shellTask setCurrentDirectoryPath:path];
     [shellTask setLaunchPath:command];
     [shellTask setArguments:arguments];
     [shellTask setStandardOutput:outputPipe];

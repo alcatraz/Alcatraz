@@ -25,6 +25,8 @@
 @interface Shell : NSObject
 
 - (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments;
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path;
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path completion:(void(^)(NSString *output))completion;
 - (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments completion:(void(^)(NSString *output))completion;
 
 @end

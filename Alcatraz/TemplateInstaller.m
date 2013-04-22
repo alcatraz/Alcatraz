@@ -35,20 +35,19 @@
 
 - (void)removePackage:(Template *)package
            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
-    
+
+    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion failure:failure];
 }
 
 - (BOOL)isPackageInstalled:(Package *)package {
-    return YES;
+    NSLog(@"path for template: %@", [self pathForInstalledPackage:package]);    
+    return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package]];
 }
 
-
-#pragma mark - Abstract
+#pragma mark - Private
 
 - (NSString *)pathForInstalledPackage:(Package *)package {
-    return nil;
+    @throw [NSException exceptionWithName:@"Abstract TemplateInstaller" reason:@"Meh" userInfo:nil];
 }
-
-
 
 @end
