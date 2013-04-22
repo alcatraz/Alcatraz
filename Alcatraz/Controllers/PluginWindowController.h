@@ -29,7 +29,11 @@
 @property (assign) IBOutlet NSSearchField *searchField;
 @property (assign) IBOutlet NSTableView *tableView;
 
-- (IBAction)filterPackagesByType:(id)sender;
 - (IBAction)checkboxPressed:(NSButton *)sender;
+
+- (IBAction)showAllPackages:(id)sender;
+- (IBAction)showOnlyPlugins:(id)sender;
+- (IBAction)showOnlyColorSchemes:(id)sender;
+- (IBAction)showOnlyTemplates:(id)sender;
 
 @end

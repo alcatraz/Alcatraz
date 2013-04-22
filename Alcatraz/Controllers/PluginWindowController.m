@@ -26,9 +26,6 @@
 #import "PackageFactory.h"
 
 #define ALL_ITEMS_ID  @"AllItemsToolbarItem"
-static int const PLUGIN_TAG   = 325;
-static int const SCHEME_TAG   = 326;
-static int const TEMPLATE_TAG = 327;
 
 @interface PluginWindowController()
 @property (nonatomic) Class selectedPackageClass;
@@ -57,17 +54,6 @@ static int const TEMPLATE_TAG = 327;
 
 #pragma mark - Bindings
 
-- (IBAction)filterPackagesByType:(id)sender {
-    switch ([sender tag]) {
-        case PLUGIN_TAG:   self.selectedPackageClass = NSClassFromString(@"Plugin"); break;
-        case SCHEME_TAG:   self.selectedPackageClass = NSClassFromString(@"ColorScheme"); break;
-        case TEMPLATE_TAG: self.selectedPackageClass = NSClassFromString(@"Template");  break;
-            
-        default: self.selectedPackageClass = nil;
-    }
-    [self updatePredicate];
-}
-
 - (IBAction)checkboxPressed:(NSButton *)checkbox {
 
     Package *package = self.packages[[self.tableView rowForView:checkbox]];
@@ -76,6 +62,26 @@ static int const TEMPLATE_TAG = 327;
         [self removePackage:package andUpdateCheckbox:checkbox];
     else
         [self installPackage:package andUpdateCheckbox:checkbox];
+}
+
+- (IBAction)showAllPackages:(id)sender {
+    self.selectedPackageClass = nil;
+    [self updatePredicate];
+}
+
+- (IBAction)showOnlyPlugins:(id)sender {
+    self.selectedPackageClass = NSClassFromString(@"Plugin");
+    [self updatePredicate];
+}
+
+- (IBAction)showOnlyColorSchemes:(id)sender {
+    self.selectedPackageClass = NSClassFromString(@"ColorScheme");
+    [self updatePredicate];
+}
+
+- (IBAction)showOnlyTemplates:(id)sender {
+    self.selectedPackageClass = NSClassFromString(@"Template");
+    [self updatePredicate];
 }
 
 - (void)controlTextDidChange:(NSNotification *)note {
