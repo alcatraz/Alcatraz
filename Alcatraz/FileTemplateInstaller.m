@@ -23,7 +23,7 @@
 #import "FileTemplateInstaller.h"
 #import "FileTemplate.h"
 
-static NSString *const INSTALLED_FILE_TEMPLATES_RELATIVE_PATH = @"Library/Developer/Xcode/Templates/Application/File Templates";
+static NSString *const INSTALLED_FILE_TEMPLATES_RELATIVE_PATH = @"Library/Developer/Xcode/Templates/File Templates";
 
 @implementation FileTemplateInstaller
 

@@ -22,6 +22,7 @@
 
 #import "Git.h"
 #import "Shell.h"
+#import "NSFileManager+Alcatraz.h"
 
 @implementation Git
 
@@ -39,6 +40,14 @@
     [shell executeCommand:@"/usr/bin/git" withArguments:@[@"reset", @"--hard", @"origin/master"] inWorkingDirectory:localPath];
     
     [shell release];
+}
+
++ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath {
+
+    if ([[NSFileManager sharedManager] fileExistsAtPath:localPath])
+        [self updateLocalProject:localPath];
+    
+    else [self clone:remotePath to:localPath];
 }
 
 @end

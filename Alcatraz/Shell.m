@@ -54,7 +54,6 @@
     [self setUpFileHandleForPipe:outputPipe];
     [self tryToLaunchTask:shellTask];
 
-    NSLog(@"Exiting.. releasing...");
     [shellTask release];
     [self.taskOutput release];
 }

@@ -23,6 +23,7 @@
 
 #import "TemplateInstaller.h"
 #import "Template.h"
+#import "Git.h"
 
 @implementation TemplateInstaller
 
@@ -30,7 +31,9 @@
 
 - (void)installPackage:(Template *)package progress:(void (^)(CGFloat))progress
             completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
-    
+
+    [Git updateOrCloneRepository:package.remotePath toLocalPath:[self pathForClonedPackage:package]];
+    [self copyTemplatesToXcode:package completion:completion failure:failure];
 }
 
 - (void)removePackage:(Template *)package
@@ -40,14 +43,54 @@
 }
 
 - (BOOL)isPackageInstalled:(Package *)package {
-    NSLog(@"path for template: %@", [self pathForInstalledPackage:package]);    
+    
     return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package]];
 }
 
 #pragma mark - Private
 
+- (NSString *)pathForClonedPackage:(Package *)package {
+    return [NSTemporaryDirectory() stringByAppendingPathComponent:package.name];
+}
+
 - (NSString *)pathForInstalledPackage:(Package *)package {
-    @throw [NSException exceptionWithName:@"Abstract TemplateInstaller" reason:@"Meh" userInfo:nil];
+    @throw [NSException exceptionWithName:@"Abstract TemplateInstaller" reason:@"Install path needs to be overriden in subclasses" userInfo:nil];
+}
+
+- (void)copyTemplatesToXcode:(Template *)template completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+    NSError *error = nil;
+    
+    [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:template]
+                             withIntermediateDirectories:YES attributes:nil error:&error];
+    
+    for (NSString *templatePath in [self templateFilesFromClonedDirectory:[self pathForClonedPackage:template]]) {
+
+        NSString *templateFileName = [templatePath componentsSeparatedByString:@"/"].lastObject;
+        NSString *installPath = [[self pathForInstalledPackage:template] stringByAppendingPathComponent:templateFileName];
+        
+        [[NSFileManager sharedManager] copyItemAtPath:templatePath toPath:installPath error:&error];
+    }
+    
+    error ? failure(error) : completion();
+}
+
+- (NSArray *)templateFilesFromClonedDirectory:(NSString *)clonePath {
+    NSMutableArray *foundTemplates = [NSMutableArray new];
+    NSAutoreleasePool *pool = [NSAutoreleasePool new];
+    @try {
+        NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonePath];
+        NSString *directoryEntry;
+        
+        while (directoryEntry = [enumerator nextObject]) {
+            if ([directoryEntry hasSuffix:@".xctemplate"])
+                [foundTemplates addObject:[clonePath stringByAppendingPathComponent:directoryEntry]];
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"shit.. %@", exception);
+    }
+    [pool drain];
+    return [foundTemplates autorelease];
 }
 
 @end

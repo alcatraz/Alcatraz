@@ -107,7 +107,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)installPackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
-
+    NSLog(@"Installing package... %@", package.name);
     [package installWithProgress:^(CGFloat progress){} completion:^(NSError *failure) {
         
         if (failure) NSLog(@"Package failed to install :( %@", failure);

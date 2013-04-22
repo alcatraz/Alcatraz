@@ -27,4 +27,6 @@
 + (void)clone:(NSString *)remotePath to:(NSString *)localPath;
 + (void)updateLocalProject:(NSString *)localPath;
 
++ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath;
+
 @end

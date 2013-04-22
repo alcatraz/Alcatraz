@@ -64,16 +64,9 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 
 - (void)clonePlugin:(Plugin *)plugin completion:(void(^)(void))completion failure:(void (^)(NSError *))failure {
 
-    if ([self pluginIsAlreadyCloned:plugin])
-        [Git updateLocalProject:[self pathForClonedPlugin:plugin]];
-    else
-        [Git clone:plugin.remotePath to:[self pathForClonedPlugin:plugin]];
-
+    [Git updateOrCloneRepository:plugin.remotePath
+                     toLocalPath:[self pathForClonedPlugin:plugin]];
     completion();
-}
-
-- (BOOL)pluginIsAlreadyCloned:(Plugin *)plugin {
-    return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForClonedPlugin:plugin]];
 }
 
 - (NSString *)pathForClonedPlugin:(Plugin *)plugin {
@@ -87,7 +80,6 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
             withArguments:@[@"-project", [self findXcodeprojPathForPlugin:plugin]]
                completion:^(NSString *output) {
 
-        NSLog(@"Xcodebuild output: %@", output);
         completion();
         [shell release];
     }];
@@ -95,20 +87,23 @@ static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Suppo
 
 - (NSString *)findXcodeprojPathForPlugin:(Plugin *)plugin {
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
+    NSString *foundPath = nil;
+    
     @try {
         NSString *path = [self pathForClonedPlugin:plugin];
         NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:path];
-        
         NSString *directoryEntry;
-        while (directoryEntry = [enumerator nextObject]) {
-            if ([directoryEntry hasSuffix:@".xcodeproj"])
-                return [path stringByAppendingPathComponent:directoryEntry];
-        }
+        
+        while (directoryEntry = [enumerator nextObject])
+            if ([directoryEntry hasSuffix:@".xcodeproj"]) {
+                foundPath = [[NSString alloc] initWithFormat:@"%@/%@", path, directoryEntry];
+                break;
+            }
     }
     @catch (NSException *exception) { NSLog(@"Exception with finding xcodeproj path! %@", exception); }
-    @finally { NSLog(@"draining..."); [pool drain]; }
 
-    return @"";
+    [pool drain];
+    return [foundPath autorelease];
 }
 
 @end

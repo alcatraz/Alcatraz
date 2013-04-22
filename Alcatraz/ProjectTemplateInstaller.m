@@ -23,7 +23,7 @@
 #import "ProjectTemplateInstaller.h"
 #import "ProjectTemplate.h"
 
-static NSString *const INSTALLED_PROJECT_TEMPLATES_RELATIVE_PATH = @"Library/Developer/Xcode/Templates/Application/Project Templates";
+static NSString *const INSTALLED_PROJECT_TEMPLATES_RELATIVE_PATH = @"Library/Developer/Xcode/Templates/Project Templates";
 
 @implementation ProjectTemplateInstaller
 
