@@ -22,10 +22,16 @@
 
 #import "PluginWindowController.h"
 #import "Downloader.h"
-#import "Package.h"
 #import "PackageFactory.h"
 
-#define ALL_ITEMS_ID  @"AllItemsToolbarItem"
+#import "Plugin.h"
+#import "ColorScheme.h"
+#import "Template.h"
+
+static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
+static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
+static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@)";
+static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@) AND (self isKindOfClass: %@)";
 
 @interface PluginWindowController()
 @property (nonatomic) Class selectedPackageClass;
@@ -70,17 +76,17 @@
 }
 
 - (IBAction)showOnlyPlugins:(id)sender {
-    self.selectedPackageClass = NSClassFromString(@"Plugin");
+    self.selectedPackageClass = [Plugin class];
     [self updatePredicate];
 }
 
 - (IBAction)showOnlyColorSchemes:(id)sender {
-    self.selectedPackageClass = NSClassFromString(@"ColorScheme");
+    self.selectedPackageClass = [ColorScheme class];
     [self updatePredicate];
 }
 
 - (IBAction)showOnlyTemplates:(id)sender {
-    self.selectedPackageClass = NSClassFromString(@"Template");
+    self.selectedPackageClass = [Template class];
     [self updatePredicate];
 }
 
@@ -117,18 +123,18 @@
 }
 
 - (void)updatePredicate {
-    NSString *searchText = self.searchField.stringValue;
+    NSString *searchText = self.searchField.stringValue;    
     // filter by type and search field text
     if (self.selectedPackageClass && searchText.length > 0) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:@"(name contains[cd] %@ OR description contains[cd] %@) AND (self isKindOfClass: %@)", searchText, searchText, self.selectedPackageClass];
+        self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_AND_CLASS_PREDICATE_FORMAT, searchText, searchText, self.selectedPackageClass];
         
         // filter by type
     } else if (self.selectedPackageClass) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:@"(self isKindOfClass: %@)", self.selectedPackageClass];
+        self.filterPredicate = [NSPredicate predicateWithFormat:CLASS_PREDICATE_FORMAT, self.selectedPackageClass];
         
         // filter by search field text
     } else if (searchText.length > 0) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:@"(name contains[cd] %@ OR description contains[cd] %@)", searchText, searchText];
+        self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_PREDICATE_FORMAT, searchText, searchText];
         
         // show all
     } else {
