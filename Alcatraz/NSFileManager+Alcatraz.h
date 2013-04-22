@@ -26,4 +26,6 @@
 
 + (instancetype)sharedManager;
 
+- (void)removeItemAtPath:(NSString *)path completion:(void (^)(void))completion failure:(void (^)(NSError *))failure;
+
 @end

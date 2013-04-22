@@ -37,4 +37,9 @@
 
 - (BOOL)isPackageInstalled:(Package *)package;
 
+
+#pragma mark - Abstract
+
+- (NSString *)pathForInstalledPackage:(Package *)package;
+
 @end

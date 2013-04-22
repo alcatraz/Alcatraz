@@ -50,29 +50,28 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
 - (void)removePackage:(ColorScheme *)package
            completion:(void (^)(void))completion failure:(void (^)(NSError *failureReason))failure {
 
-    NSError *error = nil;
-    [[NSFileManager sharedManager] removeItemAtPath:[self filePathForColorScheme:package] error:&error];
-    
-    error ? failure(error) : completion();
+    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package]
+                                         completion:completion
+                                            failure:failure];
 }
 
 - (BOOL)isPackageInstalled:(ColorScheme *)package {
     
-    return [[NSFileManager sharedManager] fileExistsAtPath:[self filePathForColorScheme:package]];
+    return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package]];
 }
 
 #pragma mark - Private
 
 - (BOOL)installColorScheme:(ColorScheme *)colorScheme withContents:(NSData *)contents {
-    BOOL installSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self filePathForColorScheme:colorScheme]
+    BOOL installSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self pathForInstalledPackage:colorScheme]
                                                                     contents:contents
                                                                   attributes:nil]);
     return installSucceeded;
 }
 
-- (NSString *)filePathForColorScheme:(ColorScheme *)colorScheme {
+- (NSString *)pathForInstalledPackage:(Package *)package {
     return [NSString stringWithFormat:@"%@.dvtcolortheme",
-            [NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), LOCAL_COLOR_SCHEMES_RELATIVE_PATH, colorScheme.name]];
+            [NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), LOCAL_COLOR_SCHEMES_RELATIVE_PATH, package.name]];
 }
 
 @end

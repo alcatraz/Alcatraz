@@ -42,4 +42,13 @@
     return YES;
 }
 
+
+#pragma mark - Abstract
+
+- (NSString *)pathForInstalledPackage:(Package *)package {
+    return nil;
+}
+
+
+
 @end
