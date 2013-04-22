@@ -61,8 +61,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 #pragma mark - Bindings
 
 - (IBAction)checkboxPressed:(NSButton *)checkbox {
-
-    Package *package = self.packages[[self.tableView rowForView:checkbox]];
+    Package *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:checkbox]];
     
     if (package.isInstalled)
         [self removePackage:package andUpdateCheckbox:checkbox];
