@@ -187,9 +187,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (void)downloadAndInstallAlcatraz {
     ATZPlugin *alcatraz = [[ATZPlugin alloc] initWithDictionary:@{
-                           @"name": @"Alcatraz",
-                           @"url": @"https://github.com/mneorr/Alcatraz",
-                           @"description": @"Self updating installer"
+                               @"name": @"Alcatraz",
+                               @"url": @"https://github.com/mneorr/Alcatraz",
+                               @"description": @"Self updating installer"
                            }];
     [alcatraz installWithProgressMessage:^(NSString *proggressMessage) {
         
