@@ -45,3 +45,5 @@ Public Trello board can be found [here](https://trello.com/b/ZODgq5Av).
 ## Contributors
 
 Special thanks for Delisa Mason ([@kattrali](https://github.com/kattrali))
+
+Icon by [Derek Briggs](http://derekbriggs.com)
