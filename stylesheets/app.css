@@ -30,6 +30,10 @@ h1 {
   margin: 20px;
 }
 
+h1 span {
+  vertical-align: top;
+}
+
 h2 {
   color: #9696D2;
 }
@@ -76,9 +80,8 @@ footer {
 }
 
 .tagline {
-  text-align: right;
-  margin: -33px 30px 30px 0;
-  /*color: #ff9640;*/
+  text-align: center;
+  margin: -69px 30px 30px 0;
   color: #7872A8;
 }
 
