@@ -97,15 +97,14 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (void)removePackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
     [self showInstallationIndicators];
+    
     [package removeWithCompletion:^(NSError *failure) {
 
         NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to uninstall :(", package.name] :
                                       [NSString stringWithFormat:@"%@ uninstalled.", package.name];
 
         [[self statusLabel] setStringValue:message];
-        [self hideInstallationIndicators];
-        [self reloadCheckbox:checkbox];
-        if (package.requiresRestart) [self.restartLabel setHidden:NO];
+        [self reloadUIForPackage:package fromCheckbox:checkbox];
     }];
 }
 
@@ -118,10 +117,14 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
                                       [NSString stringWithFormat:@"%@ installed.", package.name];
 
         [[self statusLabel] setStringValue:message];
-        [self hideInstallationIndicators];
-        [self reloadCheckbox:checkbox];
-        if (package.requiresRestart) [self.restartLabel setHidden:NO];
+        [self reloadUIForPackage:package fromCheckbox:checkbox];
     }];
+}
+
+- (void)reloadUIForPackage:(Package *)package fromCheckbox:(NSButton *)checkbox {
+    [self hideInstallationIndicators];
+    [self reloadCheckbox:checkbox];
+    if (package.requiresRestart) [self.restartLabel setHidden:NO];
 }
 
 - (void)hideInstallationIndicators {
