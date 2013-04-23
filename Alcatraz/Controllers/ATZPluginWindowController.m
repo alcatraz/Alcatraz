@@ -42,7 +42,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (id)init {
     if (self = [super init]) {
         self.filterPredicate = [NSPredicate predicateWithValue:YES];
-        @try { [self fetchPlugins]; }
+        @try { [self fetchPlugins]; [self updateAlcatraz]; }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
     return self;
@@ -113,7 +113,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [package installWithProgressMessage:^(NSString *progressMessage) { self.statusLabel.stringValue = progressMessage; }
                              completion:^(NSError *failure) {
         
-        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :(", package.name] :
+        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :( Error: %@", package.name, failure.description] :
                                       [NSString stringWithFormat:@"%@ installed.", package.name];
 
         [[self statusLabel] setStringValue:message];
@@ -175,6 +175,32 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             [downloader release];
         }];
     }
+}
+
+- (void)updateAlcatraz {
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperationWithBlock:^{
+        [self downloadAndInstallAlcatraz];
+        [queue release];
+    }];
+}
+
+- (void)downloadAndInstallAlcatraz {
+    ATZPlugin *alcatraz = [[ATZPlugin alloc] initWithDictionary:@{
+                           @"name": @"Alcatraz",
+                           @"url": @"https://github.com/mneorr/Alcatraz",
+                           @"description": @"Self updating installer"
+                           }];
+    [alcatraz installWithProgressMessage:^(NSString *proggressMessage) {
+        
+    } completion:^(NSError *failure) {
+        if (failure)
+            NSLog(@"\n\nUpdating alcatraz failed! %@\n\n", failure);
+        else
+            NSLog(@"Alcatraz updated!");
+        
+        [alcatraz release];
+    }];
 }
 
 @end

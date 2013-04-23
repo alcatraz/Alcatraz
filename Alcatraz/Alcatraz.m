@@ -23,6 +23,8 @@
 
 #import "Alcatraz.h"
 #import "ATZPluginWindowController.h"
+#import "ATZPluginInstaller.h"
+#import "ATZPlugin.h"
 
 @interface Alcatraz(){}
 @property (nonatomic, retain) NSBundle *bundle;
@@ -41,7 +43,7 @@
 - (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
         self.bundle = plugin;
-        [self createMenuItem];
+        [self createMenuItem];        
     }
     return self;
 }
@@ -77,5 +79,6 @@
     NSWindow *window = [nibElements filteredArrayUsingPredicate:windowPredicate][0];
     [window makeKeyAndOrderFront:self];
 }
+    
 
 @end

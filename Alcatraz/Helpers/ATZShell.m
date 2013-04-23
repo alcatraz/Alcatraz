@@ -54,6 +54,7 @@
     [shellTask setStandardError:stdErrPipe];
     [self setUpFileHandleForPipe:outputPipe];
     [self setUpFileHandleForPipe:stdErrPipe];
+    
     [self tryToLaunchTask:shellTask];
 
     [shellTask release];
