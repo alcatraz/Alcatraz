@@ -29,6 +29,9 @@
 @property (assign) IBOutlet NSSearchField *searchField;
 @property (assign) IBOutlet NSTableView *tableView;
 
+@property (assign) IBOutlet NSTextField *statusLabel;
+@property (assign) IBOutlet NSProgressIndicator *progressIndicator;
+
 - (IBAction)checkboxPressed:(NSButton *)sender;
 
 - (IBAction)showAllPackages:(id)sender;

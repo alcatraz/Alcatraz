@@ -10,6 +10,4 @@
 
 @interface ATZStatusView : NSView
 
-@property (assign) IBOutlet NSTextField *statusLabel;
-@property (assign) IBOutlet NSProgressIndicator *progressIndicator;
 @end

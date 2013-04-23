@@ -96,22 +96,40 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 #pragma mark - Private
 
 - (void)removePackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
+    [[self progressIndicator] setHidden:NO];
+    [[self progressIndicator] startAnimation:nil];
     [package removeWithCompletion:^(NSError *failure) {
+        NSString *message;
+        if (failure) {
+            message = [NSString stringWithFormat:@"%@ failed to uninstall :(", package.name];
+            NSLog(@"Package failed to uninstall! %@", failure);
+        } else {
+            message = [NSString stringWithFormat:@"%@ uninstalled.", package.name];
+        }
 
-        if (failure) NSLog(@"Package failed to uninstall! %@", failure);
-        else         NSLog(@"Package uninstalled! %@", package.name);
-
+        [[self statusLabel] setStringValue:message];
+        [[self progressIndicator] stopAnimation:nil];
+        [[self progressIndicator] setHidden:YES];
         [self reloadCheckbox:checkbox];
     }];
 }
 
 - (void)installPackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
     NSLog(@"Installing package... %@", package.name);
+    [[self progressIndicator] setHidden:NO];
+    [[self progressIndicator] startAnimation:nil];
     [package installWithProgress:^(CGFloat progress){} completion:^(NSError *failure) {
-        
-        if (failure) NSLog(@"Package failed to install :( %@", failure);
-        else         NSLog(@"Package installed! %@", package.name);
-        
+        NSString *message;
+        if (failure) {
+            message = [NSString stringWithFormat:@"%@ failed to install :(", package.name];
+            NSLog(@"Package failed to install! %@", failure);
+        } else {
+            message = [NSString stringWithFormat:@"%@ installed.", package.name];
+        }
+
+        [[self statusLabel] setStringValue:message];
+        [[self progressIndicator] stopAnimation:nil];
+        [[self progressIndicator] setHidden:YES];
         [self reloadCheckbox:checkbox];
     }];
 }
