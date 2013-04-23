@@ -27,7 +27,16 @@ h1 {
   font-family: 'HartingPlain';
   font-size: 4em;
   text-align: center;
-  margin: 20px;
+  margin: 86px 0 45px 0;
+}
+
+h1 span {
+  vertical-align: top;
+  margin-left: -28px
+}
+
+h1 img {
+  margin-top: -40px;
 }
 
 h2 {
@@ -76,10 +85,13 @@ footer {
 }
 
 .tagline {
-  text-align: right;
-  margin: -33px 30px 30px 0;
-  /*color: #ff9640;*/
+  text-align: center;
+  margin: -240px -183px 90px 0;
   color: #7872A8;
+}
+
+.title-section {
+  padding-top: 109px;
 }
 
 #people {
@@ -90,6 +102,10 @@ footer {
   float: left;
 }
 
+#da-buttons {
+  z-index: 10;
+}
+
 #silhouette {
   background-image: url('../images/Alcatraz_Island@2x.png');
   background-repeat: no-repeat;
@@ -98,17 +114,18 @@ footer {
   background-size: 100%;
   bottom: 0;
   position: relative;
-  z-index: -1;
+  z-index: 1;
 }
 
 #footer-content {
   position: absolute;
   bottom: 0;
-  margin: 2px auto;
+  margin: 14px auto;
   color: gray;
   font-size: 0.8em;
   text-align: center;
   width: 100%;
+  z-index: 5;
 }
 
 @media (max-width: 700) {
@@ -137,8 +154,13 @@ footer {
 
   .tagline {
     font-size: 80%;
-    margin-top: -20px;
-    margin-right: 20px;
+    margin-top: -101px;
+    margin-right: -110px;
+    margin-bottom: 0;
+  }
+
+  .title-section {
+    padding-top: 40px;
   }
 
   #people, #project-links {
@@ -153,5 +175,10 @@ footer {
 
   #footer-content {
     font-size: 0.7em;
+  }
+
+  .icon {
+    width:  128px;
+    height: 128px;
   }
 }
