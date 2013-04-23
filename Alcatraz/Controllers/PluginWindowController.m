@@ -109,12 +109,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)installPackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
-    NSLog(@"Installing package... %@", package.name);
     [self showInstallationIndicators];
-    [package installWithProgressMessage:^(NSString *progressMessage) {
-        
-        [[self statusLabel] setStringValue:progressMessage];
-    } completion:^(NSError *failure) {
+    [package installWithProgressMessage:^(NSString *progressMessage) { self.statusLabel.stringValue = progressMessage; }
+                             completion:^(NSError *failure) {
         
         NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :(", package.name] :
                                       [NSString stringWithFormat:@"%@ installed.", package.name];
@@ -161,19 +158,18 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)fetchPlugins {
-    NSAutoreleasePool *pool = [NSAutoreleasePool new];
-    Downloader *downloader = [Downloader new];
-    
-    [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
-        
-        if (error)
-            NSLog(@"Error while downloading packages! %@", error);
-        else
-            self.packages = [PackageFactory createPackagesFromDicts:packageList];
-        
-        [downloader release];
-        [pool drain];
-    }];
+    @autoreleasepool {
+        Downloader *downloader = [Downloader new];
+        [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
+            
+            if (error)
+                NSLog(@"Error while downloading packages! %@", error);
+            else
+                self.packages = [PackageFactory createPackagesFromDicts:packageList];
+            
+            [downloader release];
+        }];
+    }
 }
 
 @end
