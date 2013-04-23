@@ -97,18 +97,20 @@ static NSString *const XCPLUGIN = @".xcplugin";
 - (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
     @autoreleasepool {
         @try {
-            return [self findProjectFileInDirectory:[self pathForClonedPlugin:plugin]];
+            return [self findProjectFileInDirectory:[self pathForClonedPlugin:plugin]
+                                      forPluginName:plugin.name];
         }
         @catch (NSException *exception) { NSLog(@"Exception with finding xcodeproj path! %@", exception); }
     }
 }
 
-- (NSString *)findProjectFileInDirectory:(NSString *)path {
+- (NSString *)findProjectFileInDirectory:(NSString *)path forPluginName:(NSString *)pluginName {
     NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:path];
     NSString *directoryEntry;
+    NSString *projectFileName = [pluginName stringByAppendingString:XCODEPROJ];
     
     while (directoryEntry = [enumerator nextObject])
-        if ([directoryEntry hasSuffix:XCODEPROJ])
+        if ([directoryEntry isEqualToString:projectFileName])
             return [[path stringByAppendingPathComponent:directoryEntry] retain];
     
     @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
