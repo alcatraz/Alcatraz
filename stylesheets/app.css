@@ -27,11 +27,16 @@ h1 {
   font-family: 'HartingPlain';
   font-size: 4em;
   text-align: center;
-  margin: 20px;
+  margin: 86px 0 45px 0;
 }
 
 h1 span {
   vertical-align: top;
+  margin-left: -28px
+}
+
+h1 img {
+  margin-top: -30px;
 }
 
 h2 {
@@ -81,8 +86,12 @@ footer {
 
 .tagline {
   text-align: center;
-  margin: -69px 30px 30px 0;
+  margin: -150px -79px 30px 0;
   color: #7872A8;
+}
+
+.title-section {
+  padding-top: 109px;
 }
 
 #people {
