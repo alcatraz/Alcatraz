@@ -10,12 +10,10 @@
 
 @implementation ATZProgressIndicator
 
-- (id)initWithFrame:(NSRect)frame {
-    self = [super initWithFrame:frame];
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) [self setControlTint:NSGraphiteControlTint];
     return self;
 }
 
-- (void) drawRect:(NSRect)rect {
-    [self setControlTint:NSGraphiteControlTint];
-}
 @end
