@@ -41,6 +41,7 @@
 - (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path completion:(void(^)(NSString *taskOutput))completion {
     _taskOutput = [NSMutableData new];
     NSPipe *outputPipe = [NSPipe pipe];
+    NSPipe *stdErrPipe = [NSPipe pipe];
     NSTask *shellTask = [NSTask new];
  
     if (path) [shellTask setCurrentDirectoryPath:path];
@@ -50,8 +51,9 @@
     [shellTask setTerminationHandler:^(NSTask *task) {
         completion([[[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding] autorelease]);
     }];
-    [shellTask setStandardError:outputPipe];
+    [shellTask setStandardError:stdErrPipe];
     [self setUpFileHandleForPipe:outputPipe];
+    [self setUpFileHandleForPipe:stdErrPipe];
     [self tryToLaunchTask:shellTask];
 
     [shellTask release];

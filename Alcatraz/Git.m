@@ -25,25 +25,27 @@
 #import "NSFileManager+Alcatraz.h"
 
 static NSString *const GIT = @"/usr/bin/git";
-static NSString *const CLONE = @"clone";
-static NSString *const IGNORE_GITCONFIG = @"-c push.default=matching";
-static NSString *const FETCH_ORIGIN = @"fetch origin";
-static NSString *const RESET_ARGS = @"reset --hard origin/master";
 
 @implementation Git
 
 + (void)clone:(NSString *)remotePath to:(NSString *)localPath {
     Shell *shell = [Shell new];
     
-    [shell executeCommand:GIT withArguments:@[CLONE, remotePath, localPath, IGNORE_GITCONFIG]];
+    [shell executeCommand:@"/usr/bin/git" withArguments:@[@"clone", remotePath, localPath, @"-c push.default=matching"] completion:^(NSString *output) {
+        NSLog(@"Git clone output: %@", output);
+    }];
     [shell release];
 }
 
 + (void)updateLocalProject:(NSString *)localPath {
     Shell *shell = [Shell new];
 
-    [shell executeCommand:GIT withArguments:@[FETCH_ORIGIN] inWorkingDirectory:localPath];
-    [shell executeCommand:GIT withArguments:@[RESET_ARGS] inWorkingDirectory:localPath];
+    [shell executeCommand:@"/usr/bin/git" withArguments:@[@"fetch", @"origin"] inWorkingDirectory:localPath completion:^(NSString *output) {
+        NSLog(@"Git fetch output: %@", output);
+    }];
+    [shell executeCommand:@"/usr/bin/git" withArguments:@[@"reset", @"--hard", @"origin/master"] inWorkingDirectory:localPath completion:^(NSString *output) {
+        NSLog(@"Git reset output: %@", output);
+    }];
     
     [shell release];
 }
