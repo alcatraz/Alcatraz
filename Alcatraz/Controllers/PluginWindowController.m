@@ -127,15 +127,15 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     if (self.selectedPackageClass && searchText.length > 0) {
         self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_AND_CLASS_PREDICATE_FORMAT, searchText, searchText, self.selectedPackageClass];
         
-        // filter by type
+    // filter by type
     } else if (self.selectedPackageClass) {
         self.filterPredicate = [NSPredicate predicateWithFormat:CLASS_PREDICATE_FORMAT, self.selectedPackageClass];
         
-        // filter by search field text
+    // filter by search field text
     } else if (searchText.length > 0) {
         self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_PREDICATE_FORMAT, searchText, searchText];
         
-        // show all
+    // show all
     } else {
         self.filterPredicate = [NSPredicate predicateWithValue:YES];
     }
