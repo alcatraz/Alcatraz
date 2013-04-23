@@ -102,6 +102,10 @@ footer {
   float: left;
 }
 
+.da-buttons {
+  z-index: 1;
+}
+
 #silhouette {
   background-image: url('../images/Alcatraz_Island@2x.png');
   background-repeat: no-repeat;
@@ -110,7 +114,7 @@ footer {
   background-size: 100%;
   bottom: 0;
   position: relative;
-  z-index: -1;
+  z-index: 0;
 }
 
 #footer-content {
@@ -121,6 +125,7 @@ footer {
   font-size: 0.8em;
   text-align: center;
   width: 100%;
+  z-index: 5;
 }
 
 @media (max-width: 700) {
