@@ -13,6 +13,8 @@ Open up your terminal, and paste this:
 curl -L http://goo.gl/xfmmt | tar xv -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -
 ```
 
+*Note: If the `Plug-ins` directory does not exist, you will need to create it first*
+
 or download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
 
 ## Usage
