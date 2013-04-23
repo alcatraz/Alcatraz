@@ -38,12 +38,16 @@ static NSString *const XCPLUGIN = @".xcplugin";
 
 - (void)installPackage:(ATZPlugin *)plugin progress:(void (^)(NSString *))progress
             completion:(void (^)(NSError *))completion {
-
-    [self clonePlugin:plugin progress:progress completion:^(NSError *error) {
-        if (error)
-            completion(error);
-        else
-            [self buildPlugin:plugin progress:progress completion:completion];
+    
+    progress([NSString stringWithFormat:DOWNLOADING_FORMAT, plugin.name]);
+    
+    [self clonePlugin:plugin completion:^(NSError *error) {
+        
+        if (error) completion(error);
+        else {
+            progress([NSString stringWithFormat:INSTALLING_FORMAT, plugin.name]);
+            [self buildPlugin:plugin completion:completion];
+        }
     }];
 }
 
@@ -68,9 +72,7 @@ static NSString *const XCPLUGIN = @".xcplugin";
                                        stringByAppendingString:XCPLUGIN];
 }
 
-- (void)clonePlugin:(ATZPlugin *)plugin progress:(void(^)(NSString *progressMesssage))progress completion:(void (^)(NSError *error))completion  {
-
-    progress([NSString stringWithFormat:DOWNLOADING_FORMAT, plugin.name]);
+- (void)clonePlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *error))completion  {
     
     [ATZGit updateOrCloneRepository:plugin.remotePath
                         toLocalPath:[self pathForClonedPlugin:plugin]];
@@ -81,10 +83,9 @@ static NSString *const XCPLUGIN = @".xcplugin";
     return [NSTemporaryDirectory() stringByAppendingPathComponent:plugin.name];
 }
 
-- (void)buildPlugin:(ATZPlugin *)plugin progress:(void(^)(NSString *progressMesssage))progress completion:(void (^)(NSError *error))completion {
+- (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *error))completion {
     ATZShell *shell = [ATZShell new];
     
-    progress([NSString stringWithFormat:INSTALLING_FORMAT, plugin.name]);
     [shell executeCommand:XCODE_BUILD
             withArguments:@[PROJECT, [self findXcodeprojPathForPlugin:plugin]]
                completion:^(NSString *output) {
