@@ -46,6 +46,7 @@ static NSString *const XCPLUGIN = @".xcplugin";
         if (error) completion(error);
         else {
             progress([NSString stringWithFormat:INSTALLING_FORMAT, plugin.name]);
+            [self createPluginsDirectoryIfNeeded];
             [self buildPlugin:plugin completion:completion];
         }
     }];
@@ -65,6 +66,16 @@ static NSString *const XCPLUGIN = @".xcplugin";
 
 
 #pragma mark - Private
+
+- (void)createPluginsDirectoryIfNeeded {
+    BOOL isDirectory = YES;
+    NSString *localPluginsPath = [NSHomeDirectory() stringByAppendingPathComponent:LOCAL_PLUGINS_RELATIVE_PATH];
+    
+    if ([[NSFileManager sharedManager] fileExistsAtPath:localPluginsPath isDirectory:&isDirectory]) return;
+    
+    [[NSFileManager sharedManager] createDirectoryAtPath:localPluginsPath
+                             withIntermediateDirectories:YES attributes:nil error:nil];
+}
 
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
     return [[[NSHomeDirectory() stringByAppendingPathComponent:LOCAL_PLUGINS_RELATIVE_PATH]
