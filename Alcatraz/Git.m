@@ -24,20 +24,26 @@
 #import "Shell.h"
 #import "NSFileManager+Alcatraz.h"
 
+static NSString *const GIT = @"/usr/bin/git";
+static NSString *const CLONE = @"clone";
+static NSString *const IGNORE_GITCONFIG = @"-c push.default=matching";
+static NSString *const FETCH_ORIGIN = @"fetch origin";
+static NSString *const RESET_ARGS = @"reset --hard origin/master";
+
 @implementation Git
 
 + (void)clone:(NSString *)remotePath to:(NSString *)localPath {
     Shell *shell = [Shell new];
     
-    [shell executeCommand:@"/usr/bin/git" withArguments:@[@"clone", remotePath, localPath, @"-c push.default=matching"]];
+    [shell executeCommand:GIT withArguments:@[CLONE, remotePath, localPath, IGNORE_GITCONFIG]];
     [shell release];
 }
 
 + (void)updateLocalProject:(NSString *)localPath {
     Shell *shell = [Shell new];
 
-    [shell executeCommand:@"/usr/bin/git" withArguments:@[@"fetch", @"origin"] inWorkingDirectory:localPath];
-    [shell executeCommand:@"/usr/bin/git" withArguments:@[@"reset", @"--hard", @"origin/master"] inWorkingDirectory:localPath];
+    [shell executeCommand:GIT withArguments:@[FETCH_ORIGIN] inWorkingDirectory:localPath];
+    [shell executeCommand:GIT withArguments:@[RESET_ARGS] inWorkingDirectory:localPath];
     
     [shell release];
 }
