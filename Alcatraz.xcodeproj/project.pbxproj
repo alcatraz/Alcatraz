@@ -11,24 +11,24 @@
 		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
 		890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 890A4B49171F031300AFE577 /* InfoPlist.strings */; };
 		890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 890A4B4D171F031300AFE577 /* Alcatraz.m */; };
-		892BE56B1721B8AD00F4E859 /* Shell.m in Sources */ = {isa = PBXBuildFile; fileRef = 892BE56A1721B8AD00F4E859 /* Shell.m */; };
-		896FCADB1720125D00246CBE /* Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 896FCADA1720125D00246CBE /* Downloader.m */; };
-		897DA16A172028B700E11BCB /* PackageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 897DA169172028B700E11BCB /* PackageFactory.m */; };
-		8994E5D7171F410E0061B598 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5D6171F410E0061B598 /* Plugin.m */; };
-		8994E5DA171F41840061B598 /* PluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5D9171F41840061B598 /* PluginInstaller.m */; };
-		8994E5E5171F443D0061B598 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5E4171F443D0061B598 /* Template.m */; };
-		8994E5E8171F44570061B598 /* ColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5E7171F44570061B598 /* ColorScheme.m */; };
-		8994E5EA171F45730061B598 /* Package.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5E9171F45730061B598 /* Package.m */; };
-		8994E5ED171F45F50061B598 /* ColorSchemeInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5EC171F45F50061B598 /* ColorSchemeInstaller.m */; };
-		8994E5F0171F46100061B598 /* TemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994E5EF171F46100061B598 /* TemplateInstaller.m */; };
-		8997D0CC172552C800E0F967 /* FileTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997D0CB172552C800E0F967 /* FileTemplate.m */; };
-		8997D0CF172552D000E0F967 /* ProjectTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997D0CE172552D000E0F967 /* ProjectTemplate.m */; };
-		8997D0D2172553DF00E0F967 /* ProjectTemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997D0D1172553DF00E0F967 /* ProjectTemplateInstaller.m */; };
-		8997D0D5172553EA00E0F967 /* FileTemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997D0D4172553EA00E0F967 /* FileTemplateInstaller.m */; };
-		8997D0D8172559D700E0F967 /* Git.m in Sources */ = {isa = PBXBuildFile; fileRef = 8997D0D7172559D700E0F967 /* Git.m */; };
+		8917D9F31726B4EE00F0B2D2 /* ColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9E81726B4EE00F0B2D2 /* ColorScheme.m */; };
+		8917D9F41726B4EE00F0B2D2 /* FileTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9EA1726B4EE00F0B2D2 /* FileTemplate.m */; };
+		8917D9F51726B4EE00F0B2D2 /* Package.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9EC1726B4EE00F0B2D2 /* Package.m */; };
+		8917D9F61726B4EE00F0B2D2 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9EE1726B4EE00F0B2D2 /* Plugin.m */; };
+		8917D9F71726B4EE00F0B2D2 /* ProjectTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9F01726B4EE00F0B2D2 /* ProjectTemplate.m */; };
+		8917D9F81726B4EE00F0B2D2 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9F21726B4EE00F0B2D2 /* Template.m */; };
+		8917DA051726B53000F0B2D2 /* ColorSchemeInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9FB1726B53000F0B2D2 /* ColorSchemeInstaller.m */; };
+		8917DA061726B53000F0B2D2 /* FileTemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9FD1726B53000F0B2D2 /* FileTemplateInstaller.m */; };
+		8917DA071726B53000F0B2D2 /* PluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA001726B53000F0B2D2 /* PluginInstaller.m */; };
+		8917DA081726B53000F0B2D2 /* ProjectTemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA021726B53000F0B2D2 /* ProjectTemplateInstaller.m */; };
+		8917DA091726B53000F0B2D2 /* TemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA041726B53000F0B2D2 /* TemplateInstaller.m */; };
+		8917DA0D1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA0C1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m */; };
+		8917DA101726B5BA00F0B2D2 /* PackageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA0F1726B5BA00F0B2D2 /* PackageFactory.m */; };
+		8917DA181726B63B00F0B2D2 /* Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA131726B63B00F0B2D2 /* Downloader.m */; };
+		8917DA191726B63B00F0B2D2 /* Git.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA151726B63B00F0B2D2 /* Git.m */; };
+		8917DA1A1726B63B00F0B2D2 /* Shell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA171726B63B00F0B2D2 /* Shell.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* PluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* PluginWindowController.m */; };
-		89F09609172086980033F3BE /* NSFileManager+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F09608172086980033F3BE /* NSFileManager+Alcatraz.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,42 +40,42 @@
 		890A4B4C171F031300AFE577 /* Alcatraz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alcatraz.h; sourceTree = "<group>"; };
 		890A4B4D171F031300AFE577 /* Alcatraz.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alcatraz.m; sourceTree = "<group>"; };
 		890A4B4F171F031300AFE577 /* Alcatraz-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Alcatraz-Prefix.pch"; sourceTree = "<group>"; };
-		892BE5691721B8AD00F4E859 /* Shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shell.h; sourceTree = "<group>"; };
-		892BE56A1721B8AD00F4E859 /* Shell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shell.m; sourceTree = "<group>"; };
-		896FCAD91720125D00246CBE /* Downloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downloader.h; sourceTree = "<group>"; };
-		896FCADA1720125D00246CBE /* Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Downloader.m; sourceTree = "<group>"; };
-		897DA168172028B700E11BCB /* PackageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageFactory.h; sourceTree = "<group>"; };
-		897DA169172028B700E11BCB /* PackageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageFactory.m; sourceTree = "<group>"; };
-		8994E5D5171F410E0061B598 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
-		8994E5D6171F410E0061B598 /* Plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin.m; sourceTree = "<group>"; };
-		8994E5D8171F41840061B598 /* PluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginInstaller.h; sourceTree = "<group>"; };
-		8994E5D9171F41840061B598 /* PluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginInstaller.m; sourceTree = "<group>"; };
-		8994E5DC171F42270061B598 /* Installer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Installer.h; sourceTree = "<group>"; };
-		8994E5DF171F431D0061B598 /* Package.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Package.h; sourceTree = "<group>"; };
-		8994E5E3171F443D0061B598 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
-		8994E5E4171F443D0061B598 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
-		8994E5E6171F44570061B598 /* ColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorScheme.h; sourceTree = "<group>"; };
-		8994E5E7171F44570061B598 /* ColorScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorScheme.m; sourceTree = "<group>"; };
-		8994E5E9171F45730061B598 /* Package.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Package.m; sourceTree = "<group>"; };
-		8994E5EB171F45F50061B598 /* ColorSchemeInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSchemeInstaller.h; sourceTree = "<group>"; };
-		8994E5EC171F45F50061B598 /* ColorSchemeInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSchemeInstaller.m; sourceTree = "<group>"; };
-		8994E5EE171F46100061B598 /* TemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateInstaller.h; sourceTree = "<group>"; };
-		8994E5EF171F46100061B598 /* TemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateInstaller.m; sourceTree = "<group>"; };
-		8997D0CA172552C800E0F967 /* FileTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTemplate.h; sourceTree = "<group>"; };
-		8997D0CB172552C800E0F967 /* FileTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTemplate.m; sourceTree = "<group>"; };
-		8997D0CD172552D000E0F967 /* ProjectTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTemplate.h; sourceTree = "<group>"; };
-		8997D0CE172552D000E0F967 /* ProjectTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTemplate.m; sourceTree = "<group>"; };
-		8997D0D0172553DF00E0F967 /* ProjectTemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTemplateInstaller.h; sourceTree = "<group>"; };
-		8997D0D1172553DF00E0F967 /* ProjectTemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTemplateInstaller.m; sourceTree = "<group>"; };
-		8997D0D3172553EA00E0F967 /* FileTemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTemplateInstaller.h; sourceTree = "<group>"; };
-		8997D0D4172553EA00E0F967 /* FileTemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTemplateInstaller.m; sourceTree = "<group>"; };
-		8997D0D6172559D700E0F967 /* Git.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Git.h; sourceTree = "<group>"; };
-		8997D0D7172559D700E0F967 /* Git.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Git.m; sourceTree = "<group>"; };
+		8917D9E71726B4EE00F0B2D2 /* ColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorScheme.h; sourceTree = "<group>"; };
+		8917D9E81726B4EE00F0B2D2 /* ColorScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorScheme.m; sourceTree = "<group>"; };
+		8917D9E91726B4EE00F0B2D2 /* FileTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTemplate.h; sourceTree = "<group>"; };
+		8917D9EA1726B4EE00F0B2D2 /* FileTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTemplate.m; sourceTree = "<group>"; };
+		8917D9EB1726B4EE00F0B2D2 /* Package.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Package.h; sourceTree = "<group>"; };
+		8917D9EC1726B4EE00F0B2D2 /* Package.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Package.m; sourceTree = "<group>"; };
+		8917D9ED1726B4EE00F0B2D2 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
+		8917D9EE1726B4EE00F0B2D2 /* Plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plugin.m; sourceTree = "<group>"; };
+		8917D9EF1726B4EE00F0B2D2 /* ProjectTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTemplate.h; sourceTree = "<group>"; };
+		8917D9F01726B4EE00F0B2D2 /* ProjectTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTemplate.m; sourceTree = "<group>"; };
+		8917D9F11726B4EE00F0B2D2 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
+		8917D9F21726B4EE00F0B2D2 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
+		8917D9FA1726B53000F0B2D2 /* ColorSchemeInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSchemeInstaller.h; sourceTree = "<group>"; };
+		8917D9FB1726B53000F0B2D2 /* ColorSchemeInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSchemeInstaller.m; sourceTree = "<group>"; };
+		8917D9FC1726B53000F0B2D2 /* FileTemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTemplateInstaller.h; sourceTree = "<group>"; };
+		8917D9FD1726B53000F0B2D2 /* FileTemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTemplateInstaller.m; sourceTree = "<group>"; };
+		8917D9FE1726B53000F0B2D2 /* Installer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Installer.h; sourceTree = "<group>"; };
+		8917D9FF1726B53000F0B2D2 /* PluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginInstaller.h; sourceTree = "<group>"; };
+		8917DA001726B53000F0B2D2 /* PluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginInstaller.m; sourceTree = "<group>"; };
+		8917DA011726B53000F0B2D2 /* ProjectTemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTemplateInstaller.h; sourceTree = "<group>"; };
+		8917DA021726B53000F0B2D2 /* ProjectTemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTemplateInstaller.m; sourceTree = "<group>"; };
+		8917DA031726B53000F0B2D2 /* TemplateInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateInstaller.h; sourceTree = "<group>"; };
+		8917DA041726B53000F0B2D2 /* TemplateInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateInstaller.m; sourceTree = "<group>"; };
+		8917DA0B1726B57B00F0B2D2 /* NSFileManager+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Alcatraz.h"; sourceTree = "<group>"; };
+		8917DA0C1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Alcatraz.m"; sourceTree = "<group>"; };
+		8917DA0E1726B5BA00F0B2D2 /* PackageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageFactory.h; sourceTree = "<group>"; };
+		8917DA0F1726B5BA00F0B2D2 /* PackageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageFactory.m; sourceTree = "<group>"; };
+		8917DA121726B63B00F0B2D2 /* Downloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downloader.h; sourceTree = "<group>"; };
+		8917DA131726B63B00F0B2D2 /* Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Downloader.m; sourceTree = "<group>"; };
+		8917DA141726B63B00F0B2D2 /* Git.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Git.h; sourceTree = "<group>"; };
+		8917DA151726B63B00F0B2D2 /* Git.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Git.m; sourceTree = "<group>"; };
+		8917DA161726B63B00F0B2D2 /* Shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shell.h; sourceTree = "<group>"; };
+		8917DA171726B63B00F0B2D2 /* Shell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shell.m; sourceTree = "<group>"; };
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
 		89D40AFA1721CBD600A67BB3 /* PluginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginWindowController.h; path = Controllers/PluginWindowController.h; sourceTree = "<group>"; };
 		89D40AFB1721CBD600A67BB3 /* PluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluginWindowController.m; path = Controllers/PluginWindowController.m; sourceTree = "<group>"; };
-		89F09607172086980033F3BE /* NSFileManager+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Alcatraz.h"; sourceTree = "<group>"; };
-		89F09608172086980033F3BE /* NSFileManager+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Alcatraz.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,23 +120,15 @@
 		890A4B46171F031300AFE577 /* Alcatraz */ = {
 			isa = PBXGroup;
 			children = (
-				8994E5E2171F442E0061B598 /* Packages */,
-				8994E5DB171F41CB0061B598 /* Installers */,
+				8917DA111726B63B00F0B2D2 /* Helpers */,
+				8917DA0A1726B57B00F0B2D2 /* Categories */,
+				8917D9F91726B53000F0B2D2 /* Installers */,
+				8917D9E61726B4EE00F0B2D2 /* Packages */,
 				892C7DD7171F2A2000A21B12 /* Controllers */,
 				890A4B4C171F031300AFE577 /* Alcatraz.h */,
 				890A4B4D171F031300AFE577 /* Alcatraz.m */,
 				890A4B47171F031300AFE577 /* Supporting Files */,
 				89C4C685171F1B5C004A88E7 /* PluginWindow.xib */,
-				896FCAD91720125D00246CBE /* Downloader.h */,
-				896FCADA1720125D00246CBE /* Downloader.m */,
-				897DA168172028B700E11BCB /* PackageFactory.h */,
-				897DA169172028B700E11BCB /* PackageFactory.m */,
-				89F09607172086980033F3BE /* NSFileManager+Alcatraz.h */,
-				89F09608172086980033F3BE /* NSFileManager+Alcatraz.m */,
-				892BE5691721B8AD00F4E859 /* Shell.h */,
-				892BE56A1721B8AD00F4E859 /* Shell.m */,
-				8997D0D6172559D700E0F967 /* Git.h */,
-				8997D0D7172559D700E0F967 /* Git.m */,
 			);
 			path = Alcatraz;
 			sourceTree = "<group>";
@@ -151,6 +143,67 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8917D9E61726B4EE00F0B2D2 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				8917DA0E1726B5BA00F0B2D2 /* PackageFactory.h */,
+				8917DA0F1726B5BA00F0B2D2 /* PackageFactory.m */,
+				8917D9E71726B4EE00F0B2D2 /* ColorScheme.h */,
+				8917D9E81726B4EE00F0B2D2 /* ColorScheme.m */,
+				8917D9E91726B4EE00F0B2D2 /* FileTemplate.h */,
+				8917D9EA1726B4EE00F0B2D2 /* FileTemplate.m */,
+				8917D9EB1726B4EE00F0B2D2 /* Package.h */,
+				8917D9EC1726B4EE00F0B2D2 /* Package.m */,
+				8917D9ED1726B4EE00F0B2D2 /* Plugin.h */,
+				8917D9EE1726B4EE00F0B2D2 /* Plugin.m */,
+				8917D9EF1726B4EE00F0B2D2 /* ProjectTemplate.h */,
+				8917D9F01726B4EE00F0B2D2 /* ProjectTemplate.m */,
+				8917D9F11726B4EE00F0B2D2 /* Template.h */,
+				8917D9F21726B4EE00F0B2D2 /* Template.m */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		8917D9F91726B53000F0B2D2 /* Installers */ = {
+			isa = PBXGroup;
+			children = (
+				8917D9FA1726B53000F0B2D2 /* ColorSchemeInstaller.h */,
+				8917D9FB1726B53000F0B2D2 /* ColorSchemeInstaller.m */,
+				8917D9FC1726B53000F0B2D2 /* FileTemplateInstaller.h */,
+				8917D9FD1726B53000F0B2D2 /* FileTemplateInstaller.m */,
+				8917D9FE1726B53000F0B2D2 /* Installer.h */,
+				8917D9FF1726B53000F0B2D2 /* PluginInstaller.h */,
+				8917DA001726B53000F0B2D2 /* PluginInstaller.m */,
+				8917DA011726B53000F0B2D2 /* ProjectTemplateInstaller.h */,
+				8917DA021726B53000F0B2D2 /* ProjectTemplateInstaller.m */,
+				8917DA031726B53000F0B2D2 /* TemplateInstaller.h */,
+				8917DA041726B53000F0B2D2 /* TemplateInstaller.m */,
+			);
+			path = Installers;
+			sourceTree = "<group>";
+		};
+		8917DA0A1726B57B00F0B2D2 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				8917DA0B1726B57B00F0B2D2 /* NSFileManager+Alcatraz.h */,
+				8917DA0C1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		8917DA111726B63B00F0B2D2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8917DA121726B63B00F0B2D2 /* Downloader.h */,
+				8917DA131726B63B00F0B2D2 /* Downloader.m */,
+				8917DA141726B63B00F0B2D2 /* Git.h */,
+				8917DA151726B63B00F0B2D2 /* Git.m */,
+				8917DA161726B63B00F0B2D2 /* Shell.h */,
+				8917DA171726B63B00F0B2D2 /* Shell.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		892C7DD7171F2A2000A21B12 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,43 +211,6 @@
 				89D40AFB1721CBD600A67BB3 /* PluginWindowController.m */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		8994E5DB171F41CB0061B598 /* Installers */ = {
-			isa = PBXGroup;
-			children = (
-				8994E5DC171F42270061B598 /* Installer.h */,
-				8994E5D8171F41840061B598 /* PluginInstaller.h */,
-				8994E5D9171F41840061B598 /* PluginInstaller.m */,
-				8994E5EB171F45F50061B598 /* ColorSchemeInstaller.h */,
-				8994E5EC171F45F50061B598 /* ColorSchemeInstaller.m */,
-				8994E5EE171F46100061B598 /* TemplateInstaller.h */,
-				8994E5EF171F46100061B598 /* TemplateInstaller.m */,
-				8997D0D0172553DF00E0F967 /* ProjectTemplateInstaller.h */,
-				8997D0D1172553DF00E0F967 /* ProjectTemplateInstaller.m */,
-				8997D0D3172553EA00E0F967 /* FileTemplateInstaller.h */,
-				8997D0D4172553EA00E0F967 /* FileTemplateInstaller.m */,
-			);
-			name = Installers;
-			sourceTree = "<group>";
-		};
-		8994E5E2171F442E0061B598 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				8994E5DF171F431D0061B598 /* Package.h */,
-				8994E5E9171F45730061B598 /* Package.m */,
-				8994E5E6171F44570061B598 /* ColorScheme.h */,
-				8994E5E7171F44570061B598 /* ColorScheme.m */,
-				8994E5D5171F410E0061B598 /* Plugin.h */,
-				8994E5D6171F410E0061B598 /* Plugin.m */,
-				8994E5E3171F443D0061B598 /* Template.h */,
-				8994E5E4171F443D0061B598 /* Template.m */,
-				8997D0CA172552C800E0F967 /* FileTemplate.h */,
-				8997D0CB172552C800E0F967 /* FileTemplate.m */,
-				8997D0CD172552D000E0F967 /* ProjectTemplate.h */,
-				8997D0CE172552D000E0F967 /* ProjectTemplate.m */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,23 +277,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */,
-				8994E5D7171F410E0061B598 /* Plugin.m in Sources */,
-				8994E5DA171F41840061B598 /* PluginInstaller.m in Sources */,
-				8994E5E5171F443D0061B598 /* Template.m in Sources */,
-				8994E5E8171F44570061B598 /* ColorScheme.m in Sources */,
-				8994E5EA171F45730061B598 /* Package.m in Sources */,
-				8994E5ED171F45F50061B598 /* ColorSchemeInstaller.m in Sources */,
-				8994E5F0171F46100061B598 /* TemplateInstaller.m in Sources */,
-				896FCADB1720125D00246CBE /* Downloader.m in Sources */,
-				897DA16A172028B700E11BCB /* PackageFactory.m in Sources */,
-				89F09609172086980033F3BE /* NSFileManager+Alcatraz.m in Sources */,
-				892BE56B1721B8AD00F4E859 /* Shell.m in Sources */,
 				89D40AFC1721CBD600A67BB3 /* PluginWindowController.m in Sources */,
-				8997D0CC172552C800E0F967 /* FileTemplate.m in Sources */,
-				8997D0CF172552D000E0F967 /* ProjectTemplate.m in Sources */,
-				8997D0D2172553DF00E0F967 /* ProjectTemplateInstaller.m in Sources */,
-				8997D0D5172553EA00E0F967 /* FileTemplateInstaller.m in Sources */,
-				8997D0D8172559D700E0F967 /* Git.m in Sources */,
+				8917D9F31726B4EE00F0B2D2 /* ColorScheme.m in Sources */,
+				8917D9F41726B4EE00F0B2D2 /* FileTemplate.m in Sources */,
+				8917D9F51726B4EE00F0B2D2 /* Package.m in Sources */,
+				8917D9F61726B4EE00F0B2D2 /* Plugin.m in Sources */,
+				8917D9F71726B4EE00F0B2D2 /* ProjectTemplate.m in Sources */,
+				8917D9F81726B4EE00F0B2D2 /* Template.m in Sources */,
+				8917DA051726B53000F0B2D2 /* ColorSchemeInstaller.m in Sources */,
+				8917DA061726B53000F0B2D2 /* FileTemplateInstaller.m in Sources */,
+				8917DA071726B53000F0B2D2 /* PluginInstaller.m in Sources */,
+				8917DA081726B53000F0B2D2 /* ProjectTemplateInstaller.m in Sources */,
+				8917DA091726B53000F0B2D2 /* TemplateInstaller.m in Sources */,
+				8917DA0D1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m in Sources */,
+				8917DA101726B5BA00F0B2D2 /* PackageFactory.m in Sources */,
+				8917DA181726B63B00F0B2D2 /* Downloader.m in Sources */,
+				8917DA191726B63B00F0B2D2 /* Git.m in Sources */,
+				8917DA1A1726B63B00F0B2D2 /* Shell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
