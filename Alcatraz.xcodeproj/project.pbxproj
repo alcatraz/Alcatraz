@@ -29,6 +29,8 @@
 		8917DA1A1726B63B00F0B2D2 /* Shell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA171726B63B00F0B2D2 /* Shell.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* PluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* PluginWindowController.m */; };
+		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
+		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,10 @@
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
 		89D40AFA1721CBD600A67BB3 /* PluginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginWindowController.h; path = Controllers/PluginWindowController.h; sourceTree = "<group>"; };
 		89D40AFB1721CBD600A67BB3 /* PluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluginWindowController.m; path = Controllers/PluginWindowController.m; sourceTree = "<group>"; };
+		8A0C0A4B1726C076006E7AD2 /* ATZStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZStatusView.h; path = Views/ATZStatusView.h; sourceTree = "<group>"; };
+		8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZStatusView.m; path = Views/ATZStatusView.m; sourceTree = "<group>"; };
+		8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZProgressIndicator.h; path = Views/ATZProgressIndicator.h; sourceTree = "<group>"; };
+		8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZProgressIndicator.m; path = Views/ATZProgressIndicator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,7 @@
 				8917D9F91726B53000F0B2D2 /* Installers */,
 				8917D9E61726B4EE00F0B2D2 /* Packages */,
 				892C7DD7171F2A2000A21B12 /* Controllers */,
+				8A0C0A4A1726C04A006E7AD2 /* Views */,
 				890A4B4C171F031300AFE577 /* Alcatraz.h */,
 				890A4B4D171F031300AFE577 /* Alcatraz.m */,
 				890A4B47171F031300AFE577 /* Supporting Files */,
@@ -213,6 +220,17 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		8A0C0A4A1726C04A006E7AD2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8A0C0A4B1726C076006E7AD2 /* ATZStatusView.h */,
+				8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */,
+				8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */,
+				8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -295,6 +313,8 @@
 				8917DA181726B63B00F0B2D2 /* Downloader.m in Sources */,
 				8917DA191726B63B00F0B2D2 /* Git.m in Sources */,
 				8917DA1A1726B63B00F0B2D2 /* Shell.m in Sources */,
+				8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */,
+				8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

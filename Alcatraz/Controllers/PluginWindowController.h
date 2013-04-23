@@ -26,8 +26,11 @@
 
 @property (nonatomic, retain) NSArray *packages;
 @property (nonatomic, retain) NSPredicate *filterPredicate;
+
 @property (assign) IBOutlet NSSearchField *searchField;
 @property (assign) IBOutlet NSTableView *tableView;
+@property (assign) IBOutlet NSTextField *statusLabel;
+@property (assign) IBOutlet NSProgressIndicator *progressIndicator;
 
 - (IBAction)checkboxPressed:(NSButton *)sender;
 
