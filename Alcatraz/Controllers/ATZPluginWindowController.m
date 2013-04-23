@@ -204,9 +204,10 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)flashNotice:(NSString *)notice {
-    
     self.statusLabel.stringValue = notice;
-    [self.statusLabel performSelector:@selector(setStringValue:) withObject:nil afterDelay:3];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.statusLabel performSelector:@selector(setStringValue:) withObject:@"" afterDelay:3];
+    }];
 }
 
 @end
