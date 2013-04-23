@@ -2,11 +2,11 @@ archive = "alcatraz.tar.gz"
 bucket  = 'xcode-fun-time'
 url     = "https://s3.amazonaws.com/#{bucket}/#{archive}"
 install_dir   = "~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin/"
-tmp_dir = "Alcatraz.xcplugin"
 
 desc "Build Alcatraz"
 task :build do
   escaped_path = Regexp.escape(install_dir)
+  tmp_dir      = "Alcatraz.xcplugin"
 
   sh 'xcodebuild -project Alcatraz.xcodeproj'
   sh "rm -rf  #{tmp_dir}"
@@ -36,10 +36,6 @@ task :deploy => [:build, :upload]
 
 task :install do
   escaped_path = Regexp.escape(install_dir)
-
   sh "rm -rf #{escaped_path}" if File.exists? install_dir
-  sh "curl #{url} > #{archive}"
-  sh "tar -xvf #{archive}"
-  sh "mv #{tmp_dir} #{escaped_path}"
-  sh "rm -rf  #{archive}"
+  sh "curl #{url} | tar xv -C #{Regexp.escape(File.dirname(install_dir))} -"
 end
