@@ -103,7 +103,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to uninstall :( Error: %@", package.name, failure.domain] :
                                       [NSString stringWithFormat:@"%@ uninstalled.", package.name];
 
-        [[self statusLabel] setStringValue:message];
+        [self flashNotice:message];
         [self reloadUIForPackage:package fromCheckbox:checkbox];
     }];
 }
@@ -116,7 +116,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :( Error: %@", package.name, failure.domain] :
                                       [NSString stringWithFormat:@"%@ installed.", package.name];
 
-        [[self statusLabel] setStringValue:message];
+        [self flashNotice:message];
         [self reloadUIForPackage:package fromCheckbox:checkbox];
     }];
 }
@@ -197,10 +197,16 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         if (failure)
             NSLog(@"\n\nUpdating alcatraz failed! %@\n\n", failure);
         else
-            NSLog(@"Alcatraz updated!");
+            [self flashNotice:@"Alcatraz updated."];
         
         [alcatraz release];
     }];
+}
+
+- (void)flashNotice:(NSString *)notice {
+    
+    self.statusLabel.stringValue = notice;
+    [self.statusLabel performSelector:@selector(setStringValue:) withObject:nil afterDelay:3];
 }
 
 @end
