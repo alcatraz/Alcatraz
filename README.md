@@ -32,3 +32,8 @@ Package definition format:
 Alcatraz is in early alpha, and you should forgive him for any inconvenience.
 
 Public Trello board can be found [here](https://trello.com/b/ZODgq5Av).
+
+
+## Contributors
+
+Special thanks for Delisa Mason ([@kattrali](https://github.com/kattrali))
