@@ -28,27 +28,6 @@ static NSString *const GIT = @"/usr/bin/git";
 
 @implementation Git
 
-+ (void)clone:(NSString *)remotePath to:(NSString *)localPath {
-    Shell *shell = [Shell new];
-    
-    [shell executeCommand:@"/usr/bin/git" withArguments:@[@"clone", remotePath, localPath, @"-c push.default=matching"] completion:^(NSString *output) {
-        NSLog(@"Git clone output: %@", output);
-    }];
-    [shell release];
-}
-
-+ (void)updateLocalProject:(NSString *)localPath {
-    Shell *shell = [Shell new];
-
-    [shell executeCommand:@"/usr/bin/git" withArguments:@[@"fetch", @"origin"] inWorkingDirectory:localPath completion:^(NSString *output) {
-        NSLog(@"Git fetch output: %@", output);
-    }];
-    [shell executeCommand:@"/usr/bin/git" withArguments:@[@"reset", @"--hard", @"origin/master"] inWorkingDirectory:localPath completion:^(NSString *output) {
-        NSLog(@"Git reset output: %@", output);
-    }];
-    
-    [shell release];
-}
 
 + (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath {
 
@@ -57,5 +36,39 @@ static NSString *const GIT = @"/usr/bin/git";
     
     else [self clone:remotePath to:localPath];
 }
+
+
+#pragma mark - Private
+
++ (void)clone:(NSString *)remotePath to:(NSString *)localPath {
+    Shell *shell = [Shell new];
+    
+    [shell executeCommand:GIT withArguments:@[@"clone", remotePath, localPath, @"-c push.default=matching"]
+               completion:^(NSString *output) {
+                   
+        NSLog(@"Git Clone output: %@", output);
+        [shell release];
+    }];
+}
+
+// TODO: Decide wether the API should be synchronous or asynchronous. ATM, it's mixed and that's bad.
++ (void)updateLocalProject:(NSString *)localPath {
+    Shell *shell = [Shell new];
+    
+    [shell executeCommand:GIT withArguments:@[@"fetch", @"origin"] inWorkingDirectory:localPath
+               completion:^(NSString *output) {
+                   
+        NSLog(@"Git fetch output: %@", output);
+    }];
+    
+    [shell executeCommand:GIT withArguments:@[@"reset", @"--hard", @"origin/master"] inWorkingDirectory:localPath
+               completion:^(NSString *output) {
+                   
+        NSLog(@"Git reset output: %@", output);
+        [shell release];
+    }];
+
+}
+
 
 @end
