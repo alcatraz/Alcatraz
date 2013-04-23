@@ -239,6 +239,7 @@
 		890A4B37171F031300AFE577 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ATZ;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = mneorr.com;
 			};
