@@ -35,8 +35,8 @@
 
 - (id)initWithDictionary:(NSDictionary *)dict;
 
-- (void)installWithProgress:(void(^)(CGFloat progress))progress
-                 completion:(void(^)(NSError *failure))completion;
+- (void)installWithProgressMessage:(void(^)(NSString *proggressMessage))progress
+                        completion:(void(^)(NSError *failure))completion;
 
 - (void)removeWithCompletion:(void(^)(NSError *failure))completion;
 

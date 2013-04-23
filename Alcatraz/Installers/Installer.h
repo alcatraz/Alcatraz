@@ -29,11 +29,11 @@
 
 @protocol Installer <NSObject>
 
-- (void)installPackage:(Package *)package progress:(void(^)(CGFloat progress))progress
-            completion:(void(^)(void))completion failure:(void(^)(NSError *error))failure;
+- (void)installPackage:(Package *)package progress:(void(^)(NSString *progressMessage))progress
+            completion:(void(^)(NSError *error))completion;
 
 - (void)removePackage:(Package *)package
-           completion:(void(^)(void))completion failure:(void(^)(NSError *error))failure;
+           completion:(void(^)(NSError *error))completion;
 
 - (BOOL)isPackageInstalled:(Package *)package;
 

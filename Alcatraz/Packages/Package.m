@@ -58,22 +58,14 @@
     return [[self installer] isPackageInstalled:self];
 }
 
-- (void)installWithProgress:(void (^)(CGFloat))progress completion:(void (^)(NSError *failure))completion {
+- (void)installWithProgressMessage:(void (^)(NSString *progressMessage))progress completion:(void (^)(NSError *))completion {
 
-    [[self installer] installPackage:self progress:progress completion:^{
-        completion(nil);
-    } failure:^(NSError *error) {
-        completion(error);
-    }];
+    [[self installer] installPackage:self progress:progress completion:completion];
 }
 
 - (void)removeWithCompletion:(void (^)(NSError *))completion {
 
-    [[self installer] removePackage:self completion:^{
-        completion(nil);
-    } failure:^(NSError *error) {
-        completion(error);
-    }];
+    [[self installer] removePackage:self completion:completion];
 }
 
 - (id<Installer>)installer {

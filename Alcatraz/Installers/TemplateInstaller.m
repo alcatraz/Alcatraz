@@ -29,17 +29,17 @@
 
 #pragma mark - Public
 
-- (void)installPackage:(Template *)package progress:(void (^)(CGFloat))progress
-            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+- (void)installPackage:(Template *)package progress:(void (^)(NSString *))progress
+            completion:(void (^)(NSError *))completion {
 
     [Git updateOrCloneRepository:package.remotePath toLocalPath:[self pathForClonedPackage:package]];
-    [self copyTemplatesToXcode:package completion:completion failure:failure];
+    [self copyTemplatesToXcode:package progress:progress completion:completion];
 }
 
 - (void)removePackage:(Template *)package
-           completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+           completion:(void (^)(NSError *))completion {
 
-    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion failure:failure];
+    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion];
 }
 
 - (BOOL)isPackageInstalled:(Package *)package {
@@ -57,7 +57,7 @@
     @throw [NSException exceptionWithName:@"Abstract TemplateInstaller" reason:@"Install path needs to be overriden in subclasses" userInfo:nil];
 }
 
-- (void)copyTemplatesToXcode:(Template *)template completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
+- (void)copyTemplatesToXcode:(Template *)template progress:(void(^)(NSString *))progress completion:(void (^)(NSError *))completion {
     NSError *error = nil;
     
     [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:template]
@@ -71,7 +71,7 @@
         [[NSFileManager sharedManager] copyItemAtPath:templatePath toPath:installPath error:&error];
     }
     
-    error ? failure(error) : completion();
+    completion(error);
 }
 
 - (NSArray *)templateFilesFromClonedDirectory:(NSString *)clonePath {

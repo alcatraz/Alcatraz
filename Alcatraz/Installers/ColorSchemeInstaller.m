@@ -29,30 +29,28 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
 
 #pragma mark - Public
 
-- (void)installPackage:(ColorScheme *)package progress:(void (^)(CGFloat))progress
-            completion:(void (^)(void))completion failure:(void (^)(NSError *))failure {
-    
+- (void)installPackage:(ColorScheme *)package progress:(void(^)(NSString *))progress
+            completion:(void(^)(NSError *error))completion {
+
     Downloader *downloader = [Downloader new];
     [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData) {
 
-        [self installColorScheme:package withContents:responseData] ?
-            completion() :
-            failure([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
+        [self installColorScheme:package progress:progress withContents:responseData] ?
+            completion(nil) :
+            completion([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
         
         [downloader release];
     }
         failure:^(NSError *error) {
-            failure(error);
+            completion(error);
             [downloader release];
     }];
 }
 
-- (void)removePackage:(ColorScheme *)package
-           completion:(void (^)(void))completion failure:(void (^)(NSError *failureReason))failure {
+- (void)removePackage:(ColorScheme *)package completion:(void (^)(NSError *))completion {
 
     [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package]
-                                         completion:completion
-                                            failure:failure];
+                                         completion:completion];
 }
 
 - (BOOL)isPackageInstalled:(ColorScheme *)package {
@@ -62,7 +60,9 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
 
 #pragma mark - Private
 
-- (BOOL)installColorScheme:(ColorScheme *)colorScheme withContents:(NSData *)contents {
+- (BOOL)installColorScheme:(ColorScheme *)colorScheme progress:(void(^)(NSString *))progress withContents:(NSData *)contents {
+    progress([NSString stringWithFormat:@"Downloading %@", colorScheme.name]);
+    
     BOOL installSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self pathForInstalledPackage:colorScheme]
                                                                     contents:contents
                                                                   attributes:nil]);
