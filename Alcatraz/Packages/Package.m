@@ -1,6 +1,6 @@
 // Package.m
 //
-// Copyright (c) 2013 mneorr.com
+// Copyright (c) 2013 Marin Usalj | mneorr.com
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -63,17 +63,14 @@
 }
 
 - (void)installWithProgressMessage:(void (^)(NSString *progressMessage))progress completion:(void (^)(NSError *))completion {
-
     [[self installer] installPackage:self progress:progress completion:completion];
 }
 
 - (void)removeWithCompletion:(void (^)(NSError *))completion {
-
     [[self installer] removePackage:self completion:completion];
 }
 
 - (id<Installer>)installer {
-    
     @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Each package has to return a different installer!" userInfo:nil];
 }
 
