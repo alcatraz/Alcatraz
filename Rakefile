@@ -36,5 +36,5 @@ task :deploy => [:build, :upload]
 task :install do
   escaped_path = Regexp.escape(install_dir)
   sh "rm -rf #{escaped_path}" if File.exists? install_dir
-  sh "curl #{url} | tar xv -C #{File.dirname(escaped_path)} -"
+  sh "curl #{url} | tar xv -C #{Regexp.escape(File.dirname(install_dir))} -"
 end
