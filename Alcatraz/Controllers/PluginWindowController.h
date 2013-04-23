@@ -30,6 +30,7 @@
 @property (assign) IBOutlet NSSearchField *searchField;
 @property (assign) IBOutlet NSTableView *tableView;
 @property (assign) IBOutlet NSTextField *statusLabel;
+@property (assign) IBOutlet NSTextField *restartLabel;
 @property (assign) IBOutlet NSProgressIndicator *progressIndicator;
 
 - (IBAction)checkboxPressed:(NSButton *)sender;

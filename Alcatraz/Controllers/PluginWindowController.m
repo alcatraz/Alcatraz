@@ -105,6 +105,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [[self statusLabel] setStringValue:message];
         [self hideInstallationIndicators];
         [self reloadCheckbox:checkbox];
+        if (package.requiresRestart) [self.restartLabel setHidden:NO];
     }];
 }
 
@@ -119,6 +120,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [[self statusLabel] setStringValue:message];
         [self hideInstallationIndicators];
         [self reloadCheckbox:checkbox];
+        if (package.requiresRestart) [self.restartLabel setHidden:NO];
     }];
 }
 

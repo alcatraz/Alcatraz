@@ -58,6 +58,10 @@
     return [[self installer] isPackageInstalled:self];
 }
 
+- (BOOL)requiresRestart {
+    @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Some packages don't require restarting!" userInfo:nil];
+}
+
 - (void)installWithProgressMessage:(void (^)(NSString *progressMessage))progress completion:(void (^)(NSError *))completion {
 
     [[self installer] installPackage:self progress:progress completion:completion];
@@ -73,8 +77,6 @@
     @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Each package has to return a different installer!" userInfo:nil];
 }
 
-- (void)setIsInstalled:(BOOL)isInstalled {
-    
-}
+- (void)setIsInstalled:(BOOL)isInstalled { /* Hack for IB bindings. */ }
 
 @end

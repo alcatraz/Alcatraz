@@ -35,4 +35,8 @@ static NSString *const PLUGIN = @"Plugin";
     return PLUGIN;
 }
 
+- (BOOL)requiresRestart {
+    return YES;
+}
+
 @end

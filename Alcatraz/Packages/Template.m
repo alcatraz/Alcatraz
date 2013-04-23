@@ -33,4 +33,8 @@
     return @"Template";
 }
 
+- (BOOL)requiresRestart {
+    return NO;
+}
+
 @end

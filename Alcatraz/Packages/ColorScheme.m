@@ -36,4 +36,8 @@ static NSString *const COLOR_SCHEME = @"Color Scheme";
     return COLOR_SCHEME;
 }
 
+- (BOOL)requiresRestart {
+    return YES;
+}
+
 @end

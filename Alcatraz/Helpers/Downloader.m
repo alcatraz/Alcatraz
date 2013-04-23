@@ -28,7 +28,7 @@ static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/mneorr/alcat
 @implementation Downloader
 
 - (void)downloadPackageListWithCompletion:(void(^)(NSDictionary *packageList, NSError *error))completion {
-
+    
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:PLUGINS_REPO_PATH]]
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *receivedData, NSError *error) {
@@ -38,6 +38,7 @@ static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/mneorr/alcat
 }
 
 - (void)downloadFileFromPath:(NSString *)remotePath completion:(void(^)(NSData *responseData, NSError *error))completion {
+    
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:remotePath]]
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *receivedData, NSError *error) {
