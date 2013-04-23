@@ -89,6 +89,7 @@ static NSString *const XCPLUGIN = @".xcplugin";
     @try { xcodeProjPath = [self findXcodeprojPathForPlugin:plugin]; }
     @catch (NSException *exception) {
         completion([NSError errorWithDomain:exception.reason code:666 userInfo:nil]);
+        return;
     }
     
     ATZShell *shell = [ATZShell new];
