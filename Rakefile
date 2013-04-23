@@ -1,5 +1,3 @@
-require 'aws/s3'
-
 archive = "alcatraz.tar.gz"
 bucket  = 'xcode-fun-time'
 url     = "https://s3.amazonaws.com/#{bucket}/#{archive}"
@@ -19,6 +17,8 @@ end
 
 desc "Upload build to S3"
 task :upload do
+  require 'aws/s3'
+
   AWS::S3::Base.establish_connection!(
     :access_key_id     => ENV['S3_KEY'],
     :secret_access_key => ENV['S3_SECRET']
