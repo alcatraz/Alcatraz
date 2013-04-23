@@ -7,11 +7,19 @@ Alcatraz is an open-source package manager for Xcode. It lets you discover and i
 
 ## Installation
 
-Download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
+Open up your terminal, and paste this:
+
+```
+curl -L http://goo.gl/xfmmt | tar xv -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -
+```
+
+or download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
 
 ## Usage
 
-Check or uncheck packages to install or remove them. You'll need to restart Xcode after installing plugins or templates.
+Select `Package Manager` from the `Window` menu, then check or uncheck packages to install or remove them. You'll need to restart Xcode after installing plugins or templates.
+
+![Window Menu Item](http://mneorr.github.io/Alcatraz/images/menu.png)
 
 ## I want to submit my package!
 
