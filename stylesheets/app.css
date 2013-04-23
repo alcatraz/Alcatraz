@@ -36,7 +36,7 @@ h1 span {
 }
 
 h1 img {
-  margin-top: -30px;
+  margin-top: -40px;
 }
 
 h2 {
@@ -86,7 +86,7 @@ footer {
 
 .tagline {
   text-align: center;
-  margin: -150px -79px 30px 0;
+  margin: -240px -183px 90px 0;
   color: #7872A8;
 }
 
@@ -149,8 +149,13 @@ footer {
 
   .tagline {
     font-size: 80%;
-    margin-top: -20px;
-    margin-right: 20px;
+    margin-top: -101px;
+    margin-right: -110px;
+    margin-bottom: 0;
+  }
+
+  .title-section {
+    padding-top: 40px;
   }
 
   #people, #project-links {
@@ -165,5 +170,10 @@ footer {
 
   #footer-content {
     font-size: 0.7em;
+  }
+
+  .icon {
+    width:  128px;
+    height: 128px;
   }
 }
