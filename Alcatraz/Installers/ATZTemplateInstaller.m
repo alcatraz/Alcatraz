@@ -69,7 +69,7 @@ static NSString *const XCTEMPLATE = @".xctemplate";
     
     for (NSString *templatePath in [self templateFilesFromClonedDirectory:[self pathForClonedPackage:template]]) {
 
-        NSString *templateFileName = templateFileName.pathComponents.lastObject;
+        NSString *templateFileName = templatePath.pathComponents.lastObject;
         NSString *installPath = [[self pathForInstalledPackage:template] stringByAppendingPathComponent:templateFileName];
         
         [[NSFileManager sharedManager] copyItemAtPath:templatePath toPath:installPath error:&error];
