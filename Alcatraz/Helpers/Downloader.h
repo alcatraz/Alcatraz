@@ -25,7 +25,7 @@
 
 @interface Downloader : NSObject
 
-- (void)downloadPackageListAnd:(void(^)(NSDictionary *packageList))completion failure:(void(^)(NSError *error))failure;
-- (void)downloadFileFromPath:(NSString *)remotePath completion:(void(^)(NSData *responseData))completion failure:(void(^)(NSError *error))failure;
+- (void)downloadPackageListWithCompletion:(void(^)(NSDictionary *packageList, NSError *error))completion;
+- (void)downloadFileFromPath:(NSString *)remotePath completion:(void(^)(NSData *responseData, NSError *error))completion;
 
 @end

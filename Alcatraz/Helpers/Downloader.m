@@ -27,27 +27,23 @@ static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/mneorr/alcat
 
 @implementation Downloader
 
-- (void)downloadPackageListAnd:(void (^)(NSDictionary *))completion failure:(void (^)(NSError *))failure {
+- (void)downloadPackageListWithCompletion:(void(^)(NSDictionary *packageList, NSError *error))completion {
 
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:PLUGINS_REPO_PATH]]
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *receivedData, NSError *error) {
-        if (error)
-            failure(error);
-        else
-            completion([NSJSONSerialization JSONObjectWithData:receivedData options:0 error:nil][@"packages"]);
+        
+        completion([NSJSONSerialization JSONObjectWithData:receivedData options:0 error:nil][@"packages"], error);
     }];
 }
 
-- (void)downloadFileFromPath:(NSString *)remotePath completion:(void (^)(NSData *))completion failure:(void (^)(NSError *))failure {
+- (void)downloadFileFromPath:(NSString *)remotePath completion:(void(^)(NSData *responseData, NSError *error))completion {
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:remotePath]]
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *receivedData, NSError *error) {
-                               if (error)
-                                   failure(error);
-                               else
-                                   completion(receivedData);
-                           }];
+                               
+        completion(receivedData, error);
+    }];
 }
 
 @end

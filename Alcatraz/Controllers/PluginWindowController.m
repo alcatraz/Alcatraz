@@ -96,42 +96,43 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 #pragma mark - Private
 
 - (void)removePackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
-    [[self progressIndicator] setHidden:NO];
-    [[self progressIndicator] startAnimation:nil];
+    [self showInstallationIndicators];
     [package removeWithCompletion:^(NSError *failure) {
-        NSString *message;
-        if (failure) {
-            message = [NSString stringWithFormat:@"%@ failed to uninstall :(", package.name];
-            NSLog(@"Package failed to uninstall! %@", failure);
-        } else {
-            message = [NSString stringWithFormat:@"%@ uninstalled.", package.name];
-        }
+
+        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to uninstall :(", package.name] :
+                                      [NSString stringWithFormat:@"%@ uninstalled.", package.name];
 
         [[self statusLabel] setStringValue:message];
-        [[self progressIndicator] stopAnimation:nil];
-        [[self progressIndicator] setHidden:YES];
+        [self hideInstallationIndicators];
         [self reloadCheckbox:checkbox];
     }];
 }
 
 - (void)installPackage:(Package *)package andUpdateCheckbox:(NSButton *)checkbox {
     NSLog(@"Installing package... %@", package.name);
-    [[self progressIndicator] setHidden:NO];
-    [[self progressIndicator] startAnimation:nil];
-    [package installWithProgress:^(CGFloat progress){} completion:^(NSError *failure) {
-        NSString *message;
-        if (failure) {
-            message = [NSString stringWithFormat:@"%@ failed to install :(", package.name];
-            NSLog(@"Package failed to install! %@", failure);
-        } else {
-            message = [NSString stringWithFormat:@"%@ installed.", package.name];
-        }
+    [self showInstallationIndicators];
+    [package installWithProgressMessage:^(NSString *progressMessage) {
+        
+        [[self statusLabel] setStringValue:progressMessage];
+    } completion:^(NSError *failure) {
+        
+        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :(", package.name] :
+                                      [NSString stringWithFormat:@"%@ installed.", package.name];
 
         [[self statusLabel] setStringValue:message];
-        [[self progressIndicator] stopAnimation:nil];
-        [[self progressIndicator] setHidden:YES];
+        [self hideInstallationIndicators];
         [self reloadCheckbox:checkbox];
     }];
+}
+
+- (void)hideInstallationIndicators {
+    [[self progressIndicator] stopAnimation:nil];
+    [[self progressIndicator] setHidden:YES];
+}
+
+- (void)showInstallationIndicators {
+    [[self progressIndicator] setHidden:NO];
+    [[self progressIndicator] startAnimation:nil];
 }
 
 - (void)reloadCheckbox:(NSButton *)checkbox {
@@ -163,14 +164,16 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
     Downloader *downloader = [Downloader new];
     
-    [downloader downloadPackageListAnd:^(NSDictionary *packageList) {
-        self.packages = [PackageFactory createPackagesFromDicts:packageList];
-    }
-     failure:^(NSError *error) {
-        NSLog(@"Error while downloading packages! %@", error);
+    [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
+        
+        if (error)
+            NSLog(@"Error while downloading packages! %@", error);
+        else
+            self.packages = [PackageFactory createPackagesFromDicts:packageList];
+        
+        [downloader release];
+        [pool drain];
     }];
-    [downloader release];
-    [pool drain];
 }
 
 @end

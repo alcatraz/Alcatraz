@@ -27,6 +27,9 @@
 
 @class Package;
 
+static NSString *const DOWNLOADING_FORMAT = @"Downloading %@...";
+static NSString *const INSTALLING_FORMAT = @"Installing %@...";
+
 @protocol Installer <NSObject>
 
 - (void)installPackage:(Package *)package progress:(void(^)(NSString *progressMessage))progress

@@ -32,18 +32,16 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
 - (void)installPackage:(ColorScheme *)package progress:(void(^)(NSString *))progress
             completion:(void(^)(NSError *error))completion {
 
+    progress([NSString stringWithFormat:DOWNLOADING_FORMAT, package.name]);
+    
     Downloader *downloader = [Downloader new];
-    [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData) {
-
-        [self installColorScheme:package progress:progress withContents:responseData] ?
-            completion(nil) :
-            completion([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
+    [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData, NSError *error) {
         
+        if (error) completion(error);
+        progress([NSString stringWithFormat:INSTALLING_FORMAT, package.name]);
+        
+        [self installColorScheme:package withContents:responseData completion:completion];
         [downloader release];
-    }
-        failure:^(NSError *error) {
-            completion(error);
-            [downloader release];
     }];
 }
 
@@ -60,13 +58,13 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
 
 #pragma mark - Private
 
-- (BOOL)installColorScheme:(ColorScheme *)colorScheme progress:(void(^)(NSString *))progress withContents:(NSData *)contents {
-    progress([NSString stringWithFormat:@"Downloading %@", colorScheme.name]);
-    
+- (void)installColorScheme:(ColorScheme *)colorScheme withContents:(NSData *)contents
+                completion:(void(^)(NSError *error))completion {
     BOOL installSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self pathForInstalledPackage:colorScheme]
                                                                     contents:contents
                                                                   attributes:nil]);
-    return installSucceeded;
+    installSucceeded ? completion(nil) :
+                       completion([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
 }
 
 - (NSString *)pathForInstalledPackage:(Package *)package {

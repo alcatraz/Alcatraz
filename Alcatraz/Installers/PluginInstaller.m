@@ -26,9 +26,6 @@
 #import "Shell.h"
 #import "Git.h"
 
-static NSString *const DOWNLOADING_FORMAT = @"Downloading %@...";
-static NSString *const INSTALLING_FORMAT = @"Installing %@...";
-
 static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
 static NSString *const PROJECT = @"-project";
@@ -39,14 +36,14 @@ static NSString *const XCPLUGIN = @".xcplugin";
 
 #pragma mark - Public
 
-- (void)installPackage:(Plugin *)plugin progressMessage:(void (^)(NSString *))progressMessage
+- (void)installPackage:(Plugin *)plugin progress:(void (^)(NSString *))progress
             completion:(void (^)(NSError *))completion {
 
-    [self clonePlugin:plugin progress:progressMessage completion:^(NSError *error) {
+    [self clonePlugin:plugin progress:progress completion:^(NSError *error) {
         if (error)
             completion(error);
         else
-            [self buildPlugin:plugin progress:progressMessage completion:completion];
+            [self buildPlugin:plugin progress:progress completion:completion];
     }];
 }
 
