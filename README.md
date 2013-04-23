@@ -26,3 +26,9 @@ Package definition format:
   "description": "Makes Xcode stop, collaborate and listen."
 }
 ```
+
+## Development
+
+Alcatraz is in early alpha, and you should forgive him for any inconvenience.
+
+Public Trello board can be found [here](https://trello.com/b/ZODgq5Av).
