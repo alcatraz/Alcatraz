@@ -84,36 +84,32 @@ static NSString *const XCPLUGIN = @".xcplugin";
 }
 
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *error))completion {
-    ATZShell *shell = [ATZShell new];
     
-    [shell executeCommand:XCODE_BUILD
-            withArguments:@[PROJECT, [self findXcodeprojPathForPlugin:plugin]]
-               completion:^(NSString *output) {
-
+    NSString *xcodeProjPath;
+    @try { xcodeProjPath = [self findXcodeprojPathForPlugin:plugin]; }
+    @catch (NSException *exception) {
+        completion([NSError errorWithDomain:exception.reason code:666 userInfo:nil]);
+    }
+    
+    ATZShell *shell = [ATZShell new];
+    [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output) {
         completion(nil);
         [shell release];
     }];
 }
 
 - (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
-    @autoreleasepool {
-        @try {
-            return [self findProjectFileInDirectory:[self pathForClonedPlugin:plugin]
-                                      forPluginName:plugin.name];
-        }
-        @catch (NSException *exception) { NSLog(@"Exception with finding xcodeproj path! %@", exception); }
-    }
-}
-
-- (NSString *)findProjectFileInDirectory:(NSString *)path forPluginName:(NSString *)pluginName {
-    NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:path];
+    NSString *clonedDirectory = [self pathForClonedPlugin:plugin];
+    NSString *xcodeProjFilename = [plugin.name stringByAppendingString:XCODEPROJ];
+    
+    NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];
     NSString *directoryEntry;
-    NSString *projectFileName = [pluginName stringByAppendingString:XCODEPROJ];
     
     while (directoryEntry = [enumerator nextObject])
-        if ([directoryEntry isEqualToString:projectFileName])
-            return [[path stringByAppendingPathComponent:directoryEntry] retain];
+        if ([directoryEntry.pathComponents.lastObject isEqualToString:xcodeProjFilename])
+            return [clonedDirectory stringByAppendingPathComponent:directoryEntry];
     
+    NSLog(@"Wasn't able to find: %@ in %@", xcodeProjFilename, clonedDirectory);
     @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
 }
 

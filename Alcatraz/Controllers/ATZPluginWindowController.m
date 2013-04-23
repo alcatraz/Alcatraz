@@ -100,7 +100,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     
     [package removeWithCompletion:^(NSError *failure) {
 
-        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to uninstall :(", package.name] :
+        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to uninstall :( Error: %@", package.name, failure.domain] :
                                       [NSString stringWithFormat:@"%@ uninstalled.", package.name];
 
         [[self statusLabel] setStringValue:message];
@@ -113,7 +113,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [package installWithProgressMessage:^(NSString *progressMessage) { self.statusLabel.stringValue = progressMessage; }
                              completion:^(NSError *failure) {
         
-        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :( Error: %@", package.name, failure.description] :
+        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :( Error: %@", package.name, failure.domain] :
                                       [NSString stringWithFormat:@"%@ installed.", package.name];
 
         [[self statusLabel] setStringValue:message];
