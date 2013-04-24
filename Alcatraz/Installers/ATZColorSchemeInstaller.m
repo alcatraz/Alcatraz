@@ -60,16 +60,31 @@ static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/X
 
 - (void)installColorScheme:(ATZColorScheme *)colorScheme withContents:(NSData *)contents
                 completion:(void(^)(NSError *error))completion {
+    
+    [self createColorsDirectoryIfNeeded];
     BOOL installSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self pathForInstalledPackage:colorScheme]
-                                                                    contents:contents
-                                                                  attributes:nil]);
+                                                                    contents:contents attributes:nil]);
+    
     installSucceeded ? completion(nil) :
                        completion([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
 }
 
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    return [[NSHomeDirectory() stringByAppendingPathComponent:LOCAL_COLOR_SCHEMES_RELATIVE_PATH]
-                               stringByAppendingPathComponent:[package.name stringByAppendingString:@".dvtcolortheme"]];
+    return [[self colorSchemesPath] stringByAppendingPathComponent:
+                                        [package.name stringByAppendingString:@".dvtcolortheme"]];
+}
+
+- (void)createColorsDirectoryIfNeeded {
+    BOOL isDirectory = YES;
+    if (![[NSFileManager sharedManager] fileExistsAtPath:[self colorSchemesPath] isDirectory:&isDirectory]) {
+     
+        [[NSFileManager sharedManager] createDirectoryAtPath:[self colorSchemesPath]
+                                 withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+}
+
+- (NSString *)colorSchemesPath {
+    return [NSHomeDirectory() stringByAppendingPathComponent:LOCAL_COLOR_SCHEMES_RELATIVE_PATH];
 }
 
 @end
