@@ -43,7 +43,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (id)init {
     if (self = [super init]) {
         _filterPredicate = [NSPredicate predicateWithValue:YES];
-        _sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+        _sortDescriptor  = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
         
         @try { [self fetchPlugins]; [self updateAlcatraz]; }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
@@ -52,7 +52,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)dealloc {
-    /* never ever use `self.` syntax in init, dealloc and custom accessors! */
     [_packages release];
     [_filterPredicate release];
     [_sortDescriptor release];
@@ -64,9 +63,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
 }
 
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Accessors
 
 - (NSArray *)packages
@@ -78,10 +74,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     }
 }
 
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Bindings
 
 - (IBAction)checkboxPressed:(NSButton *)checkbox {
@@ -118,8 +110,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
 - (void)removePackage:(ATZPackage *)package andUpdateCheckbox:(NSButton *)checkbox {
