@@ -92,9 +92,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [self updatePredicate];
 }
 
-- (IBAction)projectURLPressed:(NSButton *)button {
+- (IBAction)projectURLPressed:(NSButton *)sender {
     self.selectedPackageClass = [ATZPackage class];
-    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:button]];
+    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
 
     [self openProjectURL:package.remotePath];
 }
