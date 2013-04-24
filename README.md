@@ -9,7 +9,7 @@ Alcatraz is an open-source package manager for Xcode. It lets you discover and i
 
 Open up your terminal, and paste this:
 
-```
+``` bash
 mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins;
 curl -L http://goo.gl/xfmmt | tar xv -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -
 ```
@@ -28,7 +28,7 @@ Fork and edit the [Alcatraz package repository](https://github.com/mneorr/alcatr
 
 Package definition format:
 
-```
+``` json
 {
   "name": "My Life-Changing Xcode Plugin",
   "url": "https://github.com/me/xcode-life-changing-plugin",
