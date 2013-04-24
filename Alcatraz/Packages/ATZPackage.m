@@ -37,17 +37,9 @@
 
 - (void)dealloc {
     [self.name release];
-    [self.cloneName release];
     [self.description release];
     [self.remotePath release];
     [super dealloc];
-}
-
-
-#pragma mark - Accessors
-
-- (NSString *)name {
-    return (_cloneName && ![_cloneName isEqualToString:@""] ? _cloneName : _name);
 }
 
 
@@ -55,7 +47,6 @@
 
 - (void)unpackFromDictionary:(NSDictionary *)dictionary {
     self.name = dictionary[@"name"];
-    self.cloneName = dictionary[@"cloneName"];
     self.description = dictionary[@"description"];
     self.remotePath = dictionary[@"url"];
 }
