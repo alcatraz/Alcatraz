@@ -1,0 +1,3 @@
+[submodule "submodules/objective-c-subscript"]
+	path = submodules/objective-c-subscript
+	url = git://github.com/paneidos/objective-c-subscript.git
