@@ -94,6 +94,11 @@ footer {
   padding-top: 109px;
 }
 
+.center {
+  width: 100%;
+  text-align: center;
+}
+
 #people {
   float: right;
 }
