@@ -24,17 +24,7 @@ Select `Package Manager` from the `Window` menu, then check or uncheck packages 
 
 ## I want to submit my package!
 
-Fork and edit the [Alcatraz package repository](https://github.com/mneorr/alcatraz-packages) to include your package `name`, `description`, and `URL` in the plugins, color schemes, or templates section, and submit a pull request.
-
-Package definition format:
-
-``` json
-{
-  "name": "My Life-Changing Xcode Plugin",
-  "url": "https://github.com/me/xcode-life-changing-plugin",
-  "description": "Makes Xcode stop, collaborate and listen."
-}
-```
+Fork and edit the [Alcatraz package repository](https://github.com/mneorr/alcatraz-packages) to include your package `name`, `description`, and `URL` in the plugins, color schemes, or templates section, and submit a pull request. Further instructions are included in the package repository documentation.
 
 ## Development
 
