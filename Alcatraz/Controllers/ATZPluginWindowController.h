@@ -33,7 +33,8 @@
 @property (assign) IBOutlet NSTextField *restartLabel;
 @property (assign) IBOutlet NSProgressIndicator *progressIndicator;
 
-- (IBAction)checkboxPressed:(NSButton *)sender;
+- (IBAction)checkboxPressed:(NSButton *)senxxder;
+- (IBAction)projectURLPressed:(NSButton *)button;
 
 - (IBAction)showAllPackages:(id)sender;
 - (IBAction)showOnlyPlugins:(id)sender;
