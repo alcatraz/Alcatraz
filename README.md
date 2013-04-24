@@ -10,7 +10,7 @@ Alcatraz is an open-source package manager for Xcode. It lets you discover and i
 Open up your terminal, and paste this:
 
 ```
-mkdir -p '~/Library/Application Support/Developer/Shared/Xcode/Plug-ins'\
+mkdir -p '~/Library/Application Support/Developer/Shared/Xcode/Plug-ins';
 curl -L http://goo.gl/xfmmt | tar xv -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -
 ```
 
