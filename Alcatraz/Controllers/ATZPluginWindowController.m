@@ -41,7 +41,8 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (id)init {
     if (self = [super init]) {
-        self.filterPredicate = [NSPredicate predicateWithValue:YES];
+        _filterPredicate = [NSPredicate predicateWithValue:YES];
+        _sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
         @try { [self fetchPlugins]; [self updateAlcatraz]; }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
@@ -49,8 +50,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)dealloc {
-    [self.packages release];
-    [self.filterPredicate release];
+    [_packages release];
+    [_filterPredicate release];
+    [_sortDescriptor release];
     [super dealloc];
 }
 
@@ -170,7 +172,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             if (error)
                 NSLog(@"Error while downloading packages! %@", error);
             else
-                self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
+                self.packages = [[ATZPackageFactory createPackagesFromDicts:packageList] sortedArrayUsingDescriptors:@[ self.sortDescriptor ]];
             
             [downloader release];
         }];
