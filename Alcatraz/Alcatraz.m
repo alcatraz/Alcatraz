@@ -70,7 +70,13 @@
 
 - (void)openPluginManagerWindow {
     NSArray *nibElements;
+    
+#if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1080
     [self.bundle loadNibNamed:@"PluginWindow" owner:[ATZPluginWindowController new] topLevelObjects:&nibElements];
+#else
+    NSNib *nib = [[[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:self.bundle] autorelease];
+    [nib instantiateNibWithOwner:[ATZPluginWindowController new] topLevelObjects:&nibElements];
+#endif
 
     NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return [evaluatedObject class] == [NSWindow class];
