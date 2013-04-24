@@ -26,6 +26,7 @@
 
 @property (nonatomic, retain) NSArray *packages;
 @property (nonatomic, retain) NSPredicate *filterPredicate;
+@property (nonatomic, retain) NSSortDescriptor *sortDescriptor;
 
 @property (assign) IBOutlet NSSearchField *searchField;
 @property (assign) IBOutlet NSTableView *tableView;
