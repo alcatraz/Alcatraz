@@ -16,6 +16,8 @@ curl -L http://goo.gl/xfmmt | tar xv -C ~/Library/Application\ Support/Developer
 
 or download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
 
+The installation process creates `~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin`, which can be deleted to uninstall the plugin completely.
+
 ## Usage
 
 Select `Package Manager` from the `Window` menu, then check or uncheck packages to install or remove them. You'll need to restart Xcode after installing plugins or templates.
@@ -32,6 +34,7 @@ Alcatraz is in early alpha, and you should forgive him for any inconvenience.
 
 Public Trello board can be found [here](https://trello.com/b/ZODgq5Av).
 
+Log output for crash reports can be obtained via running `tail -f /var/log/system.log` while using Alcatraz, and is a helpful addition to issue submissions.
 
 ## Contributors
 
