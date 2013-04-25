@@ -29,30 +29,34 @@
 @implementation ATZPackageFactory
 
 + (NSArray *)createPackagesFromDicts:(NSDictionary *)packagesInDicts {
-    NSMutableArray *packages = [NSMutableArray new];
-    
-    for (NSDictionary *pluginDict in packagesInDicts[@"plugins"]) {
-        ATZPlugin *plugin = [[ATZPlugin alloc] initWithDictionary:pluginDict];
-        [packages addObject:plugin];
-        [plugin release];
+    @autoreleasepool {
+        NSMutableArray *packages = [NSMutableArray array];
+        
+        for (NSDictionary *pluginDict in packagesInDicts[@"plugins"]) {
+            ATZPlugin *plugin = [[ATZPlugin alloc] initWithDictionary:pluginDict];
+            [packages addObject:plugin];
+            [plugin release];
+        }
+        for (NSDictionary *templateDict in packagesInDicts[@"project_templates"]) {
+            ATZTemplate *template = [[ATZProjectTemplate alloc] initWithDictionary:templateDict];
+            [packages addObject:template];
+            [template release];
+        }
+        for (NSDictionary *templateDict in packagesInDicts[@"file_templates"]) {
+            ATZTemplate *template = [[ATZFileTemplate alloc] initWithDictionary:templateDict];
+            [packages addObject:template];
+            [template release];
+        }
+        for (NSDictionary *colorSchemeDict in packagesInDicts[@"color_schemes"]) {
+            ATZColorScheme *colorScheme = [[ATZColorScheme alloc] initWithDictionary:colorSchemeDict];
+            [packages addObject:colorScheme];
+            [colorScheme release];
+        }
+        
+        return [packages sortedArrayUsingComparator:^(ATZPackage *first, ATZPackage *second) {
+            return [first.name compare:second.name];
+        }];
     }
-    for (NSDictionary *templateDict in packagesInDicts[@"project_templates"]) {
-        ATZTemplate *template = [[ATZProjectTemplate alloc] initWithDictionary:templateDict];
-        [packages addObject:template];
-        [template release];
-    }
-    for (NSDictionary *templateDict in packagesInDicts[@"file_templates"]) {
-        ATZTemplate *template = [[ATZFileTemplate alloc] initWithDictionary:templateDict];
-        [packages addObject:template];
-        [template release];
-    }
-    for (NSDictionary *colorSchemeDict in packagesInDicts[@"color_schemes"]) {
-        ATZColorScheme *colorScheme = [[ATZColorScheme alloc] initWithDictionary:colorSchemeDict];
-        [packages addObject:colorScheme];
-        [colorScheme release];
-    }
-
-    return [packages autorelease];
 }
 
 @end
