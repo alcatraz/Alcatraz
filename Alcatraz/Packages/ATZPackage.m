@@ -36,9 +36,9 @@
 }
 
 - (void)dealloc {
-    [self.name release];
-    [self.description release];
-    [self.remotePath release];
+    [_name release];
+    [_description release];
+    [_remotePath release];
     [super dealloc];
 }
 
