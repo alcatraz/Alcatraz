@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		519963801728536F00C85356 /* NSArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 519963761728536F00C85356 /* NSArray+Subscript.m */; };
+		519963811728536F00C85356 /* NSDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 519963781728536F00C85356 /* NSDictionary+Subscript.m */; };
+		519963821728536F00C85356 /* NSMutableArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 5199637A1728536F00C85356 /* NSMutableArray+Subscript.m */; };
+		519963831728536F00C85356 /* NSMutableDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 5199637C1728536F00C85356 /* NSMutableDictionary+Subscript.m */; };
 		890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B42171F031300AFE577 /* AppKit.framework */; };
 		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
 		890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 890A4B49171F031300AFE577 /* InfoPlist.strings */; };
@@ -34,6 +38,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		519963751728536F00C85356 /* NSArray+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Subscript.h"; sourceTree = "<group>"; };
+		519963761728536F00C85356 /* NSArray+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Subscript.m"; sourceTree = "<group>"; };
+		519963771728536F00C85356 /* NSDictionary+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Subscript.h"; sourceTree = "<group>"; };
+		519963781728536F00C85356 /* NSDictionary+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Subscript.m"; sourceTree = "<group>"; };
+		519963791728536F00C85356 /* NSMutableArray+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Subscript.h"; sourceTree = "<group>"; };
+		5199637A1728536F00C85356 /* NSMutableArray+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Subscript.m"; sourceTree = "<group>"; };
+		5199637B1728536F00C85356 /* NSMutableDictionary+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Subscript.h"; sourceTree = "<group>"; };
+		5199637C1728536F00C85356 /* NSMutableDictionary+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Subscript.m"; sourceTree = "<group>"; };
+		5199637E1728536F00C85356 /* Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subscript.h; sourceTree = "<group>"; };
 		890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alcatraz.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		890A4B42171F031300AFE577 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		890A4B44171F031300AFE577 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,9 +110,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		519963721728535D00C85356 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				519963731728536F00C85356 /* objective-c-subscript */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		519963731728536F00C85356 /* objective-c-subscript */ = {
+			isa = PBXGroup;
+			children = (
+				519963751728536F00C85356 /* NSArray+Subscript.h */,
+				519963761728536F00C85356 /* NSArray+Subscript.m */,
+				519963771728536F00C85356 /* NSDictionary+Subscript.h */,
+				519963781728536F00C85356 /* NSDictionary+Subscript.m */,
+				519963791728536F00C85356 /* NSMutableArray+Subscript.h */,
+				5199637A1728536F00C85356 /* NSMutableArray+Subscript.m */,
+				5199637B1728536F00C85356 /* NSMutableDictionary+Subscript.h */,
+				5199637C1728536F00C85356 /* NSMutableDictionary+Subscript.m */,
+				5199637E1728536F00C85356 /* Subscript.h */,
+			);
+			name = "objective-c-subscript";
+			path = "submodules/objective-c-subscript";
+			sourceTree = "<group>";
+		};
 		890A4B36171F031300AFE577 = {
 			isa = PBXGroup;
 			children = (
+				519963721728535D00C85356 /* Libraries */,
 				890A4B46171F031300AFE577 /* Alcatraz */,
 				890A4B41171F031300AFE577 /* Frameworks */,
 				890A4B40171F031300AFE577 /* Products */,
@@ -315,6 +354,10 @@
 				8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */,
 				8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */,
 				8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */,
+				519963801728536F00C85356 /* NSArray+Subscript.m in Sources */,
+				519963811728536F00C85356 /* NSDictionary+Subscript.m in Sources */,
+				519963821728536F00C85356 /* NSMutableArray+Subscript.m in Sources */,
+				519963831728536F00C85356 /* NSMutableDictionary+Subscript.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +443,9 @@
 				GCC_PREFIX_HEADER = "Alcatraz/Alcatraz-Prefix.pch";
 				INFOPLIST_FILE = "Alcatraz/Alcatraz-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Debug;
@@ -416,7 +461,9 @@
 				GCC_PREFIX_HEADER = "Alcatraz/Alcatraz-Prefix.pch";
 				INFOPLIST_FILE = "Alcatraz/Alcatraz-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Release;
