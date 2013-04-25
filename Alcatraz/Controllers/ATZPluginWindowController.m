@@ -93,7 +93,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     self.selectedPackageClass = [ATZPackage class];
     ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
 
-    [self openProjectURL:package.remotePath];
+    [self openProjectURL:package.websiteURL];
 }
 
 - (void)controlTextDidChange:(NSNotification *)note {

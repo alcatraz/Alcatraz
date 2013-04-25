@@ -31,6 +31,7 @@
 @property (strong, nonatomic) NSString *description;
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSString *remotePath;
+@property (strong, nonatomic) NSString *websiteURL;
 @property (nonatomic, readonly) BOOL isInstalled;
 @property (nonatomic, readonly) BOOL requiresRestart;
 
