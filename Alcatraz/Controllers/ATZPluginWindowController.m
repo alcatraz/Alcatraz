@@ -167,18 +167,16 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)fetchPlugins {
-    @autoreleasepool {
-        ATZDownloader *downloader = [ATZDownloader new];
-        [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
-            
-            if (error)
-                NSLog(@"Error while downloading packages! %@", error);
-            else
-                self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
+    ATZDownloader *downloader = [ATZDownloader new];
+    [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
+        
+        if (error)
+            NSLog(@"Error while downloading packages! %@", error);
+        else
+            self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
 
-            [downloader release];
-        }];
-    }
+        [downloader release];
+    }];
 }
 
 - (void)updateAlcatraz {
