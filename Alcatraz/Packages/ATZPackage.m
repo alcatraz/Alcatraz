@@ -51,6 +51,21 @@
     self.remotePath = dictionary[@"url"];
 }
 
+- (NSString *)projectPathFromRawPath:(NSString *)rawURL {
+    NSString *username = rawURL.pathComponents[2];
+    NSString *repository = rawURL.pathComponents[3];
+    return [NSString stringWithFormat:@"https://github.com/%@/%@", username, repository];
+}
+
+#pragma mark - Property getters
+
+- (NSString *)website {
+    if ([self.remotePath rangeOfString:@"raw.github.com"].location != NSNotFound)
+        return [self projectPathFromRawPath:self.remotePath];
+    
+    else return self.remotePath;
+}
+
 
 #pragma mark - Abstract
 

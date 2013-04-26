@@ -36,6 +36,7 @@
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
 		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
+		8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A96E0C71729DC1200350F67 /* ATZTitleButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,8 @@
 		8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZStatusView.m; path = Views/ATZStatusView.m; sourceTree = "<group>"; };
 		8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZProgressIndicator.h; path = Views/ATZProgressIndicator.h; sourceTree = "<group>"; };
 		8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZProgressIndicator.m; path = Views/ATZProgressIndicator.m; sourceTree = "<group>"; };
+		8A96E0C61729DC1200350F67 /* ATZTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZTitleButton.h; path = Views/ATZTitleButton.h; sourceTree = "<group>"; };
+		8A96E0C71729DC1200350F67 /* ATZTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZTitleButton.m; path = Views/ATZTitleButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +271,8 @@
 				8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */,
 				8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */,
 				8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */,
+				8A96E0C61729DC1200350F67 /* ATZTitleButton.h */,
+				8A96E0C71729DC1200350F67 /* ATZTitleButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				8907F9A8172955690015A56B /* NSDictionary+Subscript.m in Sources */,
 				8907F9A9172955690015A56B /* NSMutableArray+Subscript.m in Sources */,
 				8907F9AA172955690015A56B /* NSMutableDictionary+Subscript.m in Sources */,
+				8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
-// PluginWindowController.h
-// 
+// ATZTitleButton.h
+//
 // Copyright (c) 2013 Marin Usalj | mneorr.com
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -8,10 +8,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,23 +22,6 @@
 
 #import <AppKit/AppKit.h>
 
-@interface ATZPluginWindowController : NSWindowController<NSTableViewDelegate, NSControlTextEditingDelegate>
-
-@property (nonatomic, retain) NSArray *packages;
-@property (nonatomic, retain) NSPredicate *filterPredicate;
-
-@property (assign) IBOutlet NSSearchField *searchField;
-@property (assign) IBOutlet NSTableView *tableView;
-@property (assign) IBOutlet NSTextField *statusLabel;
-@property (assign) IBOutlet NSTextField *restartLabel;
-@property (assign) IBOutlet NSProgressIndicator *progressIndicator;
-
-- (IBAction)checkboxPressed:(NSButton *)sender;
-- (IBAction)openPackageWebsitePressed:(NSButton *)sender;
-
-- (IBAction)showAllPackages:(id)sender;
-- (IBAction)showOnlyPlugins:(id)sender;
-- (IBAction)showOnlyColorSchemes:(id)sender;
-- (IBAction)showOnlyTemplates:(id)sender;
+@interface ATZTitleButton : NSButton
 
 @end

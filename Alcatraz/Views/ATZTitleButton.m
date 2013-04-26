@@ -1,5 +1,5 @@
-// PluginWindowController.h
-// 
+// ATZTitleButton.m
+//
 // Copyright (c) 2013 Marin Usalj | mneorr.com
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -8,10 +8,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,25 +20,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <AppKit/AppKit.h>
+#import "ATZTitleButton.h"
 
-@interface ATZPluginWindowController : NSWindowController<NSTableViewDelegate, NSControlTextEditingDelegate>
+#define MIN_ALPHA 0.6f
 
-@property (nonatomic, retain) NSArray *packages;
-@property (nonatomic, retain) NSPredicate *filterPredicate;
+@implementation ATZTitleButton
 
-@property (assign) IBOutlet NSSearchField *searchField;
-@property (assign) IBOutlet NSTableView *tableView;
-@property (assign) IBOutlet NSTextField *statusLabel;
-@property (assign) IBOutlet NSTextField *restartLabel;
-@property (assign) IBOutlet NSProgressIndicator *progressIndicator;
+- (void)mouseEntered:(NSEvent *)theEvent {
+    self.alphaValue = 1.f;
+    self.image = [NSImage imageNamed:NSImageNameFollowLinkFreestandingTemplate];
+}
 
-- (IBAction)checkboxPressed:(NSButton *)sender;
-- (IBAction)openPackageWebsitePressed:(NSButton *)sender;
+- (void)mouseExited:(NSEvent *)theEvent {
+    self.alphaValue = MIN_ALPHA;
+    self.image = nil;
+}
 
-- (IBAction)showAllPackages:(id)sender;
-- (IBAction)showOnlyPlugins:(id)sender;
-- (IBAction)showOnlyColorSchemes:(id)sender;
-- (IBAction)showOnlyTemplates:(id)sender;
+- (void)resetCursorRects {
+    [self addCursorRect:[self bounds] cursor:[NSCursor pointingHandCursor]];
+}
 
+
+- (void)awakeFromNib {
+    self.alphaValue = MIN_ALPHA;
+    [self createTrackingArea];
+}
+
+- (void)createTrackingArea {
+    NSTrackingAreaOptions focusTrackingAreaOptions = NSTrackingActiveInActiveApp |NSTrackingMouseEnteredAndExited | NSTrackingAssumeInside | NSTrackingInVisibleRect;
+
+    NSTrackingArea *focusTrackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
+                                                                     options:focusTrackingAreaOptions owner:self userInfo:nil];
+    [self addTrackingArea:focusTrackingArea];
+    [focusTrackingArea release];
+}
 @end

@@ -94,6 +94,12 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [self updatePredicate];
 }
 
+- (IBAction)openPackageWebsitePressed:(NSButton *)sender {
+    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
+
+    [self openWebsite:package.website];
+}
+
 - (void)controlTextDidChange:(NSNotification *)note {
     [self updatePredicate];
 }
@@ -195,14 +201,12 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
                                @"url": @"https://github.com/mneorr/Alcatraz",
                                @"description": @"Self updating installer"
                            }];
-    [alcatraz installWithProgressMessage:^(NSString *proggressMessage) {
-        
-    } completion:^(NSError *failure) {
+    [alcatraz installWithProgressMessage:^(NSString *proggressMessage){}
+                              completion:^(NSError *failure) {
         if (failure)
             NSLog(@"\n\nUpdating alcatraz failed! %@\n\n", failure);
         else
             [self flashNotice:@"Alcatraz updated."];
-        
         [alcatraz release];
     }];
 }
@@ -212,6 +216,10 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.statusLabel performSelector:@selector(setStringValue:) withObject:@"" afterDelay:3];
     }];
+}
+
+- (void)openWebsite:(NSString *)address {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:address]];
 }
 
 @end
