@@ -25,6 +25,7 @@
 #import "ATZPluginWindowController.h"
 #import "ATZPluginInstaller.h"
 #import "ATZPlugin.h"
+#import "ATZShell.h"
 
 @interface Alcatraz(){}
 @property (nonatomic, retain) NSBundle *bundle;
@@ -69,22 +70,27 @@
 }
 
 - (void)openPluginManagerWindow {
-    NSArray *nibElements;
+    if ([ATZShell areCommandLineToolsAvailable]) {
+        NSArray *nibElements;
     
 #if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1080
-    [self.bundle loadNibNamed:@"PluginWindow" owner:[ATZPluginWindowController new] topLevelObjects:&nibElements];
+        [self.bundle loadNibNamed:@"PluginWindow" owner:[ATZPluginWindowController new] topLevelObjects:&nibElements];
 #else
-    NSNib *nib = [[[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:self.bundle] autorelease];
-    [nib instantiateNibWithOwner:[ATZPluginWindowController new] topLevelObjects:&nibElements];
+        NSNib *nib = [[[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:self.bundle] autorelease];
+        [nib instantiateNibWithOwner:[ATZPluginWindowController new] topLevelObjects:&nibElements];
 #endif
 
-    NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        return [evaluatedObject class] == [NSWindow class];
-    }];
-    
-    NSWindow *window = [nibElements filteredArrayUsingPredicate:windowPredicate][0];
-    [window makeKeyAndOrderFront:self];
+        NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            return [evaluatedObject class] == [NSWindow class];
+        }];
+
+        NSWindow *window = [nibElements filteredArrayUsingPredicate:windowPredicate][0];
+        [window makeKeyAndOrderFront:self];
+    } else {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Xcode Command Line Tools are not currently installed, and are required to run Alcatraz. Command Line Tools are available for installation in the Downloads section of Preferences." defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+        [alert runModal];
+    }
 }
-    
+
 
 @end
