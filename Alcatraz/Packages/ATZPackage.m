@@ -52,8 +52,8 @@
 }
 
 - (NSString *)projectPathFromRawPath:(NSString *)rawURL {
-    NSString *username = rawURL.pathComponents[3];
-    NSString *repository = rawURL.pathComponents[4];
+    NSString *username = rawURL.pathComponents[2];
+    NSString *repository = rawURL.pathComponents[3];
     return [NSString stringWithFormat:@"https://github.com/%@/%@", username, repository];
 }
 
