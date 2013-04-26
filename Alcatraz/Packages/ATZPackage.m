@@ -39,6 +39,7 @@
     [_name release];
     [_description release];
     [_remotePath release];
+    [_website release];
     [super dealloc];
 }
 
