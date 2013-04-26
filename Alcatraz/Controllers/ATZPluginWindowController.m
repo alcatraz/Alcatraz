@@ -178,11 +178,12 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
         
-        if (error)
+        if (error) {
             NSLog(@"Error while downloading packages! %@", error);
-        else
+            [self flashNotice:[NSString stringWithFormat:@"Download failed: %@", error.domain]];
+        } else {
             self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
-
+        }
         [downloader release];
     }];
 }

@@ -32,8 +32,11 @@ static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/mneorr/alcat
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:PLUGINS_REPO_PATH]]
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *receivedData, NSError *error) {
-        
-        completion([NSJSONSerialization JSONObjectWithData:receivedData options:0 error:nil][@"packages"], error);
+
+        if (receivedData)
+            completion([NSJSONSerialization JSONObjectWithData:receivedData options:0 error:nil][@"packages"], error);
+        else
+            completion(nil, error);
     }];
 }
 
