@@ -54,7 +54,7 @@
         }
         
         return [packages sortedArrayUsingComparator:^(ATZPackage *first, ATZPackage *second) {
-            return [first.name compare:second.name];
+            return [first.name localizedCaseInsensitiveCompare:second.name];
         }];
     }
 }
