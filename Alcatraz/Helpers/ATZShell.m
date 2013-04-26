@@ -28,6 +28,21 @@
 
 @implementation ATZShell
 
++ (BOOL)areCommandLineToolsAvailable {
+    NSTask *task = [NSTask new];
+    [task setLaunchPath:@"/usr/bin/git"];
+    @try {
+        [task launch];
+    }
+    @catch (NSException *exception) {
+        return NO;
+    }
+    @finally {
+        [task release];
+    }
+    return YES;
+}
+
 - (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments {
     [self executeCommand:command withArguments:arguments completion:^(NSString *output){}];
 }

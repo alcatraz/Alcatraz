@@ -28,6 +28,8 @@
 #import "ATZColorScheme.h"
 #import "ATZTemplate.h"
 
+#import "ATZShell.h"
+
 static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
 static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@)";
