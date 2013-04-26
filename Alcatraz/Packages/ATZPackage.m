@@ -51,22 +51,19 @@
     self.remotePath = dictionary[@"url"];
 }
 
-- (NSString *)projectURLFromGithubRaw:(NSString *)rawURL {
-    NSArray *components = [rawURL componentsSeparatedByString:@"/"];
-    // ["https:", "", "raw.github.com", "jbrennan", "xcode4themes", "master", "Solarize%20Light.dvtcolortheme"]
-    NSString *namespace = components[3];
-    NSString *project = components[4];
-    return [NSString stringWithFormat:@"https://github.com/%@/%@", namespace, project];
+- (NSString *)projectPathFromRawPath:(NSString *)rawURL {
+    NSString *username = rawURL.pathComponents[3];
+    NSString *repository = rawURL.pathComponents[4];
+    return [NSString stringWithFormat:@"https://github.com/%@/%@", username, repository];
 }
 
 #pragma mark - Property getters
 
-- (NSString *)websiteURL {
-    if ([self.remotePath rangeOfString:@"raw.github.com"].location != NSNotFound) {
-        return [self projectURLFromGithubRaw:self.remotePath];
-    } else {
-        return self.remotePath;
-    }
+- (NSString *)website {
+    if ([self.remotePath rangeOfString:@"raw.github.com"].location != NSNotFound)
+        return [self projectPathFromRawPath:self.remotePath];
+    
+    else return self.remotePath;
 }
 
 

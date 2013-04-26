@@ -31,7 +31,7 @@
 @property (strong, nonatomic) NSString *description;
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSString *remotePath;
-@property (strong, nonatomic) NSString *websiteURL;
+@property (strong, nonatomic) NSString *website;
 @property (nonatomic, readonly) BOOL isInstalled;
 @property (nonatomic, readonly) BOOL requiresRestart;
 
@@ -43,7 +43,6 @@
 - (void)removeWithCompletion:(void(^)(NSError *failure))completion;
 
 
-/// To be overriden in subclasses. Each type of package has a different installer.
 #pragma mark - Abstract
 
 - (id<ATZInstaller>)installer;
