@@ -72,18 +72,16 @@ static NSString *const XCPLUGIN = @".xcplugin";
                                        stringByAppendingString:XCPLUGIN];
 }
 
-- (void)clonePlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *error))completion  {
+- (void)clonePlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion  {
     
-    [ATZGit updateOrCloneRepository:plugin.remotePath
-                        toLocalPath:[self pathForClonedPlugin:plugin]];
-    completion(nil);
+    [ATZGit updateOrCloneRepository:plugin.remotePath toLocalPath:[self pathForClonedPlugin:plugin] completion:completion];
 }
 
 - (NSString *)pathForClonedPlugin:(ATZPlugin *)plugin {
     return [NSTemporaryDirectory() stringByAppendingPathComponent:plugin.name];
 }
 
-- (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *error))completion {
+- (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
     
     NSString *xcodeProjPath;
     @try { xcodeProjPath = [self findXcodeprojPathForPlugin:plugin]; }
@@ -93,8 +91,10 @@ static NSString *const XCPLUGIN = @".xcplugin";
     }
     
     ATZShell *shell = [ATZShell new];
-    [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output) {
-        completion(nil);
+    NSLog(@"Building plugin %@ on main thread? %@", plugin.name, @([NSThread isMainThread]));
+    [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
+        NSLog(@"Xcodebuild output: %@", output);
+        completion(error);
         [shell release];
     }];
 }

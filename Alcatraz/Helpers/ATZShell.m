@@ -23,7 +23,7 @@
 #import "ATZShell.h"
 
 @interface ATZShell (){}
-@property (strong, nonatomic) NSMutableData *taskOutput;
+@property (nonatomic, retain) NSMutableData *taskOutput;
 @end
 
 @implementation ATZShell
@@ -43,58 +43,80 @@
     return YES;
 }
 
-- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments {
-    [self executeCommand:command withArguments:arguments completion:^(NSString *output){}];
-}
-- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path {
-    [self executeCommand:command withArguments:arguments inWorkingDirectory:path completion:^(NSString *output){}];
-}
-- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments completion:(void(^)(NSString *taskOutput))completion {
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments completion:(void(^)(NSString *taskOutput, NSError *error))completion {
     [self executeCommand:command withArguments:arguments inWorkingDirectory:nil completion:completion];
 }
 
-- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path completion:(void(^)(NSString *taskOutput))completion {
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path completion:(void(^)(NSString *taskOutput, NSError *error))completion {
+
+
+    
+    NSLog(@"creating task... %@", command);
+    
     _taskOutput = [NSMutableData new];
-    NSPipe *outputPipe = [NSPipe pipe];
-    NSPipe *stdErrPipe = [NSPipe pipe];
     NSTask *shellTask = [NSTask new];
- 
+    NSPipe *outputPipe = [NSPipe new];
+    NSPipe *stdErrPipe = [NSPipe new];
+    
     if (path) [shellTask setCurrentDirectoryPath:path];
     [shellTask setLaunchPath:command];
     [shellTask setArguments:arguments];
+    [shellTask setStandardInput:[NSPipe pipe]];
     [shellTask setStandardOutput:outputPipe];
-    [shellTask setTerminationHandler:^(NSTask *task) {
-        completion([[[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding] autorelease]);
-    }];
     [shellTask setStandardError:stdErrPipe];
+    
     [self setUpFileHandleForPipe:outputPipe];
     [self setUpFileHandleForPipe:stdErrPipe];
     
-    [self tryToLaunchTask:shellTask];
+    [shellTask setTerminationHandler:^(NSTask *task) {
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            NSLog(@"operation completed! main? %@", @([NSThread isMainThread]));
+            completion([[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding], nil);
+        });
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        [shellTask release];
+        [_taskOutput release];
+        _taskOutput = nil;
+    }];
+    
+    [self tryToLaunchTask:shellTask completionIfFailed:completion];
 
-    [shellTask release];
-    [self.taskOutput release];
+    
+
+    
 }
 
 - (void)thereIsNewShellOutput:(NSNotification *)notification {
-
-    [self.taskOutput appendData:[notification.object availableData]];
+    NSData *shellOutput = [[notification.object availableData] copy];
+    NSLog(@"new shell output: %@", [[NSString alloc] initWithData:shellOutput encoding:NSUTF8StringEncoding]);
+    [self.taskOutput appendData:shellOutput];
+    [shellOutput release];
 }
 
 #pragma mark - Private
 
 - (void)setUpFileHandleForPipe:(NSPipe *)pipe {
-    [[pipe fileHandleForReading] waitForDataInBackgroundAndNotify];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(thereIsNewShellOutput:)
-                                                 name:NSFileHandleDataAvailableNotification object:nil];
+    NSFileHandle *fileHandle = [pipe fileHandleForReading];
+    [fileHandle waitForDataInBackgroundAndNotify];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(thereIsNewShellOutput:)
+                                                 name:NSFileHandleDataAvailableNotification
+                                               object:fileHandle];
 }
 
-- (void)tryToLaunchTask:(NSTask *)shellTask {
+- (void)tryToLaunchTask:(NSTask *)shellTask completionIfFailed:(void(^)(NSString *taskOutput, NSError *error))completion {
     @try {
-        [shellTask launch];
-        [shellTask waitUntilExit];
+        NSLog(@"launcing task.. %@ on main %@", shellTask.launchPath, @([NSThread isMainThread]));
+//        @synchronized(self) {
+            [shellTask launch];
+//        }
     }
-    @catch (NSException *exception) { NSLog(@"Shell command execution failed! %@", exception); }
+    @catch (NSException *exception) {
+        NSLog(@"Shell command execution failed! %@", exception);
+        completion(exception.reason, [NSError errorWithDomain:exception.reason code:667 userInfo:nil]);
+    }
 }
 
 @end

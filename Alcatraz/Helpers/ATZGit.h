@@ -24,6 +24,7 @@
 
 @interface ATZGit : NSObject
 
-+ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath;
++ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
+                     completion:(void(^)(NSError *error))completion;
 
 @end
