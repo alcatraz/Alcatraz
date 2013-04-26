@@ -39,6 +39,7 @@
     [self.name release];
     [self.description release];
     [self.remotePath release];
+    [self.websiteURL release];
     [super dealloc];
 }
 
