@@ -1,4 +1,4 @@
-// PluginWindowController.m
+// ATZShadowScrollView.m
 //
 // Copyright (c) 2013 Marin Usalj | mneorr.com
 //
