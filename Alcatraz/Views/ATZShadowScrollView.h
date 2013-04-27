@@ -23,6 +23,12 @@
 #import <Cocoa/Cocoa.h>
 
 
+@interface ATZShadowScrollView : NSScrollView
+@property (assign) BOOL hasTopShadow;         // maybe we should implement a little preferences sheet?
+@property (assign) BOOL hasBottomShadow;
+@end
+
+
 typedef enum : NSUInteger {
     ATZShadowViewEdgeTop = 0,
     ATZShadowViewEdgeBottom
@@ -31,9 +37,6 @@ typedef enum : NSUInteger {
 @interface ATZShadowView : NSView
 @property (assign, nonatomic) ATZShadowViewEdge edge;
 @property (retain, nonatomic) NSColor *gradientColor;
-@end
-
-
-@interface ATZShadowScrollView : NSScrollView
-@property (assign) BOOL hasShadows;
+@property (assign) BOOL hasTopShadow;
+@property (assign) BOOL hasBottomShadow;
 @end

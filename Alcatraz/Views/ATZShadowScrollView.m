@@ -25,7 +25,7 @@
 
 @interface ATZShadowScrollView () {}
 @property (nonatomic, retain) ATZShadowView *topShadowView;
-@property (nonatomic, retain) ATZShadowView *bottomFadeView;
+@property (nonatomic, retain) ATZShadowView *bottomShadowView;
 @end
 
 @implementation ATZShadowScrollView
@@ -34,7 +34,8 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        _hasShadows = YES;
+        _hasTopShadow = YES;
+        _hasBottomShadow = YES;
     }
     return self;
 }
@@ -48,25 +49,25 @@
         self.topShadowView = [[ATZShadowView alloc] init];
         [self addSubview:self.topShadowView positioned:NSWindowAbove relativeTo:[self contentView]];
     }
-    if (!self.bottomFadeView) {
-        self.bottomFadeView = [[ATZShadowView alloc] init];
-        self.bottomFadeView.edge = ATZShadowViewEdgeBottom;
-        self.bottomFadeView.gradientColor = [NSColor colorWithCalibratedWhite:0.278 alpha:1.000];
-        [self addSubview:self.bottomFadeView positioned:NSWindowAbove relativeTo:[self contentView]];
+    if (!self.bottomShadowView) {
+        self.bottomShadowView = [[ATZShadowView alloc] init];
+        self.bottomShadowView.edge = ATZShadowViewEdgeBottom;
+        self.bottomShadowView.gradientColor = [NSColor colorWithCalibratedWhite:0.278 alpha:1.000];
+        [self addSubview:self.bottomShadowView positioned:NSWindowAbove relativeTo:[self contentView]];
     }
     self.topShadowView.frame = NSMakeRect(0, 0, NSWidth(bounds), 6);
-    self.bottomFadeView.frame = NSMakeRect(0, NSMaxY(bounds)-12, NSWidth(bounds), 12);
+    self.bottomShadowView.frame = NSMakeRect(0, NSMaxY(bounds)-12, NSWidth(bounds), 12);
 
 	[self.topShadowView setNeedsDisplay:YES];
-	[self.bottomFadeView setNeedsDisplay:YES];
+	[self.bottomShadowView setNeedsDisplay:YES];
 }
 
 - (void)dealloc
 {
     [_topShadowView release];
     _topShadowView = nil;
-    [_bottomFadeView release];
-    _bottomFadeView = nil;
+    [_bottomShadowView release];
+    _bottomShadowView = nil;
 
     [super dealloc];
 }
@@ -104,6 +105,8 @@
 {
     _edge = ATZShadowViewEdgeTop;
     _gradientColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:1];
+    _hasTopShadow = YES;
+    _hasBottomShadow = YES;
 }
 
 - (void)dealloc
@@ -134,15 +137,22 @@
 }
 
 - (void)drawRect:(NSRect)rect {
-    [[self gradient] drawInRect:rect angle:(self.edge == ATZShadowViewEdgeTop ? -90 : 90)];
-    if (self.edge == ATZShadowViewEdgeBottom) {
-        NSRect bounds = [self bounds];
-        [[NSColor darkGrayColor] setStroke];
-        NSBezierPath *bottomLinePath = [NSBezierPath bezierPath];
-        [bottomLinePath moveToPoint:NSMakePoint(0, NSMinY(bounds))];
-        [bottomLinePath lineToPoint:NSMakePoint(NSWidth(bounds), NSMinY(bounds))];
-        [bottomLinePath closePath];
-        [bottomLinePath stroke];
+    switch (self.edge) {
+        case ATZShadowViewEdgeTop:
+            if (self.hasTopShadow) [[self gradient] drawInRect:rect angle:-90];
+            break;
+
+        case ATZShadowViewEdgeBottom: {
+            if (self.hasBottomShadow) [[self gradient] drawInRect:rect angle:90];
+            NSRect bounds = [self bounds];
+            [[NSColor darkGrayColor] setStroke];
+            NSBezierPath *bottomLinePath = [NSBezierPath bezierPath];
+            [bottomLinePath moveToPoint:NSMakePoint(0, NSMinY(bounds))];
+            [bottomLinePath lineToPoint:NSMakePoint(NSWidth(bounds), NSMinY(bounds))];
+            [bottomLinePath closePath];
+            [bottomLinePath stroke];
+            break;
+        }
     }
 }
 
