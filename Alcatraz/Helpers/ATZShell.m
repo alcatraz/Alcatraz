@@ -86,6 +86,8 @@
             completion([[[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding] autorelease], nil);
         });
         
+        [task.standardOutput fileHandleForReading].readabilityHandler = nil;
+        [task.standardError fileHandleForReading].readabilityHandler = nil;
         [task release];
         [_taskOutput release];
     }];
