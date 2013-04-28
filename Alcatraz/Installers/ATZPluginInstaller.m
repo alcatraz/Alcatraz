@@ -91,7 +91,6 @@ static NSString *const XCPLUGIN = @".xcplugin";
     }
     
     ATZShell *shell = [ATZShell new];
-    NSLog(@"Building plugin %@ on main thread? %@", plugin.name, @([NSThread isMainThread]));
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
         completion(error);

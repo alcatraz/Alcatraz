@@ -29,70 +29,67 @@
 @implementation ATZShell
 
 + (BOOL)areCommandLineToolsAvailable {
-    NSTask *task = [NSTask new];
-    [task setLaunchPath:@"/usr/bin/git"];
+    BOOL areAvailable = YES;
     @try {
-        [task launch];
+        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/git" arguments:@[]];
     }
     @catch (NSException *exception) {
-        return NO;
+        areAvailable = NO;
     }
-    @finally {
-        [task release];
-    }
-    return YES;
+    return areAvailable;
 }
 
-- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments completion:(void(^)(NSString *taskOutput, NSError *error))completion {
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments
+            completion:(void(^)(NSString *taskOutput, NSError *error))completion {
+    
     [self executeCommand:command withArguments:arguments inWorkingDirectory:nil completion:completion];
 }
 
-- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path completion:(void(^)(NSString *taskOutput, NSError *error))completion {
-
-
-    
-    NSLog(@"creating task... %@", command);
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path
+            completion:(void(^)(NSString *taskOutput, NSError *error))completion {
     
     _taskOutput = [NSMutableData new];
     NSTask *shellTask = [NSTask new];
-    NSPipe *outputPipe = [NSPipe new];
-    NSPipe *stdErrPipe = [NSPipe new];
     
     if (path) [shellTask setCurrentDirectoryPath:path];
     [shellTask setLaunchPath:command];
     [shellTask setArguments:arguments];
-    [shellTask setStandardInput:[NSPipe pipe]];
-    [shellTask setStandardOutput:outputPipe];
-    [shellTask setStandardError:stdErrPipe];
     
-    [[outputPipe fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
-        NSString *output = [[NSString alloc] initWithData:[file availableData] encoding:NSUTF8StringEncoding];
-        NSLog(@"OUTPUT PIPE WRITEABILITY ON MAIN? %@ OUTPUT: %@", @([NSThread isMainThread]), output);
-        [output release];
-    }];
-    [[stdErrPipe fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
-        NSString *output = [[NSString alloc] initWithData:[file availableData] encoding:NSUTF8StringEncoding];
-        NSLog(@"ERROR PIPE WRITEABILITY ON MAIN? %@ OUTPUT: %@", @([NSThread isMainThread]), output);
-        [output release];
-    }];
+    [self setUpShellOutputForTask:shellTask];
+    [self setUpStdErrorOutputForTask:shellTask];
     
-    [shellTask setTerminationHandler:^(NSTask *task) {
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            NSLog(@"operation completed! main? %@", @([NSThread isMainThread]));
-            completion([[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding], nil);
-        });
-        
-        [shellTask release];
-        [_taskOutput release];
-        _taskOutput = nil;
-    }];
-    
+    [self setUpTerminationHandlerForTask:shellTask completion:completion];
     [self tryToLaunchTask:shellTask completionIfFailed:completion];
 }
 
 
 #pragma mark - Private
+
+- (void)setUpShellOutputForTask:(NSTask *)task {
+    task.standardOutput = [NSPipe pipe];
+    [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        [self.taskOutput appendData:[file availableData]];
+    }];
+}
+
+- (void)setUpStdErrorOutputForTask:(NSTask *)task {
+    task.standardError = [NSPipe pipe];
+    [[task.standardError fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        [self.taskOutput appendData:[file availableData]];
+    }];
+}
+
+- (void)setUpTerminationHandlerForTask:(NSTask *)task completion:(void(^)(NSString *taskOutput, NSError *error))completion {
+    [task setTerminationHandler:^(NSTask *task) {
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            completion([[[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding] autorelease], nil);
+        });
+        
+        [task release];
+        [_taskOutput release];
+    }];
+}
 
 - (void)tryToLaunchTask:(NSTask *)shellTask completionIfFailed:(void(^)(NSString *taskOutput, NSError *error))completion {
     @try {
