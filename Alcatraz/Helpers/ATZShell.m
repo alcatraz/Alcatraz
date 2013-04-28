@@ -99,7 +99,7 @@
     }
     @catch (NSException *exception) {
         NSLog(@"Shell command execution failed! %@", exception);
-        completion(exception.reason, [NSError errorWithDomain:exception.reason code:667 userInfo:nil]);
+        completion(nil, [NSError errorWithDomain:exception.reason code:667 userInfo:nil]);
     }
 }
 

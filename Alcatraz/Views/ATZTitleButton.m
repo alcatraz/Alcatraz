@@ -46,12 +46,17 @@
     [self createTrackingArea];
 }
 
+
+#pragma mark - Private
+
 - (void)createTrackingArea {
-    NSTrackingAreaOptions focusTrackingAreaOptions = NSTrackingActiveInActiveApp |NSTrackingMouseEnteredAndExited | NSTrackingAssumeInside | NSTrackingInVisibleRect;
+    NSTrackingAreaOptions focusTrackingAreaOptions = NSTrackingActiveInActiveApp | NSTrackingMouseEnteredAndExited |
+                                                     NSTrackingAssumeInside      | NSTrackingInVisibleRect;
 
     NSTrackingArea *focusTrackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
                                                                      options:focusTrackingAreaOptions owner:self userInfo:nil];
     [self addTrackingArea:focusTrackingArea];
     [focusTrackingArea release];
 }
+
 @end
