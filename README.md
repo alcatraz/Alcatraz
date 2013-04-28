@@ -38,6 +38,8 @@ Public Trello board can be found [here](https://trello.com/b/ZODgq5Av).
 
 Log output for crash reports can be obtained via running `tail -f /var/log/system.log` while using Alcatraz, and is a helpful addition to issue submissions.
 
+Alcatraz a few [contribution guidelines](https://github.com/mneorr/Alcatraz/blob/master/CONTRIB.md), for anyone looking to make it more awesome.
+
 ## Contributors
 
 Special thanks for Delisa Mason ([@kattrali](https://github.com/kattrali))
