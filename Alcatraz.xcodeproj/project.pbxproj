@@ -34,9 +34,9 @@
 		8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA171726B63B00F0B2D2 /* ATZShell.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
-		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
 		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
 		8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A96E0C71729DC1200350F67 /* ATZTitleButton.m */; };
+		FD3C641E172C57EE004186FB /* ATZShadowScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3C641D172C57EE004186FB /* ATZShadowScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,12 +94,12 @@
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
 		89D40AFA1721CBD600A67BB3 /* ATZPluginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPluginWindowController.h; path = Controllers/ATZPluginWindowController.h; sourceTree = "<group>"; };
 		89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPluginWindowController.m; path = Controllers/ATZPluginWindowController.m; sourceTree = "<group>"; };
-		8A0C0A4B1726C076006E7AD2 /* ATZStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZStatusView.h; path = Views/ATZStatusView.h; sourceTree = "<group>"; };
-		8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZStatusView.m; path = Views/ATZStatusView.m; sourceTree = "<group>"; };
 		8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZProgressIndicator.h; path = Views/ATZProgressIndicator.h; sourceTree = "<group>"; };
 		8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZProgressIndicator.m; path = Views/ATZProgressIndicator.m; sourceTree = "<group>"; };
 		8A96E0C61729DC1200350F67 /* ATZTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZTitleButton.h; path = Views/ATZTitleButton.h; sourceTree = "<group>"; };
 		8A96E0C71729DC1200350F67 /* ATZTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZTitleButton.m; path = Views/ATZTitleButton.m; sourceTree = "<group>"; };
+		FD3C641C172C57EE004186FB /* ATZShadowScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZShadowScrollView.h; path = Views/ATZShadowScrollView.h; sourceTree = "<group>"; };
+		FD3C641D172C57EE004186FB /* ATZShadowScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZShadowScrollView.m; path = Views/ATZShadowScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,10 +267,10 @@
 		8A0C0A4A1726C04A006E7AD2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8A0C0A4B1726C076006E7AD2 /* ATZStatusView.h */,
-				8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */,
 				8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */,
 				8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */,
+				FD3C641C172C57EE004186FB /* ATZShadowScrollView.h */,
+				FD3C641D172C57EE004186FB /* ATZShadowScrollView.m */,
 				8A96E0C61729DC1200350F67 /* ATZTitleButton.h */,
 				8A96E0C71729DC1200350F67 /* ATZTitleButton.m */,
 			);
@@ -360,13 +360,13 @@
 				8917DA181726B63B00F0B2D2 /* ATZDownloader.m in Sources */,
 				8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */,
 				8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */,
-				8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */,
 				8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */,
 				8907F9A7172955690015A56B /* NSArray+Subscript.m in Sources */,
 				8907F9A8172955690015A56B /* NSDictionary+Subscript.m in Sources */,
 				8907F9A9172955690015A56B /* NSMutableArray+Subscript.m in Sources */,
 				8907F9AA172955690015A56B /* NSMutableDictionary+Subscript.m in Sources */,
 				8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */,
+				FD3C641E172C57EE004186FB /* ATZShadowScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

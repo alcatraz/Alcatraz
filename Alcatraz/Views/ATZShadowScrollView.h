@@ -1,5 +1,5 @@
-// PluginWindowController.m
-// 
+// ATZShadowScrollView.m
+//
 // Copyright (c) 2013 Marin Usalj | mneorr.com
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -8,10 +8,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,8 +20,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 
-@interface ATZStatusView : NSView
 
+@interface ATZShadowScrollView : NSScrollView
+@property (assign) BOOL hasTopShadow;         // maybe we should implement a little preferences sheet?
+@property (assign) BOOL hasBottomShadow;
+@end
+
+
+typedef enum : NSUInteger {
+    ATZShadowViewEdgeTop = 0,
+    ATZShadowViewEdgeBottom
+} ATZShadowViewEdge;
+
+@interface ATZShadowView : NSView
+@property (assign, nonatomic) ATZShadowViewEdge edge;
+@property (retain, nonatomic) NSColor *gradientColor;
+@property (assign) BOOL hasTopShadow;
+@property (assign) BOOL hasBottomShadow;
 @end
