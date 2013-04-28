@@ -35,10 +35,15 @@ static NSString *const XCTEMPLATE = @".xctemplate";
             completion:(void (^)(NSError *))completion {
     
     progress([NSString stringWithFormat:DOWNLOADING_FORMAT, package.name]);
-    [ATZGit updateOrCloneRepository:package.remotePath toLocalPath:[self pathForClonedPackage:package]];
-    
-    progress([NSString stringWithFormat:INSTALLING_FORMAT, package.name]);
-    [self copyTemplatesToXcode:package progress:progress completion:completion];
+    [ATZGit updateOrCloneRepository:package.remotePath toLocalPath:[self pathForClonedPackage:package]
+                         completion:^(NSError *error) {
+        
+        if (error) completion(error);
+        else {
+            progress([NSString stringWithFormat:INSTALLING_FORMAT, package.name]);
+            [self copyTemplatesToXcode:package progress:progress completion:completion];
+        }
+    }];
 }
 
 - (void)removePackage:(ATZTemplate *)package

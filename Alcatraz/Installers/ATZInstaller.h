@@ -39,10 +39,6 @@ static NSString *const INSTALLING_FORMAT = @"Installing %@...";
            completion:(void(^)(NSError *error))completion;
 
 - (BOOL)isPackageInstalled:(ATZPackage *)package;
-
-
-#pragma mark - Abstract
-
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package;
 
 @end

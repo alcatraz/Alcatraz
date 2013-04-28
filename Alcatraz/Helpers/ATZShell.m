@@ -23,78 +23,84 @@
 #import "ATZShell.h"
 
 @interface ATZShell (){}
-@property (strong, nonatomic) NSMutableData *taskOutput;
+@property (nonatomic, retain) NSMutableData *taskOutput;
 @end
 
 @implementation ATZShell
 
 + (BOOL)areCommandLineToolsAvailable {
-    NSTask *task = [NSTask new];
-    [task setLaunchPath:@"/usr/bin/git"];
+    BOOL areAvailable = YES;
     @try {
-        [task launch];
+        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/git" arguments:@[]];
     }
     @catch (NSException *exception) {
-        return NO;
+        areAvailable = NO;
     }
-    @finally {
-        [task release];
-    }
-    return YES;
+    return areAvailable;
 }
 
-- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments {
-    [self executeCommand:command withArguments:arguments completion:^(NSString *output){}];
-}
-- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path {
-    [self executeCommand:command withArguments:arguments inWorkingDirectory:path completion:^(NSString *output){}];
-}
-- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments completion:(void(^)(NSString *taskOutput))completion {
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments
+            completion:(void(^)(NSString *taskOutput, NSError *error))completion {
+    
     [self executeCommand:command withArguments:arguments inWorkingDirectory:nil completion:completion];
 }
 
-- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path completion:(void(^)(NSString *taskOutput))completion {
+- (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments inWorkingDirectory:(NSString *)path
+            completion:(void(^)(NSString *taskOutput, NSError *error))completion {
+    
     _taskOutput = [NSMutableData new];
-    NSPipe *outputPipe = [NSPipe pipe];
-    NSPipe *stdErrPipe = [NSPipe pipe];
     NSTask *shellTask = [NSTask new];
- 
+    
     if (path) [shellTask setCurrentDirectoryPath:path];
     [shellTask setLaunchPath:command];
     [shellTask setArguments:arguments];
-    [shellTask setStandardOutput:outputPipe];
-    [shellTask setTerminationHandler:^(NSTask *task) {
-        completion([[[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding] autorelease]);
-    }];
-    [shellTask setStandardError:stdErrPipe];
-    [self setUpFileHandleForPipe:outputPipe];
-    [self setUpFileHandleForPipe:stdErrPipe];
     
-    [self tryToLaunchTask:shellTask];
-
-    [shellTask release];
-    [self.taskOutput release];
+    [self setUpShellOutputForTask:shellTask];
+    [self setUpStdErrorOutputForTask:shellTask];
+    
+    [self setUpTerminationHandlerForTask:shellTask completion:completion];
+    [self tryToLaunchTask:shellTask completionIfFailed:completion];
 }
 
-- (void)thereIsNewShellOutput:(NSNotification *)notification {
-
-    [self.taskOutput appendData:[notification.object availableData]];
-}
 
 #pragma mark - Private
 
-- (void)setUpFileHandleForPipe:(NSPipe *)pipe {
-    [[pipe fileHandleForReading] waitForDataInBackgroundAndNotify];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(thereIsNewShellOutput:)
-                                                 name:NSFileHandleDataAvailableNotification object:nil];
+- (void)setUpShellOutputForTask:(NSTask *)task {
+    task.standardOutput = [NSPipe pipe];
+    [[task.standardOutput fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        [self.taskOutput appendData:[file availableData]];
+    }];
 }
 
-- (void)tryToLaunchTask:(NSTask *)shellTask {
+- (void)setUpStdErrorOutputForTask:(NSTask *)task {
+    task.standardError = [NSPipe pipe];
+    [[task.standardError fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        [self.taskOutput appendData:[file availableData]];
+    }];
+}
+
+- (void)setUpTerminationHandlerForTask:(NSTask *)task completion:(void(^)(NSString *taskOutput, NSError *error))completion {
+    [task setTerminationHandler:^(NSTask *task) {
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            completion([[[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding] autorelease], nil);
+        });
+        
+        [task.standardOutput fileHandleForReading].readabilityHandler = nil;
+        [task.standardError fileHandleForReading].readabilityHandler = nil;
+        [task release];
+        [_taskOutput release];
+    }];
+}
+
+- (void)tryToLaunchTask:(NSTask *)shellTask completionIfFailed:(void(^)(NSString *taskOutput, NSError *error))completion {
     @try {
         [shellTask launch];
-        [shellTask waitUntilExit];
     }
-    @catch (NSException *exception) { NSLog(@"Shell command execution failed! %@", exception); }
+    @catch (NSException *exception) {
+        NSLog(@"Shell command execution failed! %@", exception);
+        completion(exception.reason, [NSError errorWithDomain:exception.reason code:667 userInfo:nil]);
+    }
 }
 
 @end
