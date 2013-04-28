@@ -65,8 +65,16 @@
     [shellTask setStandardOutput:outputPipe];
     [shellTask setStandardError:stdErrPipe];
     
-    [self setUpFileHandleForPipe:outputPipe];
-    [self setUpFileHandleForPipe:stdErrPipe];
+    [[outputPipe fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        NSString *output = [[NSString alloc] initWithData:[file availableData] encoding:NSUTF8StringEncoding];
+        NSLog(@"OUTPUT PIPE WRITEABILITY ON MAIN? %@ OUTPUT: %@", @([NSThread isMainThread]), output);
+        [output release];
+    }];
+    [[stdErrPipe fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+        NSString *output = [[NSString alloc] initWithData:[file availableData] encoding:NSUTF8StringEncoding];
+        NSLog(@"ERROR PIPE WRITEABILITY ON MAIN? %@ OUTPUT: %@", @([NSThread isMainThread]), output);
+        [output release];
+    }];
     
     [shellTask setTerminationHandler:^(NSTask *task) {
         
@@ -75,43 +83,20 @@
             completion([[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding], nil);
         });
         
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
         [shellTask release];
         [_taskOutput release];
         _taskOutput = nil;
     }];
     
     [self tryToLaunchTask:shellTask completionIfFailed:completion];
-
-    
-
-    
 }
 
-- (void)thereIsNewShellOutput:(NSNotification *)notification {
-    NSData *shellOutput = [[notification.object availableData] copy];
-    NSLog(@"new shell output: %@", [[NSString alloc] initWithData:shellOutput encoding:NSUTF8StringEncoding]);
-    [self.taskOutput appendData:shellOutput];
-    [shellOutput release];
-}
 
 #pragma mark - Private
 
-- (void)setUpFileHandleForPipe:(NSPipe *)pipe {
-    NSFileHandle *fileHandle = [pipe fileHandleForReading];
-    [fileHandle waitForDataInBackgroundAndNotify];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(thereIsNewShellOutput:)
-                                                 name:NSFileHandleDataAvailableNotification
-                                               object:fileHandle];
-}
-
 - (void)tryToLaunchTask:(NSTask *)shellTask completionIfFailed:(void(^)(NSString *taskOutput, NSError *error))completion {
     @try {
-        NSLog(@"launcing task.. %@ on main %@", shellTask.launchPath, @([NSThread isMainThread]));
-//        @synchronized(self) {
-            [shellTask launch];
-//        }
+        [shellTask launch];
     }
     @catch (NSException *exception) {
         NSLog(@"Shell command execution failed! %@", exception);
