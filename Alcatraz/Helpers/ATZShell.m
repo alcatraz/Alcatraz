@@ -82,9 +82,9 @@
 - (void)setUpTerminationHandlerForTask:(NSTask *)task completion:(void(^)(NSString *taskOutput, NSError *error))completion {
     [task setTerminationHandler:^(NSTask *task) {
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             completion([[[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding] autorelease], nil);
-        });
+        }];
         
         [task.standardOutput fileHandleForReading].readabilityHandler = nil;
         [task.standardError fileHandleForReading].readabilityHandler = nil;
