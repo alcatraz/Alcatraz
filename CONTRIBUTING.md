@@ -16,3 +16,8 @@ Some helpful tips for making Alcatraz more awesome
 
 - Alcatraz uses autolayout; position UI elements using constraints and avoid ambiguities that lead to many system-defined constraints
 - Always rebase on latest master before making changes to the `xib`; this reduces the amount of conflicts within the file
+
+
+## Logging
+
+Output for development and crash reports can be obtained via running `tail -f /var/log/system.log`, and is a helpful addition to issue submissions.
