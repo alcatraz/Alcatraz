@@ -28,29 +28,29 @@
 
 @implementation ATZPackageFactory
 
+NSDictionary *packageClasses;
+
++ (void)initialize {
+    packageClasses = @{
+        @"plugins": [ATZPlugin class],
+        @"color_schemes": [ATZColorScheme class],
+        @"project_templates": [ATZProjectTemplate class],
+        @"file_templates": [ATZFileTemplate class]
+    };
+}
+
 + (NSArray *)createPackagesFromDicts:(NSDictionary *)packagesInDicts {
     @autoreleasepool {
         NSMutableArray *packages = [NSMutableArray array];
         
-        for (NSDictionary *pluginDict in packagesInDicts[@"plugins"]) {
-            ATZPlugin *plugin = [[ATZPlugin alloc] initWithDictionary:pluginDict];
-            [packages addObject:plugin];
-            [plugin release];
-        }
-        for (NSDictionary *templateDict in packagesInDicts[@"project_templates"]) {
-            ATZTemplate *template = [[ATZProjectTemplate alloc] initWithDictionary:templateDict];
-            [packages addObject:template];
-            [template release];
-        }
-        for (NSDictionary *templateDict in packagesInDicts[@"file_templates"]) {
-            ATZTemplate *template = [[ATZFileTemplate alloc] initWithDictionary:templateDict];
-            [packages addObject:template];
-            [template release];
-        }
-        for (NSDictionary *colorSchemeDict in packagesInDicts[@"color_schemes"]) {
-            ATZColorScheme *colorScheme = [[ATZColorScheme alloc] initWithDictionary:colorSchemeDict];
-            [packages addObject:colorScheme];
-            [colorScheme release];
+        for (NSString *packageType in packagesInDicts.allKeys) {
+            
+            for (NSDictionary *packageDict in packagesInDicts[packageType]) {
+                ATZPackage *package = [[packageClasses[packageType] alloc] initWithDictionary:packageDict];
+                [packages addObject:package];
+                [package release];
+            }
+            
         }
         
         return [packages sortedArrayUsingComparator:^(ATZPackage *first, ATZPackage *second) {

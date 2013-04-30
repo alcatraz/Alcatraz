@@ -24,6 +24,6 @@
 
 @interface ATZPackageFactory : NSObject
 
-+ (NSArray *)createPackagesFromDicts:(NSDictionary *)packagesInDicts;
++ (NSArray *)createPackagesFromDicts:(NSDictionary *)packagesJSON;
 
 @end
