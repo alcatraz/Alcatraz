@@ -100,7 +100,33 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     ATZShell *shell = [ATZShell new];
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
-        completion(error);
+        if (error) {
+            completion(error);
+            [shell release];
+            return;
+        }
+        
+        NSString *installedPluginPath = [self pathForInstalledPackage:plugin];
+        NSBundle *pluginBundle = [NSBundle bundleWithPath:installedPluginPath];
+        if ([pluginBundle isLoaded]) {
+            completion(nil);
+            [shell release];
+            return;
+        }
+        
+        NSError *loadError = nil;
+        BOOL loaded = [pluginBundle loadAndReturnError:&loadError];
+        if (!loaded)
+            NSLog(@"Plugin load error: %@", loadError);
+        
+        Class principalClass = [pluginBundle principalClass];
+        if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
+            [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
+            completion(nil);
+        } else {
+            NSString *errorDescription = [NSString stringWithFormat:@"The principal class of %@ does not implement the pluginDidLoad: method.", plugin.name];
+            completion([NSError errorWithDomain:errorDescription code:668 userInfo:nil]);
+        }
         [shell release];
     }];
 }
