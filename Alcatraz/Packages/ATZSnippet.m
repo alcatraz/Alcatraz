@@ -27,13 +27,6 @@ static NSString *const SNIPPET = @"Snippet";
 
 @implementation ATZSnippet
 
-- (id)initWithDictionary:(NSDictionary *)dict {
-    self = [super initWithDictionary:dict];
-    if (self) self.fileNamePrefix = dict[@"prefix"];
-
-    return self;
-}
-
 - (id<ATZInstaller>)installer {
     return [[ATZSnippetInstaller new] autorelease];
 }

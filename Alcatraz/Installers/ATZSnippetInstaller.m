@@ -69,7 +69,7 @@ static NSString *const LOCAL_SNIPPETS_RELATIVE_PATH = @"Library/Developer/Xcode/
     for (NSString *snippetPath in [self snippetFilesFromClonedDirectory:[self pathForClonedPackage:snippet]]) {
 
         NSString *fileName = snippetPath.pathComponents.lastObject;
-        if (![self isFileName:fileName inPackage:snippet]) fileName = [NSString stringWithFormat:@"%@_%@", snippet.fileNamePrefix, fileName];
+        if (![self isFileName:fileName inPackage:snippet]) fileName = [NSString stringWithFormat:@"%@_%@", snippet.name, fileName];
 
         NSString *installPath = [[self snippetsPath] stringByAppendingPathComponent:fileName];
 
@@ -125,8 +125,8 @@ static NSString *const LOCAL_SNIPPETS_RELATIVE_PATH = @"Library/Developer/Xcode/
     return [filePath hasSuffix:XCSNIPPET];
 }
 
-- (BOOL) isFileName:(NSString *) path inPackage:(ATZSnippet *)package {
-    return [path hasPrefix:package.fileNamePrefix];
+- (BOOL) isFileName:(NSString *) name inPackage:(ATZSnippet *)package {
+    return [name hasPrefix:package.name];
 }
 
 @end
