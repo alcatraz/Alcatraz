@@ -22,6 +22,7 @@
 
 #import "ATZSnippetInstaller.h"
 #import "ATZSnippet.h"
+#import "ATZGit.h"
 
 static NSString *const XCSNIPPET = @".codesnippet";
 static NSString *const XCCOMMAND = @".command";
@@ -30,15 +31,24 @@ static NSString *const LOCAL_SNIPPETS_RELATIVE_PATH = @"Library/Developer/Xcode/
 @implementation ATZSnippetInstaller
 
 
-- (void)installPackage:(ATZPackage *)package progress:(void (^)(NSString *))progress completion:(void (^)(NSError *))completion {
+- (void)installPackage:(ATZSnippet *)package progress:(void (^)(NSString *))progress completion:(void (^)(NSError *))completion {
+    progress([NSString stringWithFormat:DOWNLOADING_FORMAT, package.name]);
+    [ATZGit updateOrCloneRepository:package.remotePath toLocalPath:[self pathForClonedPackage:package]
+                         completion:^(NSError *error) {
 
+         if (error) completion(error);
+         else {
+             progress([NSString stringWithFormat:INSTALLING_FORMAT, package.name]);
+             [self copySnippetsToXcode:package progress:progress completion:completion];
+         }
+     }];
 }
 
-- (void)removePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
-
+- (void)removePackage:(ATZSnippet *)package completion:(void (^)(NSError *))completion {
+    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion];
 }
 
-- (BOOL)isPackageInstalled:(ATZPackage *)package {
+- (BOOL)isPackageInstalled:(ATZSnippet *)package {
     return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package]];
 }
 

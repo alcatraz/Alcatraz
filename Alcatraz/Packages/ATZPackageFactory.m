@@ -25,6 +25,7 @@
 #import "ATZColorScheme.h"
 #import "ATZProjectTemplate.h"
 #import "ATZFileTemplate.h"
+#import "ATZSnippet.h"
 
 @implementation ATZPackageFactory
 
@@ -51,6 +52,11 @@
             ATZColorScheme *colorScheme = [[ATZColorScheme alloc] initWithDictionary:colorSchemeDict];
             [packages addObject:colorScheme];
             [colorScheme release];
+        }
+        for (NSDictionary *snippetDict in packagesInDicts[@"snippets"]) {
+            ATZSnippet *snippet = [[ATZSnippet alloc] initWithDictionary:snippetDict];
+            [packages addObject:snippet];
+            [snippet release];
         }
         
         return [packages sortedArrayUsingComparator:^(ATZPackage *first, ATZPackage *second) {
