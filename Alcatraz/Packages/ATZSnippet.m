@@ -36,7 +36,12 @@ static NSString *const SNIPPET = @"Snippet";
 }
 
 - (BOOL)requiresRestart {
-    return NO;
+    return YES;
+}
+
+- (void)unpackFromDictionary:(NSDictionary *)dictionary {
+    [super unpackFromDictionary:dictionary];
+    self.fileNamePrefix = dictionary[@"prefix"];
 }
 
 @end

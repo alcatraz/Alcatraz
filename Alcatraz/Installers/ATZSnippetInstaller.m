@@ -25,7 +25,6 @@
 #import "ATZGit.h"
 
 static NSString *const XCSNIPPET = @".codesnippet";
-static NSString *const XCCOMMAND = @".command";
 static NSString *const LOCAL_SNIPPETS_RELATIVE_PATH = @"Library/Developer/Xcode/UserData/CodeSnippets";
 
 @implementation ATZSnippetInstaller
@@ -45,33 +44,34 @@ static NSString *const LOCAL_SNIPPETS_RELATIVE_PATH = @"Library/Developer/Xcode/
 }
 
 - (void)removePackage:(ATZSnippet *)package completion:(void (^)(NSError *))completion {
-    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion];
+    for (NSString *snippetFilePath in [self installedSnippetFilePathsFromPackage:package]) {
+        [[NSFileManager sharedManager] removeItemAtPath:snippetFilePath completion:completion];
+    }
 }
 
 - (BOOL)isPackageInstalled:(ATZSnippet *)package {
-    return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package]];
+    return [self installedSnippetFilePathsFromPackage:package].count > 0;
 }
 
 #pragma mark - Private
 
-- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
+- (NSString *)pathForInstalledPackage:(ATZSnippet *)package {
     return [[self snippetsPath] stringByAppendingPathComponent:package.name];
 }
 
-- (NSString *)pathForClonedPackage:(ATZPackage *)package {
+- (NSString *)pathForClonedPackage:(ATZSnippet *)package {
     return [NSTemporaryDirectory() stringByAppendingPathComponent:package.name];
 }
 
 - (void)copySnippetsToXcode:(ATZSnippet *)snippet progress:(void(^)(NSString *))progress completion:(void (^)(NSError *))completion {
     NSError *error = nil;
 
-    [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:snippet]
-                             withIntermediateDirectories:YES attributes:nil error:&error];
-
     for (NSString *snippetPath in [self snippetFilesFromClonedDirectory:[self pathForClonedPackage:snippet]]) {
 
         NSString *fileName = snippetPath.pathComponents.lastObject;
-        NSString *installPath = [[self pathForInstalledPackage:snippet] stringByAppendingPathComponent:fileName];
+        if (![self isFileName:fileName inPackage:snippet]) fileName = [NSString stringWithFormat:@"%@_%@", snippet.fileNamePrefix, fileName];
+
+        NSString *installPath = [[self snippetsPath] stringByAppendingPathComponent:fileName];
 
         [[NSFileManager sharedManager] copyItemAtPath:snippetPath toPath:installPath error:&error];
     }
@@ -83,6 +83,25 @@ static NSString *const LOCAL_SNIPPETS_RELATIVE_PATH = @"Library/Developer/Xcode/
     return [NSHomeDirectory() stringByAppendingPathComponent:LOCAL_SNIPPETS_RELATIVE_PATH];
 }
 
+- (NSArray *)installedSnippetFilePathsFromPackage:(ATZSnippet *)package {
+    @autoreleasepool {
+        NSMutableArray *foundSnippets = [NSMutableArray new];
+        @try {
+            NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:[self snippetsPath]];
+            NSString *directoryEntry;
+
+            while (directoryEntry = [enumerator nextObject]) {
+                if ([self isFileName:directoryEntry inPackage:package] && [self isFilePathForSnippet:directoryEntry])
+                    [foundSnippets addObject:[[self snippetsPath] stringByAppendingPathComponent:directoryEntry]];
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"An exception occurred while enumerating snippets: %@",exception);
+        }
+        return [foundSnippets autorelease];
+    }
+}
+
 - (NSArray *)snippetFilesFromClonedDirectory:(NSString *)clonePath {
     @autoreleasepool {
         NSMutableArray *foundSnippets = [NSMutableArray new];
@@ -91,7 +110,7 @@ static NSString *const LOCAL_SNIPPETS_RELATIVE_PATH = @"Library/Developer/Xcode/
             NSString *directoryEntry;
 
             while (directoryEntry = [enumerator nextObject]) {
-                if ([directoryEntry hasSuffix:XCSNIPPET] || [directoryEntry hasSuffix:XCCOMMAND])
+                if ([self isFilePathForSnippet:directoryEntry])
                     [foundSnippets addObject:[clonePath stringByAppendingPathComponent:directoryEntry]];
             }
         }
@@ -100,6 +119,14 @@ static NSString *const LOCAL_SNIPPETS_RELATIVE_PATH = @"Library/Developer/Xcode/
         }
         return [foundSnippets autorelease];
     }
+}
+
+- (BOOL) isFilePathForSnippet:(NSString *)filePath {
+    return [filePath hasSuffix:XCSNIPPET];
+}
+
+- (BOOL) isFileName:(NSString *) path inPackage:(ATZSnippet *)package {
+    return [path hasPrefix:package.fileNamePrefix];
 }
 
 @end

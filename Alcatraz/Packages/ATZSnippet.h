@@ -24,4 +24,6 @@
 
 @interface ATZSnippet : ATZPackage
 
+@property (strong, nonatomic) NSString *fileNamePrefix;
+
 @end

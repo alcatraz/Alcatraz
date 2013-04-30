@@ -42,7 +42,7 @@
 
 - (void)removeWithCompletion:(void(^)(NSError *failure))completion;
 
-
+- (void)unpackFromDictionary:(NSDictionary *)dictionary ;
 #pragma mark - Abstract
 
 - (id<ATZInstaller>)installer;
