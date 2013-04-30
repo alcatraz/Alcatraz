@@ -24,7 +24,6 @@
 #import <Foundation/Foundation.h>
 #import "ATZInstaller.h"
 
-@protocol ATZInstaller;
-@interface ATZPluginInstaller : NSObject<ATZInstaller>
+@interface ATZPluginInstaller : ATZInstaller
 
 @end

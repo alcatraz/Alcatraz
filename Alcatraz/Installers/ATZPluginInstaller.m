@@ -61,17 +61,12 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
                                          completion:completion];
 }
 
-- (BOOL)isPackageInstalled:(ATZPlugin *)package {
-    BOOL isDirectory;
-    return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package] isDirectory:&isDirectory];
-}
 
-
-#pragma mark - Private
+#pragma mark - Abstract
 
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
     
-    NSString *pbxprojPath = [[[self pathForClonedPlugin:(id)package]
+    NSString *pbxprojPath = [[[self pathForClonedPackage:package]
                              stringByAppendingPathComponent:XCODEPROJ] stringByAppendingPathComponent:PROJECT_PBXPROJ];
     
     return [[[NSHomeDirectory() stringByAppendingPathComponent:LOCAL_PLUGINS_RELATIVE_PATH]
@@ -79,14 +74,17 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
                                        stringByAppendingString:XCPLUGIN];
 }
 
-- (NSString *)pathForClonedPlugin:(ATZPlugin *)plugin {
-    return [NSTemporaryDirectory() stringByAppendingPathComponent:plugin.name];
+- (NSString *)pathForClonedPackage:(ATZPackage *)package {
+    return [NSTemporaryDirectory() stringByAppendingPathComponent:package.name];
 }
 
 - (void)clonePlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion  {
     
-    [ATZGit updateOrCloneRepository:plugin.remotePath toLocalPath:[self pathForClonedPlugin:plugin] completion:completion];
+    [ATZGit updateOrCloneRepository:plugin.remotePath toLocalPath:[self pathForClonedPackage:plugin] completion:completion];
 }
+
+
+#pragma mark - Private
 
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
     
@@ -132,7 +130,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 }
 
 - (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
-    NSString *clonedDirectory = [self pathForClonedPlugin:plugin];
+    NSString *clonedDirectory = [self pathForClonedPackage:plugin];
     NSString *xcodeProjFilename = [plugin.name stringByAppendingString:XCODEPROJ];
     
     NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];

@@ -23,18 +23,24 @@
 
 #import "ATZTemplate.h"
 
+static NSString *const XCTEMPLATE = @".xctemplate";
+
 @implementation ATZTemplate
 
-- (id<ATZInstaller>)installer {
-    @throw [NSException exceptionWithName:@"Abstract installer" reason:@"Please use one of ATZTemplate subclasses" userInfo:nil];
+- (ATZInstaller *)installer {
+    @throw [NSException exceptionWithName:@"Abstract template" reason:@"Please use one of ATZTemplate subclasses" userInfo:nil];
 }
 
 - (NSString *)type {
-    return @"ATZTemplate";
+    return nil;
 }
 
 - (BOOL)requiresRestart {
     return NO;
+}
+
+- (NSString *)extension {
+    return XCTEMPLATE;
 }
 
 @end

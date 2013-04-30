@@ -27,7 +27,7 @@ static NSString *const PLUGIN = @"Plugin";
 
 @implementation ATZPlugin
 
-- (id<ATZInstaller>)installer {
+- (ATZInstaller *)installer {
     return [[ATZPluginInstaller new] autorelease];
 }
 

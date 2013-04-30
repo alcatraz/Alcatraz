@@ -25,10 +25,11 @@
 #import "ATZColorSchemeInstaller.h"
 
 static NSString *const COLOR_SCHEME = @"Color Scheme";
+static NSString *const DVTCOLORSCHEME = @".dvtcolortheme";
 
 @implementation ATZColorScheme
 
-- (id<ATZInstaller>)installer {
+- (ATZInstaller *)installer {
     return [[ATZColorSchemeInstaller new] autorelease];
 }
 
@@ -38,6 +39,10 @@ static NSString *const COLOR_SCHEME = @"Color Scheme";
 
 - (BOOL)requiresRestart {
     return YES;
+}
+
+- (NSString *)extension {
+    return DVTCOLORSCHEME;
 }
 
 @end

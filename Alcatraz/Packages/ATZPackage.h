@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol ATZInstaller;
+@class ATZInstaller;
 
 
 @interface ATZPackage :NSObject
@@ -34,6 +34,7 @@
 @property (nonatomic, readonly) NSString *website;
 @property (nonatomic, readonly) BOOL isInstalled;
 @property (nonatomic, readonly) BOOL requiresRestart;
+@property (nonatomic, readonly) NSString *extension;
 
 - (id)initWithDictionary:(NSDictionary *)dict;
 
@@ -45,6 +46,6 @@
 
 #pragma mark - Abstract
 
-- (id<ATZInstaller>)installer;
+- (ATZInstaller *)installer;
 
 @end
