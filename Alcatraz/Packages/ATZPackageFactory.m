@@ -50,13 +50,16 @@ NSDictionary *packageClasses;
                 [packages addObject:package];
                 [package release];
             }
-            
-        }
         
-        return [packages sortedArrayUsingComparator:^(ATZPackage *first, ATZPackage *second) {
-            return [first.name localizedCaseInsensitiveCompare:second.name];
-        }];
+        }
+        return [self sortPackagesByName:packages];
     }
+}
+
++ (NSArray *)sortPackagesByName:(NSArray *)unsortedPackages {
+    return [unsortedPackages sortedArrayUsingComparator:^(ATZPackage *first, ATZPackage *second) {
+        return [first.name localizedCaseInsensitiveCompare:second.name];
+    }];
 }
 
 @end
