@@ -25,6 +25,7 @@
 #import "ATZPlugin.h"
 #import "ATZShell.h"
 #import "ATZGit.h"
+#import "ATZPBXProjParser.h"
 
 static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
@@ -67,18 +68,22 @@ static NSString *const XCPLUGIN = @".xcplugin";
 #pragma mark - Private
 
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
+    
+    NSString *pbxprojPath = [[self pathForClonedPlugin:(id)package]
+                             stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.xcodeproj/project.pbxproj", package.name]];
+    
     return [[[NSHomeDirectory() stringByAppendingPathComponent:LOCAL_PLUGINS_RELATIVE_PATH]
-                                stringByAppendingPathComponent:package.name]
+                                stringByAppendingPathComponent:[ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath] ?: package.name]
                                        stringByAppendingString:XCPLUGIN];
+}
+
+- (NSString *)pathForClonedPlugin:(ATZPlugin *)plugin {
+    return [NSTemporaryDirectory() stringByAppendingPathComponent:plugin.name];
 }
 
 - (void)clonePlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion  {
     
     [ATZGit updateOrCloneRepository:plugin.remotePath toLocalPath:[self pathForClonedPlugin:plugin] completion:completion];
-}
-
-- (NSString *)pathForClonedPlugin:(ATZPlugin *)plugin {
-    return [NSTemporaryDirectory() stringByAppendingPathComponent:plugin.name];
 }
 
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {

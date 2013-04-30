@@ -32,6 +32,7 @@
 		8917DA181726B63B00F0B2D2 /* ATZDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA131726B63B00F0B2D2 /* ATZDownloader.m */; };
 		8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA151726B63B00F0B2D2 /* ATZGit.m */; };
 		8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA171726B63B00F0B2D2 /* ATZShell.m */; };
+		89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
@@ -91,6 +92,8 @@
 		8917DA151726B63B00F0B2D2 /* ATZGit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZGit.m; sourceTree = "<group>"; };
 		8917DA161726B63B00F0B2D2 /* ATZShell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZShell.h; sourceTree = "<group>"; };
 		8917DA171726B63B00F0B2D2 /* ATZShell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZShell.m; sourceTree = "<group>"; };
+		89B4F2BC172FF5AC001FD2E3 /* ATZPBXProjParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPBXProjParser.h; sourceTree = "<group>"; };
+		89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPBXProjParser.m; sourceTree = "<group>"; };
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
 		89D40AFA1721CBD600A67BB3 /* ATZPluginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPluginWindowController.h; path = Controllers/ATZPluginWindowController.h; sourceTree = "<group>"; };
 		89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPluginWindowController.m; path = Controllers/ATZPluginWindowController.m; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 				8917DA151726B63B00F0B2D2 /* ATZGit.m */,
 				8917DA161726B63B00F0B2D2 /* ATZShell.h */,
 				8917DA171726B63B00F0B2D2 /* ATZShell.m */,
+				89B4F2BC172FF5AC001FD2E3 /* ATZPBXProjParser.h */,
+				89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				8907F9A9172955690015A56B /* NSMutableArray+Subscript.m in Sources */,
 				8907F9AA172955690015A56B /* NSMutableDictionary+Subscript.m in Sources */,
 				8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */,
+				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
