@@ -23,7 +23,7 @@
 
 #import "ATZDownloader.h"
 
-static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/Keithbsmiley/alcatraz-packages/1af8ddfb581612b12e1556391bc0eb0754ce5945/packages.json";
+static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/mneorr/alcatraz-packages/master/packages.json";
 
 @implementation ATZDownloader
 
