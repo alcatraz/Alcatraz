@@ -32,6 +32,8 @@ static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
 static NSString *const PROJECT = @"-project";
 static NSString *const XCODEPROJ = @".xcodeproj";
 static NSString *const XCPLUGIN = @".xcplugin";
+static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
+
 
 @implementation ATZPluginInstaller
 
@@ -69,8 +71,8 @@ static NSString *const XCPLUGIN = @".xcplugin";
 
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
     
-    NSString *pbxprojPath = [[self pathForClonedPlugin:(id)package]
-                             stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.xcodeproj/project.pbxproj", package.name]];
+    NSString *pbxprojPath = [[[self pathForClonedPlugin:(id)package]
+                             stringByAppendingPathComponent:XCODEPROJ] stringByAppendingPathComponent:PROJECT_PBXPROJ];
     
     return [[[NSHomeDirectory() stringByAppendingPathComponent:LOCAL_PLUGINS_RELATIVE_PATH]
                                 stringByAppendingPathComponent:[ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath] ?: package.name]
