@@ -24,7 +24,7 @@
 #import "ATZInstaller.h"
 
 @implementation ATZPackage
-@dynamic isInstalled, type;
+@dynamic isInstalled, type, website;
 
 - (id)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
@@ -39,7 +39,6 @@
     [_name release];
     [_description release];
     [_remotePath release];
-    [_website release];
     [super dealloc];
 }
 
