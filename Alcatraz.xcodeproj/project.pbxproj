@@ -35,6 +35,8 @@
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
+		8A33ABDC172F442C00EFDA74 /* ATZSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A33ABDB172F442C00EFDA74 /* ATZSnippet.m */; };
+		8A33ABDF172F454B00EFDA74 /* ATZSnippetInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A33ABDE172F454B00EFDA74 /* ATZSnippetInstaller.m */; };
 		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
 		8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A96E0C71729DC1200350F67 /* ATZTitleButton.m */; };
 /* End PBXBuildFile section */
@@ -96,6 +98,10 @@
 		89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPluginWindowController.m; path = Controllers/ATZPluginWindowController.m; sourceTree = "<group>"; };
 		8A0C0A4B1726C076006E7AD2 /* ATZStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZStatusView.h; path = Views/ATZStatusView.h; sourceTree = "<group>"; };
 		8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZStatusView.m; path = Views/ATZStatusView.m; sourceTree = "<group>"; };
+		8A33ABDA172F442C00EFDA74 /* ATZSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZSnippet.h; sourceTree = "<group>"; };
+		8A33ABDB172F442C00EFDA74 /* ATZSnippet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZSnippet.m; sourceTree = "<group>"; };
+		8A33ABDD172F454B00EFDA74 /* ATZSnippetInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZSnippetInstaller.h; sourceTree = "<group>"; };
+		8A33ABDE172F454B00EFDA74 /* ATZSnippetInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZSnippetInstaller.m; sourceTree = "<group>"; };
 		8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZProgressIndicator.h; path = Views/ATZProgressIndicator.h; sourceTree = "<group>"; };
 		8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZProgressIndicator.m; path = Views/ATZProgressIndicator.m; sourceTree = "<group>"; };
 		8A96E0C61729DC1200350F67 /* ATZTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZTitleButton.h; path = Views/ATZTitleButton.h; sourceTree = "<group>"; };
@@ -211,6 +217,8 @@
 				8917D9F01726B4EE00F0B2D2 /* ATZProjectTemplate.m */,
 				8917D9F11726B4EE00F0B2D2 /* ATZTemplate.h */,
 				8917D9F21726B4EE00F0B2D2 /* ATZTemplate.m */,
+				8A33ABDA172F442C00EFDA74 /* ATZSnippet.h */,
+				8A33ABDB172F442C00EFDA74 /* ATZSnippet.m */,
 			);
 			path = Packages;
 			sourceTree = "<group>";
@@ -229,6 +237,8 @@
 				8917DA021726B53000F0B2D2 /* ATZProjectTemplateInstaller.m */,
 				8917DA031726B53000F0B2D2 /* ATZTemplateInstaller.h */,
 				8917DA041726B53000F0B2D2 /* ATZTemplateInstaller.m */,
+				8A33ABDD172F454B00EFDA74 /* ATZSnippetInstaller.h */,
+				8A33ABDE172F454B00EFDA74 /* ATZSnippetInstaller.m */,
 			);
 			path = Installers;
 			sourceTree = "<group>";
@@ -367,6 +377,8 @@
 				8907F9A9172955690015A56B /* NSMutableArray+Subscript.m in Sources */,
 				8907F9AA172955690015A56B /* NSMutableDictionary+Subscript.m in Sources */,
 				8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */,
+				8A33ABDC172F442C00EFDA74 /* ATZSnippet.m in Sources */,
+				8A33ABDF172F454B00EFDA74 /* ATZSnippetInstaller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
