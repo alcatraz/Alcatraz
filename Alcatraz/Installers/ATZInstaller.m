@@ -53,17 +53,20 @@ static NSString *const DOT_ALCATRAZ = @".alcatraz";
     return [NSHomeDirectory() stringByAppendingPathComponent:DOT_ALCATRAZ];
 }
 
-#pragma mark - Abstract
-
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    @throw [NSException exceptionWithName:@"Abstract Installer"
-                                   reason:@"Every package type has it's own install path" userInfo:nil];
+    return [[[NSHomeDirectory() stringByAppendingPathComponent:[self installRelativePath]]
+                                stringByAppendingPathComponent:package.name]
+                                stringByAppendingPathComponent:package.extension];
 }
+
 
 - (NSString *)pathForDownloadedPackage:(ATZPackage *)package {
-    @throw [NSException exceptionWithName:@"Abstract Installer"
-                                   reason:@"Every package type has it's own clone path" userInfo:nil];
+    return [[[self alcatrazDownloadsPath] stringByAppendingPathComponent:[self downloadRelativePath]]
+                                           stringByAppendingPathComponent:package.name];
 }
+
+
+#pragma mark - Abstract
 
 - (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
     @throw [NSException exceptionWithName:@"Abstract Installer"
@@ -73,6 +76,16 @@ static NSString *const DOT_ALCATRAZ = @".alcatraz";
 - (void)installPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Abstract Installer doesn't know how to install" userInfo:nil];
+}
+
+- (NSString *)downloadRelativePath {
+    @throw [NSException exceptionWithName:@"Abstract Installer"
+                                   reason:@"Download path is different for every package type" userInfo:nil];
+}
+
+- (NSString *)installRelativePath {
+    @throw [NSException exceptionWithName:@"Abstract Installer"
+                                   reason:@"Install path is different for every package type" userInfo:nil];
 }
 
 @end

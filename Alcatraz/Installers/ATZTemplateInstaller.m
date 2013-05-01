@@ -30,15 +30,6 @@
 
 #pragma mark - Abstract
 
-- (NSString *)pathForDownloadedPackage:(ATZPackage *)package {
-    return [NSTemporaryDirectory() stringByAppendingPathComponent:package.name];
-}
-
-- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    @throw [NSException exceptionWithName:@"Abstract Template Installer"
-                                   reason:@"Install path needs to be overriden in subclasses" userInfo:nil];
-}
-
 - (void)downloadOrUpdatePackage:(ATZTemplate *)package completion:(void (^)(NSError *))completion {
     [ATZGit updateOrCloneRepository:package.remotePath
                         toLocalPath:[self pathForDownloadedPackage:package]
@@ -54,9 +45,7 @@
 
 - (void)copyTemplatesToXcode:(ATZTemplate *)template completion:(void (^)(NSError *))completion {
     NSError *error = nil;
-    
-    [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:template]
-                             withIntermediateDirectories:YES attributes:nil error:&error];
+    [self createTemplateInstallDirectory:template error:&error];
     
     for (NSString *templatePath in [self templateFilesForClonedTemplate:template]) {
 
@@ -67,6 +56,11 @@
     }
     
     completion(error);
+}
+
+- (void)createTemplateInstallDirectory:(ATZTemplate *)template error:(NSError **)error {
+    [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:template]
+                             withIntermediateDirectories:YES attributes:nil error:error];
 }
 
 - (NSArray *)templateFilesForClonedTemplate:(ATZTemplate *)template {

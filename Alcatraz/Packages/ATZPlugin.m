@@ -24,6 +24,7 @@
 #import "ATZPluginInstaller.h"
 
 static NSString *const PLUGIN = @"Plugin";
+static NSString *const XCPLUGIN = @".xcplugin";
 
 @implementation ATZPlugin
 
@@ -37,6 +38,10 @@ static NSString *const PLUGIN = @"Plugin";
 
 - (BOOL)requiresRestart {
     return NO;
+}
+
+- (NSString *)extension {
+    return XCPLUGIN;
 }
 
 @end

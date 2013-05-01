@@ -31,22 +31,11 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 
 #pragma mark - Abstract
 
-- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    return [[[self colorSchemesPath] stringByAppendingPathComponent:package.name]
-                                            stringByAppendingString:COLOR_SCHEME_EXTENSION];
-}
-
-
-- (NSString *)pathForClonedPackage:(ATZPackage *)package {
-    return [[self alcatrazDownloadsPath] stringByAppendingPathComponent:DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH];
-}
-
 - (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData, NSError *error) {
         
         if (error) completion(error);
-        
         [self saveColorScheme:package withContents:responseData completion:completion];
         
         [downloader release];
@@ -55,11 +44,22 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 
 - (void)installPackage:(ATZColorScheme *)package completion:(void (^)(NSError *))completion {
     [self createColorsDirectoryIfNeeded];
-    
-    NSError *error = nil;
-    [[NSFileManager sharedManager] linkItemAtPath:[self pathForClonedPackage:package]
-                                           toPath:[self pathForInstalledPackage:package] error:&error];
-    completion(error);
+    [self copyColorSchemeToXcode:package completion:completion];
+}
+
+- (NSString *)downloadRelativePath {
+    return DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH;
+}
+
+- (NSString *)installRelativePath {
+    return INSTALLED_COLOR_SCHEMES_RELATIVE_PATH;
+}
+
+
+#pragma mark - Override - we store only color scheme files
+
+- (NSString *)pathForDownloadedPackage:(ATZPackage *)package {
+    return [[super pathForDownloadedPackage:package] stringByAppendingString:package.extension];
 }
 
 
@@ -68,11 +68,17 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 - (void)saveColorScheme:(ATZPackage *)colorScheme withContents:(NSData *)contents
              completion:(void(^)(NSError *error))completion {
     
-    
-    BOOL saveSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self pathForClonedPackage:colorScheme]
+    BOOL saveSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self pathForDownloadedPackage:colorScheme]
                                                                  contents:contents attributes:nil]);
     saveSucceeded ? completion(nil) :
-                       completion([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
+                    completion([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
+}
+
+- (void)copyColorSchemeToXcode:(ATZPackage *)colorScheme completion:(void (^)(NSError *))completion {
+    NSError *error = nil;
+    [[NSFileManager sharedManager] linkItemAtPath:[self pathForDownloadedPackage:colorScheme]
+                                           toPath:[self pathForInstalledPackage:colorScheme] error:&error];
+    completion(error);
 }
 
 - (void)createColorsDirectoryIfNeeded {

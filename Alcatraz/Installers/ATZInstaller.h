@@ -32,8 +32,6 @@ static NSString *const INSTALLING_FORMAT = @"Installing %@...";
 
 @interface ATZInstaller : NSObject
 
-- (NSString *)alcatrazDownloadsPath;
-
 - (void)installPackage:(ATZPackage *)package progress:(void(^)(NSString *progressMessage))progress
             completion:(void(^)(NSError *error))completion;
 
@@ -41,5 +39,15 @@ static NSString *const INSTALLING_FORMAT = @"Installing %@...";
            completion:(void(^)(NSError *error))completion;
 
 - (BOOL)isPackageInstalled:(ATZPackage *)package;
+
+- (NSString *)pathForInstalledPackage:(ATZPackage *)package;
+
+- (NSString *)pathForDownloadedPackage:(ATZPackage *)package;
+
+
+#pragma mark - Abstract (Overriden in subclasses)
+
+- (NSString *)downloadRelativePath;
+- (NSString *)installRelativePath;
 
 @end

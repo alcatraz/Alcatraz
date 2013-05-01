@@ -24,14 +24,18 @@
 #import "ATZFileTemplate.h"
 
 static NSString *const INSTALLED_FILE_TEMPLATES_RELATIVE_PATH = @"Library/Developer/Xcode/Templates/File Templates";
+static NSString *const DOWNLOADED_FILE_TEMPLATES_RELATIVE_PATH = @"Templates/File Templates";
 
 @implementation ATZFileTemplateInstaller
 
 #pragma mark - Abstract
 
-- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    return [[NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_FILE_TEMPLATES_RELATIVE_PATH]
-            stringByAppendingPathComponent:package.name];
+- (NSString *)installRelativePath {
+    return INSTALLED_FILE_TEMPLATES_RELATIVE_PATH;
+}
+
+- (NSString *)downloadRelativePath {
+    return DOWNLOADED_FILE_TEMPLATES_RELATIVE_PATH;
 }
 
 @end

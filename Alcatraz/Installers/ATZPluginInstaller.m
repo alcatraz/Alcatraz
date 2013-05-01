@@ -27,60 +27,49 @@
 #import "ATZGit.h"
 #import "ATZPBXProjParser.h"
 
-static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+static NSString *const INSTALLED_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+static NSString *const DOWNLOADED_PLUGINS_RELATIVE_PATH = @"Plug-ins";
+
 static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
 static NSString *const PROJECT = @"-project";
 static NSString *const XCODEPROJ = @".xcodeproj";
-static NSString *const XCPLUGIN = @".xcplugin";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 
 @implementation ATZPluginInstaller
 
-#pragma mark - Public
-
-- (void)installPackage:(ATZPlugin *)plugin progress:(void (^)(NSString *))progress
-            completion:(void (^)(NSError *))completion {
-    
-    progress([NSString stringWithFormat:DOWNLOADING_FORMAT, plugin.name]);
-    
-    [self clonePlugin:plugin completion:^(NSError *error) {
-        
-        if (error) completion(error);
-        else {
-            progress([NSString stringWithFormat:INSTALLING_FORMAT, plugin.name]);
-            [self buildPlugin:plugin completion:completion];
-        }
-    }];
-}
-
-- (void)removePackage:(ATZPlugin *)package
-           completion:(void (^)(NSError *))completion {
-
-    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package]
-                                         completion:completion];
-}
-
-
 #pragma mark - Abstract
 
+- (void)downloadOrUpdatePackage:(ATZPlugin *)package completion:(void (^)(NSError *))completion {
+
+    [ATZGit updateOrCloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
+                         completion:completion];
+}
+
+- (void)installPackage:(ATZPlugin *)package completion:(void(^)(NSError *))completion {
+    [self buildPlugin:package completion:completion];
+}
+
+- (NSString *)installRelativePath {
+    return INSTALLED_PLUGINS_RELATIVE_PATH;
+}
+
+- (NSString *)downloadRelativePath {
+    return DOWNLOADED_PLUGINS_RELATIVE_PATH;
+}
+
+// This is a temporary support for installs in /tmp.
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
     
-    NSString *pbxprojPath = [[[self pathForClonedPackage:package]
+    NSString *pbxprojPath = [[[self pathForDownloadedPackage:package]
                              stringByAppendingPathComponent:XCODEPROJ] stringByAppendingPathComponent:PROJECT_PBXPROJ];
+    NSString *installNameFromPbxproj = [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
     
-    return [[[NSHomeDirectory() stringByAppendingPathComponent:LOCAL_PLUGINS_RELATIVE_PATH]
-                                stringByAppendingPathComponent:[ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath] ?: package.name]
-                                       stringByAppendingString:XCPLUGIN];
-}
-
-- (NSString *)pathForClonedPackage:(ATZPackage *)package {
-    return [NSTemporaryDirectory() stringByAppendingPathComponent:package.name];
-}
-
-- (void)clonePlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion  {
-    
-    [ATZGit updateOrCloneRepository:plugin.remotePath toLocalPath:[self pathForClonedPackage:plugin] completion:completion];
+    if (installNameFromPbxproj)
+        return [[[self installRelativePath] stringByAppendingPathComponent:installNameFromPbxproj]
+                                                   stringByAppendingString:package.extension];
+    else
+        return [super pathForDownloadedPackage:package];
 }
 
 
@@ -130,7 +119,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 }
 
 - (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
-    NSString *clonedDirectory = [self pathForClonedPackage:plugin];
+    NSString *clonedDirectory = [self pathForDownloadedPackage:plugin];
     NSString *xcodeProjFilename = [plugin.name stringByAppendingString:XCODEPROJ];
     
     NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];
