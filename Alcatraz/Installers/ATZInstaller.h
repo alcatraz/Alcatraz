@@ -48,6 +48,5 @@ static NSString *const INSTALLING_FORMAT = @"Installing %@...";
 #pragma mark - Abstract (Overriden in subclasses)
 
 - (NSString *)downloadRelativePath;
-- (NSString *)installRelativePath;
 
 @end

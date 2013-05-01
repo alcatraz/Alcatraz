@@ -50,26 +50,17 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     [self buildPlugin:package completion:completion];
 }
 
-- (NSString *)installRelativePath {
-    return INSTALLED_PLUGINS_RELATIVE_PATH;
-}
-
 - (NSString *)downloadRelativePath {
     return DOWNLOADED_PLUGINS_RELATIVE_PATH;
 }
 
 // This is a temporary support for installs in /tmp.
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
+    NSString *pluginsInstallPath = [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PLUGINS_RELATIVE_PATH];
+    NSString *pluginInstallName = [self installNameFromPbxproj:package] ?: package.name;
     
-    NSString *pbxprojPath = [[[self pathForDownloadedPackage:package]
-                             stringByAppendingPathComponent:XCODEPROJ] stringByAppendingPathComponent:PROJECT_PBXPROJ];
-    NSString *installNameFromPbxproj = [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
-    
-    if (installNameFromPbxproj)
-        return [[[self installRelativePath] stringByAppendingPathComponent:installNameFromPbxproj]
-                                                   stringByAppendingString:package.extension];
-    else
-        return [super pathForDownloadedPackage:package];
+    return [[pluginsInstallPath stringByAppendingPathComponent:pluginInstallName]
+                                       stringByAppendingString:package.extension];
 }
 
 
@@ -131,6 +122,14 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     
     NSLog(@"Wasn't able to find: %@ in %@", xcodeProjFilename, clonedDirectory);
     @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
+}
+
+- (NSString *)installNameFromPbxproj:(ATZPackage *)package {
+    NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
+                               stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
+                             stringByAppendingPathComponent:PROJECT_PBXPROJ];
+    
+    return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
 }
 
 @end

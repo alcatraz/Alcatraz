@@ -30,12 +30,13 @@ static NSString *const DOWNLOADED_FILE_TEMPLATES_RELATIVE_PATH = @"Templates/Fil
 
 #pragma mark - Abstract
 
-- (NSString *)installRelativePath {
-    return INSTALLED_FILE_TEMPLATES_RELATIVE_PATH;
-}
-
 - (NSString *)downloadRelativePath {
     return DOWNLOADED_FILE_TEMPLATES_RELATIVE_PATH;
+}
+
+- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
+    return [[NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_FILE_TEMPLATES_RELATIVE_PATH]
+                               stringByAppendingPathComponent:package.name];
 }
 
 @end

@@ -53,13 +53,6 @@ static NSString *const DOT_ALCATRAZ = @".alcatraz";
     return [NSHomeDirectory() stringByAppendingPathComponent:DOT_ALCATRAZ];
 }
 
-- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    return [[[NSHomeDirectory() stringByAppendingPathComponent:[self installRelativePath]]
-                                stringByAppendingPathComponent:package.name]
-                                stringByAppendingPathComponent:package.extension];
-}
-
-
 - (NSString *)pathForDownloadedPackage:(ATZPackage *)package {
     return [[[self alcatrazDownloadsPath] stringByAppendingPathComponent:[self downloadRelativePath]]
                                            stringByAppendingPathComponent:package.name];
@@ -78,14 +71,15 @@ static NSString *const DOT_ALCATRAZ = @".alcatraz";
                                    reason:@"Abstract Installer doesn't know how to install" userInfo:nil];
 }
 
+
+- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
+    @throw [NSException exceptionWithName:@"Abstract Installer"
+                                   reason:@"Install path is different for every package type" userInfo:nil];
+}
+
 - (NSString *)downloadRelativePath {
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Download path is different for every package type" userInfo:nil];
-}
-
-- (NSString *)installRelativePath {
-    @throw [NSException exceptionWithName:@"Abstract Installer"
-                                   reason:@"Install path is different for every package type" userInfo:nil];
 }
 
 @end

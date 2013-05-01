@@ -51,8 +51,9 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
     return DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH;
 }
 
-- (NSString *)installRelativePath {
-    return INSTALLED_COLOR_SCHEMES_RELATIVE_PATH;
+- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
+    return [[[NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_COLOR_SCHEMES_RELATIVE_PATH]
+                                       stringByAppendingPathComponent:package.name] stringByAppendingString:package.extension];
 }
 
 

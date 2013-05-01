@@ -30,12 +30,13 @@ static NSString *const DOWNLOADED_PROJECT_TEMPLATES_RELATIVE_PATH = @"Templates/
 
 #pragma mark - Abstract
 
-- (NSString *)installRelativePath {
-    return INSTALLED_PROJECT_TEMPLATES_RELATIVE_PATH;
-}
-
 - (NSString *)downloadRelativePath {
     return DOWNLOADED_PROJECT_TEMPLATES_RELATIVE_PATH;
+}
+
+- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
+    return [[NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PROJECT_TEMPLATES_RELATIVE_PATH]
+                               stringByAppendingPathComponent:package.name];
 }
 
 @end
