@@ -36,7 +36,7 @@ static NSString *const PLUGIN = @"Plugin";
 }
 
 - (BOOL)requiresRestart {
-    return YES;
+    return NO;
 }
 
 @end
