@@ -49,4 +49,9 @@ static NSString *const INSTALLING_FORMAT = @"Installing %@...";
 
 - (NSString *)downloadRelativePath;
 
+
+#pragma mark - Hooks
+
+- (void)reloadXcodeForPackage:(ATZPackage *)package completion:(void(^)(NSError *error))completion;
+
 @end

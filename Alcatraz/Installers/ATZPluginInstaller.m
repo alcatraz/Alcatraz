@@ -63,6 +63,43 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
                                        stringByAppendingString:package.extension];
 }
 
+- (NSString *)installNameFromPbxproj:(ATZPackage *)package {
+    NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
+                               stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
+                               stringByAppendingPathComponent:PROJECT_PBXPROJ];
+    
+    return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
+}
+
+
+#pragma mark - Hooks
+
+- (void)reloadXcodeForPackage:(ATZPackage *)plugin completion:(void(^)(NSError *))completion {
+    
+    NSString *installedPluginPath = [self pathForInstalledPackage:plugin];
+    NSBundle *pluginBundle = [NSBundle bundleWithPath:installedPluginPath];
+    
+    if ([pluginBundle isLoaded]) {
+        completion(nil);
+        return;
+    }
+    
+    NSError *loadError = nil;
+    BOOL loaded = [pluginBundle loadAndReturnError:&loadError];
+    if (!loaded)
+        NSLog(@"[Alcatraz] Plugin load error: %@", loadError);
+    
+    Class principalClass = [pluginBundle principalClass];
+    if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
+        [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
+        completion(nil);
+    } else {
+        NSString *errorDescription = [NSString stringWithFormat:@"The principal class of %@ does not implement the pluginDidLoad: method.", plugin.name];
+        completion([NSError errorWithDomain:errorDescription code:668 userInfo:nil]);
+    }
+}
+
+
 
 #pragma mark - Private
 
@@ -78,33 +115,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     ATZShell *shell = [ATZShell new];
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
-        if (error) {
-            completion(error);
-            [shell release];
-            return;
-        }
-        
-        NSString *installedPluginPath = [self pathForInstalledPackage:plugin];
-        NSBundle *pluginBundle = [NSBundle bundleWithPath:installedPluginPath];
-        if ([pluginBundle isLoaded]) {
-            completion(nil);
-            [shell release];
-            return;
-        }
-        
-        NSError *loadError = nil;
-        BOOL loaded = [pluginBundle loadAndReturnError:&loadError];
-        if (!loaded)
-            NSLog(@"Plugin load error: %@", loadError);
-        
-        Class principalClass = [pluginBundle principalClass];
-        if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
-            [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
-            completion(nil);
-        } else {
-            NSString *errorDescription = [NSString stringWithFormat:@"The principal class of %@ does not implement the pluginDidLoad: method.", plugin.name];
-            completion([NSError errorWithDomain:errorDescription code:668 userInfo:nil]);
-        }
+        completion(error);
         [shell release];
     }];
 }
@@ -122,14 +133,6 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     
     NSLog(@"Wasn't able to find: %@ in %@", xcodeProjFilename, clonedDirectory);
     @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
-}
-
-- (NSString *)installNameFromPbxproj:(ATZPackage *)package {
-    NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
-                               stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
-                             stringByAppendingPathComponent:PROJECT_PBXPROJ];
-    
-    return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
 }
 
 @end

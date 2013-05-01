@@ -36,13 +36,16 @@ static NSString *const DOT_ALCATRAZ = @".alcatraz";
         if (error) completion(error);
         
         progress([NSString stringWithFormat:INSTALLING_FORMAT, package.name]);
-        [self installPackage:package completion:completion];
+        [self installPackage:package completion:^(NSError *error) {
+            
+            if (error) completion (error);
+            [self reloadXcodeForPackage:package completion:completion];
+        }];
     }];
 }
 
 - (void)removePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
-    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package]
-                                         completion:completion];
+    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion];
 }
 
 - (BOOL)isPackageInstalled:(ATZPackage *)package {
@@ -81,5 +84,10 @@ static NSString *const DOT_ALCATRAZ = @".alcatraz";
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Download path is different for every package type" userInfo:nil];
 }
+
+
+#pragma mark - Hooks
+
+- (void)reloadXcodeForPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion{}
 
 @end
