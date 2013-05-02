@@ -5,7 +5,7 @@
 - Installing almost any plugin doesn't require Xcode restarting
 - Automatic updates. You shouldn't worry about updating Alcatraz anymore :)
 - Added support for a different plugin name and install dir. Solves [BBUncrustify](https://github.com/mneorr/alcatraz-packages/pull/17)
-- Alcatraz haz got a twitter.com/alcatraz_xcode account!
+- Alcatraz haz got a [twitter account](https://twitter.com/alcatraz_xcode)!
 
 
 ##### Enhancements
