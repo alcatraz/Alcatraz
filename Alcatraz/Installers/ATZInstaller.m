@@ -23,7 +23,7 @@
 #import "ATZInstaller.h"
 #import "ATZPackage.h"
 
-static NSString *const DOT_ALCATRAZ = @".alcatraz";
+static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatraz";
 
 @implementation ATZInstaller
 
@@ -53,7 +53,7 @@ static NSString *const DOT_ALCATRAZ = @".alcatraz";
 }
 
 - (NSString *)alcatrazDownloadsPath {
-    return [NSHomeDirectory() stringByAppendingPathComponent:DOT_ALCATRAZ];
+    return [NSHomeDirectory() stringByAppendingPathComponent:ALCATRAZ_DATA_DIR];
 }
 
 - (NSString *)pathForDownloadedPackage:(ATZPackage *)package {

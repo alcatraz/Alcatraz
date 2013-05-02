@@ -91,7 +91,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
         [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
     } else
-        NSLog(@"%@",[NSString stringWithFormat: @"The principal class of %@ does not implement the pluginDidLoad: method.", plugin.name]);
+        NSLog(@"%@",[NSString stringWithFormat: @"%@ does not implement the pluginDidLoad: method.", plugin.name]);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NSApplicationDidFinishLaunchingNotification object:NSApp];
     completion(nil);
