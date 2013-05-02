@@ -36,6 +36,7 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
     [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData, NSError *error) {
         
         if (error) completion(error);
+        [self createDownloadedColorsDirectoryIfNeeded];
         [self saveColorScheme:package withContents:responseData completion:completion];
         
         [downloader release];
@@ -43,7 +44,7 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 }
 
 - (void)installPackage:(ATZColorScheme *)package completion:(void (^)(NSError *))completion {
-    [self createColorsDirectoryIfNeeded];
+    [self createInstalledColorsDirectoryIfNeeded];
     [self copyColorSchemeToXcode:package completion:completion];
 }
 
@@ -58,10 +59,10 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 
 
 #pragma mark - Override - we store only color scheme files
-
-- (NSString *)pathForDownloadedPackage:(ATZPackage *)package {
-    return [[super pathForDownloadedPackage:package] stringByAppendingString:package.extension];
-}
+//
+//- (NSString *)pathForDownloadedPackage:(ATZPackage *)package {
+//    return [[super pathForDownloadedPackage:package] stringByAppendingString:package.extension];
+//}
 
 
 #pragma mark - Private
@@ -82,16 +83,23 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
     completion(error);
 }
 
-- (void)createColorsDirectoryIfNeeded {
-
-    if (![[NSFileManager sharedManager] fileExistsAtPath:[self colorSchemesPath]]) {
-     
-        [[NSFileManager sharedManager] createDirectoryAtPath:[self colorSchemesPath]
+- (void)createDownloadedColorsDirectoryIfNeeded {
+    if (![[NSFileManager sharedManager] fileExistsAtPath:[self pathForDownloadedPackage:nil]]) {
+        
+        [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForDownloadedPackage:nil]
                                  withIntermediateDirectories:YES attributes:nil error:nil];
     }
 }
 
-- (NSString *)colorSchemesPath {
+- (void)createInstalledColorsDirectoryIfNeeded {
+    if (![[NSFileManager sharedManager] fileExistsAtPath:[self installedColorSchemesPath]]) {
+        
+        [[NSFileManager sharedManager] createDirectoryAtPath:[self installedColorSchemesPath]
+                                 withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+}
+
+- (NSString *)installedColorSchemesPath {
     return [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_COLOR_SCHEMES_RELATIVE_PATH];
 }
 
