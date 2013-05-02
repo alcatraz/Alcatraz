@@ -144,7 +144,7 @@ footer {
   }
 }
 
-@media (max-width: 400) {
+@media (max-width: 480) {
   h1 {
     font-size: 2em;
   }
@@ -172,6 +172,10 @@ footer {
     display:block;
     text-align: center;
     width: 100%;
+  }
+
+  #project-links {
+    margin-left: 8px;
   }
 
   #banner {
