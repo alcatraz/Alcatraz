@@ -30,7 +30,7 @@
 static NSString *const DOWNLOADING_FORMAT = @"Downloading %@...";
 static NSString *const INSTALLING_FORMAT = @"Installing %@...";
 
-@protocol ATZInstaller <NSObject>
+@interface ATZInstaller : NSObject
 
 - (void)installPackage:(ATZPackage *)package progress:(void(^)(NSString *progressMessage))progress
             completion:(void(^)(NSError *error))completion;
@@ -39,6 +39,19 @@ static NSString *const INSTALLING_FORMAT = @"Installing %@...";
            completion:(void(^)(NSError *error))completion;
 
 - (BOOL)isPackageInstalled:(ATZPackage *)package;
+
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package;
+
+- (NSString *)pathForDownloadedPackage:(ATZPackage *)package;
+
+
+#pragma mark - Abstract (Overriden in subclasses)
+
+- (NSString *)downloadRelativePath;
+
+
+#pragma mark - Hooks
+
+- (void)reloadXcodeForPackage:(ATZPackage *)package completion:(void(^)(NSError *error))completion;
 
 @end

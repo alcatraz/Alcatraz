@@ -24,7 +24,7 @@
 #import "ATZInstaller.h"
 
 @implementation ATZPackage
-@dynamic isInstalled, type, website;
+@dynamic isInstalled, type, website, extension;
 
 - (id)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
@@ -85,8 +85,12 @@
     [[self installer] removePackage:self completion:completion];
 }
 
-- (id<ATZInstaller>)installer {
-    @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Each package has to return a different installer!" userInfo:nil];
+- (ATZInstaller *)installer {
+    @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Each package has a different installer!" userInfo:nil];
+}
+
+- (NSString *)extension {
+    @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Each package has a different extension!" userInfo:nil];
 }
 
 - (void)setIsInstalled:(BOOL)isInstalled { /* Hack for IB bindings. */ }
