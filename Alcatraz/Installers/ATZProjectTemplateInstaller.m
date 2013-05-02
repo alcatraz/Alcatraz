@@ -24,15 +24,19 @@
 #import "ATZProjectTemplate.h"
 
 static NSString *const INSTALLED_PROJECT_TEMPLATES_RELATIVE_PATH = @"Library/Developer/Xcode/Templates/Project Templates";
+static NSString *const DOWNLOADED_PROJECT_TEMPLATES_RELATIVE_PATH = @"Templates/Project Templates";
 
 @implementation ATZProjectTemplateInstaller
 
 #pragma mark - Abstract
 
-- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    return [[NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PROJECT_TEMPLATES_RELATIVE_PATH]
-            stringByAppendingPathComponent:package.name];
+- (NSString *)downloadRelativePath {
+    return DOWNLOADED_PROJECT_TEMPLATES_RELATIVE_PATH;
 }
 
+- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
+    return [[NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PROJECT_TEMPLATES_RELATIVE_PATH]
+                               stringByAppendingPathComponent:package.name];
+}
 
 @end

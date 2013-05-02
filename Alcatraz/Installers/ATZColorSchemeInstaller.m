@@ -24,67 +24,83 @@
 #import "ATZColorSchemeInstaller.h"
 #import "ATZColorScheme.h"
 
-static NSString *const LOCAL_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/Xcode/UserData/FontAndColorThemes";
+static NSString *const INSTALLED_COLOR_SCHEMES_RELATIVE_PATH = @"Library/Developer/Xcode/UserData/FontAndColorThemes";
+static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorThemes";
+
 @implementation ATZColorSchemeInstaller
 
-#pragma mark - Public
+#pragma mark - Abstract
 
-- (void)installPackage:(ATZColorScheme *)package progress:(void(^)(NSString *))progress
-            completion:(void(^)(NSError *error))completion {
-
-    progress([NSString stringWithFormat:DOWNLOADING_FORMAT, package.name]);
-    
+- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData, NSError *error) {
         
         if (error) completion(error);
-        progress([NSString stringWithFormat:INSTALLING_FORMAT, package.name]);
+        [self createDownloadedColorsDirectoryIfNeeded];
+        [self saveColorScheme:package withContents:responseData completion:completion];
         
-        [self installColorScheme:package withContents:responseData completion:completion];
         [downloader release];
     }];
 }
 
-- (void)removePackage:(ATZColorScheme *)package completion:(void (^)(NSError *))completion {
-
-    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package]
-                                         completion:completion];
+- (void)installPackage:(ATZColorScheme *)package completion:(void (^)(NSError *))completion {
+    [self createInstalledColorsDirectoryIfNeeded];
+    [self copyColorSchemeToXcode:package completion:completion];
 }
 
-- (BOOL)isPackageInstalled:(ATZColorScheme *)package {
-    
-    return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package]];
-}
-
-#pragma mark - Private
-
-- (void)installColorScheme:(ATZColorScheme *)colorScheme withContents:(NSData *)contents
-                completion:(void(^)(NSError *error))completion {
-    
-    [self createColorsDirectoryIfNeeded];
-    BOOL installSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self pathForInstalledPackage:colorScheme]
-                                                                    contents:contents attributes:nil]);
-    
-    installSucceeded ? completion(nil) :
-                       completion([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
+- (NSString *)downloadRelativePath {
+    return DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH;
 }
 
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    return [[self colorSchemesPath] stringByAppendingPathComponent:
-                                        [package.name stringByAppendingString:@".dvtcolortheme"]];
+    return [[[NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_COLOR_SCHEMES_RELATIVE_PATH]
+                                       stringByAppendingPathComponent:package.name] stringByAppendingString:package.extension];
 }
 
-- (void)createColorsDirectoryIfNeeded {
-    BOOL isDirectory = YES;
-    if (![[NSFileManager sharedManager] fileExistsAtPath:[self colorSchemesPath] isDirectory:&isDirectory]) {
-     
-        [[NSFileManager sharedManager] createDirectoryAtPath:[self colorSchemesPath]
+
+#pragma mark - Override - we store only color scheme files
+//
+//- (NSString *)pathForDownloadedPackage:(ATZPackage *)package {
+//    return [[super pathForDownloadedPackage:package] stringByAppendingString:package.extension];
+//}
+
+
+#pragma mark - Private
+
+- (void)saveColorScheme:(ATZPackage *)colorScheme withContents:(NSData *)contents
+             completion:(void(^)(NSError *error))completion {
+    
+    BOOL saveSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self pathForDownloadedPackage:colorScheme]
+                                                                 contents:contents attributes:nil]);
+    saveSucceeded ? completion(nil) :
+                    completion([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
+}
+
+- (void)copyColorSchemeToXcode:(ATZPackage *)colorScheme completion:(void (^)(NSError *))completion {
+    NSError *error = nil;
+    [[NSFileManager sharedManager] linkItemAtPath:[self pathForDownloadedPackage:colorScheme]
+                                           toPath:[self pathForInstalledPackage:colorScheme] error:&error];
+    completion(error);
+}
+
+- (void)createDownloadedColorsDirectoryIfNeeded {
+    if (![[NSFileManager sharedManager] fileExistsAtPath:[self pathForDownloadedPackage:nil]]) {
+        
+        [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForDownloadedPackage:nil]
                                  withIntermediateDirectories:YES attributes:nil error:nil];
     }
 }
 
-- (NSString *)colorSchemesPath {
-    return [NSHomeDirectory() stringByAppendingPathComponent:LOCAL_COLOR_SCHEMES_RELATIVE_PATH];
+- (void)createInstalledColorsDirectoryIfNeeded {
+    if (![[NSFileManager sharedManager] fileExistsAtPath:[self installedColorSchemesPath]]) {
+        
+        [[NSFileManager sharedManager] createDirectoryAtPath:[self installedColorSchemesPath]
+                                 withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+}
+
+- (NSString *)installedColorSchemesPath {
+    return [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_COLOR_SCHEMES_RELATIVE_PATH];
 }
 
 @end

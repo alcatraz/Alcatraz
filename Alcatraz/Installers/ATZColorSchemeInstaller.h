@@ -24,6 +24,6 @@
 #import <Foundation/Foundation.h>
 #import "ATZInstaller.h"
 
-@interface ATZColorSchemeInstaller : NSObject<ATZInstaller>
+@interface ATZColorSchemeInstaller : ATZInstaller
 
 @end

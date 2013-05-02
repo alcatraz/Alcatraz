@@ -27,70 +27,84 @@
 #import "ATZGit.h"
 #import "ATZPBXProjParser.h"
 
-static NSString *const LOCAL_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+static NSString *const INSTALLED_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+static NSString *const DOWNLOADED_PLUGINS_RELATIVE_PATH = @"Plug-ins";
+
 static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
 static NSString *const PROJECT = @"-project";
 static NSString *const XCODEPROJ = @".xcodeproj";
-static NSString *const XCPLUGIN = @".xcplugin";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
-
 
 @implementation ATZPluginInstaller
 
-#pragma mark - Public
+#pragma mark - Abstract
 
-- (void)installPackage:(ATZPlugin *)plugin progress:(void (^)(NSString *))progress
-            completion:(void (^)(NSError *))completion {
+- (void)downloadOrUpdatePackage:(ATZPlugin *)package completion:(void (^)(NSError *))completion {
+
+    [ATZGit updateOrCloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
+                         completion:completion];
+}
+
+- (void)installPackage:(ATZPlugin *)package completion:(void(^)(NSError *))completion {
+    [self buildPlugin:package completion:completion];
+}
+
+- (NSString *)downloadRelativePath {
+    return DOWNLOADED_PLUGINS_RELATIVE_PATH;
+}
+
+// This is a temporary support for installs in /tmp.
+- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
+    NSString *pluginsInstallPath = [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PLUGINS_RELATIVE_PATH];
+    NSString *pluginInstallName = [self installNameFromPbxproj:package] ?: package.name;
     
-    progress([NSString stringWithFormat:DOWNLOADING_FORMAT, plugin.name]);
+    return [[pluginsInstallPath stringByAppendingPathComponent:pluginInstallName]
+                                       stringByAppendingString:package.extension];
+}
+
+- (NSString *)installNameFromPbxproj:(ATZPackage *)package {
+    NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
+                               stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
+                               stringByAppendingPathComponent:PROJECT_PBXPROJ];
     
-    [self clonePlugin:plugin completion:^(NSError *error) {
-        
-        if (error) completion(error);
-        else {
-            progress([NSString stringWithFormat:INSTALLING_FORMAT, plugin.name]);
-            [self buildPlugin:plugin completion:completion];
-        }
-    }];
+    return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
 }
 
-- (void)removePackage:(ATZPlugin *)package
-           completion:(void (^)(NSError *))completion {
 
-    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package]
-                                         completion:completion];
+#pragma mark - Hooks
+
+- (void)reloadXcodeForPackage:(ATZPackage *)plugin completion:(void(^)(NSError *))completion {
+    
+    NSBundle *pluginBundle = [NSBundle bundleWithPath:[self pathForInstalledPackage:plugin]];
+    
+    if ([pluginBundle isLoaded]) {
+        completion(nil);
+        return;
+    }
+    
+    NSError *loadError = nil;
+    BOOL loaded = [pluginBundle loadAndReturnError:&loadError];
+    if (!loaded)
+        NSLog(@"[Alcatraz] Plugin load error: %@", loadError);
+    
+    Class principalClass = [pluginBundle principalClass];
+    if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
+        [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
+    } else
+        NSLog(@"%@",[NSString stringWithFormat: @"%@ does not implement the pluginDidLoad: method.", plugin.name]);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NSApplicationDidFinishLaunchingNotification object:NSApp];
+    completion(nil);
 }
 
-- (BOOL)isPackageInstalled:(ATZPlugin *)package {
-    BOOL isDirectory;
-    return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package] isDirectory:&isDirectory];
-}
 
 
 #pragma mark - Private
 
-- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    
-    NSString *pbxprojPath = [[[self pathForClonedPlugin:(id)package]
-                             stringByAppendingPathComponent:XCODEPROJ] stringByAppendingPathComponent:PROJECT_PBXPROJ];
-    
-    return [[[NSHomeDirectory() stringByAppendingPathComponent:LOCAL_PLUGINS_RELATIVE_PATH]
-                                stringByAppendingPathComponent:[ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath] ?: package.name]
-                                       stringByAppendingString:XCPLUGIN];
-}
-
-- (NSString *)pathForClonedPlugin:(ATZPlugin *)plugin {
-    return [NSTemporaryDirectory() stringByAppendingPathComponent:plugin.name];
-}
-
-- (void)clonePlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion  {
-    
-    [ATZGit updateOrCloneRepository:plugin.remotePath toLocalPath:[self pathForClonedPlugin:plugin] completion:completion];
-}
-
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
-    
+
     NSString *xcodeProjPath;
+    
     @try { xcodeProjPath = [self findXcodeprojPathForPlugin:plugin]; }
     @catch (NSException *exception) {
         completion([NSError errorWithDomain:exception.reason code:666 userInfo:nil]);
@@ -100,39 +114,13 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     ATZShell *shell = [ATZShell new];
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
-        if (error) {
-            completion(error);
-            [shell release];
-            return;
-        }
-        
-        NSString *installedPluginPath = [self pathForInstalledPackage:plugin];
-        NSBundle *pluginBundle = [NSBundle bundleWithPath:installedPluginPath];
-        if ([pluginBundle isLoaded]) {
-            completion(nil);
-            [shell release];
-            return;
-        }
-        
-        NSError *loadError = nil;
-        BOOL loaded = [pluginBundle loadAndReturnError:&loadError];
-        if (!loaded)
-            NSLog(@"Plugin load error: %@", loadError);
-        
-        Class principalClass = [pluginBundle principalClass];
-        if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
-            [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
-            completion(nil);
-        } else {
-            NSString *errorDescription = [NSString stringWithFormat:@"The principal class of %@ does not implement the pluginDidLoad: method.", plugin.name];
-            completion([NSError errorWithDomain:errorDescription code:668 userInfo:nil]);
-        }
+        completion(error);
         [shell release];
     }];
 }
 
 - (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
-    NSString *clonedDirectory = [self pathForClonedPlugin:plugin];
+    NSString *clonedDirectory = [self pathForDownloadedPackage:plugin];
     NSString *xcodeProjFilename = [plugin.name stringByAppendingString:XCODEPROJ];
     
     NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];

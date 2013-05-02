@@ -25,54 +25,31 @@
 #import "ATZTemplate.h"
 #import "ATZGit.h"
 
-static NSString *const XCTEMPLATE = @".xctemplate";
-
 @implementation ATZTemplateInstaller
 
-#pragma mark - Public
 
-- (void)installPackage:(ATZTemplate *)package progress:(void (^)(NSString *))progress
-            completion:(void (^)(NSError *))completion {
-    
-    progress([NSString stringWithFormat:DOWNLOADING_FORMAT, package.name]);
-    [ATZGit updateOrCloneRepository:package.remotePath toLocalPath:[self pathForClonedPackage:package]
-                         completion:^(NSError *error) {
-        
-        if (error) completion(error);
-        else {
-            progress([NSString stringWithFormat:INSTALLING_FORMAT, package.name]);
-            [self copyTemplatesToXcode:package progress:progress completion:completion];
-        }
-    }];
+#pragma mark - Abstract
+
+- (void)downloadOrUpdatePackage:(ATZTemplate *)package completion:(void (^)(NSError *))completion {
+    [ATZGit updateOrCloneRepository:package.remotePath
+                        toLocalPath:[self pathForDownloadedPackage:package]
+                         completion:completion];
 }
 
-- (void)removePackage:(ATZTemplate *)package
-           completion:(void (^)(NSError *))completion {
-    [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion];
+- (void)installPackage:(ATZTemplate *)package completion:(void(^)(NSError *))completion {
+    [self copyTemplatesToXcode:package completion:completion];
 }
 
-- (BOOL)isPackageInstalled:(ATZPackage *)package {
-    return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package]];
-}
 
 #pragma mark - Private
 
-- (NSString *)pathForClonedPackage:(ATZPackage *)package {
-    return [NSTemporaryDirectory() stringByAppendingPathComponent:package.name];
-}
-
-- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    @throw [NSException exceptionWithName:@"Abstract TemplateInstaller"
-                                   reason:@"Install path needs to be overriden in subclasses" userInfo:nil];
-}
-
-- (void)copyTemplatesToXcode:(ATZTemplate *)template progress:(void(^)(NSString *))progress completion:(void (^)(NSError *))completion {
+- (void)copyTemplatesToXcode:(ATZTemplate *)template completion:(void (^)(NSError *))completion {
     NSError *error = nil;
+    [self createTemplateInstallDirectory:template error:&error];
     
-    [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:template]
-                             withIntermediateDirectories:YES attributes:nil error:&error];
+    if (error) completion(error);
     
-    for (NSString *templatePath in [self templateFilesFromClonedDirectory:[self pathForClonedPackage:template]]) {
+    for (NSString *templatePath in [self templateFilesForClonedTemplate:template]) {
 
         NSString *templateFileName = templatePath.pathComponents.lastObject;
         NSString *installPath = [[self pathForInstalledPackage:template] stringByAppendingPathComponent:templateFileName];
@@ -83,15 +60,22 @@ static NSString *const XCTEMPLATE = @".xctemplate";
     completion(error);
 }
 
-- (NSArray *)templateFilesFromClonedDirectory:(NSString *)clonePath {
+- (void)createTemplateInstallDirectory:(ATZTemplate *)template error:(NSError **)error {
+    [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:template]
+                             withIntermediateDirectories:YES attributes:nil error:error];
+}
+
+- (NSArray *)templateFilesForClonedTemplate:(ATZTemplate *)template {
     @autoreleasepool {
+        NSString *clonePath = [self pathForDownloadedPackage:template];
         NSMutableArray *foundTemplates = [NSMutableArray new];
+
         @try {
             NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonePath];
             NSString *directoryEntry;
             
             while (directoryEntry = [enumerator nextObject]) {
-                if ([directoryEntry hasSuffix:XCTEMPLATE])
+                if ([directoryEntry hasSuffix:template.extension])
                     [foundTemplates addObject:[clonePath stringByAppendingPathComponent:directoryEntry]];
             }
         }
@@ -101,7 +85,5 @@ static NSString *const XCTEMPLATE = @".xctemplate";
         return [foundTemplates autorelease];
     }
 }
-
-
 
 @end

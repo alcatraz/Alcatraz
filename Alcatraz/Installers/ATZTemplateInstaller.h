@@ -23,6 +23,6 @@
 #import <Foundation/Foundation.h>
 #import "ATZInstaller.h"
 
-@interface ATZTemplateInstaller : NSObject<ATZInstaller>
+@interface ATZTemplateInstaller : ATZInstaller
 
 @end
