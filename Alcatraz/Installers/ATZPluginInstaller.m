@@ -72,12 +72,17 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 
 #pragma mark - Hooks
-
+// Note: this is an early alpha implementation. It needs some love
 - (void)reloadXcodeForPackage:(ATZPackage *)plugin completion:(void(^)(NSError *))completion {
     
     NSBundle *pluginBundle = [NSBundle bundleWithPath:[self pathForInstalledPackage:plugin]];
+    NSLog(@"Trying to reload plugin: %@ with bundle: %@", plugin.name, pluginBundle);
     
-    if ([pluginBundle isLoaded]) {
+    if (!pluginBundle) {
+        completion([NSError errorWithDomain:@"Bundle was not found" code:669 userInfo:nil]);
+        return;
+    }
+    else if ([pluginBundle isLoaded]) {
         completion(nil);
         return;
     }
@@ -91,9 +96,8 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
         [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
     } else
-        NSLog(@"%@",[NSString stringWithFormat: @"%@ does not implement the pluginDidLoad: method.", plugin.name]);
+        NSLog(@"%@",[NSString stringWithFormat:@"%@ does not implement the pluginDidLoad: method.", plugin.name]);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:NSApplicationDidFinishLaunchingNotification object:NSApp];
     completion(nil);
 }
 
