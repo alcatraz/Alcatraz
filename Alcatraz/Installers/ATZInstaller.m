@@ -34,8 +34,8 @@ static NSString *const DOT_ALCATRAZ = @".alcatraz";
     [self downloadOrUpdatePackage:package completion:^(NSError *error) {
        
         if (error) completion(error);
-        
         progress([NSString stringWithFormat:INSTALLING_FORMAT, package.name]);
+        
         [self installPackage:package completion:^(NSError *error) {
             
             if (error) completion (error);
@@ -88,6 +88,6 @@ static NSString *const DOT_ALCATRAZ = @".alcatraz";
 
 #pragma mark - Hooks
 
-- (void)reloadXcodeForPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion{}
+- (void)reloadXcodeForPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion{ completion(nil); }
 
 @end

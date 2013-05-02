@@ -22,6 +22,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 #import "ATZInstaller.h"
 
 @interface ATZPluginInstaller : ATZInstaller

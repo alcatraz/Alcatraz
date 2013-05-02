@@ -27,6 +27,7 @@ static NSString *const PLUGIN = @"Plugin";
 static NSString *const XCPLUGIN = @".xcplugin";
 
 @implementation ATZPlugin
+@synthesize requiresRestart;
 
 - (ATZInstaller *)installer {
     return [[ATZPluginInstaller new] autorelease];
@@ -34,10 +35,6 @@ static NSString *const XCPLUGIN = @".xcplugin";
 
 - (NSString *)type {
     return PLUGIN;
-}
-
-- (BOOL)requiresRestart {
-    return NO;
 }
 
 - (NSString *)extension {

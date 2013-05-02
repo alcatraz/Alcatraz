@@ -127,7 +127,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         
         NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :( Error: %@", package.name, failure.domain] :
                                       [NSString stringWithFormat:@"%@ installed.", package.name];
-
+        NSLog(@"%@", message);
         [self flashNotice:message];
         [self reloadUIForPackage:package fromCheckbox:checkbox];
     }];

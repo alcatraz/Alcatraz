@@ -47,6 +47,8 @@
     NSError *error = nil;
     [self createTemplateInstallDirectory:template error:&error];
     
+    if (error) completion(error);
+    
     for (NSString *templatePath in [self templateFilesForClonedTemplate:template]) {
 
         NSString *templateFileName = templatePath.pathComponents.lastObject;

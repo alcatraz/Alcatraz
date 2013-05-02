@@ -32,9 +32,9 @@
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSString *remotePath;
 @property (nonatomic, readonly) NSString *website;
-@property (nonatomic, readonly) BOOL isInstalled;
-@property (nonatomic, readonly) BOOL requiresRestart;
 @property (nonatomic, readonly) NSString *extension;
+@property (nonatomic, readonly) BOOL isInstalled;
+@property (nonatomic, assign)   BOOL requiresRestart;
 
 - (id)initWithDictionary:(NSDictionary *)dict;
 

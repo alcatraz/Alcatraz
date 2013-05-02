@@ -76,8 +76,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 - (void)reloadXcodeForPackage:(ATZPackage *)plugin completion:(void(^)(NSError *))completion {
     
-    NSString *installedPluginPath = [self pathForInstalledPackage:plugin];
-    NSBundle *pluginBundle = [NSBundle bundleWithPath:installedPluginPath];
+    NSBundle *pluginBundle = [NSBundle bundleWithPath:[self pathForInstalledPackage:plugin]];
     
     if ([pluginBundle isLoaded]) {
         completion(nil);
@@ -92,11 +91,15 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     Class principalClass = [pluginBundle principalClass];
     if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
         [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
-        completion(nil);
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSApplicationDidFinishLaunchingNotification object:pluginBundle];
+        
     } else {
-        NSString *errorDescription = [NSString stringWithFormat:@"The principal class of %@ does not implement the pluginDidLoad: method.", plugin.name];
-        completion([NSError errorWithDomain:errorDescription code:668 userInfo:nil]);
+        plugin.requiresRestart = YES;
+        NSLog(@"%@",[NSString stringWithFormat:
+                     @"The principal class of %@ does not implement the pluginDidLoad: method.", plugin.name]);
     }
+    
+    completion(nil);
 }
 
 
