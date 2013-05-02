@@ -25,6 +25,7 @@
 #import "NSFileManager+Alcatraz.h"
 
 static NSString *const GIT = @"/usr/bin/git";
+static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
 
 @implementation ATZGit
 
@@ -37,7 +38,7 @@ static NSString *const GIT = @"/usr/bin/git";
                      completion:(void (^)(NSString *, NSError *))completion {
     
     if ([[NSFileManager sharedManager] fileExistsAtPath:localPath])
-        [self updateLocalProject:localPath completion:completion];
+        [self updateLocalProject:localPath options:options completion:completion];
     
     else [self clone:remotePath to:localPath completion:completion];
 }
@@ -48,7 +49,7 @@ static NSString *const GIT = @"/usr/bin/git";
 + (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSString*, NSError *))completion {
     ATZShell *shell = [ATZShell new];
     
-    [shell executeCommand:GIT withArguments:@[@"clone", remotePath, localPath, @"-c push.default=matching"]
+    [shell executeCommand:GIT withArguments:@[CLONE, remotePath, localPath, IGNORE_PUSH_CONFIG]
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git Clone output: %@", output);
@@ -58,19 +59,22 @@ static NSString *const GIT = @"/usr/bin/git";
 }
 
 // TODO: refactor, make less shell instances (maybe?)
-+ (void)updateLocalProject:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
++ (void)updateLocalProject:(NSString *)localPath options:(NSDictionary *)options
+                completion:(void (^)(NSString *, NSError *))completion {
+    
     [self fetch:localPath completion:^(NSString *output, NSError *error) {
         
         if (error)
             completion(output, error);
         else
-            [self resetHard:localPath completion:completion];
+            [self resetHard:localPath options:options completion:completion];
     }];
 }
 
 + (void)fetch:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
+    
     ATZShell *shell = [ATZShell new];
-    [shell executeCommand:GIT withArguments:@[@"fetch", @"origin"] inWorkingDirectory:localPath
+    [shell executeCommand:GIT withArguments:@[FETCH, ORIGIN] inWorkingDirectory:localPath
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git fetch output: %@", output);
@@ -79,9 +83,13 @@ static NSString *const GIT = @"/usr/bin/git";
     }];
 }
 
-+ (void)resetHard:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
++ (void)resetHard:(NSString *)localPath options:(NSDictionary *)options
+       completion:(void (^)(NSString *, NSError *))completion {
+    
     ATZShell *shell = [ATZShell new];
-    [shell executeCommand:GIT withArguments:@[@"reset", @"--hard", @"origin/master"] inWorkingDirectory:localPath
+    NSArray *resetArguments = @[RESET, HARD, options[BRANCH] ?: options[TAG] ?: ORIGIN_MASTER];
+    
+    [shell executeCommand:GIT withArguments:resetArguments inWorkingDirectory:localPath
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git reset output: %@", output);

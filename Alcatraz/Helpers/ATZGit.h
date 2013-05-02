@@ -22,6 +22,19 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *const CLONE = @"clone";
+static NSString *const FETCH = @"fetch";
+static NSString *const ORIGIN = @"origin";
+static NSString *const BRANCH = @"branch";
+static NSString *const TAG = @"tag";
+static NSString *const ORIGIN_MASTER = @"origin/master";
+static NSString *const RESET = @"reset";
+static NSString *const HARD = @"--hard";
+
+// Options examples:
+//  @{ BRANCH: @"deploy" }
+//  @{ TAG: @"1.2.1" }
+
 @interface ATZGit : NSObject
 
 + (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath options:(NSDictionary *)options
