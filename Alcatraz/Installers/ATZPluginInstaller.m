@@ -39,7 +39,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 #pragma mark - Abstract
 
-- (void)downloadOrUpdatePackage:(ATZPlugin *)package completion:(void (^)(NSError *))completion {
+- (void)downloadOrUpdatePackage:(ATZPlugin *)package completion:(void (^)(NSString *, NSError *))completion {
 
     [ATZGit updateOrCloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
                          completion:completion];

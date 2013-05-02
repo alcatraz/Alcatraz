@@ -31,7 +31,7 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
             completion:(void(^)(NSError *error))completion {
     
     progress([NSString stringWithFormat:DOWNLOADING_FORMAT, package.name]);
-    [self downloadOrUpdatePackage:package completion:^(NSError *error) {
+    [self downloadOrUpdatePackage:package completion:^(NSString *output, NSError *error) {
        
         if (error) completion(error);
         progress([NSString stringWithFormat:INSTALLING_FORMAT, package.name]);
@@ -64,7 +64,7 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
 
 #pragma mark - Abstract
 
-- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
+- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSString *, NSError *))completion {
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Abstract Installer doesn't know how to download" userInfo:nil];
 }

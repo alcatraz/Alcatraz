@@ -31,13 +31,15 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 
 #pragma mark - Abstract
 
-- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
+- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSString *, NSError *))completion {
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData, NSError *error) {
         
-        if (error) completion(error);
+        if (error) completion(nil, error);
         [self createDownloadedColorsDirectoryIfNeeded];
-        [self saveColorScheme:package withContents:responseData completion:completion];
+        [self saveColorScheme:package withContents:responseData completion:^(NSError *error) {
+            completion(nil, error);
+        }];
         
         [downloader release];
     }];
@@ -58,17 +60,10 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 }
 
 
-#pragma mark - Override - we store only color scheme files
-//
-//- (NSString *)pathForDownloadedPackage:(ATZPackage *)package {
-//    return [[super pathForDownloadedPackage:package] stringByAppendingString:package.extension];
-//}
-
-
 #pragma mark - Private
 
 - (void)saveColorScheme:(ATZPackage *)colorScheme withContents:(NSData *)contents
-             completion:(void(^)(NSError *error))completion {
+             completion:(void(^)(NSError *))completion {
     
     BOOL saveSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self pathForDownloadedPackage:colorScheme]
                                                                  contents:contents attributes:nil]);

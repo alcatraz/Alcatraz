@@ -28,9 +28,14 @@ static NSString *const GIT = @"/usr/bin/git";
 
 @implementation ATZGit
 
++ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
+                     completion:(void (^)(NSString *, NSError *))completion {
+    [self updateOrCloneRepository:remotePath toLocalPath:localPath options:nil completion:completion];
+}
 
-+ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath completion:(void (^)(NSError *))completion {
-
++ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath options:(NSDictionary *)options
+                     completion:(void (^)(NSString *, NSError *))completion {
+    
     if ([[NSFileManager sharedManager] fileExistsAtPath:localPath])
         [self updateLocalProject:localPath completion:completion];
     
@@ -40,47 +45,47 @@ static NSString *const GIT = @"/usr/bin/git";
 
 #pragma mark - Private
 
-+ (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSError *))completion {
++ (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSString*, NSError *))completion {
     ATZShell *shell = [ATZShell new];
     
     [shell executeCommand:GIT withArguments:@[@"clone", remotePath, localPath, @"-c push.default=matching"]
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git Clone output: %@", output);
-        completion(error);
+        completion(output, error);
         [shell release];
     }];
 }
 
 // TODO: refactor, make less shell instances (maybe?)
-+ (void)updateLocalProject:(NSString *)localPath completion:(void (^)(NSError *))completion {
-    [self fetch:localPath completion:^(NSError *error) {
++ (void)updateLocalProject:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
+    [self fetch:localPath completion:^(NSString *output, NSError *error) {
         
         if (error)
-            completion(error);
+            completion(output, error);
         else
             [self resetHard:localPath completion:completion];
     }];
 }
 
-+ (void)fetch:(NSString *)localPath completion:(void (^)(NSError *error))completion {
++ (void)fetch:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
     ATZShell *shell = [ATZShell new];
     [shell executeCommand:GIT withArguments:@[@"fetch", @"origin"] inWorkingDirectory:localPath
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git fetch output: %@", output);
-        completion(error);
+        completion(output, error);
         [shell release];
     }];
 }
 
-+ (void)resetHard:(NSString *)localPath completion:(void (^)(NSError *error))completion {
++ (void)resetHard:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
     ATZShell *shell = [ATZShell new];
     [shell executeCommand:GIT withArguments:@[@"reset", @"--hard", @"origin/master"] inWorkingDirectory:localPath
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git reset output: %@", output);
-        completion(error);
+        completion(output, error);
         [shell release];
     }];
 }

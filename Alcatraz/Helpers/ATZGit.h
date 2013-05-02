@@ -24,7 +24,10 @@
 
 @interface ATZGit : NSObject
 
++ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath options:(NSDictionary *)options
+                     completion:(void(^)(NSString *output, NSError *error))completion;
+
 + (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
-                     completion:(void(^)(NSError *error))completion;
+                     completion:(void(^)(NSString *output, NSError *error))completion;
 
 @end

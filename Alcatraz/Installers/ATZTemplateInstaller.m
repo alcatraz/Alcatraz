@@ -30,7 +30,7 @@
 
 #pragma mark - Abstract
 
-- (void)downloadOrUpdatePackage:(ATZTemplate *)package completion:(void (^)(NSError *))completion {
+- (void)downloadOrUpdatePackage:(ATZTemplate *)package completion:(void (^)(NSString *, NSError *))completion {
     [ATZGit updateOrCloneRepository:package.remotePath
                         toLocalPath:[self pathForDownloadedPackage:package]
                          completion:completion];
