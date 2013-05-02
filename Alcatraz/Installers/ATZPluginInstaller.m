@@ -35,7 +35,6 @@ static NSString *const PROJECT = @"-project";
 static NSString *const XCODEPROJ = @".xcodeproj";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
-
 @implementation ATZPluginInstaller
 
 #pragma mark - Abstract
@@ -91,14 +90,10 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     Class principalClass = [pluginBundle principalClass];
     if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
         [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NSApplicationDidFinishLaunchingNotification object:pluginBundle];
-        
-    } else {
-        plugin.requiresRestart = YES;
-        NSLog(@"%@",[NSString stringWithFormat:
-                     @"The principal class of %@ does not implement the pluginDidLoad: method.", plugin.name]);
-    }
+    } else
+        NSLog(@"%@",[NSString stringWithFormat: @"The principal class of %@ does not implement the pluginDidLoad: method.", plugin.name]);
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:NSApplicationDidFinishLaunchingNotification object:NSApp];
     completion(nil);
 }
 
@@ -107,8 +102,9 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 #pragma mark - Private
 
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
-    
+
     NSString *xcodeProjPath;
+    
     @try { xcodeProjPath = [self findXcodeprojPathForPlugin:plugin]; }
     @catch (NSException *exception) {
         completion([NSError errorWithDomain:exception.reason code:666 userInfo:nil]);
