@@ -39,11 +39,22 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 #pragma mark - Abstract
 
-- (void)downloadOrUpdatePackage:(ATZPlugin *)package completion:(void (^)(NSString *, NSError *))completion {
-
-    [ATZGit updateOrCloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
-                         completion:completion];
+- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+    
+    [ATZGit cloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
+                 completion:completion];
 }
+
+- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+    
+    [ATZGit updateRepository:[self pathForDownloadedPackage:package] branchOrTag:nil
+                  completion:^(NSString *output, NSError *error) {
+        
+        // check if plugin has been updated - if output is empty
+        completion(error);
+    }];
+}
+
 
 - (void)installPackage:(ATZPlugin *)package completion:(void(^)(NSError *))completion {
     [self buildPlugin:package completion:completion];
@@ -60,14 +71,6 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     
     return [[pluginsInstallPath stringByAppendingPathComponent:pluginInstallName]
                                        stringByAppendingString:package.extension];
-}
-
-- (NSString *)installNameFromPbxproj:(ATZPackage *)package {
-    NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
-                               stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
-                               stringByAppendingPathComponent:PROJECT_PBXPROJ];
-    
-    return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
 }
 
 
@@ -136,6 +139,14 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     
     NSLog(@"Wasn't able to find: %@ in %@", xcodeProjFilename, clonedDirectory);
     @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
+}
+
+- (NSString *)installNameFromPbxproj:(ATZPackage *)package {
+    NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
+                               stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
+                             stringByAppendingPathComponent:PROJECT_PBXPROJ];
+    
+    return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
 }
 
 @end

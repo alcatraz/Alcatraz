@@ -31,16 +31,12 @@ static NSString *const ORIGIN_MASTER = @"origin/master";
 static NSString *const RESET = @"reset";
 static NSString *const HARD = @"--hard";
 
-// Options examples:
-//  @{ BRANCH: @"deploy" }
-//  @{ TAG: @"1.2.1" }
-
 @interface ATZGit : NSObject
 
-+ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath options:(NSDictionary *)options
-                     completion:(void(^)(NSString *output, NSError *error))completion;
++ (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
+             completion:(void(^)(NSError *error))completion;
 
-+ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
-                     completion:(void(^)(NSString *output, NSError *error))completion;
++ (void)updateRepository:(NSString *)localPath branchOrTag:(NSDictionary *)resetOptions
+              completion:(void(^)(NSString *output, NSError *error))completion;
 
 @end

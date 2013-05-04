@@ -31,18 +31,23 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 
 #pragma mark - Abstract
 
-- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSString *, NSError *))completion {
+
+- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData, NSError *error) {
         
-        if (error) completion(nil, error);
+        if (error) completion(error);
         [self createDownloadedColorsDirectoryIfNeeded];
         [self saveColorScheme:package withContents:responseData completion:^(NSError *error) {
-            completion(nil, error);
+            completion(error);
         }];
         
         [downloader release];
     }];
+}
+
+- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+    [self downloadPackage:package completion:completion];
 }
 
 - (void)installPackage:(ATZColorScheme *)package completion:(void (^)(NSError *))completion {

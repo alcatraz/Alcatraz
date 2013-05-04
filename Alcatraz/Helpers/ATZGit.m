@@ -29,37 +29,35 @@ static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
 
 @implementation ATZGit
 
-+ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
-                     completion:(void (^)(NSString *, NSError *))completion {
-    [self updateOrCloneRepository:remotePath toLocalPath:localPath options:nil completion:completion];
++ (void)updateRepository:(NSString *)localPath branchOrTag:(NSDictionary *)resetOptions
+              completion:(void(^)(NSString *output, NSError *error))completion {
+
+    [self updateLocalProject:localPath branchOrTag:resetOptions completion:completion];
 }
 
-+ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath options:(NSDictionary *)options
-                     completion:(void (^)(NSString *, NSError *))completion {
++ (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
+             completion:(void (^)(NSError *))completion {
     
-    if ([[NSFileManager sharedManager] fileExistsAtPath:localPath])
-        [self updateLocalProject:localPath options:options completion:completion];
-    
-    else [self clone:remotePath to:localPath completion:completion];
+    [self clone:remotePath to:localPath completion:completion];
 }
 
 
 #pragma mark - Private
 
-+ (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSString*, NSError *))completion {
++ (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSError *))completion {
     ATZShell *shell = [ATZShell new];
     
     [shell executeCommand:GIT withArguments:@[CLONE, remotePath, localPath, IGNORE_PUSH_CONFIG]
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git Clone output: %@", output);
-        completion(output, error);
+        completion(error);
         [shell release];
     }];
 }
 
 // TODO: refactor, make less shell instances (maybe?)
-+ (void)updateLocalProject:(NSString *)localPath options:(NSDictionary *)options
++ (void)updateLocalProject:(NSString *)localPath branchOrTag:(NSDictionary *)options
                 completion:(void (^)(NSString *, NSError *))completion {
     
     [self fetch:localPath completion:^(NSString *output, NSError *error) {
@@ -67,7 +65,7 @@ static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
         if (error)
             completion(output, error);
         else
-            [self resetHard:localPath options:options completion:completion];
+            [self resetHard:localPath branchOrTag:options completion:completion];
     }];
 }
 
@@ -83,7 +81,7 @@ static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
     }];
 }
 
-+ (void)resetHard:(NSString *)localPath options:(NSDictionary *)options
++ (void)resetHard:(NSString *)localPath branchOrTag:(NSDictionary *)options
        completion:(void (^)(NSString *, NSError *))completion {
     
     ATZShell *shell = [ATZShell new];

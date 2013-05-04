@@ -30,10 +30,18 @@
 
 #pragma mark - Abstract
 
-- (void)downloadOrUpdatePackage:(ATZTemplate *)package completion:(void (^)(NSString *, NSError *))completion {
-    [ATZGit updateOrCloneRepository:package.remotePath
-                        toLocalPath:[self pathForDownloadedPackage:package]
-                         completion:completion];
+- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+    [ATZGit cloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
+                 completion:completion];
+}
+
+- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+    [ATZGit updateRepository:[self pathForDownloadedPackage:package] branchOrTag:nil
+                  completion:^(NSString *output, NSError *error) {
+                      
+        // check if output is empty
+        completion(error);
+    }];
 }
 
 - (void)installPackage:(ATZTemplate *)package completion:(void(^)(NSError *))completion {
