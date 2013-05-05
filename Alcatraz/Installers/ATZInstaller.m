@@ -53,7 +53,9 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
     progress([NSString stringWithFormat:UPDATING_FORMAT, package.name]);
     [self updatePackage:package completion:^(NSString *output, NSError *error) {
         
-        if (error || output.length < 1) completion(error);
+        BOOL needsUpdate = output.length > 0;
+        if (error || !needsUpdate) { completion(error); return; }
+        
         [self installPackage:package completion:completion];
     }];
 }

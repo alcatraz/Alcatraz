@@ -60,12 +60,14 @@ static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
 + (void)updateLocalProject:(NSString *)localPath branchOrTag:(NSDictionary *)options
                 completion:(void (^)(NSString *, NSError *))completion {
     
-    [self fetch:localPath completion:^(NSString *output, NSError *error) {
+    [self fetch:localPath completion:^(NSString *fetchOutput, NSError *error) {
         
         if (error)
-            completion(output, error);
+            completion(fetchOutput, error);
         else
-            [self resetHard:localPath branchOrTag:options completion:completion];
+            [self resetHard:localPath branchOrTag:options completion:^(NSString *resetOutput, NSError *error) {
+                completion(fetchOutput, error);
+            }];
     }];
 }
 

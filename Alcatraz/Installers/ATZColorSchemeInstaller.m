@@ -47,10 +47,8 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 }
 
 - (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
-    [self downloadPackage:package completion:^(NSError *error) {
-        
-        completion(@"fake fetch output", error);
-    }];
+    
+    completion(nil, nil);
 }
 
 - (void)installPackage:(ATZColorScheme *)package completion:(void (^)(NSError *))completion {
