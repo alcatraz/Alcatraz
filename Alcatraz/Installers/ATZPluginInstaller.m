@@ -45,14 +45,10 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
                  completion:completion];
 }
 
-- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
     
     [ATZGit updateRepository:[self pathForDownloadedPackage:package] branchOrTag:nil
-                  completion:^(NSString *output, NSError *error) {
-        
-        // check if plugin has been updated - if output is empty
-        completion(error);
-    }];
+                  completion:completion];
 }
 
 

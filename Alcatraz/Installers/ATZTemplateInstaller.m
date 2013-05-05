@@ -35,13 +35,9 @@
                  completion:completion];
 }
 
-- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
     [ATZGit updateRepository:[self pathForDownloadedPackage:package] branchOrTag:nil
-                  completion:^(NSString *output, NSError *error) {
-                      
-        // check if output is empty
-        completion(error);
-    }];
+                  completion:completion];
 }
 
 - (void)installPackage:(ATZTemplate *)package completion:(void(^)(NSError *))completion {
