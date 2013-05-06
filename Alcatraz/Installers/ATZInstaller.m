@@ -27,6 +27,19 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
 
 @implementation ATZInstaller
 
+#pragma mark - Singleton
+
++ (instancetype)sharedInstaller {
+    static id singleton;
+    static dispatch_once_t singletonToken;
+    dispatch_once(&singletonToken, ^{
+        singleton = [[self alloc] init];
+    });
+    return singleton;
+}
+
+#pragma mark - Public
+
 - (void)installPackage:(ATZPackage *)package progress:(void(^)(NSString *progressMessage))progress
             completion:(void(^)(NSError *error))completion {
     
@@ -44,16 +57,25 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
     }];
 }
 
+- (void)updatePackage:(ATZPackage *)package progress:(void(^)(NSString *progressMessage))progress
+           completion:(void(^)(NSError *error))completion {
+    
+    progress([NSString stringWithFormat:UPDATING_FORMAT, package.name]);
+    [self updatePackage:package completion:^(NSString *output, NSError *error) {
+        
+        BOOL needsUpdate = output.length > 0;
+        if (error || !needsUpdate) { completion(error); return; }
+        
+        [self installPackage:package completion:completion];
+    }];
+}
+
 - (void)removePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
     [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion];
 }
 
 - (BOOL)isPackageInstalled:(ATZPackage *)package {
     return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package]];
-}
-
-- (NSString *)alcatrazDownloadsPath {
-    return [NSHomeDirectory() stringByAppendingPathComponent:ALCATRAZ_DATA_DIR];
 }
 
 - (NSString *)pathForDownloadedPackage:(ATZPackage *)package {
@@ -64,9 +86,19 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
 
 #pragma mark - Abstract
 
-- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
+- (NSString *)alcatrazDownloadsPath {
+    return [NSHomeDirectory() stringByAppendingPathComponent:ALCATRAZ_DATA_DIR];
+}
+
+
+- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Abstract Installer doesn't know how to download" userInfo:nil];
+}
+
+- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
+    @throw [NSException exceptionWithName:@"Abstract Installer"
+                                   reason:@"Abstract Installer doesn't know how to update" userInfo:nil];
 }
 
 - (void)installPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
@@ -89,5 +121,19 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
 #pragma mark - Hooks
 
 - (void)reloadXcodeForPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion{ completion(nil); }
+
+
+
+#pragma mark - Private
+
+- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
+    
+    if ([[NSFileManager sharedManager] fileExistsAtPath:[self pathForDownloadedPackage:package]])
+        [self updatePackage:package completion:^(NSString *output, NSError *error) {
+            completion(error);
+        }];
+    else
+        [self downloadPackage:package completion:completion];
+}
 
 @end

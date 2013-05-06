@@ -30,7 +30,7 @@ static NSString *const XCPLUGIN = @".xcplugin";
 @synthesize requiresRestart;
 
 - (ATZInstaller *)installer {
-    return [[ATZPluginInstaller new] autorelease];
+    return [ATZPluginInstaller sharedInstaller];
 }
 
 - (NSString *)type {
