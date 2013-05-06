@@ -28,7 +28,7 @@ static NSString *const PROJECT_TEMPLATE = @"Project Template";
 @implementation ATZProjectTemplate
 
 - (ATZInstaller *)installer {
-    return [[ATZProjectTemplateInstaller new] autorelease];
+    return [ATZProjectTemplateInstaller sharedInstaller];
 }
 
 - (NSString *)type {

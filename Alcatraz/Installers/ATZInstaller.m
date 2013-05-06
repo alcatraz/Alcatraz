@@ -27,6 +27,16 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
 
 @implementation ATZInstaller
 
+#pragma mark - Singleton
+
++ (instancetype)sharedInstaller {
+    static id singleton;
+    static dispatch_once_t singletonToken;
+    dispatch_once(&singletonToken, ^{
+        singleton = [[self alloc] init];
+    });
+    return singleton;
+}
 
 #pragma mark - Public
 
