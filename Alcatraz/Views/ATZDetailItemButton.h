@@ -22,6 +22,6 @@
 
 #import <AppKit/AppKit.h>
 
-@interface ATZTitleButton : NSButton
+@interface ATZDetailItemButton : NSButton
 
 @end

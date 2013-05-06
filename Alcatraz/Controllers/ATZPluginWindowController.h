@@ -35,6 +35,7 @@
 
 - (IBAction)checkboxPressed:(NSButton *)sender;
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender;
+- (IBAction)displayScreenshotPressed:(NSButton *)sender;
 
 - (IBAction)showAllPackages:(id)sender;
 - (IBAction)showOnlyPlugins:(id)sender;
