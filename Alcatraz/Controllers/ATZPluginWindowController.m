@@ -23,6 +23,7 @@
 #import "ATZPluginWindowController.h"
 #import "ATZDownloader.h"
 #import "ATZPackageFactory.h"
+#import "ATZTitleButton.h"
 
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
@@ -44,7 +45,15 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (id)init {
     if (self = [super init]) {
         _filterPredicate = [NSPredicate predicateWithValue:YES];
-
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(titleButtonDidReceiveMouseEnter:)
+                                                     name:ALCATRAZ_TITLE_BUTTON_MOUSE_ENTER object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(titleButtonDidReceiveMouseExit)
+                                                     name:ALCATRAZ_TITLE_BUTTON_MOUSE_EXIT object:nil];
+        
         @try { [self fetchPlugins]; [self updateAlcatraz]; }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
@@ -52,6 +61,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_packages release];
     [_filterPredicate release];
     
@@ -104,6 +114,14 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [self updatePredicate];
 }
 
+- (void)titleButtonDidReceiveMouseEnter:(NSNotification *)sender {
+    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:[sender object]]];
+    [self.statusLabel setStringValue:package.website];
+}
+
+- (void)titleButtonDidReceiveMouseExit {
+    [self.statusLabel setStringValue:@""];
+}
 
 #pragma mark - Private
 

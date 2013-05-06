@@ -27,6 +27,7 @@
 @implementation ATZTitleButton
 
 - (void)mouseEntered:(NSEvent *)theEvent {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ALCATRAZ_TITLE_BUTTON_MOUSE_ENTER object:self];;
     self.alphaValue = 1.f;
     self.image = [NSImage imageNamed:NSImageNameFollowLinkFreestandingTemplate];
 }
@@ -34,6 +35,7 @@
 - (void)mouseExited:(NSEvent *)theEvent {
     self.alphaValue = MIN_ALPHA;
     self.image = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:ALCATRAZ_TITLE_BUTTON_MOUSE_EXIT object:self];
 }
 
 - (void)resetCursorRects {

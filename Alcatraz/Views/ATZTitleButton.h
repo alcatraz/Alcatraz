@@ -22,6 +22,9 @@
 
 #import <AppKit/AppKit.h>
 
+static NSString * const ALCATRAZ_TITLE_BUTTON_MOUSE_ENTER = @"ATZButtonDidReceiveMouseEnterNotification";
+static NSString * const ALCATRAZ_TITLE_BUTTON_MOUSE_EXIT = @"ATZButtonDidReceiveMouseExitNotification";
+
 @interface ATZTitleButton : NSButton
 
 @end
