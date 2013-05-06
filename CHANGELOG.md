@@ -1,3 +1,13 @@
+## 0.4
+
+##### Features
+
+- __Experimental__ added automatic package updates. You don't have to worry about manually updating plugins or templates.
+
+##### Enhancements
+
+- Less memory usage. Installers are singletons
+
 ## 0.3
 
 ##### Features

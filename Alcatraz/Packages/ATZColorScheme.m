@@ -30,7 +30,7 @@ static NSString *const DVTCOLORSCHEME = @".dvtcolortheme";
 @implementation ATZColorScheme
 
 - (ATZInstaller *)installer {
-    return [[ATZColorSchemeInstaller new] autorelease];
+    return [ATZColorSchemeInstaller sharedInstaller];
 }
 
 - (NSString *)type {

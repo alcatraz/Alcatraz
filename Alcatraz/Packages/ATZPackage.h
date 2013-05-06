@@ -41,6 +41,9 @@
 - (void)installWithProgressMessage:(void(^)(NSString *proggressMessage))progress
                         completion:(void(^)(NSError *failure))completion;
 
+- (void)updateWithProgressMessage:(void(^)(NSString *proggressMessage))progress
+                       completion:(void(^)(NSError *failure))completion;
+
 - (void)removeWithCompletion:(void(^)(NSError *failure))completion;
 
 

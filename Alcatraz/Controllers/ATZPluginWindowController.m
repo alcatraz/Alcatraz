@@ -183,6 +183,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             [self flashNotice:[NSString stringWithFormat:@"Download failed: %@", error.domain]];
         } else {
             self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
+            [self updatePackages];
         }
         [downloader release];
     }];
@@ -210,6 +211,23 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             [self flashNotice:@"Alcatraz updated."];
         [alcatraz release];
     }];
+}
+
+- (void)updatePackages {
+    for (ATZPackage *package in self.packages) {
+        
+        if (package.isInstalled) {
+            NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
+                [package updateWithProgressMessage:^(NSString *proggressMessage) {
+                    
+                    [self flashNotice:proggressMessage];
+                } completion:^(NSError *failure) {}];
+            }];
+            [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
+            [[NSOperationQueue mainQueue] addOperation:updateOperation];
+        }
+        NSLog(@"Operations: %@", @([[NSOperationQueue mainQueue] operations].count));
+    }
 }
 
 - (void)flashNotice:(NSString *)notice {

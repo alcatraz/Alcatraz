@@ -22,9 +22,21 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *const CLONE = @"clone";
+static NSString *const FETCH = @"fetch";
+static NSString *const ORIGIN = @"origin";
+static NSString *const BRANCH = @"branch";
+static NSString *const TAG = @"tag";
+static NSString *const ORIGIN_MASTER = @"origin/master";
+static NSString *const RESET = @"reset";
+static NSString *const HARD = @"--hard";
+
 @interface ATZGit : NSObject
 
-+ (void)updateOrCloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
-                     completion:(void(^)(NSError *error))completion;
++ (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
+             completion:(void(^)(NSError *error))completion;
+
++ (void)updateRepository:(NSString *)localPath branchOrTag:(NSDictionary *)resetOptions
+              completion:(void(^)(NSString *output, NSError *error))completion;
 
 @end
