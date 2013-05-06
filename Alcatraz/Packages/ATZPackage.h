@@ -31,6 +31,7 @@
 @property (strong, nonatomic) NSString *description;
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSString *remotePath;
+@property (strong, nonatomic) NSString *screenshotPath;
 @property (nonatomic, readonly) NSString *website;
 @property (nonatomic, readonly) NSString *extension;
 @property (nonatomic, readonly) BOOL isInstalled;
@@ -40,6 +41,9 @@
 
 - (void)installWithProgressMessage:(void(^)(NSString *proggressMessage))progress
                         completion:(void(^)(NSError *failure))completion;
+
+- (void)updateWithProgressMessage:(void(^)(NSString *proggressMessage))progress
+                       completion:(void(^)(NSError *failure))completion;
 
 - (void)removeWithCompletion:(void(^)(NSError *failure))completion;
 

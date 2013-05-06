@@ -28,7 +28,7 @@ static NSString *const FILE_TEMPLATE = @"File Template";
 @implementation ATZFileTemplate
 
 - (ATZInstaller *)installer {
-    return [[ATZFileTemplateInstaller new] autorelease];
+    return [ATZFileTemplateInstaller sharedInstaller];
 }
 
 - (NSString *)type {
