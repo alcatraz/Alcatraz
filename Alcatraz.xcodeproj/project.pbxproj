@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32FDC4ED17399B00005D9EDA /* ATZPackageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FDC4EC17399B00005D9EDA /* ATZPackageTableView.m */; };
 		8907F9A7172955690015A56B /* NSArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F99E172955690015A56B /* NSArray+Subscript.m */; };
 		8907F9A8172955690015A56B /* NSDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A0172955690015A56B /* NSDictionary+Subscript.m */; };
 		8907F9A9172955690015A56B /* NSMutableArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A2172955690015A56B /* NSMutableArray+Subscript.m */; };
@@ -42,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32FDC4EB17399B00005D9EDA /* ATZPackageTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPackageTableView.h; sourceTree = "<group>"; };
+		32FDC4EC17399B00005D9EDA /* ATZPackageTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPackageTableView.m; sourceTree = "<group>"; };
 		8907F99D172955690015A56B /* NSArray+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Subscript.h"; sourceTree = "<group>"; };
 		8907F99E172955690015A56B /* NSArray+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Subscript.m"; sourceTree = "<group>"; };
 		8907F99F172955690015A56B /* NSDictionary+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Subscript.h"; sourceTree = "<group>"; };
@@ -281,6 +284,8 @@
 				8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */,
 				8A96E0C61729DC1200350F67 /* ATZTitleButton.h */,
 				8A96E0C71729DC1200350F67 /* ATZTitleButton.m */,
+				32FDC4EB17399B00005D9EDA /* ATZPackageTableView.h */,
+				32FDC4EC17399B00005D9EDA /* ATZPackageTableView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */,
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
+				32FDC4ED17399B00005D9EDA /* ATZPackageTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

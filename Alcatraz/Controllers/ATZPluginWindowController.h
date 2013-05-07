@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 #import <AppKit/AppKit.h>
+#import "ATZPackageTableView.h"
 
 @interface ATZPluginWindowController : NSWindowController<NSTableViewDelegate, NSControlTextEditingDelegate>
 
@@ -28,7 +29,7 @@
 @property (nonatomic, retain) NSPredicate *filterPredicate;
 
 @property (assign) IBOutlet NSSearchField *searchField;
-@property (assign) IBOutlet NSTableView *tableView;
+@property (assign) IBOutlet ATZPackageTableView *tableView;
 @property (assign) IBOutlet NSTextField *statusLabel;
 @property (assign) IBOutlet NSTextField *restartLabel;
 @property (assign) IBOutlet NSProgressIndicator *progressIndicator;

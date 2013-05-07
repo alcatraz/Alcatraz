@@ -123,6 +123,20 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [self.statusLabel setStringValue:@""];
 }
 
+#pragma mark - ATZPackageTableView delegate
+- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    NSLog(@"Cell: %@, row: %ld", cell, row);
+    NSTableRowView *rowView = [self.tableView rowViewAtRow:row makeIfNecessary:NO];
+    
+    NSLog(@"rowView: %@ cell: %@", rowView, [rowView viewAtColumn:1] );
+    if ([(ATZPackageTableView *)tableView mouseOverRow] == row) {
+        rowView.backgroundColor = [NSColor secondarySelectedControlColor];
+    } else {
+        rowView.backgroundColor = row % 2 == 0 ? [NSColor whiteColor] : [NSColor colorWithDeviceRed:0.953 green:0.965 blue:0.980 alpha:1.000];
+    }
+}
+
+
 #pragma mark - Private
 
 - (void)removePackage:(ATZPackage *)package andUpdateCheckbox:(NSButton *)checkbox {
