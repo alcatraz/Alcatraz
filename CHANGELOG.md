@@ -1,3 +1,10 @@
+## 0.4.1
+
+##### Bug fixes
+
+- Fixed singleton creation for subclasses.
+
+
 ## 0.4
 
 ##### Features
@@ -7,6 +14,7 @@
 ##### Enhancements
 
 - Less memory usage. Installers are singletons
+
 
 ## 0.3
 
