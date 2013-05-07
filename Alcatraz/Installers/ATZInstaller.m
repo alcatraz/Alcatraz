@@ -30,12 +30,14 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
 #pragma mark - Singleton
 
 + (instancetype)sharedInstaller {
-    static id singleton;
-    static dispatch_once_t singletonToken;
-    dispatch_once(&singletonToken, ^{
-        singleton = [[self alloc] init];
-    });
-    return singleton;
+    static NSMutableDictionary *instances;
+    
+    @synchronized(self) {
+        if (instances == nil) instances = [NSMutableDictionary new];
+        if (instances[self] == nil)
+            instances[(id<NSCopying>)self] = [[self alloc] init];
+    }
+    return instances[self];
 }
 
 #pragma mark - Public
