@@ -127,10 +127,14 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     ATZPackageTableCellView *cellView = [rowView viewAtColumn:1];
     
     if ([(ATZPackageTableView *)tableView mouseOverRow] == row) {
-        cellView.buttonsContainerView.alphaValue = 0;
+        ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][row];
+        
+        if ([package isKindOfClass:[ATZColorScheme class]]) {
+            [cellView.previewButton setHidden:NO];
+        }
+        
         [[cellView.buttonsContainerView animator] setAlphaValue: 1];
         
-        ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][row];
         [cellView.buttonsContainerView setToolTip:package.website];
     } else {
         [[cellView.buttonsContainerView animator] setAlphaValue: 0];

@@ -10,8 +10,10 @@
 
 @implementation ATZPackageTableCellView
 
+
 - (void)awakeFromNib {
     self.buttonsContainerView.alphaValue = 0;
+    [self.previewButton setHidden:YES];
 }
 
 @end
