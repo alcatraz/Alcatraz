@@ -20,20 +20,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "ATZTitleButton.h"
+#import "ATZDetailItemButton.h"
 
-#define MIN_ALPHA 0.6f
+#define MIN_ALPHA 0.5f
 
-@implementation ATZTitleButton
+@implementation ATZDetailItemButton
 
 - (void)mouseEntered:(NSEvent *)theEvent {
-    self.alphaValue = 1.f;
-    self.image = [NSImage imageNamed:NSImageNameFollowLinkFreestandingTemplate];
+    self.alphaValue = 0.8f;
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
     self.alphaValue = MIN_ALPHA;
-    self.image = nil;
 }
 
 - (void)resetCursorRects {

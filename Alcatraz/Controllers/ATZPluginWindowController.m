@@ -24,6 +24,9 @@
 #import "ATZDownloader.h"
 #import "ATZPackageFactory.h"
 
+#import "ATZDetailItemButton.h"
+#import "ATZPackageTableCellView.h"
+
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
 #import "ATZTemplate.h"
@@ -37,6 +40,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 @interface ATZPluginWindowController ()
 @property (nonatomic) Class selectedPackageClass;
+@property (assign) NSView *hoverButtonsContainer;
 @end
 
 @implementation ATZPluginWindowController
@@ -44,7 +48,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (id)init {
     if (self = [super init]) {
         _filterPredicate = [NSPredicate predicateWithValue:YES];
-
+        
         @try { [self fetchPlugins]; [self updateAlcatraz]; }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
@@ -52,6 +56,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_packages release];
     [_filterPredicate release];
     
@@ -102,6 +107,38 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (void)controlTextDidChange:(NSNotification *)note {
     [self updatePredicate];
+}
+
+- (void)titleButtonDidReceiveMouseEnter:(NSNotification *)sender {
+    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:[sender object]]];
+    [self.statusLabel setStringValue:package.website];
+}
+
+- (void)titleButtonDidReceiveMouseExit {
+    [self.statusLabel setStringValue:@""];
+}
+
+#pragma mark - ATZPackageTableView delegate
+
+- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    if (row < 0) return;
+    
+    NSTableRowView *rowView = [self.tableView rowViewAtRow:row makeIfNecessary:NO];
+    ATZPackageTableCellView *cellView = [rowView viewAtColumn:1];
+    
+    if ([(ATZPackageTableView *)tableView mouseOverRow] == row) {
+        ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][row];
+        
+        if ([package isKindOfClass:[ATZColorScheme class]]) {
+            [cellView.previewButton setHidden:NO];
+        }
+        
+        [[cellView.buttonsContainerView animator] setAlphaValue: 1];
+        
+        [cellView.buttonsContainerView setToolTip:package.website];
+    } else {
+        [[cellView.buttonsContainerView animator] setAlphaValue: 0];
+    }
 }
 
 
