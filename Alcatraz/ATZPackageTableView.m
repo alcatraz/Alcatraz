@@ -30,27 +30,13 @@
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent {
-    
-    if (!self.delegate || ![self.delegate respondsToSelector:@selector(tableView:willDisplayCell:forTableColumn:row:)]) {
-        return; // No delegate set or it doesn't customize the drawing of its cells
-    }
-    
-    if (mouseOverView) {
-        mouseOverRow = (int)[self rowAtPoint:[self convertPoint:[theEvent locationInWindow] fromView:nil]];
-    }
-    
-    if (lastOverRow == mouseOverRow) {
-        return; // already highlighting this cell
-    } else {
-        // remove highlighting from previous cell
-        if (lastOverRow >= 0) {
-            [self.delegate tableView:self willDisplayCell:self.cell forTableColumn:self.tableColumns[1] row:lastOverRow];
-        }
-        lastOverRow = mouseOverRow;
-    }
+    [self highlightCellForEvent:theEvent];
+}
 
-    [self.delegate tableView:self willDisplayCell:self.cell forTableColumn:self.tableColumns[1] row:mouseOverRow];
-    
+
+- (void)scrollWheel:(NSEvent *)theEvent {
+    [super scrollWheel:theEvent];
+    [self highlightCellForEvent:theEvent];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
@@ -73,6 +59,29 @@
     trackingTag = [self addTrackingRect:[self frame] owner:self userData:nil assumeInside:NO];
 }
 
+#pragma mark - Private
+
+- (void)highlightCellForEvent:(NSEvent *)theEvent {
+    if (!self.delegate || ![self.delegate respondsToSelector:@selector(tableView:willDisplayCell:forTableColumn:row:)]) {
+        return; // No delegate set or it doesn't customize the drawing of its cells
+    }
+    
+    if (mouseOverView) {
+        mouseOverRow = (int)[self rowAtPoint:[self convertPoint:[theEvent locationInWindow] fromView:nil]];
+    }
+    
+    if (lastOverRow == mouseOverRow) {
+        return; // already highlighting this cell
+    } else {
+        // remove highlighting from previous cell
+        if (lastOverRow >= 0) {
+            [self.delegate tableView:self willDisplayCell:self.cell forTableColumn:self.tableColumns[1] row:lastOverRow];
+        }
+        lastOverRow = mouseOverRow;
+    }
+    
+    [self.delegate tableView:self willDisplayCell:self.cell forTableColumn:self.tableColumns[1] row:mouseOverRow];
+}
 
 @end
 
