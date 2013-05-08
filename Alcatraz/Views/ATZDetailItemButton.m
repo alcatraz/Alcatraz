@@ -1,4 +1,4 @@
-// ATZTitleButton.h
+// ATZTitleButton.m
 //
 // Copyright (c) 2013 Marin Usalj | mneorr.com
 //
@@ -20,11 +20,41 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <AppKit/AppKit.h>
+#import "ATZDetailItemButton.h"
 
-static NSString * const ALCATRAZ_TITLE_BUTTON_MOUSE_ENTER = @"ATZButtonDidReceiveMouseEnterNotification";
-static NSString * const ALCATRAZ_TITLE_BUTTON_MOUSE_EXIT = @"ATZButtonDidReceiveMouseExitNotification";
+#define MIN_ALPHA 0.5f
 
-@interface ATZTitleButton : NSButton
+@implementation ATZDetailItemButton
+
+- (void)mouseEntered:(NSEvent *)theEvent {
+    self.alphaValue = 0.8f;
+}
+
+- (void)mouseExited:(NSEvent *)theEvent {
+    self.alphaValue = MIN_ALPHA;
+}
+
+- (void)resetCursorRects {
+    [self addCursorRect:[self bounds] cursor:[NSCursor pointingHandCursor]];
+}
+
+
+- (void)awakeFromNib {
+    self.alphaValue = MIN_ALPHA;
+    [self createTrackingArea];
+}
+
+
+#pragma mark - Private
+
+- (void)createTrackingArea {
+    NSTrackingAreaOptions focusTrackingAreaOptions = NSTrackingActiveInActiveApp | NSTrackingMouseEnteredAndExited |
+                                                     NSTrackingAssumeInside      | NSTrackingInVisibleRect;
+
+    NSTrackingArea *focusTrackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
+                                                                     options:focusTrackingAreaOptions owner:self userInfo:nil];
+    [self addTrackingArea:focusTrackingArea];
+    [focusTrackingArea release];
+}
 
 @end

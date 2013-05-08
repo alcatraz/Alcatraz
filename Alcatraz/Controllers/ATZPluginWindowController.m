@@ -23,7 +23,9 @@
 #import "ATZPluginWindowController.h"
 #import "ATZDownloader.h"
 #import "ATZPackageFactory.h"
-#import "ATZTitleButton.h"
+
+#import "ATZDetailItemButton.h"
+#import "ATZPackageTableCellView.h"
 
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
@@ -46,14 +48,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (id)init {
     if (self = [super init]) {
         _filterPredicate = [NSPredicate predicateWithValue:YES];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(titleButtonDidReceiveMouseEnter:)
-                                                     name:ALCATRAZ_TITLE_BUTTON_MOUSE_ENTER object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(titleButtonDidReceiveMouseExit)
-                                                     name:ALCATRAZ_TITLE_BUTTON_MOUSE_EXIT object:nil];
         
         @try { [self fetchPlugins]; [self updateAlcatraz]; }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
@@ -125,35 +119,21 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 #pragma mark - ATZPackageTableView delegate
-- (NSView *) hoverButtonsContainer {
-    //    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][row];
-    if (!_hoverButtonsContainer) {
-        _hoverButtonsContainer = [[NSView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 40.0f)];
-        
-        NSButton *previewButton = [[NSButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 40.0f, 40.0f)];
-        previewButton.image = [NSImage imageNamed:NSImageNameQuickLookTemplate];
-        [previewButton setBordered:NO];
-        [_hoverButtonsContainer addSubview:previewButton];
-        
-        NSButton *websiteButton = [[NSButton alloc] initWithFrame:CGRectMake(50.0f, 00.0f, 40.0f, 40.0f)];
-        websiteButton.image = [NSImage imageNamed:NSImageNameFollowLinkFreestandingTemplate];
-        [websiteButton setBordered:NO];
-        [_hoverButtonsContainer addSubview:websiteButton];
-    }
-    return _hoverButtonsContainer;
-}
 
 - (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSTableRowView *rowView = [self.tableView rowViewAtRow:row makeIfNecessary:NO];
-    NSTableCellView *cellView = [rowView viewAtColumn:1];
+    if (row < 0) return;
     
+    NSTableRowView *rowView = [self.tableView rowViewAtRow:row makeIfNecessary:NO];
+    ATZPackageTableCellView *cellView = [rowView viewAtColumn:1];
     
     if ([(ATZPackageTableView *)tableView mouseOverRow] == row) {
-//        rowView.backgroundColor = [NSColor secondarySelectedControlColor];
-        self.hoverButtonsContainer.frame = CGRectMake(cellView.frame.size.width - self.hoverButtonsContainer.frame.size.width - 20, 0, self.hoverButtonsContainer.frame.size.width, self.hoverButtonsContainer.frame.size.height);
-        [cellView addSubview:self.hoverButtonsContainer];
+        cellView.buttonsContainerView.alphaValue = 0;
+        [[cellView.buttonsContainerView animator] setAlphaValue: 1];
+        
+        ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][row];
+        [cellView.buttonsContainerView setToolTip:package.website];
     } else {
-//        rowView.backgroundColor = row % 2 == 0 ? [NSColor whiteColor] : [NSColor colorWithDeviceRed:0.953 green:0.965 blue:0.980 alpha:1.000];
+        [[cellView.buttonsContainerView animator] setAlphaValue: 0];
     }
 }
 

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B63216173A3E880076C098 /* ATZPackageTableCellView.m */; };
+		32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC2173A46A900513A7C /* eye_icon.png */; };
+		32BDEBC5173A46B600513A7C /* link_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC4173A46B600513A7C /* link_icon.png */; };
+		32D86505173A4555009C724B /* eye_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86503173A4555009C724B /* eye_icon@2x.png */; };
+		32D86506173A4555009C724B /* link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86504173A4555009C724B /* link_icon@2x.png */; };
 		32FDC4ED17399B00005D9EDA /* ATZPackageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FDC4EC17399B00005D9EDA /* ATZPackageTableView.m */; };
 		8907F9A7172955690015A56B /* NSArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F99E172955690015A56B /* NSArray+Subscript.m */; };
 		8907F9A8172955690015A56B /* NSDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A0172955690015A56B /* NSDictionary+Subscript.m */; };
@@ -39,12 +44,18 @@
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
 		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
-		8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A96E0C71729DC1200350F67 /* ATZTitleButton.m */; };
+		8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		32FDC4EB17399B00005D9EDA /* ATZPackageTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPackageTableView.h; sourceTree = "<group>"; };
-		32FDC4EC17399B00005D9EDA /* ATZPackageTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPackageTableView.m; sourceTree = "<group>"; };
+		32B63215173A3E880076C098 /* ATZPackageTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageTableCellView.h; path = Views/ATZPackageTableCellView.h; sourceTree = "<group>"; };
+		32B63216173A3E880076C098 /* ATZPackageTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableCellView.m; path = Views/ATZPackageTableCellView.m; sourceTree = "<group>"; };
+		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
+		32BDEBC4173A46B600513A7C /* link_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link_icon.png; sourceTree = "<group>"; };
+		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
+		32D86504173A4555009C724B /* link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link_icon@2x.png"; sourceTree = "<group>"; };
+		32FDC4EB17399B00005D9EDA /* ATZPackageTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageTableView.h; path = Views/ATZPackageTableView.h; sourceTree = "<group>"; };
+		32FDC4EC17399B00005D9EDA /* ATZPackageTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableView.m; path = Views/ATZPackageTableView.m; sourceTree = "<group>"; };
 		8907F99D172955690015A56B /* NSArray+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Subscript.h"; sourceTree = "<group>"; };
 		8907F99E172955690015A56B /* NSArray+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Subscript.m"; sourceTree = "<group>"; };
 		8907F99F172955690015A56B /* NSDictionary+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Subscript.h"; sourceTree = "<group>"; };
@@ -106,8 +117,8 @@
 		8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZStatusView.m; path = Views/ATZStatusView.m; sourceTree = "<group>"; };
 		8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZProgressIndicator.h; path = Views/ATZProgressIndicator.h; sourceTree = "<group>"; };
 		8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZProgressIndicator.m; path = Views/ATZProgressIndicator.m; sourceTree = "<group>"; };
-		8A96E0C61729DC1200350F67 /* ATZTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZTitleButton.h; path = Views/ATZTitleButton.h; sourceTree = "<group>"; };
-		8A96E0C71729DC1200350F67 /* ATZTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZTitleButton.m; path = Views/ATZTitleButton.m; sourceTree = "<group>"; };
+		8A96E0C61729DC1200350F67 /* ATZDetailItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZDetailItemButton.h; path = Views/ATZDetailItemButton.h; sourceTree = "<group>"; };
+		8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZDetailItemButton.m; path = Views/ATZDetailItemButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +206,10 @@
 		890A4B47171F031300AFE577 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				32D86503173A4555009C724B /* eye_icon@2x.png */,
+				32BDEBC4173A46B600513A7C /* link_icon.png */,
+				32BDEBC2173A46A900513A7C /* eye_icon.png */,
+				32D86504173A4555009C724B /* link_icon@2x.png */,
 				890A4B48171F031300AFE577 /* Alcatraz-Info.plist */,
 				890A4B49171F031300AFE577 /* InfoPlist.strings */,
 				890A4B4F171F031300AFE577 /* Alcatraz-Prefix.pch */,
@@ -282,10 +297,12 @@
 				8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */,
 				8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */,
 				8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */,
-				8A96E0C61729DC1200350F67 /* ATZTitleButton.h */,
-				8A96E0C71729DC1200350F67 /* ATZTitleButton.m */,
+				8A96E0C61729DC1200350F67 /* ATZDetailItemButton.h */,
+				8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */,
 				32FDC4EB17399B00005D9EDA /* ATZPackageTableView.h */,
 				32FDC4EC17399B00005D9EDA /* ATZPackageTableView.m */,
+				32B63215173A3E880076C098 /* ATZPackageTableCellView.h */,
+				32B63216173A3E880076C098 /* ATZPackageTableCellView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -345,6 +362,10 @@
 				890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */,
 				89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */,
 				8907F9AB172955690015A56B /* README.md in Resources */,
+				32D86505173A4555009C724B /* eye_icon@2x.png in Resources */,
+				32D86506173A4555009C724B /* link_icon@2x.png in Resources */,
+				32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */,
+				32BDEBC5173A46B600513A7C /* link_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,10 +400,11 @@
 				8907F9A8172955690015A56B /* NSDictionary+Subscript.m in Sources */,
 				8907F9A9172955690015A56B /* NSMutableArray+Subscript.m in Sources */,
 				8907F9AA172955690015A56B /* NSMutableDictionary+Subscript.m in Sources */,
-				8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */,
+				8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */,
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
 				32FDC4ED17399B00005D9EDA /* ATZPackageTableView.m in Sources */,
+				32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
