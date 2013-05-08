@@ -38,6 +38,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 @interface ATZPluginWindowController ()
 @property (nonatomic) Class selectedPackageClass;
+@property (assign) NSView *hoverButtonsContainer;
 @end
 
 @implementation ATZPluginWindowController
@@ -124,15 +125,35 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 #pragma mark - ATZPackageTableView delegate
+- (NSView *) hoverButtonsContainer {
+    //    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][row];
+    if (!_hoverButtonsContainer) {
+        _hoverButtonsContainer = [[NSView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 40.0f)];
+        
+        NSButton *previewButton = [[NSButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 40.0f, 40.0f)];
+        previewButton.image = [NSImage imageNamed:NSImageNameQuickLookTemplate];
+        [previewButton setBordered:NO];
+        [_hoverButtonsContainer addSubview:previewButton];
+        
+        NSButton *websiteButton = [[NSButton alloc] initWithFrame:CGRectMake(50.0f, 00.0f, 40.0f, 40.0f)];
+        websiteButton.image = [NSImage imageNamed:NSImageNameFollowLinkFreestandingTemplate];
+        [websiteButton setBordered:NO];
+        [_hoverButtonsContainer addSubview:websiteButton];
+    }
+    return _hoverButtonsContainer;
+}
+
 - (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSLog(@"Cell: %@, row: %ld", cell, row);
     NSTableRowView *rowView = [self.tableView rowViewAtRow:row makeIfNecessary:NO];
+    NSTableCellView *cellView = [rowView viewAtColumn:1];
     
-    NSLog(@"rowView: %@ cell: %@", rowView, [rowView viewAtColumn:1] );
+    
     if ([(ATZPackageTableView *)tableView mouseOverRow] == row) {
-        rowView.backgroundColor = [NSColor secondarySelectedControlColor];
+//        rowView.backgroundColor = [NSColor secondarySelectedControlColor];
+        self.hoverButtonsContainer.frame = CGRectMake(cellView.frame.size.width - self.hoverButtonsContainer.frame.size.width - 20, 0, self.hoverButtonsContainer.frame.size.width, self.hoverButtonsContainer.frame.size.height);
+        [cellView addSubview:self.hoverButtonsContainer];
     } else {
-        rowView.backgroundColor = row % 2 == 0 ? [NSColor whiteColor] : [NSColor colorWithDeviceRed:0.953 green:0.965 blue:0.980 alpha:1.000];
+//        rowView.backgroundColor = row % 2 == 0 ? [NSColor whiteColor] : [NSColor colorWithDeviceRed:0.953 green:0.965 blue:0.980 alpha:1.000];
     }
 }
 
