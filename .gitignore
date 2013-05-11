@@ -1,5 +1,4 @@
 # Xcode
-build
 .DS_Store
 */build/*
 *.pbxuser
@@ -11,8 +10,10 @@ build
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
+!*.xcscheme
 profile
 *.moved-aside
 DerivedData
 .idea/
-*.hmap
+*.hmapods/*
+Pods
