@@ -40,7 +40,7 @@ task :upload do
   sh "rm -rf  #{archive}"
 end
 
-task :deploy => [:update, :build, :upload]
+task :shipit => [:update, :build, :upload]
 
 task :install do
   escaped_path = Regexp.escape(install_dir)
