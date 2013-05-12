@@ -3,6 +3,14 @@ bucket  = 'xcode-fun-time'
 url     = "https://s3.amazonaws.com/#{bucket}/#{archive}"
 install_dir   = "~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin/"
 
+desc "merge changes into deploy"
+task :update do
+  sh "git fetch origin"
+  sh "git checkout deploy"
+  sh "git reset --hard origin/master"
+  sh "git push origin deploy"
+end
+
 desc "Build Alcatraz"
 task :build do
   escaped_path = Regexp.escape(install_dir)
@@ -32,7 +40,7 @@ task :upload do
   sh "rm -rf  #{archive}"
 end
 
-task :deploy => [:build, :upload]
+task :deploy => [:update, :build, :upload]
 
 task :install do
   escaped_path = Regexp.escape(install_dir)
