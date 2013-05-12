@@ -226,23 +226,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     }
 }
 
-- (void)updatePackages {
-    for (ATZPackage *package in self.packages) {
-        
-        if (package.isInstalled) {
-            NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
-                [package updateWithProgressMessage:^(NSString *proggressMessage) {
-                    
-                    [self flashNotice:proggressMessage];
-                } completion:^(NSError *failure) {}];
-            }];
-            [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
-            [[NSOperationQueue mainQueue] addOperation:updateOperation];
-        }
-        NSLog(@"Operations: %@", @([[NSOperationQueue mainQueue] operations].count));
-    }
-}
-
 - (void)flashNotice:(NSString *)notice {
     self.statusLabel.stringValue = notice;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{

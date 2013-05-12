@@ -43,8 +43,6 @@ static NSString *const HARD = @"--hard";
               completion:(void(^)(NSString *output, NSError *error))completion;
 
 + (NSString *)parseRevisionFromDictionary:(NSDictionary *)dict;
-+ (void)updateRepository:(NSString *)localPath branchOrTag:(NSDictionary *)resetOptions
-              completion:(void(^)(NSString *output, NSError *error))completion;
 
 @end
 
