@@ -28,6 +28,7 @@
     id screenshotButton = animated ? self.screenshotButton.animator : self.screenshotButton;
     
     if (visible) {
+        [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
         [self.websiteButton setHidden:!visible];
         [self.screenshotButton setHidden:!visible];
     }
