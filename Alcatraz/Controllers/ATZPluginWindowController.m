@@ -237,58 +237,35 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:address]];
 }
 
-- (void)resizeImage:(NSImageView *)imageView {
-    const CGFloat maxSize = 800.0f;
-    NSSize imageSize = imageView.image.size;
-    
-    if (imageSize.height > maxSize || imageSize.width > maxSize) {
-        CGFloat aspectRatio = imageSize.height / imageSize.width;
-        
-        CGSize newImageSize;
-        if (aspectRatio > 1.0) {
-            newImageSize = CGSizeMake(maxSize / aspectRatio, maxSize);
-        } else if (aspectRatio < 1.0) {
-            newImageSize = CGSizeMake(maxSize, maxSize * aspectRatio);
-        } else {
-            newImageSize = CGSizeMake(maxSize, maxSize);
-        }
-        [imageView.image setSize:NSSizeFromCGSize(newImageSize)];
-    }
-}
-
 - (void)displayScreenshot:(NSString *)screenshotPath withTitle:(NSString *)title {
     
-    [self retrieveImageViewForScreenshot:screenshotPath completion:^(NSImageView *imageView) {
+    [self.previewPanel.animator setAlphaValue:0.f];
+    [self retrieveImageViewForScreenshot:screenshotPath completion:^(NSImage *image) {
         
-        [self resizeImage:imageView];
+        self.previewImageView.image = image;
+        [NSAnimationContext beginGrouping];
         
-        CGRect frame = CGRectMake(0, 0, imageView.image.size.width, imageView.image.size.height);
-        NSWindow *window  = [[NSWindow alloc] initWithContentRect:frame
-                                                        styleMask:NSTitledWindowMask | NSClosableWindowMask
-                                                          backing:NSBackingStoreBuffered
-                                                            defer:NO];
-        [window setContentView:imageView];
-        [window center];
-        [window setTitle:title];
-
-        [window makeKeyAndOrderFront:self];
-        [window release];
+        [self.previewImageView.animator setFrame:(CGRect){ .origin = CGPointMake(0, 0), .size = image.size }];
+        CGRect previewPanelFrame = (CGRect){.origin = self.previewPanel.frame.origin, .size = image.size};
+        [self.previewPanel setFrame:previewPanelFrame display:NO animate:YES];
+        
+        [NSAnimationContext endGrouping];
+        
+        [self.previewPanel makeKeyAndOrderFront:self];
+        [self.previewPanel.animator setAlphaValue:1.f];
+        
     }];
 }
 
-- (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath completion:(void (^)(NSImageView *))completion {
+- (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath completion:(void (^)(NSImage *))completion {
     
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadFileFromPath:screenshotPath completion:^(NSData *responseData, NSError *error) {
     
         NSImage *image = [[NSImage alloc] initWithData:responseData];
-        NSImageView *imageView = [[NSImageView alloc] initWithFrame:(CGRect){ .origin.x = 1, .origin.y = 0, .size = image.size }];
-        [imageView setImage:image];
-        
-        completion(imageView);
+        completion(image);
         
         [image release];
-        [imageView release];
         [downloader release];
     }];
     
