@@ -45,3 +45,4 @@ static NSString *const HARD = @"--hard";
 + (NSString *)parseRevisionFromDictionary:(NSDictionary *)dict;
 
 @end
+

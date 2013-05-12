@@ -20,32 +20,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "ATZTitleButton.h"
+#import "ATZDetailItemButton.h"
 
-#define MIN_ALPHA 0.6f
+#define MIN_ALPHA 0.5f
+#define MAX_ALPHA 0.8f
 
-@implementation ATZTitleButton
+@implementation ATZDetailItemButton
 
 - (void)mouseEntered:(NSEvent *)theEvent {
-    self.alphaValue = 1.f;
-    self.image = [NSImage imageNamed:NSImageNameFollowLinkFreestandingTemplate];
+    NSLog(@"mouseEntered");
+    [self.animator setAlphaValue:MAX_ALPHA];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
-    self.alphaValue = MIN_ALPHA;
-    self.image = nil;
+    [self.animator setAlphaValue:MIN_ALPHA];
 }
 
 - (void)resetCursorRects {
     [self addCursorRect:[self bounds] cursor:[NSCursor pointingHandCursor]];
 }
 
-
 - (void)awakeFromNib {
-    self.alphaValue = MIN_ALPHA;
+    self.alphaValue = 0.0f;
     [self createTrackingArea];
 }
-
 
 #pragma mark - Private
 
@@ -54,7 +52,9 @@
                                                      NSTrackingAssumeInside      | NSTrackingInVisibleRect;
 
     NSTrackingArea *focusTrackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
-                                                                     options:focusTrackingAreaOptions owner:self userInfo:nil];
+                                                                     options:focusTrackingAreaOptions
+                                                                       owner:self
+                                                                    userInfo:nil];
     [self addTrackingArea:focusTrackingArea];
     [focusTrackingArea release];
 }
