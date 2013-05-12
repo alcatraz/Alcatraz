@@ -240,6 +240,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (void)displayScreenshot:(NSString *)screenshotPath withTitle:(NSString *)title {
     
     [self.previewPanel.animator setAlphaValue:0.f];
+    self.previewPanel.title = title;
     [self retrieveImageViewForScreenshot:screenshotPath completion:^(NSImage *image) {
         
         self.previewImageView.image = image;
