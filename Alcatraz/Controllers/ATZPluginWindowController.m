@@ -257,37 +257,41 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)displayScreenshot:(NSString *)screenshotPath withTitle:(NSString *)title {
-    NSImageView *imageView = [self imageViewForScreenshot:screenshotPath];
     
-    [self resizeImage:imageView];
-    
-    CGRect frame = CGRectMake(0, 0, imageView.image.size.width, imageView.image.size.height);
-    NSWindow* window  = [[NSWindow alloc] initWithContentRect:frame
-                                                    styleMask:NSTitledWindowMask | NSClosableWindowMask
-                                                      backing:NSBackingStoreBuffered
-                                                        defer:NO];
-    [window setContentView:imageView];
-    [window center];
-    [window setTitle:title];
-    
-    NSWindowController *windowController = [[[NSWindowController alloc] init] autorelease];
-    [windowController setWindow:window];
-    [windowController showWindow:self];
-    [window release];
+    [self retrieveImageViewForScreenshot:screenshotPath completion:^(NSImageView *imageView) {
+        
+        [self resizeImage:imageView];
+        
+        CGRect frame = CGRectMake(0, 0, imageView.image.size.width, imageView.image.size.height);
+        NSWindow *window  = [[NSWindow alloc] initWithContentRect:frame
+                                                        styleMask:NSTitledWindowMask | NSClosableWindowMask
+                                                          backing:NSBackingStoreBuffered
+                                                            defer:NO];
+        [window setContentView:imageView];
+        [window center];
+        [window setTitle:title];
+
+        [window makeKeyAndOrderFront:self];
+        [window release];
+    }];
 }
 
-- (NSImageView *)imageViewForScreenshot:(NSString *)screenshotPath {
-    NSURL *screenshotURL = [NSURL URLWithString:screenshotPath];
-    NSData *imageData = [NSData dataWithContentsOfURL:screenshotURL];
+- (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath completion:(void (^)(NSImageView *))completion {
     
-    NSImage *image = [[NSImage alloc] initWithData:imageData];
-    NSImageView *imageView = [[[NSImageView alloc] init] autorelease];
+    ATZDownloader *downloader = [ATZDownloader new];
+    [downloader downloadFileFromPath:screenshotPath completion:^(NSData *responseData, NSError *error) {
     
-    [imageView setImage:image];
-    [image release];
-    imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+        NSImage *image = [[NSImage alloc] initWithData:responseData];
+        NSImageView *imageView = [[NSImageView alloc] initWithFrame:(CGRect){ .origin.x = 1, .origin.y = 0, .size = image.size }];
+        [imageView setImage:image];
+        
+        completion(imageView);
+        
+        [image release];
+        [imageView release];
+        [downloader release];
+    }];
     
-    return imageView;
 }
 
 @end

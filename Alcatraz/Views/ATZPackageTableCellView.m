@@ -11,7 +11,6 @@
 
 @interface ATZPackageTableCellView()
 @property (assign) BOOL isHighlighted;
-@property (assign) NSTimer *timer;
 @end
 
 @implementation ATZPackageTableCellView
@@ -48,23 +47,18 @@
     if (!self.isHighlighted) [self setButtonsVisible:NO animated:NO];
 }
 
-- (void)startTimer {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(checkIfStillHighlighted:) userInfo:nil repeats:NO];
-}
-
 - (void)mouseEntered:(NSEvent *)theEvent {
-    [self startTimer];
+    [self showButtonsIfNeeded];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
     self.isHighlighted = NO;
-    [self.timer invalidate];
-    [_timer release];
     [self setButtonsVisible:NO animated:YES];
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent {
-    if (!self.isHighlighted && !self.timer) [self startTimer];
+    if (!self.isHighlighted)
+        [self showButtonsIfNeeded];
 }
 
 #pragma mark - Private
@@ -82,7 +76,7 @@
     [focusTrackingArea release];
 }
 
-- (void)checkIfStillHighlighted:(NSTimer *)sender {
+- (void)showButtonsIfNeeded {
     NSPoint globalLocation = [NSEvent mouseLocation];
     NSPoint windowLocation = [self.window convertScreenToBase:globalLocation];
     NSPoint viewLocation = [self convertPoint:windowLocation fromView:nil];
