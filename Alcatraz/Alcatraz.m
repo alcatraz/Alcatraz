@@ -51,7 +51,7 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.bundle release];
+    [_bundle release];
     [super dealloc];
 }
 
@@ -84,7 +84,7 @@
     [self.bundle loadNibNamed:@"PluginWindow" owner:[ATZPluginWindowController new] topLevelObjects:&nibElements];
 #else
     NSNib *nib = [[[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:self.bundle] autorelease];
-    [nib instantiateNibWithOwner:[ATZPluginWindowController new] topLevelObjects:&nibElements];
+    [nib instantiateNibWithOwner:[[ATZPluginWindowController new] autorelease] topLevelObjects:&nibElements];
 #endif
     
     NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {

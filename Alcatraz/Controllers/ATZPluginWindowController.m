@@ -24,6 +24,9 @@
 #import "ATZDownloader.h"
 #import "ATZPackageFactory.h"
 
+#import "ATZDetailItemButton.h"
+#import "ATZPackageTableCellView.h"
+
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
 #import "ATZTemplate.h"
@@ -37,6 +40,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 @interface ATZPluginWindowController ()
 @property (nonatomic) Class selectedPackageClass;
+@property (assign) NSView *hoverButtonsContainer;
 @end
 
 @implementation ATZPluginWindowController
@@ -44,7 +48,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (id)init {
     if (self = [super init]) {
         _filterPredicate = [NSPredicate predicateWithValue:YES];
-
+        
         @try { [self fetchPlugins]; [self updateAlcatraz]; }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
@@ -52,6 +56,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_packages release];
     [_filterPredicate release];
     
@@ -94,6 +99,12 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [self updatePredicate];
 }
 
+- (IBAction)displayScreenshotPressed:(NSButton *)sender {
+    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
+    
+    [self displayScreenshot:package.screenshotPath withTitle:package.name];
+}
+
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender {
     ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
 
@@ -103,7 +114,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (void)controlTextDidChange:(NSNotification *)note {
     [self updatePredicate];
 }
-
 
 #pragma mark - Private
 
@@ -239,6 +249,59 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (void)openWebsite:(NSString *)address {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:address]];
+}
+
+- (void)resizeImage:(NSImageView *)imageView {
+    const CGFloat maxSize = 800.0f;
+    NSSize imageSize = imageView.image.size;
+    
+    if (imageSize.height > maxSize || imageSize.width > maxSize) {
+        CGFloat aspectRatio = imageSize.height / imageSize.width;
+        
+        CGSize newImageSize;
+        if (aspectRatio > 1.0) {
+            newImageSize = CGSizeMake(maxSize / aspectRatio, maxSize);
+        } else if (aspectRatio < 1.0) {
+            newImageSize = CGSizeMake(maxSize, maxSize * aspectRatio);
+        } else {
+            newImageSize = CGSizeMake(maxSize, maxSize);
+        }
+        [imageView.image setSize:NSSizeFromCGSize(newImageSize)];
+    }
+}
+
+- (void)displayScreenshot:(NSString *)screenshotPath withTitle:(NSString *)title {
+    NSImageView *imageView = [self imageViewForScreenshot:screenshotPath];
+    
+    [self resizeImage:imageView];
+    
+    CGRect frame = CGRectMake(0, 0, imageView.image.size.width, imageView.image.size.height);
+    NSWindow* window  = [[NSWindow alloc] initWithContentRect:frame
+                                                    styleMask:NSTitledWindowMask | NSClosableWindowMask
+                                                      backing:NSBackingStoreBuffered
+                                                        defer:NO];
+    [window setContentView:imageView];
+    [window center];
+    [window setTitle:title];
+    
+    NSWindowController *windowController = [[[NSWindowController alloc] init] autorelease];
+    [windowController setWindow:window];
+    [windowController showWindow:self];
+    [window release];
+}
+
+- (NSImageView *)imageViewForScreenshot:(NSString *)screenshotPath {
+    NSURL *screenshotURL = [NSURL URLWithString:screenshotPath];
+    NSData *imageData = [NSData dataWithContentsOfURL:screenshotURL];
+    
+    NSImage *image = [[NSImage alloc] initWithData:imageData];
+    NSImageView *imageView = [[[NSImageView alloc] init] autorelease];
+    
+    [imageView setImage:image];
+    [image release];
+    imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    
+    return imageView;
 }
 
 @end

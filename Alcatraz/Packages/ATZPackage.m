@@ -39,6 +39,7 @@
     [_name release];
     [_description release];
     [_remotePath release];
+    [_screenshotPath release];
     [super dealloc];
 }
 
@@ -49,6 +50,7 @@
     self.name = dictionary[@"name"];
     self.description = dictionary[@"description"];
     self.remotePath = dictionary[@"url"];
+    self.screenshotPath = dictionary[@"screenshot"];
 }
 
 - (NSString *)projectPathFromRawPath:(NSString *)rawURL {

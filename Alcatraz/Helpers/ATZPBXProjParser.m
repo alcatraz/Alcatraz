@@ -34,7 +34,10 @@ static NSString *const PLUGIN_NAME_REGEX = @"(\\w[\\w\\s]*\\w.xcplugin)";
                                                                            options:NSRegularExpressionAnchorsMatchLines
                                                                              error:&error];
     
-    if (error) return nil;
+    if (error) {
+        [pbxproj release];
+        return nil;
+    }
     
     NSTextCheckingResult *result = [regex firstMatchInString:pbxproj options:0 range:NSMakeRange(0, pbxproj.length - 1)];
     NSString *pluginName = result ? [pbxproj substringWithRange:result.range] : nil;
