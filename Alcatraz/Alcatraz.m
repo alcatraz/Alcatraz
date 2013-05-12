@@ -96,9 +96,7 @@
 }
 
 - (void)presentAlertForInstallingCMDLineTools {
-    NSAlert *alert = [NSAlert alertWithMessageText:
-@"Xcode Command Line Tools are not currently installed, and are required to run Alcatraz. \
-Command Line Tools are available for installation in the Downloads section of Preferences."
+    NSAlert *alert = [NSAlert alertWithMessageText:[self.bundle localizedStringForKey:@"CMDLineToolsWarning" value:nil table:nil]
                                      defaultButton:nil
                                    alternateButton:nil
                                        otherButton:nil

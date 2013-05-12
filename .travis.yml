@@ -1,0 +1,7 @@
+language: objective-c
+
+before_install:
+  - gem update cocoapods
+  - pod install
+
+script: xcodebuild -workspace Alcatraz.xcworkspace -scheme Alcatraz test

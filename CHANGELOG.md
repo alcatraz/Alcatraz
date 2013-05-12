@@ -1,3 +1,10 @@
+## 0.5
+
+##### Features
+
+- Previewing screenshot inside Alcatraz. You don't even have to visit the repository. How awesome is that?
+  Thanks @jurre for implementing this feature.
+
 ## 0.4.1
 
 ##### Bug fixes
