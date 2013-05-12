@@ -24,21 +24,25 @@
 #import "ATZShell.h"
 #import "NSFileManager+Alcatraz.h"
 
-static NSString *const GIT = @"/usr/bin/git";
-static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
-
 @implementation ATZGit
 
-+ (void)updateRepository:(NSString *)localPath branchOrTag:(NSDictionary *)resetOptions
++ (void)updateRepository:(NSString *)localPath revision:(NSString *)revision
               completion:(void(^)(NSString *output, NSError *error))completion {
 
-    [self updateLocalProject:localPath branchOrTag:resetOptions completion:completion];
+    [self updateLocalProject:localPath revision:revision completion:completion];
 }
 
 + (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
              completion:(void (^)(NSError *))completion {
     
     [self clone:remotePath to:localPath completion:completion];
+}
+
++ (NSString *)parseRevisionFromDictionary:(NSDictionary *)dict {
+    return
+        dict[BRANCH] ? [ORIGIN stringByAppendingPathComponent:dict[BRANCH]] :
+        dict[TAG]    ?:
+        dict[COMMIT] ?: nil;
 }
 
 
@@ -57,7 +61,7 @@ static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
 }
 
 // TODO: refactor, make less shell instances (maybe?)
-+ (void)updateLocalProject:(NSString *)localPath branchOrTag:(NSDictionary *)options
++ (void)updateLocalProject:(NSString *)localPath revision:(NSString *)revision
                 completion:(void (^)(NSString *, NSError *))completion {
     
     [self fetch:localPath completion:^(NSString *fetchOutput, NSError *error) {
@@ -65,7 +69,7 @@ static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
         if (error)
             completion(fetchOutput, error);
         else
-            [self resetHard:localPath branchOrTag:options completion:^(NSString *resetOutput, NSError *error) {
+            [self resetHard:localPath revision:revision completion:^(NSString *resetOutput, NSError *error) {
                 completion(fetchOutput, error);
             }];
     }];
@@ -83,11 +87,11 @@ static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
     }];
 }
 
-+ (void)resetHard:(NSString *)localPath branchOrTag:(NSDictionary *)options
++ (void)resetHard:(NSString *)localPath revision:(NSString *)revision
        completion:(void (^)(NSString *, NSError *))completion {
     
     ATZShell *shell = [ATZShell new];
-    NSArray *resetArguments = @[RESET, HARD, options[BRANCH] ?: options[TAG] ?: ORIGIN_MASTER];
+    NSArray *resetArguments = @[RESET, HARD, revision ?: ORIGIN_MASTER];
     
     [shell executeCommand:GIT withArguments:resetArguments inWorkingDirectory:localPath
                completion:^(NSString *output, NSError *error) {

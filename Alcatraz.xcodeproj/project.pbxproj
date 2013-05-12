@@ -33,6 +33,7 @@
 		8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA151726B63B00F0B2D2 /* ATZGit.m */; };
 		8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA171726B63B00F0B2D2 /* ATZShell.m */; };
 		894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 894714E717302F63003CDDA7 /* ATZInstaller.m */; };
+		897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */; };
 		89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
@@ -94,6 +95,8 @@
 		8917DA161726B63B00F0B2D2 /* ATZShell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZShell.h; sourceTree = "<group>"; };
 		8917DA171726B63B00F0B2D2 /* ATZShell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZShell.m; sourceTree = "<group>"; };
 		894714E717302F63003CDDA7 /* ATZInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZInstaller.m; sourceTree = "<group>"; };
+		897F7897173FC54C006C43E5 /* ATZAlcatrazPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZAlcatrazPackage.h; sourceTree = "<group>"; };
+		897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZAlcatrazPackage.m; sourceTree = "<group>"; };
 		89B4F2BC172FF5AC001FD2E3 /* ATZPBXProjParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPBXProjParser.h; sourceTree = "<group>"; };
 		89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPBXProjParser.m; sourceTree = "<group>"; };
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				8917D9F01726B4EE00F0B2D2 /* ATZProjectTemplate.m */,
 				8917D9F11726B4EE00F0B2D2 /* ATZTemplate.h */,
 				8917D9F21726B4EE00F0B2D2 /* ATZTemplate.m */,
+				897F7897173FC54C006C43E5 /* ATZAlcatrazPackage.h */,
+				897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */,
 			);
 			path = Packages;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				8A96E0C81729DC1200350F67 /* ATZTitleButton.m in Sources */,
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
+				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
