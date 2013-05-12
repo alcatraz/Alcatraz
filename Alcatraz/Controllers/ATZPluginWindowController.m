@@ -27,6 +27,7 @@
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
 #import "ATZTemplate.h"
+#import "ATZAlcatrazPackage.h"
 
 #import "ATZShell.h"
 
@@ -192,24 +193,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (void)updateAlcatraz {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperationWithBlock:^{
-        [self downloadAndInstallAlcatraz];
+        
+        [ATZAlcatrazPackage update];
         [queue release];
-    }];
-}
-
-- (void)downloadAndInstallAlcatraz {
-    ATZPlugin *alcatraz = [[ATZPlugin alloc] initWithDictionary:@{
-                               @"name": @"Alcatraz",
-                               @"url": @"https://github.com/mneorr/Alcatraz",
-                               @"description": @"Self updating installer"
-                           }];
-    [alcatraz installWithProgressMessage:^(NSString *proggressMessage){}
-                              completion:^(NSError *failure) {
-        if (failure)
-            NSLog(@"\n\nUpdating alcatraz failed! %@\n\n", failure);
-        else
-            [self flashNotice:@"Alcatraz updated."];
-        [alcatraz release];
     }];
 }
 
@@ -221,12 +207,12 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
                 [package updateWithProgressMessage:^(NSString *proggressMessage) {
                     
                     [self flashNotice:proggressMessage];
+                    
                 } completion:^(NSError *failure) {}];
             }];
             [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
             [[NSOperationQueue mainQueue] addOperation:updateOperation];
         }
-        NSLog(@"Operations: %@", @([[NSOperationQueue mainQueue] operations].count));
     }
 }
 

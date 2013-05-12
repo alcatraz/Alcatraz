@@ -22,6 +22,7 @@
 
 #import "ATZPackage.h"
 #import "ATZInstaller.h"
+#import "ATZGit.h"
 
 @implementation ATZPackage
 @dynamic isInstalled, type, website, extension;
@@ -49,6 +50,7 @@
     self.name = dictionary[@"name"];
     self.description = dictionary[@"description"];
     self.remotePath = dictionary[@"url"];
+    self.revision = [ATZGit parseRevisionFromDictionary:dictionary];
 }
 
 - (NSString *)projectPathFromRawPath:(NSString *)rawURL {

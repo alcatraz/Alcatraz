@@ -47,7 +47,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 - (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
     
-    [ATZGit updateRepository:[self pathForDownloadedPackage:package] branchOrTag:nil
+    [ATZGit updateRepository:[self pathForDownloadedPackage:package] revision:package.revision
                   completion:completion];
 }
 
