@@ -39,12 +39,12 @@
 		8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA151726B63B00F0B2D2 /* ATZGit.m */; };
 		8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA171726B63B00F0B2D2 /* ATZShell.m */; };
 		894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 894714E717302F63003CDDA7 /* ATZInstaller.m */; };
-		897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */; };
 		8966AFCD173EB7BF004150C0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8966AFCC173EB7BF004150C0 /* SenTestingKit.framework */; };
 		8966AFCF173EB7BF004150C0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8966AFCE173EB7BF004150C0 /* Cocoa.framework */; };
 		8966AFD9173EB7BF004150C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8966AFD7173EB7BF004150C0 /* InfoPlist.strings */; };
 		8966AFDC173EB7BF004150C0 /* AlcatrazTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8966AFDB173EB7BF004150C0 /* AlcatrazTests.m */; };
 		8966AFE2173EB8DB004150C0 /* Pods-AlcatrazTests.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2A9816423A9B4C04AA35F239 /* Pods-AlcatrazTests.xcconfig */; };
+		897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */; };
 		89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
@@ -54,13 +54,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A9816423A9B4C04AA35F239 /* Pods-AlcatrazTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlcatrazTests.xcconfig"; path = "Pods/Pods-AlcatrazTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		32B63215173A3E880076C098 /* ATZPackageTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageTableCellView.h; path = Views/ATZPackageTableCellView.h; sourceTree = "<group>"; };
 		32B63216173A3E880076C098 /* ATZPackageTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableCellView.m; path = Views/ATZPackageTableCellView.m; sourceTree = "<group>"; };
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		32BDEBC4173A46B600513A7C /* link_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
 		32D86504173A4555009C724B /* link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link_icon@2x.png"; sourceTree = "<group>"; };
-		2A9816423A9B4C04AA35F239 /* Pods-AlcatrazTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlcatrazTests.xcconfig"; path = "Pods/Pods-AlcatrazTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		8907F99D172955690015A56B /* NSArray+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Subscript.h"; sourceTree = "<group>"; };
 		8907F99E172955690015A56B /* NSArray+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Subscript.m"; sourceTree = "<group>"; };
 		8907F99F172955690015A56B /* NSDictionary+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Subscript.h"; sourceTree = "<group>"; };
@@ -113,8 +113,6 @@
 		8917DA161726B63B00F0B2D2 /* ATZShell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZShell.h; sourceTree = "<group>"; };
 		8917DA171726B63B00F0B2D2 /* ATZShell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZShell.m; sourceTree = "<group>"; };
 		894714E717302F63003CDDA7 /* ATZInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZInstaller.m; sourceTree = "<group>"; };
-		897F7897173FC54C006C43E5 /* ATZAlcatrazPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZAlcatrazPackage.h; sourceTree = "<group>"; };
-		897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZAlcatrazPackage.m; sourceTree = "<group>"; };
 		8966AFCB173EB7BF004150C0 /* AlcatrazTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlcatrazTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8966AFCC173EB7BF004150C0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		8966AFCE173EB7BF004150C0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -125,6 +123,8 @@
 		8966AFD8173EB7BF004150C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8966AFDB173EB7BF004150C0 /* AlcatrazTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlcatrazTests.m; sourceTree = "<group>"; };
 		8966AFDD173EB7BF004150C0 /* AlcatrazTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AlcatrazTests-Prefix.pch"; sourceTree = "<group>"; };
+		897F7897173FC54C006C43E5 /* ATZAlcatrazPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZAlcatrazPackage.h; sourceTree = "<group>"; };
+		897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZAlcatrazPackage.m; sourceTree = "<group>"; };
 		89B4F2BC172FF5AC001FD2E3 /* ATZPBXProjParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPBXProjParser.h; sourceTree = "<group>"; };
 		89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPBXProjParser.m; sourceTree = "<group>"; };
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
@@ -678,6 +678,8 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Alcatraz.xcplugin/Contents/MacOS/Alcatraz";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_GC = YES;
+				"GCC_ENABLE_OBJC_GC[arch=*]" = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlcatrazTests/AlcatrazTests-Prefix.pch";
 				INFOPLIST_FILE = "AlcatrazTests/AlcatrazTests-Info.plist";
@@ -694,6 +696,8 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Alcatraz.xcplugin/Contents/MacOS/Alcatraz";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_GC = YES;
+				"GCC_ENABLE_OBJC_GC[arch=*]" = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlcatrazTests/AlcatrazTests-Prefix.pch";
 				INFOPLIST_FILE = "AlcatrazTests/AlcatrazTests-Info.plist";
