@@ -22,10 +22,13 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *const GIT = @"/usr/bin/git";
+static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
 static NSString *const CLONE = @"clone";
 static NSString *const FETCH = @"fetch";
 static NSString *const ORIGIN = @"origin";
 static NSString *const BRANCH = @"branch";
+static NSString *const COMMIT = @"commit";
 static NSString *const TAG = @"tag";
 static NSString *const ORIGIN_MASTER = @"origin/master";
 static NSString *const RESET = @"reset";
@@ -36,7 +39,9 @@ static NSString *const HARD = @"--hard";
 + (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
              completion:(void(^)(NSError *error))completion;
 
-+ (void)updateRepository:(NSString *)localPath branchOrTag:(NSDictionary *)resetOptions
++ (void)updateRepository:(NSString *)localPath revision:(NSString *)revision
               completion:(void(^)(NSString *output, NSError *error))completion;
+
++ (NSString *)parseRevisionFromDictionary:(NSDictionary *)dict;
 
 @end
