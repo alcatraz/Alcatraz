@@ -80,7 +80,7 @@
 
 - (void)loadWindowAndPutInFront {
     if (!self.windowController)
-        self.windowController = [[ATZPluginWindowController alloc] initWithNibName:@"PluginWindow" inBundle:self.bundle];
+        self.windowController = [[ATZPluginWindowController alloc] initWithBundle:self.bundle];
 
     [[self.windowController window] makeKeyAndOrderFront:self];
 }

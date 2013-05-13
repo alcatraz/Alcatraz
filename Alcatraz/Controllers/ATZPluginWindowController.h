@@ -44,5 +44,5 @@
 - (IBAction)showOnlyColorSchemes:(id)sender;
 - (IBAction)showOnlyTemplates:(id)sender;
 
-- (id)initWithNibName:(NSString *)nibName inBundle:(NSBundle *)bundle;
+- (id)initWithBundle:(NSBundle *)bundle;
 @end
