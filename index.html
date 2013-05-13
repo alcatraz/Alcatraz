@@ -32,15 +32,12 @@
 			<p>Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via <code>Preferences > Downloads</code>.</p>
 			<p>To install, open up your terminal and paste this:
 	      <pre>
-		      <code>
 mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins;
 curl -L http://goo.gl/xfmmt | tar xv -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -
-					</code>
 				</pre>
 			</p>
 			<p>If that doesn't work, you can try cloning the source and building in Xcode.</p>
 			<p>You'll need to restart Xcode to start using Alcatraz.</p>
-            <p>The installation process creates <code>~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin</code>, which can be deleted to uninstall the plugin completely. To remove all packages installed via Alcatraz, run <code>rm -rf ~/Library/Application\ Support/Alcatraz/.</code></p>
 		</section>
 		<section>
 			<h2>Usage</h2>
@@ -51,14 +48,17 @@ curl -L http://goo.gl/xfmmt | tar xv -C ~/Library/Application\ Support/Developer
 			<h2>I want to submit my package!</h2>
 			<p>Fork and edit the <a href="https://github.com/mneorr/alcatraz-packages">Alcatraz package repository</a> to include your package <code>name</code>, <code>description</code>, and <code>URL</code> in the plugins, color schemes, or templates section, and submit a pull request.</p>
 			<pre>
-				<code>
 {
   "name": "My Life-Changing Xcode Plugin",
   "url": "https://github.com/me/xcode-life-changing-plugin",
   "description": "Makes Xcode stop, collaborate and listen."
 }
-				</code>
 			</pre>
+		</section>
+		<section>
+			<h2>Uninstall</h2>
+			<p>Alcatraz creates <code>~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin</code>, which can be deleted to uninstall the plugin.<br>To remove all downloaded packages, <code>rm -rf ~/Library/Application\ Support/Alcatraz/.</code>
+			</p>
 		</section>
 		<div id="silhouette">
 			<section id="da-buttons">

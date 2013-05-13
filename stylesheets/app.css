@@ -50,11 +50,8 @@ section {
 
 code {
   font-family: Menlo, Consolas, Monaco, "Lucida Console", monospace;
-  color:#ff7400;
-}
-
-code {
   padding: 0 3px;
+  color:#ff7400;
 }
 
 pre {
@@ -64,12 +61,6 @@ pre {
   border: solid 1px rgba(0.6, 0.6, 0.6, 0.9);
   border-radius: 5px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2) inset;
-}
-
-pre code {
-  color: #303030;
-  padding: 0;
-  font-size: 0.8em;
 }
 
 img {
