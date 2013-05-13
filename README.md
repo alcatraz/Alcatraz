@@ -19,11 +19,11 @@ curl -L http://goo.gl/xfmmt | tar xv -C ~/Library/Application\ Support/Developer
 
 or download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
 
-The installation process creates `~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin`, which can be deleted to uninstall the plugin completely.
+The installation process creates `~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin`, which can be deleted to uninstall the plugin completely. To remove all packages installed via Alcatraz, run `rm -rf ~/Library/Application\ Support/Alcatraz/`.
 
 ## Usage
 
-Select `Package Manager` from the `Window` menu, then check or uncheck packages to install or remove them. You'll need to restart Xcode after installing plugins or templates.
+Select `Package Manager` from the `Window` menu, then check or uncheck packages to install or remove them. You'll need to restart Xcode after installing plugins or templates. Installed plugins are checked and updated each time Alcatraz is launched.
 
 ![Window Menu Item](http://mneorr.github.io/Alcatraz/images/menu.png)
 
