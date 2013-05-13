@@ -8,18 +8,15 @@ Alcatraz is an open-source package manager for Xcode 4. It lets you discover and
 
 ## Installation
 
-Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via `Preferences > Downloads`.
-
 To install, open up your terminal and paste this:
 
 ``` bash
 mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins;
 curl -L http://goo.gl/xfmmt | tar xv -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -
 ```
-
 or download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
 
-The installation process creates `~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin`, which can be deleted to uninstall the plugin completely. To remove all packages installed via Alcatraz, run `rm -rf ~/Library/Application\ Support/Alcatraz/`.
+Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via `Preferences > Downloads`.
 
 ## Usage
 
@@ -38,6 +35,10 @@ Alcatraz is in early alpha, and you should forgive him for any inconvenience.
 Public Trello board can be found [here](https://trello.com/b/ZODgq5Av).
 
 Alcatraz has a few [contribution guidelines](https://github.com/mneorr/Alcatraz/blob/master/CONTRIBUTING.md), for anyone looking to make it more awesome.
+
+## Uninstall
+
+The installation process creates `~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin`, which can be deleted to uninstall the plugin completely. To remove all packages installed via Alcatraz, run `rm -rf ~/Library/Application\ Support/Alcatraz/`.
 
 ## Contributors
 
