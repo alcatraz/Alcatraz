@@ -28,6 +28,7 @@ h1 {
   font-size: 4em;
   text-align: center;
   margin: 86px 0 45px 0;
+  color: #555555;
 }
 
 h1 span {
@@ -57,6 +58,7 @@ code {
 pre {
   padding: 15px 0 0 20px;
   background: #EBEEF2;
+  color: #555555;
   overflow: auto;
   border: solid 1px rgba(0.6, 0.6, 0.6, 0.9);
   border-radius: 5px;
