@@ -59,6 +59,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             [self fetchPlugins];
             [self updateAlcatraz];
             [self setWindow:[self mainWindowInBundle:bundle]];
+            [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
         }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
@@ -73,11 +74,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     
     [super dealloc];
 }
-
-- (void)windowDidLoad {
-    [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
-}
-
 
 #pragma mark - Bindings
 
