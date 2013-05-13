@@ -9,8 +9,8 @@ Some helpful tips for making Alcatraz more awesome
 
 ## Coding Style
 
-- Put the opening bracket of a method implementation on the same line as the signature
-- Avoid adding comments in the code detailing the changes, and instead add them to the Pull Request description and code comments
+- BSD brackets (on the same line as the method signature)
+- _Avoid_ adding comments in the code detailing the changes, use Github issues instead
 
 ## UI Changes
 
