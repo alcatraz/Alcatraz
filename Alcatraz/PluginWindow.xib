@@ -56,7 +56,7 @@
 				<int key="NSWindowStyleMask">271</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{200, 250}, {500, 550}}</string>
-				<int key="NSWTFlags">-1535638528</int>
+				<int key="NSWTFlags">1685586944</int>
 				<string key="NSWindowTitle">Package Manager</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<object class="NSToolbar" key="NSViewClass" id="880245446">

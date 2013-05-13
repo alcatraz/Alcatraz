@@ -48,11 +48,23 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (id)init {
     if (self = [super init]) {
+        NSAssert(false, @"Use -initWithNibName:inBundle: to create a new ATZPluginWindowController");
+    }
+    return self;
+}
+
+-(id) initWithNibName:(NSString *)nibName inBundle:(NSBundle *)bundle {
+    if (self = [super init]) {
         _filterPredicate = [NSPredicate predicateWithValue:YES];
-        
-        @try { [self fetchPlugins]; [self updateAlcatraz]; }
+
+        @try {
+            [self fetchPlugins];
+            [self updateAlcatraz];
+            [self setWindow:[self mainWindowInNibNamed:nibName inBundle:bundle]];
+        }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
+
     return self;
 }
 
@@ -270,6 +282,23 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [downloader release];
     }];
     
+}
+
+- (NSWindow *) mainWindowInNibNamed:(NSString *)nibName inBundle:(NSBundle *)bundle {
+    NSArray *nibElements;
+
+#if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1080
+    [self.bundle loadNibNamed:nibName owner:windowController topLevelObjects:&nibElements];
+#else
+    NSNib *nib = [[[NSNib alloc] initWithNibNamed:nibName bundle:bundle] autorelease];
+    [nib instantiateNibWithOwner:self topLevelObjects:&nibElements];
+#endif
+
+    NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return [evaluatedObject class] == [NSWindow class];
+    }];
+
+    return [nibElements filteredArrayUsingPredicate:windowPredicate][0];
 }
 
 @end
