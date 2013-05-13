@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Alcatraz
+
+  Created by Delisa Mason on 5/13/13.
+  Copyright (c) 2013 mneorr.com. All rights reserved.
+*/
+"CMDLineToolsWarning" = "Xcode Command Line Tools are not currently installed, and are required to run Alcatraz.
+
+Command Line Tools are available for installation in the Downloads section of Preferences.";
