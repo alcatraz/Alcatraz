@@ -47,12 +47,22 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 @implementation ATZPluginWindowController
 
 - (id)init {
+    NSAssert(false, @"Use -initWithNibName:inBundle: to create a new ATZPluginWindowController");
+    return self;
+}
+
+- (id)initWithBundle:(NSBundle *)bundle {
     if (self = [super init]) {
         _filterPredicate = [NSPredicate predicateWithValue:YES];
-        
-        @try { [self fetchPlugins]; [self updateAlcatraz]; }
+
+        @try {
+            [self fetchPlugins];
+            [self updateAlcatraz];
+            [self setWindow:[self mainWindowInBundle:bundle]];
+        }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
+
     return self;
 }
 
@@ -270,6 +280,23 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [downloader release];
     }];
     
+}
+
+- (NSWindow *) mainWindowInBundle:(NSBundle *)bundle {
+    NSArray *nibElements;
+
+#if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1080
+    [self.bundle loadNibNamed:@"PluginWindow" owner:windowController topLevelObjects:&nibElements];
+#else
+    NSNib *nib = [[[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:bundle] autorelease];
+    [nib instantiateNibWithOwner:self topLevelObjects:&nibElements];
+#endif
+
+    NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return [evaluatedObject class] == [NSWindow class];
+    }];
+
+    return [nibElements filteredArrayUsingPredicate:windowPredicate][0];
 }
 
 @end

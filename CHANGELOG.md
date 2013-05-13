@@ -1,3 +1,9 @@
+## 0.6
+
+##### Enhancements
+
+- Less memory usage. Alcatraz reuses the same instance when opened multiple times in an Xcode session
+
 ## 0.5
 
 ##### Features

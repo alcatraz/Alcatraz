@@ -28,7 +28,6 @@
 @implementation ATZDetailItemButton
 
 - (void)mouseEntered:(NSEvent *)theEvent {
-    NSLog(@"mouseEntered");
     [self.animator setAlphaValue:MAX_ALPHA];
 }
 
