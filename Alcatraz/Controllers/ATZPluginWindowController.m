@@ -47,13 +47,11 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 @implementation ATZPluginWindowController
 
 - (id)init {
-    if (self = [super init]) {
-        NSAssert(false, @"Use -initWithNibName:inBundle: to create a new ATZPluginWindowController");
-    }
+    NSAssert(false, @"Use -initWithNibName:inBundle: to create a new ATZPluginWindowController");
     return self;
 }
 
--(id) initWithNibName:(NSString *)nibName inBundle:(NSBundle *)bundle {
+- (id)initWithNibName:(NSString *)nibName inBundle:(NSBundle *)bundle {
     if (self = [super init]) {
         _filterPredicate = [NSPredicate predicateWithValue:YES];
 

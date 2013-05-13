@@ -81,6 +81,16 @@ describe(@"Alcatraz.m", ^{
                 [[alcatraz should] receive:@selector(loadWindowAndPutInFront)];
                 clickMenuItem();
             });
+
+            it(@"reloads the same window instance after closing", ^{
+                clickMenuItem();
+                NSWindow *window = [alcatraz.windowController window];
+                [window shouldNotBeNil];
+                [window performClose:nil];
+
+                clickMenuItem();
+                [[[alcatraz.windowController window] should] equal:window];
+            });
             
         });
         
@@ -99,6 +109,7 @@ describe(@"Alcatraz.m", ^{
             it(@"doesn't display the window", ^{
                 [[alcatraz shouldNot] receive:@selector(loadWindowAndPutInFront)];
                 clickMenuItem();
+                [alcatraz.windowController shouldBeNil];
             });
             
             it(@"alerts the user", ^{

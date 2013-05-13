@@ -25,5 +25,5 @@
 
 @interface Alcatraz : NSObject
 
-@property (nonatomic, strong) ATZPluginWindowController *windowController;
+@property (nonatomic, retain) ATZPluginWindowController *windowController;
 @end
