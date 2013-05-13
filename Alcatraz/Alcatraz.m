@@ -52,6 +52,7 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_bundle release];
+    [_windowController release];
     [super dealloc];
 }
 
@@ -78,21 +79,10 @@
 }
 
 - (void)loadWindowAndPutInFront {
-    NSArray *nibElements;
-    
-#if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1080
-    [self.bundle loadNibNamed:@"PluginWindow" owner:[ATZPluginWindowController new] topLevelObjects:&nibElements];
-#else
-    NSNib *nib = [[[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:self.bundle] autorelease];
-    [nib instantiateNibWithOwner:[[ATZPluginWindowController new] autorelease] topLevelObjects:&nibElements];
-#endif
-    
-    NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        return [evaluatedObject class] == [NSWindow class];
-    }];
-    
-    NSWindow *window = [nibElements filteredArrayUsingPredicate:windowPredicate][0];
-    [window makeKeyAndOrderFront:self];
+    if (!self.windowController)
+        self.windowController = [[ATZPluginWindowController alloc] initWithBundle:self.bundle];
+
+    [[self.windowController window] makeKeyAndOrderFront:self];
 }
 
 - (void)presentAlertForInstallingCMDLineTools {

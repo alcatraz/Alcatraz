@@ -84,7 +84,7 @@
             }
         }
         @catch (NSException *exception) {
-            NSLog(@"shit.. %@", exception);
+            NSLog(@"Exception occurred while loading template files from clone: %@", exception);
         }
         return [foundTemplates autorelease];
     }

@@ -44,4 +44,5 @@
 - (IBAction)showOnlyColorSchemes:(id)sender;
 - (IBAction)showOnlyTemplates:(id)sender;
 
+- (id)initWithBundle:(NSBundle *)bundle;
 @end

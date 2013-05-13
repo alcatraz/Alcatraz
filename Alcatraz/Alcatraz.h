@@ -21,7 +21,9 @@
 // THE SOFTWARE.
 
 #import <AppKit/AppKit.h>
+#import "ATZPluginWindowController.h"
 
 @interface Alcatraz : NSObject
 
+@property (nonatomic, retain) ATZPluginWindowController *windowController;
 @end
