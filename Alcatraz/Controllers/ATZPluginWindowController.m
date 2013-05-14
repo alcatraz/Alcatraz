@@ -280,12 +280,12 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (NSWindow *) mainWindowInBundle:(NSBundle *)bundle {
     NSArray *nibElements;
-
-#if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1080
-    [bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&nibElements];
-#else
+    
+#ifdef OSX_LION
     NSNib *nib = [[[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:bundle] autorelease];
     [nib instantiateNibWithOwner:self topLevelObjects:&nibElements];
+#else
+    [bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&nibElements];
 #endif
 
     NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
