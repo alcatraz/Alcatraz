@@ -28,97 +28,82 @@
 #import "ATZFileTemplate.h"
 #import "ATZPackageFactory.h"
 
+ATZPackage *packageWithName(NSArray *packages, NSString *name) {
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *package, NSDictionary *bindings) {
+        return [package[@"name"] isEqualToString:name];
+    }];
+    return [packages filteredArrayUsingPredicate:predicate].lastObject;
+}
+
+
 SPEC_BEGIN(ATZPackageFactoryTests)
 
-describe(@"ATZPackageFactory.m", ^{
+NSDictionary *packagesJSON = @{
+    @"plugins": @[
+        @{
+            @"name": @"D",
+            @"url": @"http://git.example.com/cool.git",
+            @"description": @"A plugin for making Xcode ...cool. Very cool."
+        }],
+    @"color_schemes": @[
+        @{
+            @"name": @"B",
+            @"url": @"http://git.example.com/dijkstra.dvtcolortheme",
+            @"description": @"This theme makes you feel guilty about your poor coding habits"
+        }],
+    @"file_templates": @[
+        @{
+            @"name": @"A",
+            @"url": @"http://git.example.com/kiwi_themes.git",
+            @"description": @"File templates for the Kiwi testing framework"
+        }],
+    @"project_templates": @[
+        @{
+            @"name": @"C",
+            @"url": @"http://git.example.com/cool.git",
+            @"description": @"A plugin for making Xcode ...cool. Very cool."
+        }]
+};
 
-    beforeAll(^{
+describe(@"Package Factory", ^{
+    
+    NSArray *packages = [ATZPackageFactory createPackagesFromDicts:packagesJSON];
+    
+    beforeEach(^{
         [ATZPackageFactory initialize];
     });
 
     describe(@"creating packages from dictionaries", ^{
+        
+        it(@"should unpack all types of packages", ^{
+            [[@(packages.count) should] equal:@4];
+        });
+        
         it(@"should create a plugin from a dictionary", ^{
-            NSDictionary *inputData = @{@"plugins": @[@{
-                @"name": @"CoolPlugin",
-                @"url": @"http://git.example.com/cool.git",
-                @"description":@"A plugin for making Xcode ...cool. Very cool."
-            }]};
-
-            NSArray *packages = [ATZPackageFactory createPackagesFromDicts:inputData];
-            [[@(packages.count) should] equal:@1];
-            [[packages[0] should] beKindOfClass:[ATZPlugin class]];
+            [[packageWithName(packages, @"D") should] beKindOfClass:[ATZPlugin class]];
         });
 
         it(@"should create a color scheme from a dictionary", ^{
-            NSDictionary *inputData = @{@"color_schemes": @[@{
-                @"name": @"Dijkstra in Blue",
-                @"url": @"http://git.example.com/dijkstra.dvtcolortheme",
-                @"description":@"This theme makes you feel guilty about your poor coding habits"
-            }]};
-
-            NSArray *packages = [ATZPackageFactory createPackagesFromDicts:inputData];
-            [[@(packages.count) should] equal:@1];
-            [[packages[0] should] beKindOfClass:[ATZColorScheme class]];
+            [[packageWithName(packages, @"B") should] beKindOfClass:[ATZColorScheme class]];
         });
 
         it(@"should create a file template from a dictionary", ^{
-            NSDictionary *inputData = @{@"file_templates": @[@{
-                @"name": @"Kiwi File Templates",
-                @"url": @"http://git.example.com/kiwi_themes.git",
-                @"description":@"File templates for the Kiwi testing framework"
-            }]};
-
-            NSArray *packages = [ATZPackageFactory createPackagesFromDicts:inputData];
-            [[@(packages.count) should] equal:@1];
-            [[packages[0] should] beKindOfClass:[ATZFileTemplate class]];
+            [[packageWithName(packages, @"A") should] beKindOfClass:[ATZFileTemplate class]];
         });
 
         it(@"should create a project template from a dictionary", ^{
-            NSDictionary *inputData = @{@"plugins": @[@{
-                @"name": @"CoolPlugin",
-                @"url": @"http://git.example.com/cool.git",
-                @"description":@"A plugin for making Xcode ...cool. Very cool."
-            }]};
-
-            NSArray *packages = [ATZPackageFactory createPackagesFromDicts:inputData];
-            [[@(packages.count) should] equal:@1];
-            [[packages[0] should] beKindOfClass:[ATZPlugin class]];
+            [[packageWithName(packages, @"C") should] beKindOfClass:[ATZProjectTemplate class]];
         });
     });
 
     it(@"should sort packages by name", ^{
-        NSArray *packageNames = @[@"Z",@"D",@"A",@"U"];
-        NSDictionary *inputData = @{
-            @"plugins": @[@{
-                @"name": packageNames[0],
-                @"url": @"http://git.example.com/package.git",
-                @"description":@"The force from the beginning"
-            }],
-            @"color_schemes": @[@{
-                @"name": packageNames[1],
-                @"url": @"http://git.example.com/package.git",
-                @"description":@"Our ends were beginnings"
-            },@{
-                @"name": packageNames[2],
-                @"url": @"http://git.example.com/package.git",
-                @"description":@"Like the legend of the phoenix"
-            }],
-            @"project_templates": @[@{
-                @"name": packageNames[3],
-                @"url": @"http://git.example.com/package.git",
-                @"description":@"What keeps the planet spinning"
-            }]
-        };
-
-        NSArray *packages = [ATZPackageFactory createPackagesFromDicts:inputData];
-        [[@(packages.count) should] equal:@4];
-
-        NSArray *sortedPackageNames = [packageNames sortedArrayUsingSelector:@selector(compare:)];
-        for(int i = 0; i < packages.count; i++) {
-            ATZPackage *package = packages[i];
-            [[package.name should] equal: sortedPackageNames[i]];
-        }
-
+        NSArray *sortedNames = @[@"A", @"B", @"C", @"D"];
+        
+        NSMutableArray *createdNames = [NSMutableArray new];
+        for (ATZPackage *package in packages)
+            [createdNames addObject:package.name];
+        
+        [[createdNames should] equal:sortedNames];
     });
 
 });
