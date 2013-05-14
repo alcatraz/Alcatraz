@@ -28,6 +28,35 @@
 #import "ATZFileTemplate.h"
 #import "ATZPackageFactory.h"
 
+NSDictionary *createFakeJSON() {
+    return @{
+             @"plugins": @[
+                     @{
+                         @"name": @"D",
+                         @"url": @"http://git.example.com/cool.git",
+                         @"description": @"A plugin for making Xcode ...cool. Very cool."
+                         }],
+             @"color_schemes": @[
+                     @{
+                         @"name": @"B",
+                         @"url": @"http://git.example.com/dijkstra.dvtcolortheme",
+                         @"description": @"This theme makes you feel guilty about your poor coding habits"
+                         }],
+             @"file_templates": @[
+                     @{
+                         @"name": @"A",
+                         @"url": @"http://git.example.com/kiwi_themes.git",
+                         @"description": @"File templates for the Kiwi testing framework"
+                         }],
+             @"project_templates": @[
+                     @{
+                         @"name": @"C",
+                         @"url": @"http://git.example.com/cool.git",
+                         @"description": @"A plugin for making Xcode ...cool. Very cool."
+                         }]
+             };
+}
+
 ATZPackage *packageWithName(NSArray *packages, NSString *name) {
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *package, NSDictionary *bindings) {
         return [package[@"name"] isEqualToString:name];
@@ -36,38 +65,12 @@ ATZPackage *packageWithName(NSArray *packages, NSString *name) {
 }
 
 
-SPEC_BEGIN(ATZPackageFactoryTests)
 
-NSDictionary *packagesJSON = @{
-    @"plugins": @[
-        @{
-            @"name": @"D",
-            @"url": @"http://git.example.com/cool.git",
-            @"description": @"A plugin for making Xcode ...cool. Very cool."
-        }],
-    @"color_schemes": @[
-        @{
-            @"name": @"B",
-            @"url": @"http://git.example.com/dijkstra.dvtcolortheme",
-            @"description": @"This theme makes you feel guilty about your poor coding habits"
-        }],
-    @"file_templates": @[
-        @{
-            @"name": @"A",
-            @"url": @"http://git.example.com/kiwi_themes.git",
-            @"description": @"File templates for the Kiwi testing framework"
-        }],
-    @"project_templates": @[
-        @{
-            @"name": @"C",
-            @"url": @"http://git.example.com/cool.git",
-            @"description": @"A plugin for making Xcode ...cool. Very cool."
-        }]
-};
+SPEC_BEGIN(ATZPackageFactoryTests)
 
 describe(@"Package Factory", ^{
     
-    NSArray *packages = [ATZPackageFactory createPackagesFromDicts:packagesJSON];
+    NSArray *packages = [ATZPackageFactory createPackagesFromDicts:createFakeJSON()];
     
     beforeEach(^{
         [ATZPackageFactory initialize];
