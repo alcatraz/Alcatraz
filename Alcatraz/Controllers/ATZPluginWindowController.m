@@ -60,6 +60,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             [self updateAlcatraz];
             [self setWindow:[self mainWindowInBundle:bundle]];
             [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
+            if ([NSUserNotificationCenter class]) {
+                [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+            }
         }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
@@ -74,6 +77,16 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     
     [super dealloc];
 }
+
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
+    NSLog(@"userNotificationClicked!");
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
+    return YES;
+}
+
+
 
 #pragma mark - Bindings
 

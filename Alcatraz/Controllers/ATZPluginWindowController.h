@@ -22,7 +22,7 @@
 
 #import <AppKit/AppKit.h>
 
-@interface ATZPluginWindowController : NSWindowController<NSTableViewDelegate, NSControlTextEditingDelegate>
+@interface ATZPluginWindowController : NSWindowController<NSTableViewDelegate, NSControlTextEditingDelegate, NSUserNotificationCenterDelegate>
 
 @property (nonatomic, retain) NSArray *packages;
 @property (nonatomic, retain) NSPredicate *filterPredicate;
