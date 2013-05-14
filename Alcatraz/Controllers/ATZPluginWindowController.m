@@ -282,7 +282,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     NSArray *nibElements;
 
 #if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1080
-    [self.bundle loadNibNamed:@"PluginWindow" owner:windowController topLevelObjects:&nibElements];
+    [bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&nibElements];
 #else
     NSNib *nib = [[[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:bundle] autorelease];
     [nib instantiateNibWithOwner:self topLevelObjects:&nibElements];
