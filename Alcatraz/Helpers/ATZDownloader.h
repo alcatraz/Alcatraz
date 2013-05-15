@@ -23,9 +23,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^ATZCompletionBlockWithResponseAndError)(NSData *responseData, NSError *error);
+typedef void(^ATZPackageListCompletionBlock)(NSDictionary *packageList, NSError *error);
+
 @interface ATZDownloader : NSObject
 
-- (void)downloadPackageListWithCompletion:(void(^)(NSDictionary *packageList, NSError *error))completion;
-- (void)downloadFileFromPath:(NSString *)remotePath completion:(void(^)(NSData *responseData, NSError *error))completion;
+- (void)downloadPackageListWithCompletion:(ATZPackageListCompletionBlock)completion;
+- (void)downloadFileFromPath:(NSString *)remotePath completion:(ATZCompletionBlockWithResponseAndError)completion;
 
 @end

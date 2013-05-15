@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import "ATZInstaller.h"
 
+typedef void(^ATZPackageCompletionBlock)(NSString *progressMessage, NSError *error);
+
 @interface ATZColorSchemeInstaller : ATZInstaller
 
 @end

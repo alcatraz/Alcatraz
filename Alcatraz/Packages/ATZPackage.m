@@ -81,15 +81,15 @@
     @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Some packages don't require restarting!" userInfo:nil];
 }
 
-- (void)installWithProgressMessage:(void (^)(NSString *))progress completion:(void (^)(NSError *))completion {
+- (void)installWithProgressMessage:(void (^)(NSString *))progress completion:(ATZCompletionBlockWithError)completion {
     [[self installer] installPackage:self progress:progress completion:completion];
 }
 
-- (void)updateWithProgressMessage:(void (^)(NSString *))progress completion:(void (^)(NSError *))completion {
+- (void)updateWithProgressMessage:(void (^)(NSString *))progress completion:(ATZCompletionBlockWithError)completion {
     [[self installer] updatePackage:self progress:progress completion:completion];
 }
 
-- (void)removeWithCompletion:(void (^)(NSError *))completion {
+- (void)removeWithCompletion:(ATZCompletionBlockWithError)completion {
     [[self installer] removePackage:self completion:completion];
 }
 

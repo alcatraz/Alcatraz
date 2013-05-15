@@ -41,12 +41,12 @@
 - (id)initWithDictionary:(NSDictionary *)dict;
 
 - (void)installWithProgressMessage:(void(^)(NSString *proggressMessage))progress
-                        completion:(void(^)(NSError *failure))completion;
+                        completion:(ATZCompletionBlockWithError)completion;
 
 - (void)updateWithProgressMessage:(void(^)(NSString *proggressMessage))progress
-                       completion:(void(^)(NSError *failure))completion;
+                       completion:(ATZCompletionBlockWithError)completion;
 
-- (void)removeWithCompletion:(void(^)(NSError *failure))completion;
+- (void)removeWithCompletion:(ATZCompletionBlockWithError)completion;
 
 
 #pragma mark - Abstract

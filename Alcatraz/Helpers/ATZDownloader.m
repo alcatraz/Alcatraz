@@ -27,7 +27,7 @@ static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/mneorr/alcat
 
 @implementation ATZDownloader
 
-- (void)downloadPackageListWithCompletion:(void(^)(NSDictionary *packageList, NSError *error))completion {
+- (void)downloadPackageListWithCompletion:(ATZPackageListCompletionBlock)completion {
     
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:PLUGINS_REPO_PATH]]
                                        queue:[NSOperationQueue mainQueue]
@@ -40,7 +40,7 @@ static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/mneorr/alcat
     }];
 }
 
-- (void)downloadFileFromPath:(NSString *)remotePath completion:(void(^)(NSData *responseData, NSError *error))completion {
+- (void)downloadFileFromPath:(NSString *)remotePath completion:(ATZCompletionBlockWithResponseAndError)completion {
     
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:remotePath]]
                                        queue:[NSOperationQueue mainQueue]

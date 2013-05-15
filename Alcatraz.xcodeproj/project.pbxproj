@@ -61,6 +61,7 @@
 		32B63216173A3E880076C098 /* ATZPackageTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableCellView.m; path = Views/ATZPackageTableCellView.m; sourceTree = "<group>"; };
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		32BDEBC4173A46B600513A7C /* link_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link_icon.png; sourceTree = "<group>"; };
+		32D42EA1174440F0005853EA /* ATZGenerics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZGenerics.h; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
 		32D86504173A4555009C724B /* link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link_icon@2x.png"; sourceTree = "<group>"; };
 		8907F99D172955690015A56B /* NSArray+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Subscript.h"; sourceTree = "<group>"; };
@@ -237,6 +238,7 @@
 				890A4B4D171F031300AFE577 /* Alcatraz.m */,
 				890A4B47171F031300AFE577 /* Supporting Files */,
 				89C4C685171F1B5C004A88E7 /* PluginWindow.xib */,
+				32D42EA1174440F0005853EA /* ATZGenerics.h */,
 			);
 			path = Alcatraz;
 			sourceTree = "<group>";

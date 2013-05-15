@@ -72,7 +72,7 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
     }];
 }
 
-- (void)removePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
+- (void)removePackage:(ATZPackage *)package completion:(ATZCompletionBlockWithError)completion {
     [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion];
 }
 
@@ -93,17 +93,17 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
 }
 
 
-- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+- (void)downloadPackage:(ATZPackage *)package completion:(ATZCompletionBlockWithError)completion {
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Abstract Installer doesn't know how to download" userInfo:nil];
 }
 
-- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
+- (void)updatePackage:(ATZPackage *)package completion:(ATZCompletionBlockWithOutputAndError)completion {
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Abstract Installer doesn't know how to update" userInfo:nil];
 }
 
-- (void)installPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+- (void)installPackage:(ATZPackage *)package completion:(ATZCompletionBlockWithError)completion {
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Abstract Installer doesn't know how to install" userInfo:nil];
 }
@@ -122,13 +122,13 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
 
 #pragma mark - Hooks
 
-- (void)reloadXcodeForPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion{ completion(nil); }
+- (void)reloadXcodeForPackage:(ATZPackage *)package completion:(ATZCompletionBlockWithError)completion{ completion(nil); }
 
 
 
 #pragma mark - Private
 
-- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
+- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(ATZCompletionBlockWithError)completion {
     
     if ([[NSFileManager sharedManager] fileExistsAtPath:[self pathForDownloadedPackage:package]])
         [self updatePackage:package completion:^(NSString *output, NSError *error) {

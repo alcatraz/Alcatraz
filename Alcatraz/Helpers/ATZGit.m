@@ -33,7 +33,7 @@
 }
 
 + (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
-             completion:(void (^)(NSError *))completion {
+             completion:(ATZCompletionBlockWithError)completion {
     
     [self clone:remotePath to:localPath completion:completion];
 }
@@ -48,7 +48,7 @@
 
 #pragma mark - Private
 
-+ (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSError *))completion {
++ (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(ATZCompletionBlockWithError)completion {
     ATZShell *shell = [ATZShell new];
     
     [shell executeCommand:GIT withArguments:@[CLONE, remotePath, localPath, IGNORE_PUSH_CONFIG]
@@ -62,7 +62,7 @@
 
 // TODO: refactor, make less shell instances (maybe?)
 + (void)updateLocalProject:(NSString *)localPath revision:(NSString *)revision
-                completion:(void (^)(NSString *, NSError *))completion {
+                completion:(ATZCompletionBlockWithOutputAndError)completion {
     
     [self fetch:localPath completion:^(NSString *fetchOutput, NSError *error) {
         
@@ -75,7 +75,7 @@
     }];
 }
 
-+ (void)fetch:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
++ (void)fetch:(NSString *)localPath completion:(ATZCompletionBlockWithOutputAndError)completion {
     
     ATZShell *shell = [ATZShell new];
     [shell executeCommand:GIT withArguments:@[FETCH, ORIGIN] inWorkingDirectory:localPath
@@ -88,7 +88,7 @@
 }
 
 + (void)resetHard:(NSString *)localPath revision:(NSString *)revision
-       completion:(void (^)(NSString *, NSError *))completion {
+       completion:(ATZCompletionBlockWithOutputAndError)completion {
     
     ATZShell *shell = [ATZShell new];
     NSArray *resetArguments = @[RESET, HARD, revision ?: ORIGIN_MASTER];

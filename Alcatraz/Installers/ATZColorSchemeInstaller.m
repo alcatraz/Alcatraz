@@ -32,7 +32,7 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 #pragma mark - Abstract
 
 
-- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+- (void)downloadPackage:(ATZPackage *)package completion:(ATZCompletionBlockWithError)completion {
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData, NSError *error) {
         
@@ -46,12 +46,12 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
     }];
 }
 
-- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
+- (void)updatePackage:(ATZPackage *)package completion:(ATZPackageCompletionBlock)completion {
     
     completion(nil, nil);
 }
 
-- (void)installPackage:(ATZColorScheme *)package completion:(void (^)(NSError *))completion {
+- (void)installPackage:(ATZColorScheme *)package completion:(ATZCompletionBlockWithError)completion {
     [self createInstalledColorsDirectoryIfNeeded];
     [self copyColorSchemeToXcode:package completion:completion];
 }
@@ -69,7 +69,7 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 #pragma mark - Private
 
 - (void)saveColorScheme:(ATZPackage *)colorScheme withContents:(NSData *)contents
-             completion:(void(^)(NSError *))completion {
+             completion:(ATZCompletionBlockWithError)completion {
     
     BOOL saveSucceeded = ([[NSFileManager sharedManager] createFileAtPath:[self pathForDownloadedPackage:colorScheme]
                                                                  contents:contents attributes:nil]);
@@ -77,7 +77,7 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
                     completion([NSError errorWithDomain:@"Color Scheme Installation fail" code:666 userInfo:nil]);
 }
 
-- (void)copyColorSchemeToXcode:(ATZPackage *)colorScheme completion:(void (^)(NSError *))completion {
+- (void)copyColorSchemeToXcode:(ATZPackage *)colorScheme completion:(ATZCompletionBlockWithError)completion {
     NSError *error = nil;
     [[NSFileManager sharedManager] linkItemAtPath:[self pathForDownloadedPackage:colorScheme]
                                            toPath:[self pathForInstalledPackage:colorScheme] error:&error];
