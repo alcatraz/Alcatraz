@@ -69,12 +69,15 @@ describe(@"Alcatraz.m", ^{
             NSMenuItem *alcatrazItem = [[windowMenuItem submenu] itemWithTitle:@"Package Manager"];
             
             [alcatrazItem shouldNotBeNil];
-            [[@([windowMenuItem.submenu indexOfItem:alcatrazItem]) should] equal:@([[windowMenuItem submenu] indexOfItemWithTitle:@"Organizer"] + 1)];
+            [[@([windowMenuItem.submenu indexOfItem:alcatrazItem]) should] equal:
+              @([windowMenuItem.submenu indexOfItemWithTitle:@"Organizer"] + 1)];
         });
         
         it(@"updates alcatraz", ^{
-            [[ATZAlcatrazPackage should] receive:@selector(update)];
-            [[Alcatraz alloc] performSelector:@selector(initWithBundle:) withObject:pluginBundle];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [[ATZAlcatrazPackage should] receive:@selector(update)];
+                [alcatraz performSelector:@selector(initWithBundle:) withObject:pluginBundle];
+            }];
         });
         
     });
