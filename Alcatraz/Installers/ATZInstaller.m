@@ -140,7 +140,7 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
 }
 
 - (void)postNotificationForInstalledPackage:(ATZPackage *)package {
-    if ([NSUserNotificationCenter class]) {
+    if ([NSUserNotificationCenter class] && package.isInstalled) {
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         notification.title = [NSString stringWithFormat:@"%@ installed", package.type];
         notification.informativeText = [NSString stringWithFormat:@"%@ installed successfully", package.name];
