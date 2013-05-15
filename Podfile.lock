@@ -1,10 +1,10 @@
 PODS:
-  - Kiwi (2.0.6)
+  - Kiwi (2.1)
 
 DEPENDENCIES:
   - Kiwi
 
 SPEC CHECKSUMS:
-  Kiwi: 56082a80f942de4d10423d8d8a599ab30cf50228
+  Kiwi: 054ef97d0e50c279b21113a0880a906fa153a7fd
 
 COCOAPODS: 0.19.1

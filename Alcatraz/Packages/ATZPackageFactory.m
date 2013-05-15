@@ -28,7 +28,7 @@
 
 @implementation ATZPackageFactory
 
-NSDictionary *packageClasses;
+static NSDictionary *packageClasses;
 
 + (void)initialize {
     packageClasses = @{
@@ -40,9 +40,8 @@ NSDictionary *packageClasses;
 }
 
 + (NSArray *)createPackagesFromDicts:(NSDictionary *)packagesInDicts {
+    NSMutableArray *packages = [NSMutableArray array];
     @autoreleasepool {
-        NSMutableArray *packages = [NSMutableArray array];
-        
         for (NSString *packageType in packagesInDicts.allKeys) {
             
             for (NSDictionary *packageDict in packagesInDicts[packageType]) {
@@ -52,8 +51,8 @@ NSDictionary *packageClasses;
             }
         
         }
-        return [self sortPackagesByName:packages];
     }
+    return [self sortPackagesByName:packages];
 }
 
 + (NSArray *)sortPackagesByName:(NSArray *)unsortedPackages {
