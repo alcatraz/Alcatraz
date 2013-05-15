@@ -13,6 +13,7 @@
 		32D86505173A4555009C724B /* eye_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86503173A4555009C724B /* eye_icon@2x.png */; };
 		32D86506173A4555009C724B /* link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86504173A4555009C724B /* link_icon@2x.png */; };
 		481FD71592234AE5B6FFC476 /* libPods-AlcatrazTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CB2C1282B94BF8A3FC4F0A /* libPods-AlcatrazTests.a */; };
+		8907C00B1743F78D00C91A4C /* Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 890A4B4D171F031300AFE577 /* Alcatraz.m */; };
 		8907F9A7172955690015A56B /* NSArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F99E172955690015A56B /* NSArray+Subscript.m */; };
 		8907F9A8172955690015A56B /* NSDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A0172955690015A56B /* NSDictionary+Subscript.m */; };
 		8907F9A9172955690015A56B /* NSMutableArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A2172955690015A56B /* NSMutableArray+Subscript.m */; };
@@ -637,6 +638,7 @@
 				8AE8A7401742777000915C20 /* NSMutableDictionary+Subscript.m in Sources */,
 				8AE8A741174277A600915C20 /* ATZPluginWindowController.m in Sources */,
 				8A86CE63174326F5006B49BF /* ATZPackageTests.m in Sources */,
+				8907C00B1743F78D00C91A4C /* Alcatraz.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
