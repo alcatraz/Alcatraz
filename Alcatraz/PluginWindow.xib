@@ -167,9 +167,11 @@
 							<string key="NSToolbarItemPaletteLabel">Search</string>
 							<nil key="NSToolbarItemToolTip"/>
 							<object class="NSSearchField" key="NSToolbarItemView" id="753280190">
-								<nil key="NSNextResponder"/>
+								<reference key="NSNextResponder"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {96, 22}}</string>
+								<reference key="NSSuperview"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSSearchFieldCell" key="NSCell" id="506268379">
@@ -351,7 +353,7 @@
 											<string key="NSFrameSize">{500, 514}</string>
 											<reference key="NSSuperview" ref="1071338836"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="753988746"/>
+											<reference key="NSNextKeyView" ref="373859733"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -367,11 +369,9 @@
 												<reference key="NSTableView" ref="356240050"/>
 											</object>
 											<object class="_NSCornerView" key="NSCornerView" id="28024078">
-												<reference key="NSNextResponder" ref="877562553"/>
+												<nil key="NSNextResponder"/>
 												<int key="NSvFlags">-2147483392</int>
 												<string key="NSFrame">{{224, 0}, {16, 17}}</string>
-												<reference key="NSSuperview" ref="877562553"/>
-												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="1071338836"/>
 												<string key="NSReuseIdentifierKey">_NS:19</string>
 											</object>
@@ -541,19 +541,17 @@
 									<reference key="NSBGColor" ref="1050515828"/>
 									<int key="NScvFlags">4</int>
 								</object>
-								<reference ref="28024078"/>
 							</array>
 							<string key="NSFrame">{{0, 20}, {500, 531}}</string>
 							<reference key="NSSuperview" ref="1047339326"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="373859733"/>
+							<reference key="NSNextKeyView" ref="1071338836"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133680</int>
 							<reference key="NSVScroller" ref="373859733"/>
 							<reference key="NSHScroller" ref="349681262"/>
 							<reference key="NSContentView" ref="1071338836"/>
 							<reference key="NSHeaderClipView" ref="320281040"/>
-							<reference key="NSCornerView" ref="28024078"/>
 							<bytes key="NSScrollAmts">QSAAAEEgAABCpAAAQqQAAA</bytes>
 							<double key="NSMinMagnification">0.25</double>
 							<double key="NSMaxMagnification">4</double>
@@ -581,7 +579,6 @@
 									<string key="NSFrame">{{353, 0}, {128, 16}}</string>
 									<reference key="NSSuperview" ref="102215890"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:1535</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSTextFieldCell" key="NSCell" id="980812536">
@@ -748,38 +745,6 @@
 					<int key="connectionID">437</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showAllPackages:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="768172748"/>
-					</object>
-					<int key="connectionID">441</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showOnlyPlugins:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="824970153"/>
-					</object>
-					<int key="connectionID">442</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showOnlyColorSchemes:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="255927827"/>
-					</object>
-					<int key="connectionID">443</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showOnlyTemplates:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="864081484"/>
-					</object>
-					<int key="connectionID">444</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">statusLabel</string>
 						<reference key="source" ref="1001"/>
@@ -888,6 +853,38 @@
 						<reference key="destination" ref="502123508"/>
 					</object>
 					<int key="connectionID">1365</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showAllPackagesPressed:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="768172748"/>
+					</object>
+					<int key="connectionID">1367</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showOnlyPluginsPressed:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="824970153"/>
+					</object>
+					<int key="connectionID">1368</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showOnlyColorSchemesPressed:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="255927827"/>
+					</object>
+					<int key="connectionID">1369</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showOnlyTemplatesPressed:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="864081484"/>
+					</object>
+					<int key="connectionID">1370</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2706,7 +2703,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1366</int>
+			<int key="maxID">1370</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2752,10 +2749,10 @@
 						<string key="checkboxPressed:">NSButton</string>
 						<string key="displayScreenshotPressed:">NSButton</string>
 						<string key="openPackageWebsitePressed:">NSButton</string>
-						<string key="showAllPackages:">id</string>
-						<string key="showOnlyColorSchemes:">id</string>
-						<string key="showOnlyPlugins:">id</string>
-						<string key="showOnlyTemplates:">id</string>
+						<string key="showAllPackagesPressed:">id</string>
+						<string key="showOnlyColorSchemesPressed:">id</string>
+						<string key="showOnlyPluginsPressed:">id</string>
+						<string key="showOnlyTemplatesPressed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="checkboxPressed:">
@@ -2770,20 +2767,20 @@
 							<string key="name">openPackageWebsitePressed:</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBActionInfo" key="showAllPackages:">
-							<string key="name">showAllPackages:</string>
+						<object class="IBActionInfo" key="showAllPackagesPressed:">
+							<string key="name">showAllPackagesPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="showOnlyColorSchemes:">
-							<string key="name">showOnlyColorSchemes:</string>
+						<object class="IBActionInfo" key="showOnlyColorSchemesPressed:">
+							<string key="name">showOnlyColorSchemesPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="showOnlyPlugins:">
-							<string key="name">showOnlyPlugins:</string>
+						<object class="IBActionInfo" key="showOnlyPluginsPressed:">
+							<string key="name">showOnlyPluginsPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="showOnlyTemplates:">
-							<string key="name">showOnlyTemplates:</string>
+						<object class="IBActionInfo" key="showOnlyTemplatesPressed:">
+							<string key="name">showOnlyTemplatesPressed:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
