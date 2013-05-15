@@ -8,36 +8,50 @@
 
 #import "Kiwi.h"
 #import "ATZPackage.h"
+#import "ATZInstaller.h"
 
 SPEC_BEGIN(ATZPackageTests)
 
-describe(@"unpacking package", ^{
+describe(@"Package", ^{
 
     __block ATZPackage *package;
+    NSString *name = @"Life";
+    NSString *description = @"A short game of numbers";
+    NSString *namespace = @"userName";
+    NSString *repoName = @"lifeRepo";
+    NSString *urlString = [NSString stringWithFormat:@"http://raw.github.com/%@/%@/branch/file",namespace,repoName];
+    NSString *screenshotPath = @"http://HAIKittenImages.com/image.jpeg";
 
     beforeEach(^{
         package = [[ATZPackage alloc] initWithDictionary:@{
-            @"name"        : @"Life",
-            @"description" : @"A short game of numbers"
+            @"name"        : name,
+            @"description" : description,
+            @"url": urlString,
+            @"screenshot": screenshotPath
         }];
     });
 
-    it(@"creates project page URL from raw github URL", ^{
-        NSString *userName = @"userName";
-        NSString *repoName = @"lifeRepo";
-        package.remotePath = [NSString stringWithFormat:@"http://raw.github.com/%@/%@/branch/file",userName,repoName];
-        
-        [[package.website should] startWithString:@"https://github.com"];
-        [[package.website should] containString:userName];
-        [[package.website should] containString:repoName];
-    });
-
-    it(@"preserves URL when not a raw github URL", ^{
-        package.remotePath = @"http://git.example.com/life.git";
-        [[package.website should] equal:package.remotePath];
+    it(@"initializes correctly", ^{
+        [[package.name should] equal:name];
+        [[package.description should] equal:description];
+        [[package.remotePath should] equal:urlString];
+        [[package.screenshotPath should] equal:screenshotPath];
     });
     
-    context(@"parsing revisions", ^{
+    describe(@"parsing website", ^{
+        
+        it(@"creates project page URL from raw github URL", ^{
+            [[package.website should] equal:@"https://github.com/userName/lifeRepo"];
+        });
+        
+        it(@"preserves URL when not a raw github URL", ^{
+            package.remotePath = @"http://git.example.com/life.git";
+            [[package.website should] equal:package.remotePath];
+        });
+        
+    });
+    
+    describe(@"parsing revisions", ^{
         
         it(@"parses branch", ^{
             package = [[ATZPackage alloc] initWithDictionary:@{ @"branch": @"deploy" }];
@@ -56,7 +70,13 @@ describe(@"unpacking package", ^{
         
     });
     
-    
+    it(@"asks installer if it's installed", ^{
+        KWMock *mockInstaller = [ATZInstaller mock];
+        [package stub:@selector(installer) andReturn:mockInstaller];
+        
+        [[mockInstaller should] receive:@selector(isPackageInstalled:) andReturn:nil];
+        [package isInstalled];
+    });
 });
 
 SPEC_END
