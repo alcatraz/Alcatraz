@@ -54,29 +54,52 @@ describe(@"Package", ^{
     describe(@"parsing revisions", ^{
         
         it(@"parses branch", ^{
-            package = [[ATZPackage alloc] initWithDictionary:@{ @"branch": @"deploy" }];
-            [[package.revision should] equal:@"origin/deploy"];
+            ATZPackage *newPackage = [[ATZPackage alloc] initWithDictionary:@{ @"branch": @"deploy" }];
+            [[newPackage.revision should] equal:@"origin/deploy"];
         });
         
         it(@"parses tag", ^{
-            package = [[ATZPackage alloc] initWithDictionary:@{ @"tag": @"3.4.2" }];
+            ATZPackage *package = [[ATZPackage alloc] initWithDictionary:@{ @"tag": @"3.4.2" }];
             [[package.revision should] equal:@"3.4.2"];
         });
         
         it(@"parses commit", ^{
-            package = [[ATZPackage alloc] initWithDictionary:@{ @"commit": @"23kjnrq98kcq2jn" }];
+            ATZPackage *package = [[ATZPackage alloc] initWithDictionary:@{ @"commit": @"23kjnrq98kcq2jn" }];
             [[package.revision should] equal:@"23kjnrq98kcq2jn"];
         });
         
     });
     
-    it(@"asks installer if it's installed", ^{
-        KWMock *mockInstaller = [ATZInstaller mock];
-        [package stub:@selector(installer) andReturn:mockInstaller];
+    describe(@"installing", ^{
         
-        [[mockInstaller should] receive:@selector(isPackageInstalled:) andReturn:nil];
-        [package isInstalled];
+        KWMock *mockInstaller = [ATZInstaller nullMock];
+        
+        beforeEach(^{
+           [package stub:@selector(installer) andReturn:mockInstaller];
+        });
+       
+        it(@"asks installer if it's installed", ^{
+            [[mockInstaller should] receive:@selector(isPackageInstalled:) andReturn:@YES];
+            [[@(package.isInstalled) should] equal:@YES];
+        });
+        
+        it(@"forwards install to installer", ^{
+            [[mockInstaller should] receive:@selector(installPackage:progress:completion:)];
+            [package installWithProgressMessage:^(NSString *proggressMessage) {} completion:^(NSError *failure){}];
+        });
+        
+        it(@"forwards remove to installer", ^{
+            [[mockInstaller should] receive:@selector(removePackage:completion:)];
+            [package removeWithCompletion:^(NSError *failure) {}];
+        });
+        
+        it(@"forwards update to installer", ^{
+            [[mockInstaller should] receive:@selector(updatePackage:progress:completion:)];
+            [package updateWithProgressMessage:^(NSString *proggressMessage){} completion:^(NSError *failure){}];
+        });
+        
     });
+
 });
 
 SPEC_END
