@@ -23,8 +23,7 @@
 
 #import "Alcatraz.h"
 #import "ATZPluginWindowController.h"
-#import "ATZPluginInstaller.h"
-#import "ATZPlugin.h"
+#import "ATZAlcatrazPackage.h"
 #import "ATZShell.h"
 
 @interface Alcatraz(){}
@@ -44,7 +43,8 @@
 - (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
         self.bundle = plugin;
-        [self createMenuItem];        
+        [self createMenuItem];
+        [self updateAlcatraz];
     }
     return self;
 }
@@ -83,6 +83,7 @@
         self.windowController = [[ATZPluginWindowController alloc] initWithBundle:self.bundle];
 
     [[self.windowController window] makeKeyAndOrderFront:self];
+    [self.windowController reloadPackages];
 }
 
 - (void)presentAlertForInstallingCMDLineTools {
@@ -92,6 +93,15 @@
                                        otherButton:nil
                          informativeTextWithFormat:@""];
     [alert runModal];
+}
+
+- (void)updateAlcatraz {
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperationWithBlock:^{
+        
+        [ATZAlcatrazPackage update];
+        [queue release];
+    }];
 }
 
 

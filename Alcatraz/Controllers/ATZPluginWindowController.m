@@ -30,7 +30,6 @@
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
 #import "ATZTemplate.h"
-#import "ATZAlcatrazPackage.h"
 
 #import "ATZShell.h"
 
@@ -40,15 +39,14 @@ static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR desc
 static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@) AND (self isKindOfClass: %@)";
 
 @interface ATZPluginWindowController ()
-@property (nonatomic) Class selectedPackageClass;
-@property (assign) NSView *hoverButtonsContainer;
+@property (nonatomic, assign) Class selectedPackageClass;
+@property (nonatomic, assign) NSView *hoverButtonsContainer;
 @end
 
 @implementation ATZPluginWindowController
 
 - (id)init {
-    NSAssert(false, @"Use -initWithNibName:inBundle: to create a new ATZPluginWindowController");
-    return self;
+    @throw [NSException exceptionWithName:@"There's a better initializer" reason:@"Use -initWithNibName:inBundle:" userInfo:nil];
 }
 
 - (id)initWithBundle:(NSBundle *)bundle {
@@ -56,8 +54,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         _filterPredicate = [NSPredicate predicateWithValue:YES];
 
         @try {
-            [self fetchPlugins];
-            [self updateAlcatraz];
             [self setWindow:[self mainWindowInBundle:bundle]];
             [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
             if ([NSUserNotificationCenter class]) {
@@ -65,8 +61,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             }
         }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
+        [self setWindow:[self mainWindowInBundle:bundle]];
+        [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
     }
-
     return self;
 }
 
@@ -99,22 +96,22 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [self installPackage:package andUpdateCheckbox:checkbox];
 }
 
-- (IBAction)showAllPackages:(id)sender {
+- (IBAction)showAllPackagesPressed:(id)sender {
     self.selectedPackageClass = nil;
     [self updatePredicate];
 }
 
-- (IBAction)showOnlyPlugins:(id)sender {
+- (IBAction)showOnlyPluginsPressed:(id)sender {
     self.selectedPackageClass = [ATZPlugin class];
     [self updatePredicate];
 }
 
-- (IBAction)showOnlyColorSchemes:(id)sender {
+- (IBAction)showOnlyColorSchemesPressed:(id)sender {
     self.selectedPackageClass = [ATZColorScheme class];
     [self updatePredicate];
 }
 
-- (IBAction)showOnlyTemplates:(id)sender {
+- (IBAction)showOnlyTemplatesPressed:(id)sender {
     self.selectedPackageClass = [ATZTemplate class];
     [self updatePredicate];
 }
@@ -204,7 +201,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     }
 }
 
-- (void)fetchPlugins {
+- (void)reloadPackages {
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
         
@@ -216,15 +213,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             [self updatePackages];
         }
         [downloader release];
-    }];
-}
-
-- (void)updateAlcatraz {
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperationWithBlock:^{
-        
-        [ATZAlcatrazPackage update];
-        [queue release];
     }];
 }
 
@@ -291,7 +279,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     
 }
 
-- (NSWindow *) mainWindowInBundle:(NSBundle *)bundle {
+- (NSWindow *)mainWindowInBundle:(NSBundle *)bundle {
     NSArray *nibElements;
     
 #ifdef OSX_LION

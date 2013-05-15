@@ -35,14 +35,17 @@
 @property (assign) IBOutlet NSTextField *restartLabel;
 @property (assign) IBOutlet NSProgressIndicator *progressIndicator;
 
+- (id)initWithBundle:(NSBundle *)bundle;
+
 - (IBAction)checkboxPressed:(NSButton *)sender;
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender;
 - (IBAction)displayScreenshotPressed:(NSButton *)sender;
 
-- (IBAction)showAllPackages:(id)sender;
-- (IBAction)showOnlyPlugins:(id)sender;
-- (IBAction)showOnlyColorSchemes:(id)sender;
-- (IBAction)showOnlyTemplates:(id)sender;
+- (IBAction)showAllPackagesPressed:(id)sender;
+- (IBAction)showOnlyPluginsPressed:(id)sender;
+- (IBAction)showOnlyColorSchemesPressed:(id)sender;
+- (IBAction)showOnlyTemplatesPressed:(id)sender;
 
-- (id)initWithBundle:(NSBundle *)bundle;
+- (void)reloadPackages;
+
 @end

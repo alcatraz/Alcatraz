@@ -24,6 +24,7 @@
 #import "Kiwi.h"
 #import "Alcatraz.h"
 #import "ATZShell.h"
+#import "ATZAlcatrazPackage.h"
 
 static NSString *const ALCATRAZ_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin";
 
@@ -55,7 +56,7 @@ describe(@"Alcatraz.m", ^{
         [NSApp stub:@selector(mainMenu) andReturn:createFakeMenu()];
         
         [pluginBundle loadAndReturnError:&error];
-        [[pluginBundle principalClass] performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
+        [pluginBundle.principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
         
         if (error) NSLog(@"ZOMG ERRRO! %@", error);
         alcatraz = [[[pluginBundle principalClass] alloc] performSelector:@selector(initWithBundle:) withObject:pluginBundle];
@@ -69,6 +70,11 @@ describe(@"Alcatraz.m", ^{
             
             [alcatrazItem shouldNotBeNil];
             [[@([windowMenuItem.submenu indexOfItem:alcatrazItem]) should] equal:@([[windowMenuItem submenu] indexOfItemWithTitle:@"Organizer"] + 1)];
+        });
+        
+        it(@"updates alcatraz", ^{
+            [[ATZAlcatrazPackage should] receive:@selector(update)];
+            [[Alcatraz alloc] performSelector:@selector(initWithBundle:) withObject:pluginBundle];
         });
         
     });
@@ -90,6 +96,12 @@ describe(@"Alcatraz.m", ^{
 
                 clickMenuItem();
                 [[[alcatraz.windowController window] should] equal:window];
+            });
+            
+            it(@"tells the window controller to reload packages", ^{
+                clickMenuItem();
+                [[alcatraz.windowController should] receive:@selector(reloadPackages)];
+                clickMenuItem();
             });
             
         });
