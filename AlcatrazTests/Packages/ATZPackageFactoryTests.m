@@ -58,8 +58,8 @@ NSDictionary *createFakeJSON() {
 }
 
 ATZPackage *packageWithName(NSArray *packages, NSString *name) {
-    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *package, NSDictionary *bindings) {
-        return [package[@"name"] isEqualToString:name];
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(ATZPackage *package, NSDictionary *bindings) {
+        return [package.name isEqualToString:name];
     }];
     return [packages filteredArrayUsingPredicate:predicate].lastObject;
 }
