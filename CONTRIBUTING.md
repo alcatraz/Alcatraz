@@ -11,6 +11,7 @@ Some helpful tips for making Alcatraz more awesome
 
 - BSD brackets (on the same line as the method signature)
 - _Avoid_ adding comments in the code detailing the changes, use Github issues instead
+- Shoot for 1 expectation per 1 unit test
 
 ## UI Changes
 
