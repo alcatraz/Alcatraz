@@ -50,6 +50,7 @@
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
 		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
+		8A86CE63174326F5006B49BF /* ATZPackageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A86CE62174326F5006B49BF /* ATZPackageTests.m */; };
 		8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */; };
 		8AD5249F174102F9008B451F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD524A2174102F9008B451F /* Localizable.strings */; };
 		8AD524A0174102F9008B451F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD524A2174102F9008B451F /* Localizable.strings */; };
@@ -161,6 +162,7 @@
 		8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZStatusView.m; path = Views/ATZStatusView.m; sourceTree = "<group>"; };
 		8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZProgressIndicator.h; path = Views/ATZProgressIndicator.h; sourceTree = "<group>"; };
 		8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZProgressIndicator.m; path = Views/ATZProgressIndicator.m; sourceTree = "<group>"; };
+		8A86CE62174326F5006B49BF /* ATZPackageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTests.m; path = Packages/ATZPackageTests.m; sourceTree = "<group>"; };
 		8A96E0C61729DC1200350F67 /* ATZDetailItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZDetailItemButton.h; path = Views/ATZDetailItemButton.h; sourceTree = "<group>"; };
 		8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZDetailItemButton.m; path = Views/ATZDetailItemButton.m; sourceTree = "<group>"; };
 		8AD524A1174102F9008B451F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				8AE8A72717426A9F00915C20 /* ATZPackageFactoryTests.m */,
+				8A86CE62174326F5006B49BF /* ATZPackageTests.m */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				8AE8A73F1742776D00915C20 /* NSMutableArray+Subscript.m in Sources */,
 				8AE8A7401742777000915C20 /* NSMutableDictionary+Subscript.m in Sources */,
 				8AE8A741174277A600915C20 /* ATZPluginWindowController.m in Sources */,
+				8A86CE63174326F5006B49BF /* ATZPackageTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
