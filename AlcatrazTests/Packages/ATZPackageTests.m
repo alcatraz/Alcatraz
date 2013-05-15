@@ -17,9 +17,7 @@ describe(@"Package", ^{
     __block ATZPackage *package;
     NSString *name = @"Life";
     NSString *description = @"A short game of numbers";
-    NSString *namespace = @"userName";
-    NSString *repoName = @"lifeRepo";
-    NSString *urlString = [NSString stringWithFormat:@"http://raw.github.com/%@/%@/branch/file",namespace,repoName];
+    NSString *urlString = @"http://raw.github.com/namespace/repo/branch/file";
     NSString *screenshotPath = @"http://HAIKittenImages.com/image.jpeg";
 
     beforeEach(^{
@@ -41,7 +39,7 @@ describe(@"Package", ^{
     describe(@"parsing website", ^{
         
         it(@"creates project page URL from raw github URL", ^{
-            [[package.website should] equal:@"https://github.com/userName/lifeRepo"];
+            [[package.website should] matchPattern:@"^http[s]?://github.com/[\\w]+/[\\w]+$"];
         });
         
         it(@"preserves URL when not a raw github URL", ^{
@@ -59,13 +57,13 @@ describe(@"Package", ^{
         });
         
         it(@"parses tag", ^{
-            ATZPackage *package = [[ATZPackage alloc] initWithDictionary:@{ @"tag": @"3.4.2" }];
-            [[package.revision should] equal:@"3.4.2"];
+            ATZPackage *newPackage = [[ATZPackage alloc] initWithDictionary:@{ @"tag": @"3.4.2" }];
+            [[newPackage.revision should] equal:@"3.4.2"];
         });
         
         it(@"parses commit", ^{
-            ATZPackage *package = [[ATZPackage alloc] initWithDictionary:@{ @"commit": @"23kjnrq98kcq2jn" }];
-            [[package.revision should] equal:@"23kjnrq98kcq2jn"];
+            ATZPackage *newPackage = [[ATZPackage alloc] initWithDictionary:@{ @"commit": @"23kjnrq98kcq2jn" }];
+            [[newPackage.revision should] equal:@"23kjnrq98kcq2jn"];
         });
         
     });
@@ -73,7 +71,10 @@ describe(@"Package", ^{
     describe(@"installing", ^{
         
         KWMock *mockInstaller = [ATZInstaller nullMock];
-        
+        // haven't succeeded to test that the right args were passed in. brain stopped.
+        void (^progressBlock)(NSString *) = ^(NSString *proggressMessage){};
+        void (^completionBlock)(NSError *) = ^(NSError *failure){};
+
         beforeEach(^{
            [package stub:@selector(installer) andReturn:mockInstaller];
         });
@@ -85,17 +86,17 @@ describe(@"Package", ^{
         
         it(@"forwards install to installer", ^{
             [[mockInstaller should] receive:@selector(installPackage:progress:completion:)];
-            [package installWithProgressMessage:^(NSString *proggressMessage) {} completion:^(NSError *failure){}];
+            [package installWithProgressMessage:progressBlock completion:completionBlock];
         });
         
         it(@"forwards remove to installer", ^{
             [[mockInstaller should] receive:@selector(removePackage:completion:)];
-            [package removeWithCompletion:^(NSError *failure) {}];
+            [package removeWithCompletion:completionBlock];
         });
         
         it(@"forwards update to installer", ^{
             [[mockInstaller should] receive:@selector(updatePackage:progress:completion:)];
-            [package updateWithProgressMessage:^(NSString *proggressMessage){} completion:^(NSError *failure){}];
+            [package updateWithProgressMessage:progressBlock completion:completionBlock];
         });
         
     });
