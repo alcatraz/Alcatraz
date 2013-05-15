@@ -98,7 +98,7 @@
 - (void)updateAlcatraz {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperationWithBlock:^{
-        
+    
         [ATZAlcatrazPackage update];
         [queue release];
     }];
