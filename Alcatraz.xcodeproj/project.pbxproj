@@ -50,9 +50,35 @@
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
 		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
+		8A86CE63174326F5006B49BF /* ATZPackageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A86CE62174326F5006B49BF /* ATZPackageTests.m */; };
 		8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */; };
 		8AD5249F174102F9008B451F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD524A2174102F9008B451F /* Localizable.strings */; };
 		8AD524A0174102F9008B451F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD524A2174102F9008B451F /* Localizable.strings */; };
+		8AE8A72817426A9F00915C20 /* ATZPackageFactoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE8A72717426A9F00915C20 /* ATZPackageFactoryTests.m */; };
+		8AE8A72A174276C900915C20 /* ATZPackageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA0F1726B5BA00F0B2D2 /* ATZPackageFactory.m */; };
+		8AE8A72B174276E000915C20 /* ATZPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9EE1726B4EE00F0B2D2 /* ATZPlugin.m */; };
+		8AE8A72C174276E400915C20 /* ATZTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9F21726B4EE00F0B2D2 /* ATZTemplate.m */; };
+		8AE8A72D174276F700915C20 /* ATZAlcatrazPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */; };
+		8AE8A72E174276FA00915C20 /* ATZColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9E81726B4EE00F0B2D2 /* ATZColorScheme.m */; };
+		8AE8A72F174276FF00915C20 /* ATZPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9EC1726B4EE00F0B2D2 /* ATZPackage.m */; };
+		8AE8A7301742770400915C20 /* ATZProjectTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9F01726B4EE00F0B2D2 /* ATZProjectTemplate.m */; };
+		8AE8A7311742772700915C20 /* ATZFileTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9EA1726B4EE00F0B2D2 /* ATZFileTemplate.m */; };
+		8AE8A7321742773D00915C20 /* ATZInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 894714E717302F63003CDDA7 /* ATZInstaller.m */; };
+		8AE8A7331742773F00915C20 /* ATZColorSchemeInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9FB1726B53000F0B2D2 /* ATZColorSchemeInstaller.m */; };
+		8AE8A7341742774200915C20 /* ATZFileTemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9FD1726B53000F0B2D2 /* ATZFileTemplateInstaller.m */; };
+		8AE8A7351742774500915C20 /* ATZPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA001726B53000F0B2D2 /* ATZPluginInstaller.m */; };
+		8AE8A7361742774800915C20 /* ATZProjectTemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA021726B53000F0B2D2 /* ATZProjectTemplateInstaller.m */; };
+		8AE8A7371742774A00915C20 /* ATZTemplateInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA041726B53000F0B2D2 /* ATZTemplateInstaller.m */; };
+		8AE8A7381742775300915C20 /* NSFileManager+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA0C1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m */; };
+		8AE8A7391742775700915C20 /* ATZDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA131726B63B00F0B2D2 /* ATZDownloader.m */; };
+		8AE8A73A1742775A00915C20 /* ATZGit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA151726B63B00F0B2D2 /* ATZGit.m */; };
+		8AE8A73B1742775D00915C20 /* ATZShell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA171726B63B00F0B2D2 /* ATZShell.m */; };
+		8AE8A73C1742776000915C20 /* ATZPBXProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */; };
+		8AE8A73D1742776600915C20 /* NSArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F99E172955690015A56B /* NSArray+Subscript.m */; };
+		8AE8A73E1742776900915C20 /* NSDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A0172955690015A56B /* NSDictionary+Subscript.m */; };
+		8AE8A73F1742776D00915C20 /* NSMutableArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A2172955690015A56B /* NSMutableArray+Subscript.m */; };
+		8AE8A7401742777000915C20 /* NSMutableDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A4172955690015A56B /* NSMutableDictionary+Subscript.m */; };
+		8AE8A741174277A600915C20 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,9 +162,11 @@
 		8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZStatusView.m; path = Views/ATZStatusView.m; sourceTree = "<group>"; };
 		8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZProgressIndicator.h; path = Views/ATZProgressIndicator.h; sourceTree = "<group>"; };
 		8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZProgressIndicator.m; path = Views/ATZProgressIndicator.m; sourceTree = "<group>"; };
+		8A86CE62174326F5006B49BF /* ATZPackageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTests.m; path = Packages/ATZPackageTests.m; sourceTree = "<group>"; };
 		8A96E0C61729DC1200350F67 /* ATZDetailItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZDetailItemButton.h; path = Views/ATZDetailItemButton.h; sourceTree = "<group>"; };
 		8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZDetailItemButton.m; path = Views/ATZDetailItemButton.m; sourceTree = "<group>"; };
-		8AD524A1174102F9008B451F /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8AD524A1174102F9008B451F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8AE8A72717426A9F00915C20 /* ATZPackageFactoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageFactoryTests.m; path = Packages/ATZPackageFactoryTests.m; sourceTree = "<group>"; };
 		D4CB2C1282B94BF8A3FC4F0A /* libPods-AlcatrazTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AlcatrazTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -342,6 +370,7 @@
 			children = (
 				8966AFDB173EB7BF004150C0 /* AlcatrazTests.m */,
 				8966AFD5173EB7BF004150C0 /* Supporting Files */,
+				8AE8A72917426AB500915C20 /* Packages */,
 			);
 			path = AlcatrazTests;
 			sourceTree = "<group>";
@@ -389,6 +418,15 @@
 				890A4B49171F031300AFE577 /* InfoPlist.strings */,
 			);
 			name = en.lproj;
+			sourceTree = "<group>";
+		};
+		8AE8A72917426AB500915C20 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				8AE8A72717426A9F00915C20 /* ATZPackageFactoryTests.m */,
+				8A86CE62174326F5006B49BF /* ATZPackageTests.m */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,6 +611,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				8966AFDC173EB7BF004150C0 /* AlcatrazTests.m in Sources */,
+				8AE8A72817426A9F00915C20 /* ATZPackageFactoryTests.m in Sources */,
+				8AE8A72A174276C900915C20 /* ATZPackageFactory.m in Sources */,
+				8AE8A72B174276E000915C20 /* ATZPlugin.m in Sources */,
+				8AE8A72C174276E400915C20 /* ATZTemplate.m in Sources */,
+				8AE8A72D174276F700915C20 /* ATZAlcatrazPackage.m in Sources */,
+				8AE8A72E174276FA00915C20 /* ATZColorScheme.m in Sources */,
+				8AE8A72F174276FF00915C20 /* ATZPackage.m in Sources */,
+				8AE8A7301742770400915C20 /* ATZProjectTemplate.m in Sources */,
+				8AE8A7311742772700915C20 /* ATZFileTemplate.m in Sources */,
+				8AE8A7321742773D00915C20 /* ATZInstaller.m in Sources */,
+				8AE8A7331742773F00915C20 /* ATZColorSchemeInstaller.m in Sources */,
+				8AE8A7341742774200915C20 /* ATZFileTemplateInstaller.m in Sources */,
+				8AE8A7351742774500915C20 /* ATZPluginInstaller.m in Sources */,
+				8AE8A7361742774800915C20 /* ATZProjectTemplateInstaller.m in Sources */,
+				8AE8A7371742774A00915C20 /* ATZTemplateInstaller.m in Sources */,
+				8AE8A7381742775300915C20 /* NSFileManager+Alcatraz.m in Sources */,
+				8AE8A7391742775700915C20 /* ATZDownloader.m in Sources */,
+				8AE8A73A1742775A00915C20 /* ATZGit.m in Sources */,
+				8AE8A73B1742775D00915C20 /* ATZShell.m in Sources */,
+				8AE8A73C1742776000915C20 /* ATZPBXProjParser.m in Sources */,
+				8AE8A73D1742776600915C20 /* NSArray+Subscript.m in Sources */,
+				8AE8A73E1742776900915C20 /* NSDictionary+Subscript.m in Sources */,
+				8AE8A73F1742776D00915C20 /* NSMutableArray+Subscript.m in Sources */,
+				8AE8A7401742777000915C20 /* NSMutableDictionary+Subscript.m in Sources */,
+				8AE8A741174277A600915C20 /* ATZPluginWindowController.m in Sources */,
+				8A86CE63174326F5006B49BF /* ATZPackageTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,7 +772,7 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Alcatraz.xcplugin/Contents/MacOS/Alcatraz";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_ENABLE_OBJC_GC = YES;
+				GCC_ENABLE_OBJC_GC = supported;
 				"GCC_ENABLE_OBJC_GC[arch=*]" = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlcatrazTests/AlcatrazTests-Prefix.pch";
@@ -726,7 +790,7 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Alcatraz.xcplugin/Contents/MacOS/Alcatraz";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_ENABLE_OBJC_GC = YES;
+				GCC_ENABLE_OBJC_GC = supported;
 				"GCC_ENABLE_OBJC_GC[arch=*]" = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlcatrazTests/AlcatrazTests-Prefix.pch";
