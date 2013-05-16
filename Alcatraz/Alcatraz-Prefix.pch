@@ -9,4 +9,6 @@
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
+    #import "Subscript.h"
+    #import "ATZGenerics.h"
 #endif

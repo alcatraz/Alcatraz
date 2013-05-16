@@ -39,20 +39,20 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 #pragma mark - Abstract
 
-- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+- (void)downloadPackage:(ATZPackage *)package completion:(ATZCompletionBlockWithError)completion {
     
     [ATZGit cloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
                  completion:completion];
 }
 
-- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
+- (void)updatePackage:(ATZPackage *)package completion:(ATZCompletionBlockWithOutputAndError)completion {
     
     [ATZGit updateRepository:[self pathForDownloadedPackage:package] revision:package.revision
                   completion:completion];
 }
 
 
-- (void)installPackage:(ATZPlugin *)package completion:(void(^)(NSError *))completion {
+- (void)installPackage:(ATZPlugin *)package completion:(ATZCompletionBlockWithError)completion {
     [self buildPlugin:package completion:completion];
 }
 
@@ -72,7 +72,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 #pragma mark - Hooks
 // Note: this is an early alpha implementation. It needs some love
-- (void)reloadXcodeForPackage:(ATZPackage *)plugin completion:(void(^)(NSError *))completion {
+- (void)reloadXcodeForPackage:(ATZPackage *)plugin completion:(ATZCompletionBlockWithError)completion {
     
     NSBundle *pluginBundle = [NSBundle bundleWithPath:[self pathForInstalledPackage:plugin]];
     NSLog(@"Trying to reload plugin: %@ with bundle: %@", plugin.name, pluginBundle);
@@ -104,7 +104,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 #pragma mark - Private
 
-- (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
+- (void)buildPlugin:(ATZPlugin *)plugin completion:(ATZCompletionBlockWithError)completion {
 
     NSString *xcodeProjPath;
     

@@ -30,24 +30,24 @@
 
 #pragma mark - Abstract
 
-- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+- (void)downloadPackage:(ATZPackage *)package completion:(ATZCompletionBlockWithError)completion {
     [ATZGit cloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
                  completion:completion];
 }
 
-- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
+- (void)updatePackage:(ATZPackage *)package completion:(ATZCompletionBlockWithOutputAndError)completion {
     [ATZGit updateRepository:[self pathForDownloadedPackage:package] revision:package.revision
                   completion:completion];
 }
 
-- (void)installPackage:(ATZTemplate *)package completion:(void(^)(NSError *))completion {
+- (void)installPackage:(ATZTemplate *)package completion:(ATZCompletionBlockWithError)completion {
     [self copyTemplatesToXcode:package completion:completion];
 }
 
 
 #pragma mark - Private
 
-- (void)copyTemplatesToXcode:(ATZTemplate *)template completion:(void (^)(NSError *))completion {
+- (void)copyTemplatesToXcode:(ATZTemplate *)template completion:(ATZCompletionBlockWithError)completion {
     NSError *error = nil;
     [self createTemplateInstallDirectory:template error:&error];
     
