@@ -122,7 +122,6 @@ describe(@"Alcatraz.m", ^{
             });
             
             it(@"doesn't display the window", ^{
-                [[alcatraz shouldNot] receive:@selector(loadWindowAndPutInFront)];
                 clickMenuItem();
                 [alcatraz.windowController shouldBeNil];
             });
