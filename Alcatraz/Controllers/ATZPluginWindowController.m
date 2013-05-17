@@ -303,6 +303,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (void) addVersionToWindow:(NSWindow *)window {
     NSView *windowFrameView = [[window contentView] superview];
     NSTextField *label = [[[ATZVersionLabel alloc] initWithFrame:NSMakeRect(window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)] autorelease];
+    label.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin | NSViewNotSizable;
     [windowFrameView addSubview:label];
 }
 
