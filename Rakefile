@@ -13,7 +13,7 @@ end
 
 desc "Change Alcatraz version"
 task :version, :semver do |t, args|
-  version_location = "Alcatraz/Controllers/ATZPluginWindowController.m"
+  version_location = "Alcatraz/Views/ATZVersionLabel.m"
   tmp_file = "output.m"
   if semver = args[:semver]
     sh "sed 's/ATZ_VERSION \"[0-9]\\{1,3\\}.[0-9]\\{1,3\\}\"/ATZ_VERSION \"#{semver}\"/g' #{version_location} > #{tmp_file}"
