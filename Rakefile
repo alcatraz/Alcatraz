@@ -16,8 +16,10 @@ task :version, :semver do |t, args|
   version_location = "Alcatraz/Views/ATZVersionLabel.m"
   tmp_file = "output.m"
   if semver = args[:semver]
+    sha = `git log --pretty=format:'%h' -n 1`
     sh "sed 's/ATZ_VERSION \"[0-9]\\{1,3\\}.[0-9]\\{1,3\\}\"/ATZ_VERSION \"#{semver}\"/g' #{version_location} > #{tmp_file}"
-    sh "mv #{tmp_file} #{version_location}"
+    sh "sed 's/ATZ_REVISION \"[0-f]\\{7\\}\"/ATZ_REVISION \"#{sha}\"/g' #{tmp_file} > #{version_location}"
+    sh "rm #{tmp_file}"
     sh "git tag #{semver}"
   else
     puts "Error: version not specified in arguments: #{args}"
