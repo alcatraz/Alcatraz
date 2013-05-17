@@ -1,4 +1,4 @@
-## Master
+## 0.6
 
 ##### Enhancements
 

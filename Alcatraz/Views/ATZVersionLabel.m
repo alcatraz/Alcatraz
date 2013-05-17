@@ -23,8 +23,8 @@
 
 #import "ATZVersionLabel.h"
 
-#define ATZ_VERSION "0.5"
-#define ATZ_REVISION "8f982be"
+#define ATZ_VERSION "0.6"
+#define ATZ_REVISION "6bc807b"
 
 @implementation ATZVersionLabel
 
