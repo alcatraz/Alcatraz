@@ -33,6 +33,8 @@
 
 #import "ATZShell.h"
 
+#define ATZ_VERSION "0.6"
+
 static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
 static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@)";
@@ -275,7 +277,30 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         return [evaluatedObject class] == [NSWindow class];
     }];
 
-    return [nibElements filteredArrayUsingPredicate:windowPredicate][0];
+    NSWindow *window = [nibElements filteredArrayUsingPredicate:windowPredicate][0];
+
+    [self addVersionToWindow:window];
+    return window;
+}
+
+- (void) addVersionToWindow:(NSWindow *)window {
+    NSView *windowFrameView = [[window contentView] superview];
+    NSTextField *label = [[[NSTextField alloc] initWithFrame:NSMakeRect(window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)] autorelease];
+    label.backgroundColor   = [NSColor clearColor];
+    label.layer.borderColor = [NSColor clearColor].CGColor;
+    label.textColor         = [NSColor colorWithDeviceWhite:0.75 alpha:0.9];
+    label.layer.shadowColor = [NSColor blackColor].CGColor;
+    label.layer.borderWidth = 0.f;
+    label.stringValue       = [NSString stringWithFormat:@"v%s", ATZ_VERSION];
+    label.alignment         = NSRightTextAlignment;
+    label.layer.shadowOpacity = 0.3f;
+
+    [label setFont:[NSFont fontWithName:@"Lucida Grande" size:11.f]];
+    [label setBezeled:NO];
+    [label setDrawsBackground:NO];
+    [label setEditable:NO];
+    [label setSelectable:NO];
+    [windowFrameView addSubview:label];
 }
 
 @end
