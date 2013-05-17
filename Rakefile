@@ -3,12 +3,25 @@ bucket  = 'xcode-fun-time'
 url     = "https://s3.amazonaws.com/#{bucket}/#{archive}"
 install_dir   = "~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin/"
 
-desc "merge changes into deploy"
+desc "Merge changes into deploy"
 task :update do
   sh "git fetch origin"
   sh "git checkout deploy"
   sh "git reset --hard origin/master"
   sh "git push origin deploy"
+end
+
+desc "Change Alcatraz version"
+task :version, :semver do |t, args|
+  version_location = "Alcatraz/Controllers/ATZPluginWindowController.m"
+  tmp_file = "output.m"
+  if semver = args[:semver]
+    sh "sed 's/ATZ_VERSION \"[0-9]\\{1,3\\}.[0-9]\\{1,3\\}\"/ATZ_VERSION \"#{semver}\"/g' #{version_location} > #{tmp_file}"
+    sh "mv #{tmp_file} #{version_location}"
+    sh "git tag #{semver}"
+  else
+    puts "Error: version not specified in arguments: #{args}"
+  end
 end
 
 desc "Build Alcatraz"
