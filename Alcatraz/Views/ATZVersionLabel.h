@@ -1,5 +1,5 @@
 //
-// ATZPackageTableCellView.h
+// ATZVersionLabel.h
 //
 // Copyright (c) 2013 Marin Usalj | mneorr.com
 //
@@ -20,12 +20,9 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 #import <AppKit/AppKit.h>
 
-@interface ATZPackageTableCellView : NSTableCellView
-
-@property (assign) IBOutlet NSButton *screenshotButton;
-@property (assign) IBOutlet NSButton *websiteButton;
-@property (assign) IBOutlet NSTextField *packageTypeTextField;
+@interface ATZVersionLabel : NSTextField
 
 @end
