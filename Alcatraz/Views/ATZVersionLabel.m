@@ -1,5 +1,5 @@
 //
-// ATZPackageTableCellView.h
+// ATZVersionLabel.m
 //
 // Copyright (c) 2013 Marin Usalj | mneorr.com
 //
@@ -20,12 +20,36 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-#import <AppKit/AppKit.h>
 
-@interface ATZPackageTableCellView : NSTableCellView
+#import "ATZVersionLabel.h"
 
-@property (assign) IBOutlet NSButton *screenshotButton;
-@property (assign) IBOutlet NSButton *websiteButton;
-@property (assign) IBOutlet NSTextField *packageTypeTextField;
+#define ATZ_VERSION "0.5"
+#define ATZ_REVISION "8f982be"
+
+@implementation ATZVersionLabel
+
+- (id)initWithFrame:(NSRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) [self setStyle];
+    return self;
+}
+
+- (void)setStyle {
+    self.backgroundColor   = [NSColor clearColor];
+    self.layer.borderColor = [NSColor clearColor].CGColor;
+    self.textColor         = [NSColor colorWithDeviceWhite:0.75 alpha:1.f];
+    self.layer.shadowColor = [NSColor blackColor].CGColor;
+    self.layer.borderWidth = 0.f;
+    self.stringValue       = [NSString stringWithFormat:@"v%s", ATZ_VERSION];
+    self.alignment         = NSRightTextAlignment;
+    self.layer.shadowOpacity = 0.3f;
+
+    [self setFont:[NSFont fontWithName:@"Lucida Grande" size:11.f]];
+    [self setBezeled:NO];
+    [self setDrawsBackground:NO];
+    [self setEditable:NO];
+    [self setSelectable:NO];
+    [self setToolTip:[NSString stringWithFormat:@"revision: %s", ATZ_REVISION]];
+}
 
 @end
