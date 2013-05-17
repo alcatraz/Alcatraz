@@ -54,8 +54,14 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     if (self = [super init]) {
         _filterPredicate = [NSPredicate predicateWithValue:YES];
 
-        [self setWindow:[self mainWindowInBundle:bundle]];
-        [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
+        @try {
+            [self setWindow:[self mainWindowInBundle:bundle]];
+            [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
+            if ([NSUserNotificationCenter class]) {
+                [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+            }
+        }
+        @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
     return self;
 }
@@ -67,6 +73,16 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     
     [super dealloc];
 }
+
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
+    [self.window makeKeyAndOrderFront:self];
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
+    return YES;
+}
+
+
 
 #pragma mark - Bindings
 
