@@ -50,6 +50,8 @@
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
+		8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A44EF741745D13200411834 /* ATZVersionLabel.m */; };
+		8A44EF761745D13200411834 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A44EF741745D13200411834 /* ATZVersionLabel.m */; };
 		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
 		8A86CE63174326F5006B49BF /* ATZPackageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A86CE62174326F5006B49BF /* ATZPackageTests.m */; };
 		8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */; };
@@ -161,6 +163,8 @@
 		89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPluginWindowController.m; path = Controllers/ATZPluginWindowController.m; sourceTree = "<group>"; };
 		8A0C0A4B1726C076006E7AD2 /* ATZStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZStatusView.h; path = Views/ATZStatusView.h; sourceTree = "<group>"; };
 		8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZStatusView.m; path = Views/ATZStatusView.m; sourceTree = "<group>"; };
+		8A44EF731745D13200411834 /* ATZVersionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZVersionLabel.h; path = Views/ATZVersionLabel.h; sourceTree = "<group>"; };
+		8A44EF741745D13200411834 /* ATZVersionLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZVersionLabel.m; path = Views/ATZVersionLabel.m; sourceTree = "<group>"; };
 		8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZProgressIndicator.h; path = Views/ATZProgressIndicator.h; sourceTree = "<group>"; };
 		8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZProgressIndicator.m; path = Views/ATZProgressIndicator.m; sourceTree = "<group>"; };
 		8A86CE62174326F5006B49BF /* ATZPackageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTests.m; path = Packages/ATZPackageTests.m; sourceTree = "<group>"; };
@@ -397,6 +401,8 @@
 				8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */,
 				32B63215173A3E880076C098 /* ATZPackageTableCellView.h */,
 				32B63216173A3E880076C098 /* ATZPackageTableCellView.m */,
+				8A44EF731745D13200411834 /* ATZVersionLabel.h */,
+				8A44EF741745D13200411834 /* ATZVersionLabel.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -604,6 +610,7 @@
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
 				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,
 				32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */,
+				8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +646,7 @@
 				8AE8A741174277A600915C20 /* ATZPluginWindowController.m in Sources */,
 				8A86CE63174326F5006B49BF /* ATZPackageTests.m in Sources */,
 				8907C00B1743F78D00C91A4C /* Alcatraz.m in Sources */,
+				8A44EF761745D13200411834 /* ATZVersionLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

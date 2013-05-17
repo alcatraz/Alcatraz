@@ -26,14 +26,13 @@
 
 #import "ATZDetailItemButton.h"
 #import "ATZPackageTableCellView.h"
+#import "ATZVersionLabel.h"
 
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
 #import "ATZTemplate.h"
 
 #import "ATZShell.h"
-
-#define ATZ_VERSION "0.6"
 
 static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
@@ -303,21 +302,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (void) addVersionToWindow:(NSWindow *)window {
     NSView *windowFrameView = [[window contentView] superview];
-    NSTextField *label = [[[NSTextField alloc] initWithFrame:NSMakeRect(window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)] autorelease];
-    label.backgroundColor   = [NSColor clearColor];
-    label.layer.borderColor = [NSColor clearColor].CGColor;
-    label.textColor         = [NSColor colorWithDeviceWhite:0.75 alpha:0.9];
-    label.layer.shadowColor = [NSColor blackColor].CGColor;
-    label.layer.borderWidth = 0.f;
-    label.stringValue       = [NSString stringWithFormat:@"v%s", ATZ_VERSION];
-    label.alignment         = NSRightTextAlignment;
-    label.layer.shadowOpacity = 0.3f;
-
-    [label setFont:[NSFont fontWithName:@"Lucida Grande" size:11.f]];
-    [label setBezeled:NO];
-    [label setDrawsBackground:NO];
-    [label setEditable:NO];
-    [label setSelectable:NO];
+    NSTextField *label = [[[ATZVersionLabel alloc] initWithFrame:NSMakeRect(window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)] autorelease];
     [windowFrameView addSubview:label];
 }
 
