@@ -23,7 +23,8 @@
 
 #import "ATZVersionLabel.h"
 
-#define ATZ_VERSION "0.6"
+#define ATZ_VERSION "0.5"
+#define ATZ_REVISION "8f982be"
 
 @implementation ATZVersionLabel
 
@@ -48,6 +49,7 @@
     [self setDrawsBackground:NO];
     [self setEditable:NO];
     [self setSelectable:NO];
+    [self setToolTip:[NSString stringWithFormat:@"revision: %s", ATZ_REVISION]];
 }
 
 @end
