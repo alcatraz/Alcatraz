@@ -143,7 +143,8 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
     if ([NSUserNotificationCenter class] && package.isInstalled) {
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         notification.title = [NSString stringWithFormat:@"%@ installed", package.type];
-        notification.informativeText = [NSString stringWithFormat:@"%@ installed successfully", package.name];
+        NSString *restartText = package.requiresRestart ? @" Please restart Xcode to use it." : @"";
+        notification.informativeText = [NSString stringWithFormat:@"%@ was installed successfully! %@", package.name, restartText];
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         [notification release];
         [package release];
