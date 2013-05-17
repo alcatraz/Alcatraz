@@ -4,6 +4,7 @@
 
 - Less memory usage. Alcatraz reuses the same instance when opened multiple times in an Xcode session
 - Show current version in the title bar
+- Show a notification after successfully installing a package
 
 ## 0.5
 
