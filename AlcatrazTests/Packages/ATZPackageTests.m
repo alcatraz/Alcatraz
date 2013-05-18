@@ -10,6 +10,30 @@
 #import "ATZPackage.h"
 #import "ATZInstaller.h"
 
+void buildMockInstaller(KWMock *mockInstaller) {
+    [mockInstaller stub:@selector(installPackage:progress:completion:) withBlock:^id(NSArray *params) {
+        void (^progressCallback)(NSString *) = params[1];
+        void (^completionCallback)(NSError *) = params[2];
+        
+        progressCallback(nil);
+        completionCallback(nil);
+        return nil;
+    }];
+    [mockInstaller stub:@selector(updatePackage:progress:completion:) withBlock:^id(NSArray *params) {
+        void (^progressCallback)(NSString *) = params[1];
+        void (^completionCallback)(NSError *) = params[2];
+        
+        progressCallback(nil);
+        completionCallback(nil);
+        return nil;
+    }];
+    [mockInstaller stub:@selector(removePackage:completion:) withBlock:^id(NSArray *params) {
+        void (^completionCallback)(NSError *) = params[1];
+        completionCallback(nil);
+        return nil;
+    }];
+}
+
 SPEC_BEGIN(ATZPackageTests)
 
 describe(@"Package", ^{
@@ -71,12 +95,18 @@ describe(@"Package", ^{
     describe(@"installing", ^{
         
         KWMock *mockInstaller = [ATZInstaller nullMock];
-        // haven't succeeded to test that the right args were passed in. brain stopped.
-        void (^progressBlock)(NSString *) = ^(NSString *proggressMessage){};
-        void (^completionBlock)(NSError *) = ^(NSError *failure){};
+        __block NSString *progressMessage;
+        __block NSError *completionError;
+        
+        void (^progressBlock)(NSString *) = ^(NSString *proggressMessage){ progressMessage = @"OH HAI!"; };
+        void (^completionBlock)(NSError *) = ^(NSError *failure){ completionError = [NSError errorWithDomain:@"MEH" code:666 userInfo:nil]; };
 
         beforeEach(^{
-           [package stub:@selector(installer) andReturn:mockInstaller];
+            progressMessage = nil;
+            completionError = nil;
+            
+            [package stub:@selector(installer) andReturn:mockInstaller];
+            buildMockInstaller(mockInstaller);
         });
        
         it(@"asks installer if it's installed", ^{
@@ -85,18 +115,22 @@ describe(@"Package", ^{
         });
         
         it(@"forwards install to installer", ^{
-            [[mockInstaller should] receive:@selector(installPackage:progress:completion:)];
             [package installWithProgressMessage:progressBlock completion:completionBlock];
+            
+            
+            [[progressMessage should] equal:@"OH HAI!"];
+            [[completionError should] equal:[NSError errorWithDomain:@"MEH" code:666 userInfo:nil]];
         });
         
         it(@"forwards remove to installer", ^{
-            [[mockInstaller should] receive:@selector(removePackage:completion:)];
             [package removeWithCompletion:completionBlock];
+            [[completionError should] equal:[NSError errorWithDomain:@"MEH" code:666 userInfo:nil]];
         });
         
         it(@"forwards update to installer", ^{
-            [[mockInstaller should] receive:@selector(updatePackage:progress:completion:)];
             [package updateWithProgressMessage:progressBlock completion:completionBlock];
+            [[progressMessage should] equal:@"OH HAI!"];
+            [[completionError should] equal:[NSError errorWithDomain:@"MEH" code:666 userInfo:nil]];
         });
         
     });
