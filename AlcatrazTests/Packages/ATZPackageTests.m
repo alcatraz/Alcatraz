@@ -116,8 +116,6 @@ describe(@"Package", ^{
         
         it(@"forwards install to installer", ^{
             [package installWithProgressMessage:progressBlock completion:completionBlock];
-            
-            
             [[progressMessage should] equal:@"OH HAI!"];
             [[completionError should] equal:[NSError errorWithDomain:@"MEH" code:666 userInfo:nil]];
         });
