@@ -23,6 +23,7 @@
 
 #import "ATZVersionLabel.h"
 
+// Don't update these numbers manually. They're automatically updated from a rake task
 #define ATZ_VERSION "0.6"
 #define ATZ_REVISION "6bc807b"
 
