@@ -51,7 +51,13 @@ task :upload do
     build.delete
   end
 
+  # upload
   AWS::S3::S3Object.store(archive, open(archive), bucket)
+  # update permissions
+  policy = AWS::S3::S3Object.acl(archive, bucket)
+  policy.grants << AWS::S3::ACL::Grant.grant(:public_read)
+  AWS::S3::S3Object.acl(archive, bucket, policy)
+  # cleanup
   sh "rm -rf  #{archive}"
 end
 
