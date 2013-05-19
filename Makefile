@@ -23,7 +23,7 @@ pod_setup:
 
 # Run tests
 spec:
-	xcodebuild -workspace Alcatraz.xcworkspace -scheme Alcatraz test
+	xcodebuild -workspace Alcatraz.xcworkspace -scheme Alcatraz clean test
 
 # Merge changes into deploy branch
 update:
