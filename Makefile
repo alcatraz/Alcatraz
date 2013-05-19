@@ -28,9 +28,13 @@ spec:
 # Merge changes into deploy branch
 update:
 	git fetch origin
+ifeq ($(shell git diff origin/master..master),)
 	git checkout deploy
 	git reset --hard origin/master
 	git push origin deploy
+else
+	$(error you have unpushed commits on the master branch)
+endif
 
 # Build archive ready for distribution
 build:
@@ -53,10 +57,13 @@ upload:
 # Requires VERSION argument set
 version:
 ifdef VERSION
+	git checkout master
 	sed 's/ATZ_VERSION "[0-9]\{1,3\}.[0-9]\{1,3\}"/ATZ_VERSION "${VERSION}"/g' ${VERSION_LOCATION} > ${VERSION_TMP_FILE}
 	sed 's/ATZ_REVISION "[0-f]\{7\}"/ATZ_REVISION "$(shell git log --pretty=format:'%h' -n 1)"/g' ${VERSION_TMP_FILE} > ${VERSION_LOCATION}
 	rm ${VERSION_TMP_FILE}
+	git add ${VERSION_LOCATION}
+	git commit -m "Release ${VERSION}"
 	git tag ${VERSION}
 else
-	$(info VERSION has not been set)
+	$(error VERSION has not been set)
 endif
