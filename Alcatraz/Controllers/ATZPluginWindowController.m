@@ -131,6 +131,14 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [self updatePredicate];
 }
 
+- (void)keyDown:(NSEvent *)theEvent {
+    if (([theEvent modifierFlags] & NSCommandKeyMask) && [[theEvent characters] characterAtIndex:0] == 'f') {
+        [self.window makeFirstResponder:self.searchField];
+    } else {
+        [super keyDown:theEvent];
+    }
+}
+
 #pragma mark - Private
 
 - (void)removePackage:(ATZPackage *)package andUpdateCheckbox:(NSButton *)checkbox {
