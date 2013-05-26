@@ -133,9 +133,10 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (void)keyDown:(NSEvent *)theEvent {
     if (([theEvent modifierFlags] & NSCommandKeyMask) && [[theEvent characters] characterAtIndex:0] == 'f') {
-        [self.searchField becomeFirstResponder];
+        [self.window makeFirstResponder:self.searchField];
+    } else {
+        [super keyDown:theEvent];
     }
-    [super keyDown:theEvent];
 }
 
 #pragma mark - Private
