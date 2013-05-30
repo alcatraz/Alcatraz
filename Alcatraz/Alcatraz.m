@@ -35,9 +35,13 @@
 + (void)pluginDidLoad:(NSBundle *)plugin {
     static Alcatraz *sharedPlugin;
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedPlugin = [[self alloc] initWithBundle:plugin];
-    });
+    NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
+
+    if ([currentApplicationName isEqual:@"Xcode"]) {
+        dispatch_once(&onceToken, ^{
+            sharedPlugin = [[self alloc] initWithBundle:plugin];
+        });
+    }
 }
 
 - (id)initWithBundle:(NSBundle *)plugin {
