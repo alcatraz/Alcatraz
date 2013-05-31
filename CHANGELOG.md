@@ -1,3 +1,9 @@
+## 0.6.1
+
+#### Bug fixes
+
+- Fixed loading Xcode-related applications, like FileMerge
+
 ## 0.6
 
 ##### Enhancements
