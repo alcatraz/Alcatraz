@@ -38,7 +38,7 @@ endif
 
 # Build archive ready for distribution
 build:
-	xcodebuild -project Alcatraz.xcodeproj
+	xcodebuild -project Alcatraz.xcodeproj clean build
 	rm -rf ${BUNDLE_NAME}
 	cp -r ${INSTALL_PATH} ${BUNDLE_NAME}
 	tar -czf ${ARCHIVE} ${BUNDLE_NAME}
