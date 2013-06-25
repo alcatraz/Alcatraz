@@ -42,7 +42,6 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
             completion(error);
         }];
         
-        [downloader release];
     }];
 }
 

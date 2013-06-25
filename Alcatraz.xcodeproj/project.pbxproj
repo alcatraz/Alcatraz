@@ -14,11 +14,6 @@
 		32D86506173A4555009C724B /* link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86504173A4555009C724B /* link_icon@2x.png */; };
 		481FD71592234AE5B6FFC476 /* libPods-AlcatrazTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CB2C1282B94BF8A3FC4F0A /* libPods-AlcatrazTests.a */; };
 		8907C00B1743F78D00C91A4C /* Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 890A4B4D171F031300AFE577 /* Alcatraz.m */; };
-		8907F9A7172955690015A56B /* NSArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F99E172955690015A56B /* NSArray+Subscript.m */; };
-		8907F9A8172955690015A56B /* NSDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A0172955690015A56B /* NSDictionary+Subscript.m */; };
-		8907F9A9172955690015A56B /* NSMutableArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A2172955690015A56B /* NSMutableArray+Subscript.m */; };
-		8907F9AA172955690015A56B /* NSMutableDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A4172955690015A56B /* NSMutableDictionary+Subscript.m */; };
-		8907F9AB172955690015A56B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8907F9A5172955690015A56B /* README.md */; };
 		890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B42171F031300AFE577 /* AppKit.framework */; };
 		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
 		890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 890A4B49171F031300AFE577 /* InfoPlist.strings */; };
@@ -77,10 +72,6 @@
 		8AE8A73A1742775A00915C20 /* ATZGit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA151726B63B00F0B2D2 /* ATZGit.m */; };
 		8AE8A73B1742775D00915C20 /* ATZShell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA171726B63B00F0B2D2 /* ATZShell.m */; };
 		8AE8A73C1742776000915C20 /* ATZPBXProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */; };
-		8AE8A73D1742776600915C20 /* NSArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F99E172955690015A56B /* NSArray+Subscript.m */; };
-		8AE8A73E1742776900915C20 /* NSDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A0172955690015A56B /* NSDictionary+Subscript.m */; };
-		8AE8A73F1742776D00915C20 /* NSMutableArray+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A2172955690015A56B /* NSMutableArray+Subscript.m */; };
-		8AE8A7401742777000915C20 /* NSMutableDictionary+Subscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907F9A4172955690015A56B /* NSMutableDictionary+Subscript.m */; };
 		8AE8A741174277A600915C20 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 /* End PBXBuildFile section */
 
@@ -92,16 +83,6 @@
 		32BDEBC4173A46B600513A7C /* link_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
 		32D86504173A4555009C724B /* link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link_icon@2x.png"; sourceTree = "<group>"; };
-		8907F99D172955690015A56B /* NSArray+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Subscript.h"; sourceTree = "<group>"; };
-		8907F99E172955690015A56B /* NSArray+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Subscript.m"; sourceTree = "<group>"; };
-		8907F99F172955690015A56B /* NSDictionary+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Subscript.h"; sourceTree = "<group>"; };
-		8907F9A0172955690015A56B /* NSDictionary+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Subscript.m"; sourceTree = "<group>"; };
-		8907F9A1172955690015A56B /* NSMutableArray+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Subscript.h"; sourceTree = "<group>"; };
-		8907F9A2172955690015A56B /* NSMutableArray+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Subscript.m"; sourceTree = "<group>"; };
-		8907F9A3172955690015A56B /* NSMutableDictionary+Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Subscript.h"; sourceTree = "<group>"; };
-		8907F9A4172955690015A56B /* NSMutableDictionary+Subscript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Subscript.m"; sourceTree = "<group>"; };
-		8907F9A5172955690015A56B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		8907F9A6172955690015A56B /* Subscript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subscript.h; sourceTree = "<group>"; };
 		890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alcatraz.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		890A4B42171F031300AFE577 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		890A4B44171F031300AFE577 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -198,31 +179,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8907F99B172955690015A56B /* Compatibility */ = {
-			isa = PBXGroup;
-			children = (
-				8907F99C172955690015A56B /* Subscripts */,
-			);
-			path = Compatibility;
-			sourceTree = "<group>";
-		};
-		8907F99C172955690015A56B /* Subscripts */ = {
-			isa = PBXGroup;
-			children = (
-				8907F99D172955690015A56B /* NSArray+Subscript.h */,
-				8907F99E172955690015A56B /* NSArray+Subscript.m */,
-				8907F99F172955690015A56B /* NSDictionary+Subscript.h */,
-				8907F9A0172955690015A56B /* NSDictionary+Subscript.m */,
-				8907F9A1172955690015A56B /* NSMutableArray+Subscript.h */,
-				8907F9A2172955690015A56B /* NSMutableArray+Subscript.m */,
-				8907F9A3172955690015A56B /* NSMutableDictionary+Subscript.h */,
-				8907F9A4172955690015A56B /* NSMutableDictionary+Subscript.m */,
-				8907F9A5172955690015A56B /* README.md */,
-				8907F9A6172955690015A56B /* Subscript.h */,
-			);
-			path = Subscripts;
-			sourceTree = "<group>";
-		};
 		890A4B36171F031300AFE577 = {
 			isa = PBXGroup;
 			children = (
@@ -259,7 +215,6 @@
 		890A4B46171F031300AFE577 /* Alcatraz */ = {
 			isa = PBXGroup;
 			children = (
-				8907F99B172955690015A56B /* Compatibility */,
 				8917DA111726B63B00F0B2D2 /* Helpers */,
 				8917DA0A1726B57B00F0B2D2 /* Categories */,
 				8917D9F91726B53000F0B2D2 /* Installers */,
@@ -511,7 +466,6 @@
 			files = (
 				890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */,
 				89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */,
-				8907F9AB172955690015A56B /* README.md in Resources */,
 				32D86505173A4555009C724B /* eye_icon@2x.png in Resources */,
 				32D86506173A4555009C724B /* link_icon@2x.png in Resources */,
 				32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */,
@@ -601,10 +555,6 @@
 				8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */,
 				8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */,
 				8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */,
-				8907F9A7172955690015A56B /* NSArray+Subscript.m in Sources */,
-				8907F9A8172955690015A56B /* NSDictionary+Subscript.m in Sources */,
-				8907F9A9172955690015A56B /* NSMutableArray+Subscript.m in Sources */,
-				8907F9AA172955690015A56B /* NSMutableDictionary+Subscript.m in Sources */,
 				8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */,
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
@@ -639,10 +589,6 @@
 				8AE8A73A1742775A00915C20 /* ATZGit.m in Sources */,
 				8AE8A73B1742775D00915C20 /* ATZShell.m in Sources */,
 				8AE8A73C1742776000915C20 /* ATZPBXProjParser.m in Sources */,
-				8AE8A73D1742776600915C20 /* NSArray+Subscript.m in Sources */,
-				8AE8A73E1742776900915C20 /* NSDictionary+Subscript.m in Sources */,
-				8AE8A73F1742776D00915C20 /* NSMutableArray+Subscript.m in Sources */,
-				8AE8A7401742777000915C20 /* NSMutableDictionary+Subscript.m in Sources */,
 				8AE8A741174277A600915C20 /* ATZPluginWindowController.m in Sources */,
 				8A86CE63174326F5006B49BF /* ATZPackageTests.m in Sources */,
 				8907C00B1743F78D00C91A4C /* Alcatraz.m in Sources */,
@@ -740,16 +686,15 @@
 		890A4B53171F031300AFE577 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
-				GCC_ENABLE_OBJC_GC = unsupported;
-				"GCC_ENABLE_OBJC_GC[arch=x86_64]" = supported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Alcatraz/Alcatraz-Prefix.pch";
 				INFOPLIST_FILE = "Alcatraz/Alcatraz-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xcplugin;
@@ -759,16 +704,15 @@
 		890A4B54171F031300AFE577 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
-				GCC_ENABLE_OBJC_GC = unsupported;
-				"GCC_ENABLE_OBJC_GC[arch=x86_64]" = supported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Alcatraz/Alcatraz-Prefix.pch";
 				INFOPLIST_FILE = "Alcatraz/Alcatraz-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xcplugin;

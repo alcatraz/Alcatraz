@@ -64,9 +64,10 @@
     completion(error);
 }
 
-- (void)createTemplateInstallDirectory:(ATZTemplate *)template error:(NSError **)error {
+- (BOOL)createTemplateInstallDirectory:(ATZTemplate *)template error:(NSError **)error {
     [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:template]
                              withIntermediateDirectories:YES attributes:nil error:error];
+    return error == nil;
 }
 
 - (NSArray *)templateFilesForClonedTemplate:(ATZTemplate *)template {
@@ -86,7 +87,7 @@
         @catch (NSException *exception) {
             NSLog(@"Exception occurred while loading template files from clone: %@", exception);
         }
-        return [foundTemplates autorelease];
+        return foundTemplates;
     }
 }
 

@@ -66,14 +66,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     return self;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [_packages release];
-    [_filterPredicate release];
-    
-    [super dealloc];
-}
-
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
     [self.window makeKeyAndOrderFront:self];
 }
@@ -219,7 +211,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
             [self updatePackages];
         }
-        [downloader release];
     }];
 }
 
@@ -279,9 +270,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     
         NSImage *image = [[NSImage alloc] initWithData:responseData];
         completion(image);
-        
-        [image release];
-        [downloader release];
     }];
     
 }
@@ -290,7 +278,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     NSArray *nibElements;
     
 #ifdef OSX_LION
-    NSNib *nib = [[[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:bundle] autorelease];
+    NSNib *nib = [[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:bundle];
     [nib instantiateNibWithOwner:self topLevelObjects:&nibElements];
 #else
     [bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&nibElements];
@@ -308,7 +296,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (void) addVersionToWindow:(NSWindow *)window {
     NSView *windowFrameView = [[window contentView] superview];
-    NSTextField *label = [[[ATZVersionLabel alloc] initWithFrame:NSMakeRect(window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)] autorelease];
+    NSTextField *label = [[ATZVersionLabel alloc] initWithFrame:NSMakeRect(window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)];
     label.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin | NSViewNotSizable;
     [windowFrameView addSubview:label];
 }

@@ -118,7 +118,6 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
         completion(error);
-        [shell release];
     }];
 }
 

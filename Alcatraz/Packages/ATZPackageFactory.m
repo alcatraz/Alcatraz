@@ -43,15 +43,12 @@ static NSDictionary *packageClasses;
     NSMutableArray *packages = [NSMutableArray array];
     @autoreleasepool {
         for (NSString *packageType in packagesInDicts.allKeys) {
-            
+
             for (NSDictionary *packageDict in packagesInDicts[packageType]) {
                 ATZPackage *package = [[packageClasses[packageType] alloc] initWithDictionary:packageDict];
-                if ([package isCompatibleWithXcode]) {
-                    [packages addObject:package];
-                }
-                [package release];
+                [packages addObject:package];
             }
-        
+
         }
     }
     return [self sortPackagesByName:packages];
@@ -64,3 +61,4 @@ static NSDictionary *packageClasses;
 }
 
 @end
+

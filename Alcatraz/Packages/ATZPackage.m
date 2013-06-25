@@ -31,29 +31,10 @@
 - (id)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
     if (!self) return nil;
-    
+
     [self unpackFromDictionary:dict];
-    
+
     return self;
-}
-
-- (void)dealloc {
-    [_name release];
-    [_description release];
-    [_remotePath release];
-    [_screenshotPath release];
-    [super dealloc];
-}
-
-- (BOOL)isCompatibleWithXcode {
-    if (!self.xcodeVersion) return YES;
-    NSArray *components = [self.xcodeVersion componentsSeparatedByString:@"."];
-    if (components.count == 1) {
-        return [[Alcatraz sharedPlugin].xcodeMajorVersion isEqualToString:components[0]];
-    } else {
-        return [[Alcatraz sharedPlugin].xcodeMajorVersion isEqualToString:components[0]]
-            && [[Alcatraz sharedPlugin].xcodeMinorVersion isEqualToString:components[1]];
-    }
 }
 
 #pragma mark - Private

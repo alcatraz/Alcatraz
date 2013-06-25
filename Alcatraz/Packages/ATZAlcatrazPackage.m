@@ -41,7 +41,6 @@
     [alcatraz updateWithProgressMessage:^(NSString *proggressMessage){} completion:^(NSError *failure) {
         if (failure)
             NSLog(@"Alcatraz update failed! %@", failure);
-        [alcatraz release];
     }];
 }
 

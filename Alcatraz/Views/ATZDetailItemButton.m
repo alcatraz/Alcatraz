@@ -55,7 +55,6 @@
                                                                        owner:self
                                                                     userInfo:nil];
     [self addTrackingArea:focusTrackingArea];
-    [focusTrackingArea release];
 }
 
 @end
