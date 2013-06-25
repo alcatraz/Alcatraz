@@ -2,11 +2,6 @@
 // Prefix header for all source files of the 'Alcatraz' target in the 'Alcatraz' project
 //
 
-#if __MAC_OS_X_VERSION_MIN_REQUIRED < 1080
-    #define OSX_LION 1
-    #import "Subscript.h"
-#endif
-
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
 #endif

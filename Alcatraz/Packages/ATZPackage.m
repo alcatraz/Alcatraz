@@ -36,14 +36,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [_name release];
-    [_description release];
-    [_remotePath release];
-    [_screenshotPath release];
-    [super dealloc];
-}
-
 
 #pragma mark - Private
 

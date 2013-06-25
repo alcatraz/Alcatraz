@@ -56,7 +56,6 @@
                    
         NSLog(@"Git Clone output: %@", output);
         completion(error);
-        [shell release];
     }];
 }
 
@@ -83,7 +82,6 @@
                    
         NSLog(@"Git fetch output: %@", output);
         completion(output, error);
-        [shell release];
     }];
 }
 
@@ -98,7 +96,6 @@
                    
         NSLog(@"Git reset output: %@", output);
         completion(output, error);
-        [shell release];
     }];
 }
 

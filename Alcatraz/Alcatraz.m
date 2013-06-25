@@ -53,13 +53,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [_bundle release];
-    [_windowController release];
-    [super dealloc];
-}
-
 #pragma mark - Private
 
 - (void)createMenuItem {
@@ -71,7 +64,6 @@
     pluginManagerItem.target = self;
     [windowMenuItem.submenu insertItem:pluginManagerItem
                                atIndex:[windowMenuItem.submenu indexOfItemWithTitle:@"Organizer"] + 1];
-    [pluginManagerItem release];
 }
 
 - (void)checkForCMDLineToolsAndOpenWindow {
@@ -104,7 +96,6 @@
     [queue addOperationWithBlock:^{
     
         [ATZAlcatrazPackage update];
-        [queue release];
     }];
 }
 
