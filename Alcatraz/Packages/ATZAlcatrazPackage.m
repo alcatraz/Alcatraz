@@ -35,7 +35,7 @@
                            @"name": @"Alcatraz",
                            @"url": @"https://github.com/mneorr/Alcatraz",
                            @"description": @"Self updating installer",
-                           @"branch": @"deploy"
+                           @"branch": @"deploy-5"
                            }];
     
     [alcatraz updateWithProgressMessage:^(NSString *proggressMessage){} completion:^(NSError *failure) {
