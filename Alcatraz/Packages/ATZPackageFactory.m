@@ -46,7 +46,9 @@ static NSDictionary *packageClasses;
             
             for (NSDictionary *packageDict in packagesInDicts[packageType]) {
                 ATZPackage *package = [[packageClasses[packageType] alloc] initWithDictionary:packageDict];
-                [packages addObject:package];
+                if ([package isCompatibleWithXcode]) {
+                    [packages addObject:package];
+                }
             }
         
         }

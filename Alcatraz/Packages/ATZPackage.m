@@ -23,6 +23,7 @@
 #import "ATZPackage.h"
 #import "ATZInstaller.h"
 #import "ATZGit.h"
+#import "Alcatraz.h"
 
 @implementation ATZPackage
 @dynamic isInstalled, type, website, extension;
@@ -36,6 +37,16 @@
     return self;
 }
 
+- (BOOL)isCompatibleWithXcode {
+    if (!self.xcodeVersion) return YES;
+    NSArray *components = [self.xcodeVersion componentsSeparatedByString:@"."];
+    if (components.count == 1) {
+        return [[Alcatraz sharedPlugin].xcodeMajorVersion isEqualToString:components[0]];
+    } else {
+        return [[Alcatraz sharedPlugin].xcodeMajorVersion isEqualToString:components[0]]
+            && [[Alcatraz sharedPlugin].xcodeMinorVersion isEqualToString:components[1]];
+    }
+}
 
 #pragma mark - Private
 
@@ -44,6 +55,7 @@
     self.description = dictionary[@"description"];
     self.remotePath = dictionary[@"url"];
     self.screenshotPath = dictionary[@"screenshot"];
+    self.xcodeVersion = dictionary[@"xcode_version"];
     self.revision = [ATZGit parseRevisionFromDictionary:dictionary];
 }
 
