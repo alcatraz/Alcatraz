@@ -26,5 +26,9 @@
 @interface Alcatraz : NSObject
 
 @property (nonatomic, retain) ATZPluginWindowController *windowController;
+@property (nonatomic, strong) NSString *xcodeMajorVersion;
+@property (nonatomic, strong) NSString *xcodeMinorVersion;
+
++ (Alcatraz *)sharedPlugin;
 
 @end

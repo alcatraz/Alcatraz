@@ -9,6 +9,7 @@
 #import "Kiwi.h"
 #import "ATZPackage.h"
 #import "ATZInstaller.h"
+#import "Alcatraz.h"
 
 void buildMockInstaller(KWMock *mockInstaller) {
     [mockInstaller stub:@selector(installPackage:progress:completion:) withBlock:^id(NSArray *params) {
@@ -90,6 +91,43 @@ describe(@"Package", ^{
             [[newPackage.revision should] equal:@"23kjnrq98kcq2jn"];
         });
         
+    });
+
+    describe(@"Xcode compatibility checking", ^{
+
+        __block Alcatraz *mockATZ;
+
+        beforeEach(^{
+            mockATZ = [Alcatraz mock];
+            [Alcatraz stub:@selector(sharedPlugin) andReturn:mockATZ];
+            [mockATZ stub:@selector(xcodeMajorVersion) andReturn:@"17"];
+            [mockATZ stub:@selector(xcodeMinorVersion) andReturn:@"5"];
+        });
+
+        it(@"assumes compatibility based on major version", ^{
+            ATZPackage *newPackage = [[ATZPackage alloc] initWithDictionary:@{ @"xcode_version": @"17" }];
+            [[theValue([newPackage isCompatibleWithXcode]) should] equal:theValue(YES)];
+        });
+
+        it(@"assumes compatibility based on major and minor version", ^{
+            ATZPackage *newPackage = [[ATZPackage alloc] initWithDictionary:@{ @"xcode_version": @"17.5" }];
+            [[theValue([newPackage isCompatibleWithXcode]) should] equal:theValue(YES)];
+        });
+
+        it(@"assumes compatibility when package version is not specified", ^{
+            ATZPackage *newPackage = [[ATZPackage alloc] initWithDictionary:@{}];
+            [[theValue([newPackage isCompatibleWithXcode]) should] equal:theValue(YES)];
+        });
+
+        it(@"rejects based on non-matching major version", ^{
+            ATZPackage *newPackage = [[ATZPackage alloc] initWithDictionary:@{ @"xcode_version": @"1" }];
+            [[theValue([newPackage isCompatibleWithXcode]) should] equal:theValue(NO)];
+        });
+
+        it(@"rejects based on non-matching minor version", ^{
+            ATZPackage *newPackage = [[ATZPackage alloc] initWithDictionary:@{ @"xcode_version": @"17.1" }];
+            [[theValue([newPackage isCompatibleWithXcode]) should] equal:theValue(NO)];
+        });
     });
     
     describe(@"installing", ^{

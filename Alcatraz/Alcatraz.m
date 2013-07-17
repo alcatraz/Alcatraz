@@ -26,14 +26,15 @@
 #import "ATZAlcatrazPackage.h"
 #import "ATZShell.h"
 
-@interface Alcatraz(){}
-@property (nonatomic, retain) NSBundle *bundle;
+static Alcatraz *sharedPlugin;
+
+@interface Alcatraz()
+@property (nonatomic, strong) NSBundle *bundle;
 @end
 
 @implementation Alcatraz
 
 + (void)pluginDidLoad:(NSBundle *)plugin {
-    static Alcatraz *sharedPlugin;
     static dispatch_once_t onceToken;
     NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
 
@@ -44,9 +45,17 @@
     }
 }
 
++ (Alcatraz *)sharedPlugin {
+    return sharedPlugin;
+}
+
 - (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
         self.bundle = plugin;
+        NSString *xcodeVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
+        NSArray *components = [xcodeVersion componentsSeparatedByString:@"."];
+        self.xcodeMajorVersion = components[0];
+        self.xcodeMinorVersion = components[1];
         [self createMenuItem];
         [self updateAlcatraz];
     }
