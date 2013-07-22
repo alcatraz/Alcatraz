@@ -45,7 +45,3 @@ The installation process creates `~/Library/Application\ Support/Developer/Share
 Special thanks for Delisa Mason ([@kattrali](https://github.com/kattrali))
 
 Icon by [Derek Briggs](http://derekbriggs.com)
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mneorr/Alcatraz/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
