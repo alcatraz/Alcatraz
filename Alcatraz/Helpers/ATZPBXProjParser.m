@@ -22,7 +22,7 @@
 
 #import "ATZPbxprojParser.h"
 
-static NSString *const PLUGIN_NAME_REGEX = @"(\\w[\\w\\s]*\\w.xcplugin)";
+static NSString *const PLUGIN_NAME_REGEX = @"(\\w[\\w\\s-]*\\w.xcplugin)";
 
 @implementation ATZPbxprojParser
 
