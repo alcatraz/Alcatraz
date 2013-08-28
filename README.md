@@ -40,8 +40,10 @@ Alcatraz has a few [contribution guidelines](https://github.com/mneorr/Alcatraz/
 
 The installation process creates `~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin`, which can be deleted to uninstall the plugin completely. To remove all packages installed via Alcatraz, run `rm -rf ~/Library/Application\ Support/Alcatraz/`.
 
-## Contributors
+## Team
 
-Special thanks for Delisa Mason ([@kattrali](https://github.com/kattrali))
+[Marin Usalj](http://mneorr.com) ([@mneorr](https://github.com/mneorr))<br>
+[Delisa Mason](http://delisa.me) ([@kattrali](https://github.com/kattrali))<br>
+Jurre Stender ([@jurre](https://github.com/jurre))<br>
 
 Icon by [Derek Briggs](http://derekbriggs.com)
