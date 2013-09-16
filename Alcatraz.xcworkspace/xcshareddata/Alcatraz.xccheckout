@@ -2,37 +2,39 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>9604916A-B837-4929-84A9-59EA07FF2DBA</string>
+	<string>38B742B6-2093-40A5-BC0A-273FB94806A7</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Alcatraz</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B1A1ED2A-BDF6-4A7F-8C75-750A276E7008</key>
-		<string>ssh://github.com/mneorr/Alcatraz.git</string>
+		<key>B4037A07-3AE3-4A23-B77D-6F363F0C4B18</key>
+		<string>ssh://github.com/kreeger/Alcatraz.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Alcatraz.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B1A1ED2A-BDF6-4A7F-8C75-750A276E7008</key>
+		<key>B4037A07-3AE3-4A23-B77D-6F363F0C4B18</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/mneorr/Alcatraz.git</string>
+	<string>ssh://github.com/kreeger/Alcatraz.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B1A1ED2A-BDF6-4A7F-8C75-750A276E7008</string>
+	<string>B4037A07-3AE3-4A23-B77D-6F363F0C4B18</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B1A1ED2A-BDF6-4A7F-8C75-750A276E7008</string>
+			<string>B4037A07-3AE3-4A23-B77D-6F363F0C4B18</string>
 			<key>IDESourceControlWCCName</key>
-			<string>alcatraz</string>
+			<string>Alcatraz</string>
 		</dict>
 	</array>
 </dict>

@@ -39,7 +39,6 @@
 		8966AFCF173EB7BF004150C0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8966AFCE173EB7BF004150C0 /* Cocoa.framework */; };
 		8966AFD9173EB7BF004150C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8966AFD7173EB7BF004150C0 /* InfoPlist.strings */; };
 		8966AFDC173EB7BF004150C0 /* AlcatrazTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8966AFDB173EB7BF004150C0 /* AlcatrazTests.m */; };
-		8966AFE2173EB8DB004150C0 /* Pods-AlcatrazTests.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2A9816423A9B4C04AA35F239 /* Pods-AlcatrazTests.xcconfig */; };
 		897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */; };
 		89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
@@ -438,7 +437,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ATZ;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = mneorr.com;
 			};
 			buildConfigurationList = 890A4B3A171F031300AFE577 /* Build configuration list for PBXProject "Alcatraz" */;
@@ -479,7 +478,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8966AFD9173EB7BF004150C0 /* InfoPlist.strings in Resources */,
-				8966AFE2173EB8DB004150C0 /* Pods-AlcatrazTests.xcconfig in Resources */,
 				8AD524A0174102F9008B451F /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,7 +628,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -662,7 +659,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
