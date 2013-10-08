@@ -28,7 +28,7 @@
 #import "ATZFileTemplate.h"
 #import "ATZPackageFactory.h"
 
-NSDictionary *createFakeJSON() {
+NSDictionary *fakeJSON() {
     return @{
              @"plugins": @[
                      @{
@@ -70,36 +70,32 @@ SPEC_BEGIN(ATZPackageFactoryTests)
 
 describe(@"Package Factory", ^{
     
-    NSArray *packages = [ATZPackageFactory createPackagesFromDicts:createFakeJSON()];
+    NSArray *packages = [ATZPackageFactory createPackagesFromDicts:fakeJSON()];
     
-    beforeEach(^{
-        [ATZPackageFactory initialize];
-    });
-
     describe(@"creating packages from dictionaries", ^{
         
-        it(@"should unpack all types of packages", ^{
+        it(@"unpacks all types of packages", ^{
             [[@(packages.count) should] equal:@4];
         });
         
-        it(@"should create a plugin from a dictionary", ^{
+        it(@"creates a plugin from a dictionary", ^{
             [[packageWithName(packages, @"D") should] beKindOfClass:[ATZPlugin class]];
         });
 
-        it(@"should create a color scheme from a dictionary", ^{
+        it(@"creates a color scheme from a dictionary", ^{
             [[packageWithName(packages, @"B") should] beKindOfClass:[ATZColorScheme class]];
         });
 
-        it(@"should create a file template from a dictionary", ^{
+        it(@"creates a file template from a dictionary", ^{
             [[packageWithName(packages, @"A") should] beKindOfClass:[ATZFileTemplate class]];
         });
 
-        it(@"should create a project template from a dictionary", ^{
+        it(@"creates a project template from a dictionary", ^{
             [[packageWithName(packages, @"C") should] beKindOfClass:[ATZProjectTemplate class]];
         });
     });
 
-    it(@"should sort packages by name", ^{
+    it(@"sorts packages by name", ^{
         NSArray *sortedNames = @[@"A", @"B", @"C", @"D"];
         
         NSMutableArray *createdNames = [NSMutableArray new];
