@@ -1,7 +1,7 @@
 # Alcatraz
 The Xcode Package Manager!
 
-Alcatraz is an open-source package manager for Xcode 4. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.
+Alcatraz is an open-source package manager for Xcode 5. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.
 
 [![Build Status](https://travis-ci.org/mneorr/Alcatraz.png?branch=master)](https://travis-ci.org/mneorr/Alcatraz)
 ![Package Manager UI](http://mneorr.github.io/Alcatraz/images/plugin.png)
