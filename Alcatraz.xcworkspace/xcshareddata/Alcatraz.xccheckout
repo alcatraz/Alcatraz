@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>38B742B6-2093-40A5-BC0A-273FB94806A7</string>
+	<string>25839AF0-A26A-42F1-B0CE-D472C14063C8</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Alcatraz</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B4037A07-3AE3-4A23-B77D-6F363F0C4B18</key>
-		<string>ssh://github.com/kreeger/Alcatraz.git</string>
+		<key>86A35FDE-16EF-4328-934C-E6FA90C541DF</key>
+		<string>ssh://github.com/mneorr/Alcatraz.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Alcatraz.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B4037A07-3AE3-4A23-B77D-6F363F0C4B18</key>
+		<key>86A35FDE-16EF-4328-934C-E6FA90C541DF</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/kreeger/Alcatraz.git</string>
+	<string>ssh://github.com/mneorr/Alcatraz.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B4037A07-3AE3-4A23-B77D-6F363F0C4B18</string>
+	<string>86A35FDE-16EF-4328-934C-E6FA90C541DF</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B4037A07-3AE3-4A23-B77D-6F363F0C4B18</string>
+			<string>86A35FDE-16EF-4328-934C-E6FA90C541DF</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Alcatraz</string>
 		</dict>
