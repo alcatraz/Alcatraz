@@ -44,7 +44,6 @@
     self.description = dictionary[@"description"];
     self.remotePath = dictionary[@"url"];
     self.screenshotPath = dictionary[@"screenshot"];
-    self.xcodeVersion = dictionary[@"xcode_version"];
     self.revision = [ATZGit parseRevisionFromDictionary:dictionary];
 }
 

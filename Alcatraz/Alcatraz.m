@@ -52,10 +52,6 @@ static Alcatraz *sharedPlugin;
 - (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
         self.bundle = plugin;
-        NSString *xcodeVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
-        NSArray *components = [xcodeVersion componentsSeparatedByString:@"."];
-        self.xcodeMajorVersion = components[0];
-        self.xcodeMinorVersion = components[1];
         [self createMenuItem];
         [self updateAlcatraz];
     }
