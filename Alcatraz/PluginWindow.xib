@@ -14,6 +14,7 @@
                 <outlet property="searchField" destination="256" id="296"/>
                 <outlet property="statusLabel" destination="521" id="544"/>
                 <outlet property="tableView" destination="24" id="437"/>
+                <outlet property="window" destination="125" id="fbl-LK-VKh"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
