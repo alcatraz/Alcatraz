@@ -51,12 +51,13 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (id)initWithBundle:(NSBundle *)bundle {
-    if (self = [super init]) {
+    if (self = [super initWithWindowNibName:@"PluginWindow"]) {
+        [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
+        [self addVersionToWindow];
+
         _filterPredicate = [NSPredicate predicateWithValue:YES];
 
         @try {
-            [self setWindow:[self mainWindowInBundle:bundle]];
-            [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
             if ([NSUserNotificationCenter class]) {
                 [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
             }
@@ -271,32 +272,12 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         NSImage *image = [[NSImage alloc] initWithData:responseData];
         completion(image);
     }];
-    
+
 }
 
-- (NSWindow *)mainWindowInBundle:(NSBundle *)bundle {
-    NSArray *nibElements;
-    
-#ifdef OSX_LION
-    NSNib *nib = [[NSNib alloc] initWithNibNamed:@"PluginWindow" bundle:bundle];
-    [nib instantiateNibWithOwner:self topLevelObjects:&nibElements];
-#else
-    [bundle loadNibNamed:@"PluginWindow" owner:self topLevelObjects:&nibElements];
-#endif
-
-    NSPredicate *windowPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        return [evaluatedObject class] == [NSWindow class];
-    }];
-
-    NSWindow *window = [nibElements filteredArrayUsingPredicate:windowPredicate][0];
-
-    [self addVersionToWindow:window];
-    return window;
-}
-
-- (void) addVersionToWindow:(NSWindow *)window {
-    NSView *windowFrameView = [[window contentView] superview];
-    NSTextField *label = [[ATZVersionLabel alloc] initWithFrame:NSMakeRect(window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)];
+- (void) addVersionToWindow {
+    NSView *windowFrameView = [[self.window contentView] superview];
+    NSTextField *label = [[ATZVersionLabel alloc] initWithFrame:NSMakeRect(self.window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)];
     label.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin | NSViewNotSizable;
     [windowFrameView addSubview:label];
 }
