@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
+        <deployment version="1080" defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
     </dependencies>
     <objects>
@@ -11,7 +11,6 @@
                 <outlet property="previewPanel" destination="1347" id="1364"/>
                 <outlet property="progressIndicator" destination="604" id="608"/>
                 <outlet property="restartLabel" destination="676" id="726"/>
-                <outlet property="searchField" destination="256" id="296"/>
                 <outlet property="statusLabel" destination="521" id="544"/>
                 <outlet property="tableView" destination="24" id="437"/>
                 <outlet property="window" destination="125" id="fbl-LK-VKh"/>
@@ -20,28 +19,28 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
         <window title="Package Manager" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="com.mneorr.Alcatraz.MainWindow" animationBehavior="default" id="125">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="200" y="250" width="500" height="550"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="contentRect" x="200" y="250" width="500" height="618"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="126">
-                <rect key="frame" x="0.0" y="0.0" width="500" height="550"/>
+                <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="82" horizontalPageScroll="10" verticalLineScroll="82" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                        <rect key="frame" x="0.0" y="20" width="500" height="531"/>
+                    <scrollView ambiguous="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                        <rect key="frame" x="0.0" y="20" width="500" height="560"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" copiesOnScroll="NO" id="2OX-MH-qJ4">
-                            <rect key="frame" x="0.0" y="17" width="500" height="514"/>
+                        <clipView key="contentView" ambiguous="YES" misplaced="YES" copiesOnScroll="NO" id="2OX-MH-qJ4">
+                            <rect key="frame" x="0.0" y="0.0" width="500" height="560"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" alternatingRowBackgroundColors="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="80" rowSizeStyle="automatic" headerView="26" viewBased="YES" id="24">
-                                    <rect key="frame" x="0.0" y="0.0" width="500" height="514"/>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="24">
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="560"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" red="0.92779219150000003" green="0.92781388760000005" blue="0.9278022051" alpha="1" colorSpace="deviceRGB"/>
                                     <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
-                                    <color key="gridColor" red="0.95294123890000004" green="0.96470594409999999" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn width="40" minWidth="40" maxWidth="40" id="28">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
@@ -214,15 +213,20 @@
                             <rect key="frame" x="1" y="665" width="931" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="37" id="27">
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="27">
                             <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <tableHeaderView key="headerView" id="26">
-                            <rect key="frame" x="0.0" y="0.0" width="500" height="17"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </tableHeaderView>
                     </scrollView>
+                    <searchField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8my-Ez-NU4">
+                        <rect key="frame" x="344" y="588" width="141" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="KA8-aL-Obt">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </searchFieldCell>
+                    </searchField>
                     <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="500" userLabel="Bottom Bar" customClass="ATZStatusView">
                         <rect key="frame" x="0.0" y="0.0" width="500" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -273,81 +277,42 @@
                             <constraint firstItem="521" firstAttribute="bottom" secondItem="676" secondAttribute="bottom" id="741"/>
                         </constraints>
                     </customView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GIL-gY-jXN">
+                        <rect key="frame" x="17" y="591" width="21" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="All" id="qXr-XM-QWO">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="23" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="146"/>
                     <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" id="449"/>
                     <constraint firstAttribute="bottom" secondItem="500" secondAttribute="bottom" id="505"/>
-                    <constraint firstItem="23" firstAttribute="top" secondItem="126" secondAttribute="top" constant="-1" id="509"/>
                     <constraint firstItem="500" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="513"/>
                     <constraint firstAttribute="trailing" secondItem="500" secondAttribute="trailing" id="515"/>
                     <constraint firstItem="500" firstAttribute="top" secondItem="23" secondAttribute="bottom" id="517"/>
+                    <constraint firstItem="23" firstAttribute="top" secondItem="8my-Ez-NU4" secondAttribute="bottom" constant="8" id="H0S-Tn-qso"/>
+                    <constraint firstItem="GIL-gY-jXN" firstAttribute="leading" secondItem="126" secondAttribute="leading" constant="20" id="HPq-K7-uXY"/>
+                    <constraint firstItem="8my-Ez-NU4" firstAttribute="leading" secondItem="GIL-gY-jXN" secondAttribute="trailing" constant="309" id="c5M-cl-Rak"/>
+                    <constraint firstAttribute="trailing" secondItem="8my-Ez-NU4" secondAttribute="trailing" constant="15" id="nqn-C5-m8z"/>
+                    <constraint firstItem="GIL-gY-jXN" firstAttribute="top" secondItem="126" secondAttribute="top" constant="10" id="rOu-mH-p46"/>
                 </constraints>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="7D3E68E6-EC92-4648-8BE6-552C2507252E" displayMode="iconAndLabel" sizeMode="regular" id="250">
-                <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="76A572C8-3C8B-4D84-89B1-C4AA3495E5BC" explicitItemIdentifier="AllItemsToolbarItem" label="All Packages" paletteLabel="Show All Packages" image="NSFolderSmart" selectable="YES" id="292">
-                        <connections>
-                            <action selector="showAllPackagesPressed:" target="-2" id="1367"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="5E38914A-85AB-4D49-B0CC-6643E110D06C" explicitItemIdentifier="PluginToolbarItem" label="Plugins" paletteLabel="List Plugins" image="NSAdvanced" selectable="YES" id="262">
-                        <connections>
-                            <action selector="showOnlyPluginsPressed:" target="-2" id="1368"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="E58AF1BE-0892-4C33-9A14-7981437CEE04" explicitItemIdentifier="SchemeToolbarItem" label="Color Schemes" paletteLabel="List Color Schemes" image="NSColorPanel" selectable="YES" id="263">
-                        <connections>
-                            <action selector="showOnlyColorSchemesPressed:" target="-2" id="1369"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="88AC30AC-0435-4DDA-80DA-7021EB4BCCE7" explicitItemIdentifier="TemplateToolbarItem" label="Templates" paletteLabel="List Templates" image="NSMultipleDocuments" selectable="YES" id="264">
-                        <connections>
-                            <action selector="showOnlyTemplatesPressed:" target="-2" id="1370"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="251"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="254"/>
-                    <toolbarItem implicitItemIdentifier="EA0700AD-06F0-44A5-85C3-F5B31A0CD63A" label="Search Packages" paletteLabel="Search" id="258" userLabel="Search Toolbar Item">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="96" height="22"/>
-                        <size key="maxSize" width="96" height="22"/>
-                        <searchField key="view" verticalHuggingPriority="750" id="256">
-                            <rect key="frame" x="0.0" y="14" width="96" height="22"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="" usesSingleLineMode="YES" bezelStyle="round" id="257">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </searchFieldCell>
-                            <connections>
-                                <outlet property="delegate" destination="-2" id="295"/>
-                            </connections>
-                        </searchField>
-                    </toolbarItem>
-                </allowedToolbarItems>
-                <defaultToolbarItems>
-                    <toolbarItem reference="292"/>
-                    <toolbarItem reference="251"/>
-                    <toolbarItem reference="262"/>
-                    <toolbarItem reference="263"/>
-                    <toolbarItem reference="264"/>
-                    <toolbarItem reference="254"/>
-                    <toolbarItem reference="258"/>
-                </defaultToolbarItems>
-            </toolbar>
         </window>
         <arrayController objectClassName="Package" editable="NO" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" id="229">
             <connections>
-                <binding destination="-2" name="contentArray" keyPath="self.packages" id="230"/>
                 <binding destination="-2" name="filterPredicate" keyPath="self.filterPredicate" id="291"/>
+                <binding destination="-2" name="contentArray" keyPath="self.packages" id="230"/>
             </connections>
         </arrayController>
         <window title="Preview" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="1347" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="285"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="1348">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -367,10 +332,6 @@
         </window>
     </objects>
     <resources>
-        <image name="NSAdvanced" width="32" height="32"/>
-        <image name="NSColorPanel" width="32" height="32"/>
-        <image name="NSFolderSmart" width="32" height="32"/>
-        <image name="NSMultipleDocuments" width="32" height="32"/>
         <image name="eye_icon" width="16" height="16"/>
         <image name="link_icon" width="16" height="16"/>
     </resources>
