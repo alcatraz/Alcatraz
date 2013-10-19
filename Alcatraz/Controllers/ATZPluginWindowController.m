@@ -53,14 +53,15 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (id)initWithBundle:(NSBundle *)bundle {
     if (self = [super initWithWindowNibName:@"PluginWindow"]) {
         [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
+        self.window.backgroundColor = [NSColor whiteColor];
+        
         [self addVersionToWindow];
 
         _filterPredicate = [NSPredicate predicateWithValue:YES];
 
         @try {
-            if ([NSUserNotificationCenter class]) {
+            if ([NSUserNotificationCenter class])
                 [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
-            }
         }
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
@@ -182,6 +183,8 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)updatePredicate {
+    // TODO: refactor, use compound predicates.
+
     NSString *searchText = self.searchField.stringValue;    
     // filter by type and search field text
     if (self.selectedPackageClass && searchText.length > 0) {
