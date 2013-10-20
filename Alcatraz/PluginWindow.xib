@@ -27,14 +27,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="82" horizontalPageScroll="10" verticalLineScroll="82" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
                         <rect key="frame" x="0.0" y="20" width="500" height="560"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="2OX-MH-qJ4">
                             <rect key="frame" x="0.0" y="0.0" width="500" height="560"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="24">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="80" rowSizeStyle="automatic" viewBased="YES" id="24">
                                     <rect key="frame" x="0.0" y="0.0" width="500" height="560"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -297,7 +297,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="wtc-cQ-rJ2">
+                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wtc-cQ-rJ2">
                         <rect key="frame" x="90" y="591" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
@@ -308,7 +308,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Tpt-iw-b6m">
+                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tpt-iw-b6m">
                         <rect key="frame" x="117" y="591" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
@@ -375,11 +375,11 @@
     <resources>
         <image name="eye_icon" width="16" height="16"/>
         <image name="link_icon" width="16" height="16"/>
-        <image name="toolbar_colors" width="0.0" height="0.0"/>
-        <image name="toolbar_colors_selected" width="0.0" height="0.0"/>
+        <image name="toolbar_colors" width="16" height="16"/>
+        <image name="toolbar_colors_selected" width="16" height="15"/>
         <image name="toolbar_plugins" width="16" height="16"/>
-        <image name="toolbar_plugins_selected" width="0.0" height="0.0"/>
-        <image name="toolbar_templates" width="0.0" height="0.0"/>
-        <image name="toolbar_templates_selected" width="0.0" height="0.0"/>
+        <image name="toolbar_plugins_selected" width="16" height="15"/>
+        <image name="toolbar_templates" width="16" height="16"/>
+        <image name="toolbar_templates_selected" width="16" height="15"/>
     </resources>
 </document>
