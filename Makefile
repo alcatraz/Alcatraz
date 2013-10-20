@@ -5,6 +5,8 @@ URL="https://s3.amazonaws.com/${BUCKET}/${ARCHIVE}"
 INSTALL_PATH="~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/"
 VERSION_LOCATION="Alcatraz/Views/ATZVersionLabel.m"
 VERSION_TMP_FILE="output.m"
+BUILD_TOOL=xctool
+DEFAULT_BUILD_ARGS=-workspace Alcatraz.xcworkspace -scheme Alcatraz
 
 default: clean spec
 
@@ -13,7 +15,7 @@ ci: pod_setup spec
 shipit: update build upload
 
 clean:
-	xcodebuild clean
+	$(BUILD_TOOL) $(DEFAULT_BUILD_ARGS) clean
 	rm -rf build
 
 # Update to latest version of cocoapods, configure installation
@@ -22,8 +24,8 @@ pod_setup:
 	pod install
 
 # Run tests
-spec:
-	xcodebuild -workspace Alcatraz.xcworkspace -scheme Alcatraz clean test
+spec: clean
+	$(BUILD_TOOL) $(DEFAULT_BUILD_ARGS) test
 
 # Merge changes into deploy branch
 update:
@@ -37,8 +39,8 @@ else
 endif
 
 # Build archive ready for distribution
-build:
-	xcodebuild -project Alcatraz.xcodeproj clean build
+build: clean
+	$(BUILD_TOOL) -project Alcatraz.xcodeproj build
 	rm -rf ${BUNDLE_NAME}
 	cp -r ${INSTALL_PATH} ${BUNDLE_NAME}
 	tar -czf ${ARCHIVE} ${BUNDLE_NAME}
@@ -67,3 +69,4 @@ ifdef VERSION
 else
 	$(error VERSION has not been set)
 endif
+

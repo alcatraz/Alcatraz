@@ -22,7 +22,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="200" y="250" width="500" height="618"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="126">
                 <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -334,6 +334,7 @@
                     <constraint firstItem="23" firstAttribute="top" secondItem="8my-Ez-NU4" secondAttribute="bottom" constant="8" id="H0S-Tn-qso"/>
                     <constraint firstItem="GIL-gY-jXN" firstAttribute="leading" secondItem="126" secondAttribute="leading" constant="20" id="HPq-K7-uXY"/>
                     <constraint firstItem="Tpt-iw-b6m" firstAttribute="baseline" secondItem="wtc-cQ-rJ2" secondAttribute="baseline" id="JUU-oO-8kA"/>
+                    <constraint firstItem="tR4-Y8-70i" firstAttribute="top" secondItem="126" secondAttribute="top" constant="11" id="Jva-Ee-d5H"/>
                     <constraint firstItem="8my-Ez-NU4" firstAttribute="leading" secondItem="GIL-gY-jXN" secondAttribute="trailing" constant="309" id="c5M-cl-Rak"/>
                     <constraint firstAttribute="trailing" secondItem="8my-Ez-NU4" secondAttribute="trailing" constant="15" id="nqn-C5-m8z"/>
                     <constraint firstItem="GIL-gY-jXN" firstAttribute="top" secondItem="126" secondAttribute="top" constant="10" id="rOu-mH-p46"/>
@@ -352,7 +353,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="285"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="1348">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -374,11 +375,11 @@
     <resources>
         <image name="eye_icon" width="16" height="16"/>
         <image name="link_icon" width="16" height="16"/>
-        <image name="toolbar_colors" width="16" height="16"/>
-        <image name="toolbar_colors_selected" width="16" height="15"/>
+        <image name="toolbar_colors" width="0.0" height="0.0"/>
+        <image name="toolbar_colors_selected" width="0.0" height="0.0"/>
         <image name="toolbar_plugins" width="16" height="16"/>
-        <image name="toolbar_plugins_selected" width="16" height="15"/>
-        <image name="toolbar_templates" width="16" height="16"/>
-        <image name="toolbar_templates_selected" width="16" height="15"/>
+        <image name="toolbar_plugins_selected" width="0.0" height="0.0"/>
+        <image name="toolbar_templates" width="0.0" height="0.0"/>
+        <image name="toolbar_templates_selected" width="0.0" height="0.0"/>
     </resources>
 </document>
