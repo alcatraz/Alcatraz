@@ -142,7 +142,7 @@
                                                                 </binding>
                                                             </connections>
                                                         </textField>
-                                                        <button hidden="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1051" customClass="ATZDetailItemButton">
+                                                        <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1051" customClass="ATZDetailItemButton">
                                                             <rect key="frame" x="410" y="37" width="20" height="26"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
@@ -157,7 +157,7 @@
                                                                 <action selector="openPackageWebsitePressed:" target="-2" id="1138"/>
                                                             </connections>
                                                         </button>
-                                                        <button hidden="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1057" customClass="ATZDetailItemButton">
+                                                        <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1057" customClass="ATZDetailItemButton">
                                                             <rect key="frame" x="382" y="37" width="20" height="26"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
@@ -172,7 +172,7 @@
                                                                 <action selector="displayScreenshotPressed:" target="-2" id="1243"/>
                                                             </connections>
                                                         </button>
-                                                        <box autoresizesSubviews="NO" verticalHuggingPriority="750" misplaced="YES" alphaValue="0.5" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="58h-17-rJo">
+                                                        <box autoresizesSubviews="NO" verticalHuggingPriority="750" alphaValue="0.5" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="58h-17-rJo">
                                                             <rect key="frame" x="3" y="68" width="448" height="5"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -194,7 +194,7 @@
                                                         <constraint firstItem="58h-17-rJo" firstAttribute="leading" secondItem="315" secondAttribute="leading" constant="3" id="2Dl-P4-fJU"/>
                                                         <constraint firstAttribute="trailing" secondItem="58h-17-rJo" secondAttribute="trailing" constant="3" id="EJ3-5f-biw"/>
                                                         <constraint firstItem="1051" firstAttribute="top" secondItem="58h-17-rJo" secondAttribute="bottom" constant="7" id="aLc-ta-eDL"/>
-                                                        <constraint firstItem="58h-17-rJo" firstAttribute="top" secondItem="315" secondAttribute="top" constant="4" id="lSK-4r-CE4"/>
+                                                        <constraint firstItem="58h-17-rJo" firstAttribute="top" secondItem="315" secondAttribute="top" constant="3" id="lSK-4r-CE4"/>
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="packageTypeTextField" destination="403" id="1188"/>
