@@ -34,6 +34,7 @@
 		8917DA181726B63B00F0B2D2 /* ATZDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA131726B63B00F0B2D2 /* ATZDownloader.m */; };
 		8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA151726B63B00F0B2D2 /* ATZGit.m */; };
 		8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA171726B63B00F0B2D2 /* ATZShell.m */; };
+		891C0C2D18134C8B000879EE /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 891C0C2C18134C8B000879EE /* Resources */; };
 		894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 894714E717302F63003CDDA7 /* ATZInstaller.m */; };
 		8966AFCD173EB7BF004150C0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8966AFCC173EB7BF004150C0 /* SenTestingKit.framework */; };
 		8966AFCF173EB7BF004150C0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8966AFCE173EB7BF004150C0 /* Cocoa.framework */; };
@@ -123,6 +124,7 @@
 		8917DA151726B63B00F0B2D2 /* ATZGit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZGit.m; sourceTree = "<group>"; };
 		8917DA161726B63B00F0B2D2 /* ATZShell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZShell.h; sourceTree = "<group>"; };
 		8917DA171726B63B00F0B2D2 /* ATZShell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZShell.m; sourceTree = "<group>"; };
+		891C0C2C18134C8B000879EE /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = SOURCE_ROOT; };
 		894714E717302F63003CDDA7 /* ATZInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZInstaller.m; sourceTree = "<group>"; };
 		8966AFCB173EB7BF004150C0 /* AlcatrazTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlcatrazTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8966AFCC173EB7BF004150C0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -214,6 +216,7 @@
 		890A4B46171F031300AFE577 /* Alcatraz */ = {
 			isa = PBXGroup;
 			children = (
+				891C0C2C18134C8B000879EE /* Resources */,
 				8917DA111726B63B00F0B2D2 /* Helpers */,
 				8917DA0A1726B57B00F0B2D2 /* Categories */,
 				8917D9F91726B53000F0B2D2 /* Installers */,
@@ -467,6 +470,7 @@
 				89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */,
 				32D86505173A4555009C724B /* eye_icon@2x.png in Resources */,
 				32D86506173A4555009C724B /* link_icon@2x.png in Resources */,
+				891C0C2D18134C8B000879EE /* Resources in Resources */,
 				32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */,
 				32BDEBC5173A46B600513A7C /* link_icon.png in Resources */,
 				8AD5249F174102F9008B451F /* Localizable.strings in Resources */,
