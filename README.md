@@ -14,7 +14,7 @@ To install, open up your terminal and paste this:
 mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins;
 curl -L http://goo.gl/xfmmt | tar xv -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -
 ```
-or download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
+or clone this repo / download the zip, run 'pod install' in the terminal, open the workspace file in Xcode and compile. After restarting Xcode you'll have a 'Package Manager' Menu Item in the Windows menu.
 
 Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via `Preferences > Downloads`.
 
