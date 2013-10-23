@@ -55,7 +55,6 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
             
             if (error) completion(error);
             [self reloadXcodeForPackage:package completion:completion];
-            [self postNotificationForInstalledPackage:package];
         }];
     }];
 }
@@ -137,16 +136,6 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
         }];
     else
         [self downloadPackage:package completion:completion];
-}
-
-- (void)postNotificationForInstalledPackage:(ATZPackage *)package {
-    if ([NSUserNotificationCenter class] && package.isInstalled) {
-        NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = [NSString stringWithFormat:@"%@ installed", package.type];
-        NSString *restartText = package.requiresRestart ? @" Please restart Xcode to use it." : @"";
-        notification.informativeText = [NSString stringWithFormat:@"%@ was installed successfully! %@", package.name, restartText];
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    }
 }
 
 @end
