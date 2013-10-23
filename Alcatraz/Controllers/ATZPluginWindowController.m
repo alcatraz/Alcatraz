@@ -125,12 +125,11 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [self updatePredicate];
 }
 
-- (void)keyDown:(NSEvent *)theEvent {
-    if (([theEvent modifierFlags] & NSCommandKeyMask) && [[theEvent characters] characterAtIndex:0] == 'f') {
+- (void)keyDown:(NSEvent *)event {
+    if (hasPressedCommandF(event))
         [self.window makeFirstResponder:self.searchField];
-    } else {
-        [super keyDown:theEvent];
-    }
+    else
+        [super keyDown:event];
 }
 
 #pragma mark - Private
@@ -155,9 +154,10 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         
         NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :( Error: %@", package.name, failure.domain] :
                                       [NSString stringWithFormat:@"%@ installed.", package.name];
-        NSLog(@"%@", message);
+
         [self flashNotice:message];
         [self reloadUIForPackage:package fromCheckbox:checkbox];
+        [self postNotificationForInstalledPackage:package];
     }];
 }
 
@@ -165,6 +165,21 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [self hideInstallationIndicators];
     [self reloadCheckbox:checkbox];
     if (package.requiresRestart) [self.restartLabel setHidden:NO];
+}
+
+- (void)postNotificationForInstalledPackage:(ATZPackage *)package {
+    if (![NSUserNotificationCenter class] || !package.isInstalled || self.window.isKeyWindow) return;
+    
+    NSUserNotification *notification = [NSUserNotification new];
+    notification.title = [NSString stringWithFormat:@"%@ installed", package.type];
+    NSString *restartText = package.requiresRestart ? @" Please restart Xcode to use it." : @"";
+    notification.informativeText = [NSString stringWithFormat:@"%@ was installed successfully! %@", package.name, restartText];
+
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
+BOOL hasPressedCommandF(NSEvent *event) {
+    return ([event modifierFlags] & NSCommandKeyMask) && [[event characters] characterAtIndex:0] == 'f';
 }
 
 - (void)hideInstallationIndicators {
