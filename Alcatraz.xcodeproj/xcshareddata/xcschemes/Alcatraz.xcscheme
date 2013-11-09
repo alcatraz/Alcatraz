@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "750CF5553C2E4639B3B93A91"
+               BlueprintIdentifier = "5F335CA1B8A142AB97DD9754"
                BuildableName = "libPods-AlcatrazTests.a"
                BlueprintName = "Pods-AlcatrazTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -77,6 +77,9 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <PathRunnable
+         FilePath = "/Applications/Xcode.app">
+      </PathRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
