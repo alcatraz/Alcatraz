@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07B02659182F919C00364987 /* ATZPackageCheckboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */; };
 		32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B63216173A3E880076C098 /* ATZPackageTableCellView.m */; };
 		32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC2173A46A900513A7C /* eye_icon.png */; };
 		32BDEBC5173A46B600513A7C /* link_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC4173A46B600513A7C /* link_icon.png */; };
@@ -87,6 +88,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07B02657182F919C00364987 /* ATZPackageCheckboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageCheckboxCell.h; path = Views/ATZPackageCheckboxCell.h; sourceTree = "<group>"; };
+		07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageCheckboxCell.m; path = Views/ATZPackageCheckboxCell.m; sourceTree = "<group>"; };
 		2A9816423A9B4C04AA35F239 /* Pods-AlcatrazTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlcatrazTests.xcconfig"; path = "Pods/Pods-AlcatrazTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		32B63215173A3E880076C098 /* ATZPackageTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageTableCellView.h; path = Views/ATZPackageTableCellView.h; sourceTree = "<group>"; };
 		32B63216173A3E880076C098 /* ATZPackageTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableCellView.m; path = Views/ATZPackageTableCellView.m; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 				32B63216173A3E880076C098 /* ATZPackageTableCellView.m */,
 				8A44EF731745D13200411834 /* ATZVersionLabel.h */,
 				8A44EF741745D13200411834 /* ATZVersionLabel.m */,
+				07B02657182F919C00364987 /* ATZPackageCheckboxCell.h */,
+				07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -612,6 +617,7 @@
 				8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */,
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
+				07B02659182F919C00364987 /* ATZPackageCheckboxCell.m in Sources */,
 				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,
 				32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */,
 				8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */,
