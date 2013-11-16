@@ -26,7 +26,7 @@
 #import "Alcatraz.h"
 
 @implementation ATZPackage
-@dynamic isInstalled, type, website, extension;
+@dynamic isInstalled, type, website, extension, iconName;
 
 - (id)initWithDictionary:(NSDictionary *)dict {
     self = [super init];

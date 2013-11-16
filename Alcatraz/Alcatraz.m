@@ -28,10 +28,6 @@
 
 static Alcatraz *sharedPlugin;
 
-@interface Alcatraz()
-@property (nonatomic, strong) NSBundle *bundle;
-@end
-
 @implementation Alcatraz
 
 + (void)pluginDidLoad:(NSBundle *)plugin {
