@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A2093" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1080" defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -23,7 +23,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="200" y="250" width="500" height="618"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="126">
                 <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -125,25 +125,6 @@
                                                                 <binding destination="315" name="title" keyPath="objectValue.name" id="966"/>
                                                             </connections>
                                                         </button>
-                                                        <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="403" userLabel="Package Type">
-                                                            <rect key="frame" x="327" y="45" width="106" height="14"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="100" id="1346"/>
-                                                            </constraints>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Project Template" id="404">
-                                                                <font key="font" metaFont="smallSystemBold"/>
-                                                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                            <connections>
-                                                                <binding destination="315" name="value" keyPath="objectValue.type" id="409">
-                                                                    <dictionary key="options">
-                                                                        <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
-                                                                    </dictionary>
-                                                                </binding>
-                                                            </connections>
-                                                        </textField>
                                                         <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1051" customClass="ATZDetailItemButton">
                                                             <rect key="frame" x="410" y="37" width="20" height="26"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -188,18 +169,15 @@
                                                         <constraint firstItem="959" firstAttribute="leading" secondItem="315" secondAttribute="leading" constant="3" id="972"/>
                                                         <constraint firstItem="959" firstAttribute="top" secondItem="315" secondAttribute="top" constant="12" id="1009"/>
                                                         <constraint firstItem="390" firstAttribute="top" secondItem="959" secondAttribute="bottom" constant="8" symbolic="YES" id="1201"/>
-                                                        <constraint firstItem="403" firstAttribute="baseline" secondItem="959" secondAttribute="baseline" id="1321"/>
                                                         <constraint firstItem="1051" firstAttribute="baseline" secondItem="1057" secondAttribute="baseline" id="1337"/>
-                                                        <constraint firstItem="1051" firstAttribute="trailing" secondItem="403" secondAttribute="trailing" id="1339"/>
                                                         <constraint firstItem="1051" firstAttribute="leading" secondItem="1057" secondAttribute="trailing" constant="8" symbolic="YES" id="1344"/>
-                                                        <constraint firstAttribute="trailing" secondItem="403" secondAttribute="trailing" constant="24" id="1345"/>
                                                         <constraint firstItem="58h-17-rJo" firstAttribute="leading" secondItem="315" secondAttribute="leading" constant="3" id="2Dl-P4-fJU"/>
                                                         <constraint firstAttribute="trailing" secondItem="58h-17-rJo" secondAttribute="trailing" constant="3" id="EJ3-5f-biw"/>
                                                         <constraint firstItem="1051" firstAttribute="top" secondItem="58h-17-rJo" secondAttribute="bottom" constant="7" id="aLc-ta-eDL"/>
+                                                        <constraint firstAttribute="trailing" secondItem="1051" secondAttribute="trailing" constant="24" id="efB-Bb-Wfg"/>
                                                         <constraint firstItem="58h-17-rJo" firstAttribute="top" secondItem="315" secondAttribute="top" constant="3" id="lSK-4r-CE4"/>
                                                     </constraints>
                                                     <connections>
-                                                        <outlet property="packageTypeTextField" destination="403" id="1188"/>
                                                         <outlet property="screenshotButton" destination="1057" id="1242"/>
                                                         <outlet property="websiteButton" destination="1051" id="1149"/>
                                                     </connections>
@@ -375,7 +353,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="285"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="1348">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>

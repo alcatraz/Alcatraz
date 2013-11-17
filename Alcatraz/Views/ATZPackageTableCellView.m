@@ -37,7 +37,6 @@
 - (void)setButtonsVisible:(BOOL)visible animated:(BOOL)animated {
     float alphaValue = visible ? 0.5f : 0.0f;
     
-    id packageTypeTextField = animated ? self.packageTypeTextField.animator : self.packageTypeTextField;
     id websiteButton = animated ? self.websiteButton.animator : self.websiteButton;
     id screenshotButton = animated ? self.screenshotButton.animator : self.screenshotButton;
     
@@ -49,8 +48,6 @@
     
     if (![(ATZPackage *)self.objectValue screenshotPath]) [self.screenshotButton setHidden:YES];
     
-    [packageTypeTextField setAlphaValue:!visible];
-
     if (!self.isHighlighted) {
         [websiteButton setAlphaValue:alphaValue];
         [screenshotButton setAlphaValue:alphaValue];

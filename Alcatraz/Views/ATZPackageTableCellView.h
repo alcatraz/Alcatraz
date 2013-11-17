@@ -26,6 +26,5 @@
 
 @property (assign) IBOutlet NSButton *screenshotButton;
 @property (assign) IBOutlet NSButton *websiteButton;
-@property (assign) IBOutlet NSTextField *packageTypeTextField;
 
 @end
