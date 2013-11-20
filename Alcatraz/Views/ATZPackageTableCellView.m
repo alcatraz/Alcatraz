@@ -23,7 +23,6 @@
 
 #import "ATZPackageTableCellView.h"
 #import "ATZPackage.h"
-#import <Quartz/Quartz.h>
 
 @interface ATZPackageTableCellView()
 @property (assign) BOOL isHighlighted;
@@ -32,14 +31,14 @@
 @implementation ATZPackageTableCellView
 
 - (void)awakeFromNib {
-    [self.buttonContainerView setWantsLayer:YES];
+    [self.buttonsContainerView setWantsLayer:YES];
     [self createTrackingArea];
 }
 
 - (void)setButtonsHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     float alphaValue = highlighted ? 1.0f : 0.0f;
 
-    id buttonsContainerView = animated ? self.buttonContainerView.animator : self.buttonContainerView;
+    id buttonsContainerView = animated ? self.buttonsContainerView.animator : self.buttonsContainerView;
 
     [buttonsContainerView setAlphaValue: alphaValue];
 

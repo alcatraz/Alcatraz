@@ -26,6 +26,6 @@
 
 @property (assign) IBOutlet NSButton *screenshotButton;
 @property (assign) IBOutlet NSButton *websiteButton;
-@property (assign) IBOutlet NSView *buttonContainerView;
+@property (assign) IBOutlet NSView *buttonsContainerView;
 
 @end
