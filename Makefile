@@ -20,7 +20,7 @@ clean:
 
 # Update to latest version of cocoapods, configure installation
 pod_setup:
-	gem update cocoapods
+	gem install cocoapods
 	pod install
 
 # Run tests
