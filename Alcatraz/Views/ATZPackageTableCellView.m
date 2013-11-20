@@ -37,7 +37,7 @@
 }
 
 - (void)setButtonsHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    float alphaValue = highlighted ? 1.0f : 0.5f;
+    float alphaValue = highlighted ? 1.0f : 0.0f;
 
     id buttonsContainerView = animated ? self.buttonContainerView.animator : self.buttonContainerView;
 
