@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A2093" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1080" defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -23,19 +23,19 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="200" y="250" width="500" height="618"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
             <view key="contentView" id="126">
                 <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="76" horizontalPageScroll="10" verticalLineScroll="76" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
                         <rect key="frame" x="0.0" y="20" width="500" height="560"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="2OX-MH-qJ4">
                             <rect key="frame" x="0.0" y="0.0" width="500" height="560"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="24">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="74" rowSizeStyle="automatic" viewBased="YES" id="24">
                                     <rect key="frame" x="0.0" y="0.0" width="500" height="560"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -125,36 +125,6 @@
                                                                 <binding destination="315" name="title" keyPath="objectValue.name" id="966"/>
                                                             </connections>
                                                         </button>
-                                                        <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1051" customClass="ATZDetailItemButton">
-                                                            <rect key="frame" x="410" y="37" width="20" height="26"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="20" id="1338"/>
-                                                                <constraint firstAttribute="height" constant="26" id="1366"/>
-                                                            </constraints>
-                                                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="link_icon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="1052">
-                                                                <behavior key="behavior" lightByContents="YES"/>
-                                                                <font key="font" metaFont="system"/>
-                                                            </buttonCell>
-                                                            <connections>
-                                                                <action selector="openPackageWebsitePressed:" target="-2" id="1138"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1057" customClass="ATZDetailItemButton">
-                                                            <rect key="frame" x="382" y="37" width="20" height="26"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="26" id="1320"/>
-                                                                <constraint firstAttribute="width" constant="20" id="1342"/>
-                                                            </constraints>
-                                                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="eye_icon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="1059">
-                                                                <behavior key="behavior" lightByContents="YES"/>
-                                                                <font key="font" metaFont="system"/>
-                                                            </buttonCell>
-                                                            <connections>
-                                                                <action selector="displayScreenshotPressed:" target="-2" id="1243"/>
-                                                            </connections>
-                                                        </button>
                                                         <box autoresizesSubviews="NO" verticalHuggingPriority="750" alphaValue="0.5" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="58h-17-rJo">
                                                             <rect key="frame" x="3" y="68" width="448" height="5"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -162,6 +132,42 @@
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
+                                                        <customView focusRingType="none" appearanceType="lightContent" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R0c-wL-QhR">
+                                                            <rect key="frame" x="367" y="37" width="83" height="28"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1051" customClass="ATZDetailItemButton">
+                                                                    <rect key="frame" x="43" y="0.0" width="20" height="26"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="20" id="1338"/>
+                                                                        <constraint firstAttribute="height" constant="26" id="1366"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="link_icon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="1052">
+                                                                        <behavior key="behavior" lightByContents="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="openPackageWebsitePressed:" target="-2" id="1138"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1057" customClass="ATZDetailItemButton">
+                                                                    <rect key="frame" x="15" y="0.0" width="20" height="26"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="26" id="1320"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="1342"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="eye_icon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="1059">
+                                                                        <behavior key="behavior" lightByContents="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="displayScreenshotPressed:" target="-2" id="1243"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </customView>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="390" firstAttribute="leading" secondItem="315" secondAttribute="leading" constant="3" id="393"/>
@@ -169,15 +175,12 @@
                                                         <constraint firstItem="959" firstAttribute="leading" secondItem="315" secondAttribute="leading" constant="3" id="972"/>
                                                         <constraint firstItem="959" firstAttribute="top" secondItem="315" secondAttribute="top" constant="12" id="1009"/>
                                                         <constraint firstItem="390" firstAttribute="top" secondItem="959" secondAttribute="bottom" constant="8" symbolic="YES" id="1201"/>
-                                                        <constraint firstItem="1051" firstAttribute="baseline" secondItem="1057" secondAttribute="baseline" id="1337"/>
-                                                        <constraint firstItem="1051" firstAttribute="leading" secondItem="1057" secondAttribute="trailing" constant="8" symbolic="YES" id="1344"/>
                                                         <constraint firstItem="58h-17-rJo" firstAttribute="leading" secondItem="315" secondAttribute="leading" constant="3" id="2Dl-P4-fJU"/>
                                                         <constraint firstAttribute="trailing" secondItem="58h-17-rJo" secondAttribute="trailing" constant="3" id="EJ3-5f-biw"/>
-                                                        <constraint firstItem="1051" firstAttribute="top" secondItem="58h-17-rJo" secondAttribute="bottom" constant="7" id="aLc-ta-eDL"/>
-                                                        <constraint firstAttribute="trailing" secondItem="1051" secondAttribute="trailing" constant="24" id="efB-Bb-Wfg"/>
                                                         <constraint firstItem="58h-17-rJo" firstAttribute="top" secondItem="315" secondAttribute="top" constant="3" id="lSK-4r-CE4"/>
                                                     </constraints>
                                                     <connections>
+                                                        <outlet property="buttonContainerView" destination="R0c-wL-QhR" id="fLG-aw-Qfv"/>
                                                         <outlet property="screenshotButton" destination="1057" id="1242"/>
                                                         <outlet property="websiteButton" destination="1051" id="1149"/>
                                                     </connections>
@@ -353,7 +356,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="285"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
             <view key="contentView" id="1348">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>

@@ -23,7 +23,7 @@
 #import "ATZDetailItemButton.h"
 
 #define MIN_ALPHA 0.5f
-#define MAX_ALPHA 0.8f
+#define MAX_ALPHA 1.0f
 
 @implementation ATZDetailItemButton
 
@@ -40,7 +40,7 @@
 }
 
 - (void)awakeFromNib {
-    self.alphaValue = 0.0f;
+    self.alphaValue = MIN_ALPHA;
     [self createTrackingArea];
 }
 

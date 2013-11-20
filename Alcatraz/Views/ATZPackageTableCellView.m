@@ -23,6 +23,7 @@
 
 #import "ATZPackageTableCellView.h"
 #import "ATZPackage.h"
+#import <Quartz/Quartz.h>
 
 @interface ATZPackageTableCellView()
 @property (assign) BOOL isHighlighted;
@@ -31,32 +32,23 @@
 @implementation ATZPackageTableCellView
 
 - (void)awakeFromNib {
+    [self.buttonContainerView setWantsLayer:YES];
     [self createTrackingArea];
 }
 
 - (void)setButtonsVisible:(BOOL)visible animated:(BOOL)animated {
-    float alphaValue = visible ? 0.5f : 0.0f;
-    
-    id websiteButton = animated ? self.websiteButton.animator : self.websiteButton;
-    id screenshotButton = animated ? self.screenshotButton.animator : self.screenshotButton;
-    
-    if (visible) {
-        [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
-        [self.websiteButton setHidden:!visible];
-        [self.screenshotButton setHidden:!visible];
-    }
-    
+    float alphaValue = visible ? 1.0f : 0.5f;
+
+    id buttonsContainerView = animated ? self.buttonContainerView.animator : self.buttonContainerView;
+
+    [buttonsContainerView setAlphaValue: alphaValue];
+
     if (![(ATZPackage *)self.objectValue screenshotPath]) [self.screenshotButton setHidden:YES];
-    
-    if (!self.isHighlighted) {
-        [websiteButton setAlphaValue:alphaValue];
-        [screenshotButton setAlphaValue:alphaValue];
-        if (visible) self.isHighlighted = YES;
-    }
 }
 
 - (void)viewWillDraw {
-    if (!self.isHighlighted) [self setButtonsVisible:NO animated:NO];
+    [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
+    [self setButtonsVisible:self.isHighlighted animated:NO];
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {
