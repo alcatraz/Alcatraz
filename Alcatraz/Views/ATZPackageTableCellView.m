@@ -36,8 +36,8 @@
     [self createTrackingArea];
 }
 
-- (void)setButtonsVisible:(BOOL)visible animated:(BOOL)animated {
-    float alphaValue = visible ? 1.0f : 0.5f;
+- (void)setButtonsHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    float alphaValue = highlighted ? 1.0f : 0.5f;
 
     id buttonsContainerView = animated ? self.buttonContainerView.animator : self.buttonContainerView;
 
@@ -48,7 +48,7 @@
 
 - (void)viewWillDraw {
     [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
-    [self setButtonsVisible:self.isHighlighted animated:NO];
+    [self setButtonsHighlighted:self.isHighlighted animated:NO];
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {
@@ -57,7 +57,7 @@
 
 - (void)mouseExited:(NSEvent *)theEvent {
     self.isHighlighted = NO;
-    [self setButtonsVisible:NO animated:YES];
+    [self setButtonsHighlighted:NO animated:YES];
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent {
@@ -84,7 +84,7 @@
     NSPoint windowLocation = [self.window convertScreenToBase:globalLocation];
     NSPoint viewLocation = [self convertPoint:windowLocation fromView:nil];
     if(NSPointInRect(viewLocation, self.bounds)) {
-        [self setButtonsVisible:YES animated:YES];
+        [self setButtonsHighlighted:YES animated:YES];
     }
 }
 
