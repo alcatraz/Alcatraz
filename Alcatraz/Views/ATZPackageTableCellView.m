@@ -31,32 +31,27 @@
 @implementation ATZPackageTableCellView
 
 - (void)awakeFromNib {
+    [self.buttonsContainerView setWantsLayer:YES];
     [self createTrackingArea];
 }
 
-- (void)setButtonsVisible:(BOOL)visible animated:(BOOL)animated {
-    float alphaValue = visible ? 0.5f : 0.0f;
-    
-    id websiteButton = animated ? self.websiteButton.animator : self.websiteButton;
-    id screenshotButton = animated ? self.screenshotButton.animator : self.screenshotButton;
-    
-    if (visible) {
-        [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
-        [self.websiteButton setHidden:!visible];
-        [self.screenshotButton setHidden:!visible];
-    }
-    
-    if (![(ATZPackage *)self.objectValue screenshotPath]) [self.screenshotButton setHidden:YES];
-    
-    if (!self.isHighlighted) {
-        [websiteButton setAlphaValue:alphaValue];
-        [screenshotButton setAlphaValue:alphaValue];
-        if (visible) self.isHighlighted = YES;
-    }
+- (void)setButtonsHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    float alphaValue = highlighted ? 1.0f : 0.0f;
+
+    id buttonsContainerView = animated ? self.buttonsContainerView.animator : self.buttonsContainerView;
+
+    [buttonsContainerView setAlphaValue: alphaValue];
 }
 
 - (void)viewWillDraw {
-    if (!self.isHighlighted) [self setButtonsVisible:NO animated:NO];
+    if (![(ATZPackage *)self.objectValue screenshotPath]) {
+        [self.screenshotButton setHidden:YES];
+        CGRect websiteButtonFrame = self.websiteButton.frame;
+        websiteButtonFrame.origin.y = self.frame.size.height / 2 - websiteButtonFrame.size.height;
+        self.websiteButton.frame = websiteButtonFrame;
+    }
+    [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
+    [self setButtonsHighlighted:self.isHighlighted animated:NO];
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {
@@ -65,7 +60,7 @@
 
 - (void)mouseExited:(NSEvent *)theEvent {
     self.isHighlighted = NO;
-    [self setButtonsVisible:NO animated:YES];
+    [self setButtonsHighlighted:NO animated:YES];
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent {
@@ -92,7 +87,7 @@
     NSPoint windowLocation = [self.window convertScreenToBase:globalLocation];
     NSPoint viewLocation = [self convertPoint:windowLocation fromView:nil];
     if(NSPointInRect(viewLocation, self.bounds)) {
-        [self setButtonsVisible:YES animated:YES];
+        [self setButtonsHighlighted:YES animated:YES];
     }
 }
 
