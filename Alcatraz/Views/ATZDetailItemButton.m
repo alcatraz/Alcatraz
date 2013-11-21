@@ -22,8 +22,8 @@
 
 #import "ATZDetailItemButton.h"
 
-#define MIN_ALPHA 0.5f
-#define MAX_ALPHA 1.0f
+static const CGFloat MIN_ALPHA = 0.5f;
+static const CGFloat MAX_ALPHA = 1.0f;
 
 @implementation ATZDetailItemButton
 
