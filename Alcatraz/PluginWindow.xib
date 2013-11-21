@@ -112,7 +112,7 @@
                                                             </connections>
                                                         </textField>
                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="959" userLabel="Package Name">
-                                                            <rect key="frame" x="3" y="45" width="266" height="17"/>
+                                                            <rect key="frame" x="0.0" y="45" width="266" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="266" id="973"/>
@@ -186,7 +186,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="58h-17-rJo" secondAttribute="trailing" constant="3" id="EJ3-5f-biw"/>
                                                         <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="R0c-wL-QhR" secondAttribute="trailing" constant="4" id="FW7-Ej-4PU"/>
                                                         <constraint firstItem="390" firstAttribute="top" secondItem="R0c-wL-QhR" secondAttribute="bottom" constant="-34" id="G9G-Hm-PgL"/>
-                                                        <constraint firstItem="959" firstAttribute="leading" secondItem="58h-17-rJo" secondAttribute="leading" id="bPg-Mh-qkf"/>
+                                                        <constraint firstItem="959" firstAttribute="leading" secondItem="58h-17-rJo" secondAttribute="leading" constant="-3" id="bPg-Mh-qkf"/>
                                                         <constraint firstAttribute="trailing" secondItem="R0c-wL-QhR" secondAttribute="trailing" constant="4" id="gSs-CN-1eU"/>
                                                         <constraint firstItem="58h-17-rJo" firstAttribute="top" secondItem="315" secondAttribute="top" constant="3" id="lSK-4r-CE4"/>
                                                         <constraint firstItem="R0c-wL-QhR" firstAttribute="top" secondItem="58h-17-rJo" secondAttribute="bottom" constant="8" id="xNb-Bc-Vg6"/>
@@ -285,7 +285,7 @@
                         </constraints>
                     </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GIL-gY-jXN">
-                        <rect key="frame" x="12" y="590" width="21" height="17"/>
+                        <rect key="frame" x="9" y="590" width="21" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="All" id="qXr-XM-QWO">
                             <font key="font" metaFont="system"/>
@@ -294,7 +294,7 @@
                         </textFieldCell>
                     </textField>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="tR4-Y8-70i">
-                        <rect key="frame" x="63" y="591" width="16" height="16"/>
+                        <rect key="frame" x="48" y="591" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="6sU-I5-hvr"/>
@@ -308,7 +308,7 @@
                         </connections>
                     </button>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="wtc-cQ-rJ2">
-                        <rect key="frame" x="90" y="591" width="16" height="16"/>
+                        <rect key="frame" x="75" y="591" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="eps-CF-ycZ"/>
@@ -322,7 +322,7 @@
                         </connections>
                     </button>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="Tpt-iw-b6m">
-                        <rect key="frame" x="117" y="591" width="16" height="16"/>
+                        <rect key="frame" x="102" y="591" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="uO2-qa-l8R"/>
@@ -348,13 +348,13 @@
                     <constraint firstItem="Tpt-iw-b6m" firstAttribute="baseline" secondItem="8my-Ez-NU4" secondAttribute="baseline" id="A5d-tx-aaf"/>
                     <constraint firstItem="Tpt-iw-b6m" firstAttribute="leading" secondItem="wtc-cQ-rJ2" secondAttribute="trailing" constant="11" id="CdL-W9-2lK"/>
                     <constraint firstItem="23" firstAttribute="top" secondItem="8my-Ez-NU4" secondAttribute="bottom" constant="8" id="H0S-Tn-qso"/>
-                    <constraint firstItem="GIL-gY-jXN" firstAttribute="leading" secondItem="126" secondAttribute="leading" constant="14" id="HPq-K7-uXY"/>
+                    <constraint firstItem="GIL-gY-jXN" firstAttribute="leading" secondItem="126" secondAttribute="leading" constant="11" id="HPq-K7-uXY"/>
                     <constraint firstItem="Tpt-iw-b6m" firstAttribute="baseline" secondItem="wtc-cQ-rJ2" secondAttribute="baseline" id="JUU-oO-8kA"/>
                     <constraint firstItem="tR4-Y8-70i" firstAttribute="top" secondItem="126" secondAttribute="top" constant="11" id="Jva-Ee-d5H"/>
-                    <constraint firstItem="8my-Ez-NU4" firstAttribute="leading" secondItem="GIL-gY-jXN" secondAttribute="trailing" constant="315" id="c5M-cl-Rak"/>
+                    <constraint firstItem="8my-Ez-NU4" firstAttribute="leading" secondItem="GIL-gY-jXN" secondAttribute="trailing" constant="318" id="c5M-cl-Rak"/>
                     <constraint firstAttribute="trailing" secondItem="8my-Ez-NU4" secondAttribute="trailing" constant="15" id="nqn-C5-m8z"/>
                     <constraint firstItem="GIL-gY-jXN" firstAttribute="top" secondItem="126" secondAttribute="top" constant="11" id="rOu-mH-p46"/>
-                    <constraint firstItem="tR4-Y8-70i" firstAttribute="leading" secondItem="GIL-gY-jXN" secondAttribute="trailing" constant="32" id="rRn-Aj-UtR"/>
+                    <constraint firstItem="tR4-Y8-70i" firstAttribute="leading" secondItem="GIL-gY-jXN" secondAttribute="trailing" constant="20" id="rRn-Aj-UtR"/>
                     <constraint firstItem="tR4-Y8-70i" firstAttribute="baseline" secondItem="GIL-gY-jXN" secondAttribute="baseline" constant="-1" id="xaB-VS-AfZ"/>
                 </constraints>
             </view>
