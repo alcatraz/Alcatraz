@@ -225,6 +225,9 @@
                     <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8my-Ez-NU4">
                         <rect key="frame" x="346" y="588" width="139" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="139" id="K7n-Sn-iut"/>
+                        </constraints>
                         <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="KA8-aL-Obt">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -284,15 +287,6 @@
                             <constraint firstItem="521" firstAttribute="bottom" secondItem="676" secondAttribute="bottom" id="741"/>
                         </constraints>
                     </customView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GIL-gY-jXN">
-                        <rect key="frame" x="9" y="590" width="21" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="All" id="qXr-XM-QWO">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="tR4-Y8-70i">
                         <rect key="frame" x="48" y="591" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -335,6 +329,17 @@
                             <action selector="showOnlyTemplatesPressed:" target="-2" id="2uA-rq-ECp"/>
                         </connections>
                     </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="IsG-Yv-vzO">
+                        <rect key="frame" x="9" y="587" width="21" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="All" bezelStyle="texturedRounded" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="mA5-im-DuP">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showAllPackagesPressed:" target="-2" id="AvQ-M0-KCW"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="23" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="146"/>
@@ -346,16 +351,14 @@
                     <constraint firstItem="wtc-cQ-rJ2" firstAttribute="leading" secondItem="tR4-Y8-70i" secondAttribute="trailing" constant="11" id="2D2-cC-IWH"/>
                     <constraint firstItem="wtc-cQ-rJ2" firstAttribute="baseline" secondItem="tR4-Y8-70i" secondAttribute="baseline" id="33p-Nm-kdn"/>
                     <constraint firstItem="Tpt-iw-b6m" firstAttribute="baseline" secondItem="8my-Ez-NU4" secondAttribute="baseline" id="A5d-tx-aaf"/>
+                    <constraint firstItem="tR4-Y8-70i" firstAttribute="centerY" secondItem="IsG-Yv-vzO" secondAttribute="centerY" id="APL-z1-7u2"/>
                     <constraint firstItem="Tpt-iw-b6m" firstAttribute="leading" secondItem="wtc-cQ-rJ2" secondAttribute="trailing" constant="11" id="CdL-W9-2lK"/>
                     <constraint firstItem="23" firstAttribute="top" secondItem="8my-Ez-NU4" secondAttribute="bottom" constant="8" id="H0S-Tn-qso"/>
-                    <constraint firstItem="GIL-gY-jXN" firstAttribute="leading" secondItem="126" secondAttribute="leading" constant="11" id="HPq-K7-uXY"/>
                     <constraint firstItem="Tpt-iw-b6m" firstAttribute="baseline" secondItem="wtc-cQ-rJ2" secondAttribute="baseline" id="JUU-oO-8kA"/>
                     <constraint firstItem="tR4-Y8-70i" firstAttribute="top" secondItem="126" secondAttribute="top" constant="11" id="Jva-Ee-d5H"/>
-                    <constraint firstItem="8my-Ez-NU4" firstAttribute="leading" secondItem="GIL-gY-jXN" secondAttribute="trailing" constant="318" id="c5M-cl-Rak"/>
+                    <constraint firstItem="tR4-Y8-70i" firstAttribute="leading" secondItem="IsG-Yv-vzO" secondAttribute="trailing" constant="18" id="Sp9-vx-bJm"/>
+                    <constraint firstItem="tR4-Y8-70i" firstAttribute="leading" secondItem="126" secondAttribute="leading" constant="48" id="fgu-5h-aDn"/>
                     <constraint firstAttribute="trailing" secondItem="8my-Ez-NU4" secondAttribute="trailing" constant="15" id="nqn-C5-m8z"/>
-                    <constraint firstItem="GIL-gY-jXN" firstAttribute="top" secondItem="126" secondAttribute="top" constant="11" id="rOu-mH-p46"/>
-                    <constraint firstItem="tR4-Y8-70i" firstAttribute="leading" secondItem="GIL-gY-jXN" secondAttribute="trailing" constant="20" id="rRn-Aj-UtR"/>
-                    <constraint firstItem="tR4-Y8-70i" firstAttribute="baseline" secondItem="GIL-gY-jXN" secondAttribute="baseline" constant="-1" id="xaB-VS-AfZ"/>
                 </constraints>
             </view>
         </window>
