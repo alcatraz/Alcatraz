@@ -7,13 +7,17 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATZPluginWindowController">
             <connections>
+                <outlet property="colorSchemesFilterButton" destination="wtc-cQ-rJ2" id="Vc0-Qf-JTK"/>
+                <outlet property="pluginsFilterButton" destination="tR4-Y8-70i" id="0eo-oQ-eKk"/>
                 <outlet property="previewImageView" destination="1349" id="1365"/>
                 <outlet property="previewPanel" destination="1347" id="1364"/>
                 <outlet property="progressIndicator" destination="604" id="608"/>
                 <outlet property="restartLabel" destination="676" id="726"/>
                 <outlet property="searchField" destination="8my-Ez-NU4" id="58K-3e-lWQ"/>
+                <outlet property="showAllPackagesButton" destination="IsG-Yv-vzO" id="4Dv-3n-fd3"/>
                 <outlet property="statusLabel" destination="521" id="544"/>
                 <outlet property="tableView" destination="24" id="437"/>
+                <outlet property="templatesFilterButton" destination="Tpt-iw-b6m" id="53R-iL-bJr"/>
                 <outlet property="window" destination="125" id="fbl-LK-VKh"/>
             </connections>
         </customObject>
@@ -293,8 +297,8 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="6sU-I5-hvr"/>
                         </constraints>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_plugins" imagePosition="left" alignment="left" alternateImage="toolbar_plugins_selected" state="on" inset="2" id="H9k-dM-WQ4">
-                            <behavior key="behavior" lightByContents="YES"/>
+                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_plugins" imagePosition="left" alignment="left" alternateImage="toolbar_plugins_selected" inset="2" id="H9k-dM-WQ4">
+                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
@@ -307,8 +311,8 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="eps-CF-ycZ"/>
                         </constraints>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_colors" imagePosition="left" alignment="left" alternateImage="toolbar_colors_selected" state="on" inset="2" id="9w5-fJ-Yuu">
-                            <behavior key="behavior" lightByContents="YES"/>
+                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_colors" imagePosition="left" alignment="left" alternateImage="toolbar_colors_selected" inset="2" id="9w5-fJ-Yuu">
+                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
@@ -321,8 +325,8 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="uO2-qa-l8R"/>
                         </constraints>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_templates" imagePosition="left" alignment="left" alternateImage="toolbar_templates_selected" state="on" inset="2" id="GK8-rO-M7B">
-                            <behavior key="behavior" lightByContents="YES"/>
+                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_templates" imagePosition="left" alignment="left" alternateImage="toolbar_templates_selected" inset="2" id="GK8-rO-M7B">
+                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
@@ -330,10 +334,10 @@
                         </connections>
                     </button>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="IsG-Yv-vzO">
-                        <rect key="frame" x="9" y="587" width="21" height="25"/>
+                        <rect key="frame" x="9" y="585" width="21" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="All" bezelStyle="texturedRounded" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="mA5-im-DuP">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
@@ -351,7 +355,7 @@
                     <constraint firstItem="wtc-cQ-rJ2" firstAttribute="leading" secondItem="tR4-Y8-70i" secondAttribute="trailing" constant="11" id="2D2-cC-IWH"/>
                     <constraint firstItem="wtc-cQ-rJ2" firstAttribute="baseline" secondItem="tR4-Y8-70i" secondAttribute="baseline" id="33p-Nm-kdn"/>
                     <constraint firstItem="Tpt-iw-b6m" firstAttribute="baseline" secondItem="8my-Ez-NU4" secondAttribute="baseline" id="A5d-tx-aaf"/>
-                    <constraint firstItem="tR4-Y8-70i" firstAttribute="centerY" secondItem="IsG-Yv-vzO" secondAttribute="centerY" id="APL-z1-7u2"/>
+                    <constraint firstItem="tR4-Y8-70i" firstAttribute="centerY" secondItem="IsG-Yv-vzO" secondAttribute="centerY" constant="-1.5" id="APL-z1-7u2"/>
                     <constraint firstItem="Tpt-iw-b6m" firstAttribute="leading" secondItem="wtc-cQ-rJ2" secondAttribute="trailing" constant="11" id="CdL-W9-2lK"/>
                     <constraint firstItem="23" firstAttribute="top" secondItem="8my-Ez-NU4" secondAttribute="bottom" constant="8" id="H0S-Tn-qso"/>
                     <constraint firstItem="Tpt-iw-b6m" firstAttribute="baseline" secondItem="wtc-cQ-rJ2" secondAttribute="baseline" id="JUU-oO-8kA"/>
