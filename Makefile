@@ -8,19 +8,15 @@ VERSION_TMP_FILE="output.m"
 BUILD_TOOL=xctool
 DEFAULT_BUILD_ARGS=-workspace Alcatraz.xcworkspace -scheme Alcatraz
 
-default: clean spec
+default: spec
 
-ci: pod_setup spec
+ci: spec
 
 shipit: update build upload
 
 clean:
 	$(BUILD_TOOL) $(DEFAULT_BUILD_ARGS) clean
 	rm -rf build
-
-# Update to latest version of cocoapods, configure installation
-pod_setup:
-	pod install
 
 # Run tests
 spec: clean
