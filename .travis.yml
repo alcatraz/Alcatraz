@@ -1,3 +1,6 @@
 language: objective-c
 
+xcode_workspace: Alcatraz.xcworkspace
+xcode_scheme: AlcatrazTests
 script: make ci
+
