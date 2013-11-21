@@ -41,11 +41,15 @@
     id buttonsContainerView = animated ? self.buttonsContainerView.animator : self.buttonsContainerView;
 
     [buttonsContainerView setAlphaValue: alphaValue];
-
-    if (![(ATZPackage *)self.objectValue screenshotPath]) [self.screenshotButton setHidden:YES];
 }
 
 - (void)viewWillDraw {
+    if (![(ATZPackage *)self.objectValue screenshotPath]) {
+        [self.screenshotButton setHidden:YES];
+        CGRect websiteButtonFrame = self.websiteButton.frame;
+        websiteButtonFrame.origin.y = self.frame.size.height / 2 - websiteButtonFrame.size.height;
+        self.websiteButton.frame = websiteButtonFrame;
+    }
     [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
     [self setButtonsHighlighted:self.isHighlighted animated:NO];
 }

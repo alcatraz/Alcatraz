@@ -96,7 +96,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="390" userLabel="Package Description">
-                                                            <rect key="frame" x="1" y="9" width="433" height="28"/>
+                                                            <rect key="frame" x="1" y="9" width="414" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="28" id="843"/>
@@ -133,15 +133,15 @@
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
                                                         <customView focusRingType="none" appearanceType="lightContent" translatesAutoresizingMaskIntoConstraints="NO" id="R0c-wL-QhR">
-                                                            <rect key="frame" x="367" y="37" width="83" height="28"/>
+                                                            <rect key="frame" x="421" y="3" width="29" height="59"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="1051" customClass="ATZDetailItemButton">
-                                                                    <rect key="frame" x="43" y="0.0" width="20" height="26"/>
+                                                                    <rect key="frame" x="4" y="26" width="20" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="20" id="1338"/>
-                                                                        <constraint firstAttribute="height" constant="26" id="1366"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="1366"/>
                                                                     </constraints>
                                                                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="link_icon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="1052">
                                                                         <behavior key="behavior" lightByContents="YES"/>
@@ -152,10 +152,10 @@
                                                                     </connections>
                                                                 </button>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="1057" customClass="ATZDetailItemButton">
-                                                                    <rect key="frame" x="15" y="0.0" width="20" height="26"/>
+                                                                    <rect key="frame" x="4" y="7" width="20" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="26" id="1320"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="1320"/>
                                                                         <constraint firstAttribute="width" constant="20" id="1342"/>
                                                                     </constraints>
                                                                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="eye_icon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="1059">
@@ -168,26 +168,28 @@
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="1051" firstAttribute="leading" secondItem="1057" secondAttribute="trailing" constant="8" symbolic="YES" id="AFu-0X-x2a"/>
-                                                                <constraint firstItem="1057" firstAttribute="leading" secondItem="R0c-wL-QhR" secondAttribute="leading" constant="15" id="F2p-yZ-n3l"/>
-                                                                <constraint firstItem="1057" firstAttribute="baseline" secondItem="1051" secondAttribute="baseline" id="K4A-UA-s5Y"/>
-                                                                <constraint firstAttribute="bottom" secondItem="1057" secondAttribute="bottom" id="t4M-Y9-fF1"/>
+                                                                <constraint firstItem="1057" firstAttribute="leading" secondItem="1051" secondAttribute="leading" id="7dN-gz-mTC"/>
+                                                                <constraint firstItem="1057" firstAttribute="centerX" secondItem="R0c-wL-QhR" secondAttribute="centerX" id="Jq0-ZQ-u0f"/>
+                                                                <constraint firstAttribute="bottom" secondItem="1057" secondAttribute="bottom" constant="7" id="c40-Qd-bX0"/>
+                                                                <constraint firstItem="1051" firstAttribute="leading" secondItem="R0c-wL-QhR" secondAttribute="leading" constant="4" id="jCS-AB-cc4"/>
+                                                                <constraint firstItem="1057" firstAttribute="top" secondItem="1051" secondAttribute="bottom" constant="-1" id="nHU-oj-Kc0"/>
                                                             </constraints>
                                                         </customView>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="390" firstAttribute="leading" secondItem="315" secondAttribute="leading" constant="3" id="393"/>
-                                                        <constraint firstAttribute="trailing" secondItem="390" secondAttribute="trailing" constant="22" id="543"/>
+                                                        <constraint firstAttribute="trailing" secondItem="390" secondAttribute="trailing" constant="41" id="543"/>
                                                         <constraint firstItem="959" firstAttribute="top" secondItem="315" secondAttribute="top" constant="12" id="1009"/>
                                                         <constraint firstItem="390" firstAttribute="top" secondItem="959" secondAttribute="bottom" constant="8" symbolic="YES" id="1201"/>
+                                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="R0c-wL-QhR" secondAttribute="trailing" constant="4" id="0Qm-2I-1L8"/>
                                                         <constraint firstItem="58h-17-rJo" firstAttribute="leading" secondItem="315" secondAttribute="leading" constant="3" id="2Dl-P4-fJU"/>
-                                                        <constraint firstItem="R0c-wL-QhR" firstAttribute="leading" secondItem="959" secondAttribute="trailing" constant="98" id="5xT-5k-B8k"/>
                                                         <constraint firstAttribute="trailing" secondItem="58h-17-rJo" secondAttribute="trailing" constant="3" id="EJ3-5f-biw"/>
-                                                        <constraint firstItem="390" firstAttribute="top" secondItem="R0c-wL-QhR" secondAttribute="bottom" id="G9G-Hm-PgL"/>
+                                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="R0c-wL-QhR" secondAttribute="trailing" constant="4" id="FW7-Ej-4PU"/>
+                                                        <constraint firstItem="390" firstAttribute="top" secondItem="R0c-wL-QhR" secondAttribute="bottom" constant="-34" id="G9G-Hm-PgL"/>
                                                         <constraint firstItem="959" firstAttribute="leading" secondItem="58h-17-rJo" secondAttribute="leading" id="bPg-Mh-qkf"/>
                                                         <constraint firstAttribute="trailing" secondItem="R0c-wL-QhR" secondAttribute="trailing" constant="4" id="gSs-CN-1eU"/>
                                                         <constraint firstItem="58h-17-rJo" firstAttribute="top" secondItem="315" secondAttribute="top" constant="3" id="lSK-4r-CE4"/>
-                                                        <constraint firstItem="R0c-wL-QhR" firstAttribute="top" secondItem="58h-17-rJo" secondAttribute="bottom" constant="5" id="xNb-Bc-Vg6"/>
+                                                        <constraint firstItem="R0c-wL-QhR" firstAttribute="top" secondItem="58h-17-rJo" secondAttribute="bottom" constant="8" id="xNb-Bc-Vg6"/>
                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="R0c-wL-QhR" secondAttribute="trailing" constant="4" id="zSR-f2-hG5"/>
                                                     </constraints>
                                                     <connections>
@@ -388,7 +390,7 @@
     </objects>
     <resources>
         <image name="eye_icon" width="16" height="16"/>
-        <image name="link_icon" width="16" height="16"/>
+        <image name="link_icon" width="14" height="14"/>
         <image name="toolbar_colors" width="16" height="16"/>
         <image name="toolbar_colors_selected" width="16" height="15"/>
         <image name="toolbar_plugins" width="16" height="16"/>

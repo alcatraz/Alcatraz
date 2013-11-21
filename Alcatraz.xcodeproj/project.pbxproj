@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		079C9E03183D8BB8009F5A17 /* link_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 079C9E02183D8BB8009F5A17 /* link_icon.png */; };
+		079C9E05183D8BBD009F5A17 /* link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 079C9E04183D8BBD009F5A17 /* link_icon@2x.png */; };
 		07B02659182F919C00364987 /* ATZPackageCheckboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */; };
 		32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B63216173A3E880076C098 /* ATZPackageTableCellView.m */; };
 		32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC2173A46A900513A7C /* eye_icon.png */; };
-		32BDEBC5173A46B600513A7C /* link_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC4173A46B600513A7C /* link_icon.png */; };
 		32D86505173A4555009C724B /* eye_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86503173A4555009C724B /* eye_icon@2x.png */; };
-		32D86506173A4555009C724B /* link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86504173A4555009C724B /* link_icon@2x.png */; };
 		481FD71592234AE5B6FFC476 /* libPods-AlcatrazTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CB2C1282B94BF8A3FC4F0A /* libPods-AlcatrazTests.a */; };
 		64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4918136FF30025C0B1 /* toolbar_colors.png */; };
 		64C28A5618136FF30025C0B1 /* toolbar_colors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */; };
@@ -88,15 +88,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		079C9E02183D8BB8009F5A17 /* link_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link_icon.png; sourceTree = "<group>"; };
+		079C9E04183D8BBD009F5A17 /* link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link_icon@2x.png"; sourceTree = "<group>"; };
 		07B02657182F919C00364987 /* ATZPackageCheckboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageCheckboxCell.h; path = Views/ATZPackageCheckboxCell.h; sourceTree = "<group>"; };
 		07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageCheckboxCell.m; path = Views/ATZPackageCheckboxCell.m; sourceTree = "<group>"; };
 		2A9816423A9B4C04AA35F239 /* Pods-AlcatrazTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlcatrazTests.xcconfig"; path = "Pods/Pods-AlcatrazTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		32B63215173A3E880076C098 /* ATZPackageTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageTableCellView.h; path = Views/ATZPackageTableCellView.h; sourceTree = "<group>"; };
 		32B63216173A3E880076C098 /* ATZPackageTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableCellView.m; path = Views/ATZPackageTableCellView.m; sourceTree = "<group>"; };
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
-		32BDEBC4173A46B600513A7C /* link_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
-		32D86504173A4555009C724B /* link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link_icon@2x.png"; sourceTree = "<group>"; };
 		64C28A4918136FF30025C0B1 /* toolbar_colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_colors.png; sourceTree = "<group>"; };
 		64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_colors@2x.png"; sourceTree = "<group>"; };
 		64C28A4B18136FF30025C0B1 /* toolbar_colors_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_colors_selected.png; sourceTree = "<group>"; };
@@ -413,10 +413,10 @@
 		8A62D2D0174101990059745B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				079C9E02183D8BB8009F5A17 /* link_icon.png */,
+				079C9E04183D8BBD009F5A17 /* link_icon@2x.png */,
 				32D86503173A4555009C724B /* eye_icon@2x.png */,
-				32BDEBC4173A46B600513A7C /* link_icon.png */,
 				32BDEBC2173A46A900513A7C /* eye_icon.png */,
-				32D86504173A4555009C724B /* link_icon@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -516,17 +516,17 @@
 				64C28A5618136FF30025C0B1 /* toolbar_colors@2x.png in Resources */,
 				64C28A6018136FF30025C0B1 /* toolbar_templates_selected@2x.png in Resources */,
 				64C28A5F18136FF30025C0B1 /* toolbar_templates_selected.png in Resources */,
+				079C9E05183D8BBD009F5A17 /* link_icon@2x.png in Resources */,
 				64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */,
 				64C28A5B18136FF30025C0B1 /* toolbar_plugins_selected.png in Resources */,
 				64C28A5A18136FF30025C0B1 /* toolbar_plugins@2x.png in Resources */,
 				89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */,
+				079C9E03183D8BB8009F5A17 /* link_icon.png in Resources */,
 				64C28A5718136FF30025C0B1 /* toolbar_colors_selected.png in Resources */,
 				64C28A5818136FF30025C0B1 /* toolbar_colors_selected@2x.png in Resources */,
 				32D86505173A4555009C724B /* eye_icon@2x.png in Resources */,
 				64C28A5D18136FF30025C0B1 /* toolbar_templates.png in Resources */,
-				32D86506173A4555009C724B /* link_icon@2x.png in Resources */,
 				32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */,
-				32BDEBC5173A46B600513A7C /* link_icon.png in Resources */,
 				64C28A5E18136FF30025C0B1 /* toolbar_templates@2x.png in Resources */,
 				64C28A5C18136FF30025C0B1 /* toolbar_plugins_selected@2x.png in Resources */,
 				64C28A5918136FF30025C0B1 /* toolbar_plugins.png in Resources */,
