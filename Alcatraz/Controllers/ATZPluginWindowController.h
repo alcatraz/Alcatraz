@@ -34,6 +34,10 @@
 @property (assign) IBOutlet NSTextField *statusLabel;
 @property (assign) IBOutlet NSTextField *restartLabel;
 @property (assign) IBOutlet NSProgressIndicator *progressIndicator;
+@property (assign) IBOutlet NSButton *showAllPackagesButton;
+@property (assign) IBOutlet NSButton *pluginsFilterButton;
+@property (assign) IBOutlet NSButton *colorSchemesFilterButton;
+@property (assign) IBOutlet NSButton *templatesFilterButton;
 
 - (id)initWithBundle:(NSBundle *)bundle;
 

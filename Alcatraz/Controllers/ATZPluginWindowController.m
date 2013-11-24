@@ -56,6 +56,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         self.window.backgroundColor = [NSColor whiteColor];
         
         [self addVersionToWindow];
+        [self setupAllPackagesButton];
 
         _filterPredicate = [NSPredicate predicateWithValue:YES];
 
@@ -90,21 +91,25 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (IBAction)showAllPackagesPressed:(id)sender {
+    [self deselectSelectionToggles:sender];
     self.selectedPackageClass = nil;
     [self updatePredicate];
 }
 
 - (IBAction)showOnlyPluginsPressed:(id)sender {
+    [self deselectSelectionToggles:sender];
     self.selectedPackageClass = [ATZPlugin class];
     [self updatePredicate];
 }
 
 - (IBAction)showOnlyColorSchemesPressed:(id)sender {
+    [self deselectSelectionToggles:sender];
     self.selectedPackageClass = [ATZColorScheme class];
     [self updatePredicate];
 }
 
 - (IBAction)showOnlyTemplatesPressed:(id)sender {
+    [self deselectSelectionToggles:sender];
     self.selectedPackageClass = [ATZTemplate class];
     [self updatePredicate];
 }
@@ -293,11 +298,30 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
 }
 
-- (void) addVersionToWindow {
+- (void)addVersionToWindow {
     NSView *windowFrameView = [[self.window contentView] superview];
     NSTextField *label = [[ATZVersionLabel alloc] initWithFrame:NSMakeRect(self.window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)];
     label.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin | NSViewNotSizable;
     [windowFrameView addSubview:label];
+}
+
+- (void)setupAllPackagesButton {
+    NSMutableAttributedString *alternateTitle = [[NSMutableAttributedString alloc] initWithString:self.showAllPackagesButton.title];
+    NSRange fullRange = NSMakeRange(0, [alternateTitle length]);
+    [alternateTitle addAttribute:NSForegroundColorAttributeName
+                           value:[NSColor colorWithDeviceRed:0.139 green:0.449 blue:0.867 alpha:1.000]
+                           range:fullRange];
+    [alternateTitle addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:13.0f] range:fullRange];
+    self.showAllPackagesButton.attributedAlternateTitle = alternateTitle;
+}
+
+- (void)deselectSelectionToggles:(id)sender {
+    NSArray *buttons = @[self.showAllPackagesButton, self.pluginsFilterButton, self.colorSchemesFilterButton, self.templatesFilterButton];
+    for (NSButton *button in buttons) {
+        if (![button isEqual:sender]) {
+            [button setState:NSOffState];
+        }
+    }
 }
 
 @end
