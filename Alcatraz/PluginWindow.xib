@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A2093" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1080" defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -27,7 +27,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="200" y="250" width="500" height="618"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
             <view key="contentView" id="126">
                 <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -291,52 +291,52 @@
                             <constraint firstItem="521" firstAttribute="bottom" secondItem="676" secondAttribute="bottom" id="741"/>
                         </constraints>
                     </customView>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="tR4-Y8-70i">
+                    <button focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="tR4-Y8-70i">
                         <rect key="frame" x="48" y="591" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="6sU-I5-hvr"/>
                         </constraints>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_plugins" imagePosition="left" alignment="left" alternateImage="toolbar_plugins_selected" inset="2" id="H9k-dM-WQ4">
-                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_plugins" imagePosition="left" alignment="left" alternateImage="toolbar_plugins_selected" focusRingType="none" inset="2" id="H9k-dM-WQ4">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="showOnlyPluginsPressed:" target="-2" id="cL7-k9-MY4"/>
                         </connections>
                     </button>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="wtc-cQ-rJ2">
+                    <button focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="wtc-cQ-rJ2">
                         <rect key="frame" x="75" y="591" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="eps-CF-ycZ"/>
                         </constraints>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_colors" imagePosition="left" alignment="left" alternateImage="toolbar_colors_selected" inset="2" id="9w5-fJ-Yuu">
-                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_colors" imagePosition="left" alignment="left" alternateImage="toolbar_colors_selected" focusRingType="none" inset="2" id="9w5-fJ-Yuu">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="showOnlyColorSchemesPressed:" target="-2" id="eFF-ZE-547"/>
                         </connections>
                     </button>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Tpt-iw-b6m">
+                    <button focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="Tpt-iw-b6m">
                         <rect key="frame" x="102" y="591" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="uO2-qa-l8R"/>
                         </constraints>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_templates" imagePosition="left" alignment="left" alternateImage="toolbar_templates_selected" inset="2" id="GK8-rO-M7B">
-                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_templates" imagePosition="left" alignment="left" alternateImage="toolbar_templates_selected" focusRingType="none" inset="2" id="GK8-rO-M7B">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="showOnlyTemplatesPressed:" target="-2" id="2uA-rq-ECp"/>
                         </connections>
                     </button>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="IsG-Yv-vzO">
+                    <button focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="IsG-Yv-vzO">
                         <rect key="frame" x="9" y="585" width="21" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="All" bezelStyle="texturedRounded" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="mA5-im-DuP">
+                        <buttonCell key="cell" type="roundTextured" title="All" bezelStyle="texturedRounded" alignment="center" state="on" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="mA5-im-DuP">
                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -376,7 +376,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="285"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
             <view key="contentView" id="1348">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>
