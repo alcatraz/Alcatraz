@@ -53,7 +53,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (id)initWithBundle:(NSBundle *)bundle {
     if (self = [super initWithWindowNibName:@"PluginWindow"]) {
         [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
-        self.window.backgroundColor = [NSColor whiteColor];
+//        self.window.backgroundColor = [NSColor whiteColor];
         
         [self addVersionToWindow];
         [self setupAllPackagesButton];
