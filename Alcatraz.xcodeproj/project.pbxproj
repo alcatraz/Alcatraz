@@ -56,6 +56,8 @@
 		89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
+		89E6BCDB1841D30900472ED8 /* ATZPluginInstallerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E6BCDA1841D30900472ED8 /* ATZPluginInstallerTests.m */; };
+		89E6BCDF1841D54500472ED8 /* ATZInstallerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E6BCDE1841D54500472ED8 /* ATZInstallerTests.m */; };
 		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
 		8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A44EF741745D13200411834 /* ATZVersionLabel.m */; };
 		8A44EF761745D13200411834 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A44EF741745D13200411834 /* ATZVersionLabel.m */; };
@@ -168,6 +170,8 @@
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
 		89D40AFA1721CBD600A67BB3 /* ATZPluginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPluginWindowController.h; path = Controllers/ATZPluginWindowController.h; sourceTree = "<group>"; };
 		89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPluginWindowController.m; path = Controllers/ATZPluginWindowController.m; sourceTree = "<group>"; };
+		89E6BCDA1841D30900472ED8 /* ATZPluginInstallerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPluginInstallerTests.m; sourceTree = "<group>"; };
+		89E6BCDE1841D54500472ED8 /* ATZInstallerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZInstallerTests.m; sourceTree = "<group>"; };
 		8A0C0A4B1726C076006E7AD2 /* ATZStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZStatusView.h; path = Views/ATZStatusView.h; sourceTree = "<group>"; };
 		8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZStatusView.m; path = Views/ATZStatusView.m; sourceTree = "<group>"; };
 		8A44EF731745D13200411834 /* ATZVersionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZVersionLabel.h; path = Views/ATZVersionLabel.h; sourceTree = "<group>"; };
@@ -377,6 +381,8 @@
 				8966AFDB173EB7BF004150C0 /* AlcatrazTests.m */,
 				8966AFD5173EB7BF004150C0 /* Supporting Files */,
 				8AE8A72917426AB500915C20 /* Packages */,
+				89E6BCDA1841D30900472ED8 /* ATZPluginInstallerTests.m */,
+				89E6BCDE1841D54500472ED8 /* ATZInstallerTests.m */,
 			);
 			path = AlcatrazTests;
 			sourceTree = "<group>";
@@ -641,6 +647,8 @@
 				8AE8A7321742773D00915C20 /* ATZInstaller.m in Sources */,
 				8AE8A7331742773F00915C20 /* ATZColorSchemeInstaller.m in Sources */,
 				8AE8A7341742774200915C20 /* ATZFileTemplateInstaller.m in Sources */,
+				89E6BCDF1841D54500472ED8 /* ATZInstallerTests.m in Sources */,
+				89E6BCDB1841D30900472ED8 /* ATZPluginInstallerTests.m in Sources */,
 				8AE8A7351742774500915C20 /* ATZPluginInstaller.m in Sources */,
 				8AE8A7361742774800915C20 /* ATZProjectTemplateInstaller.m in Sources */,
 				8AE8A7371742774A00915C20 /* ATZTemplateInstaller.m in Sources */,

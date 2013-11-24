@@ -1,10 +1,16 @@
 PODS:
-  - Kiwi (2.1)
+  - Kiwi (HEAD based on 2.2.3):
+    - Kiwi/SenTestingKit
+  - Kiwi/ARC (HEAD based on 2.2.3)
+  - Kiwi/NonARC (HEAD based on 2.2.3)
+  - Kiwi/SenTestingKit (HEAD based on 2.2.3):
+    - Kiwi/ARC
+    - Kiwi/NonARC
 
 DEPENDENCIES:
-  - Kiwi
+  - Kiwi (HEAD)
 
 SPEC CHECKSUMS:
-  Kiwi: 054ef97d0e50c279b21113a0880a906fa153a7fd
+  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
 
 COCOAPODS: 0.28.0
