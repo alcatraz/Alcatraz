@@ -19,5 +19,8 @@ DerivedData
 *.hmap
 *.xccheckout
 
+# Shipping
+build/
+
 #CocoaPods
 Pods
