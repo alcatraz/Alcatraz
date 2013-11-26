@@ -34,10 +34,6 @@
 @property (assign) IBOutlet NSTextField *statusLabel;
 @property (assign) IBOutlet NSTextField *restartLabel;
 @property (assign) IBOutlet NSProgressIndicator *progressIndicator;
-@property (assign) IBOutlet NSButton *showAllPackagesButton;
-@property (assign) IBOutlet NSButton *pluginsFilterButton;
-@property (assign) IBOutlet NSButton *colorSchemesFilterButton;
-@property (assign) IBOutlet NSButton *templatesFilterButton;
 
 - (id)initWithBundle:(NSBundle *)bundle;
 
@@ -45,10 +41,7 @@
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender;
 - (IBAction)displayScreenshotPressed:(NSButton *)sender;
 
-- (IBAction)showAllPackagesPressed:(id)sender;
-- (IBAction)showOnlyPluginsPressed:(id)sender;
-- (IBAction)showOnlyColorSchemesPressed:(id)sender;
-- (IBAction)showOnlyTemplatesPressed:(id)sender;
+- (IBAction)didClickSegmentedControl:(id)sender;
 
 - (void)reloadPackages;
 

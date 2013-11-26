@@ -26,7 +26,6 @@
 
 static NSString *const COLOR_SCHEME = @"Color Scheme";
 static NSString *const DVTCOLORSCHEME = @".dvtcolortheme";
-static NSString *const COLOR_SCHEME_ICON_NAME = @"toolbar_colors";
 
 @implementation ATZColorScheme
 

@@ -24,7 +24,6 @@
 #import "ATZTemplate.h"
 
 static NSString *const XCTEMPLATE = @".xctemplate";
-static NSString *const TEMPLATE_ICON_NAME = @"toolbar_templates";
 
 @implementation ATZTemplate
 

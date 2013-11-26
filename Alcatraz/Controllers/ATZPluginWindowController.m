@@ -33,6 +33,7 @@
 #import "ATZTemplate.h"
 
 #import "ATZShell.h"
+#import "ATZSegmentedCell.h"
 
 static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
@@ -53,10 +54,8 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (id)initWithBundle:(NSBundle *)bundle {
     if (self = [super initWithWindowNibName:@"PluginWindow"]) {
         [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
-//        self.window.backgroundColor = [NSColor whiteColor];
         
         [self addVersionToWindow];
-        [self setupAllPackagesButton];
 
         _filterPredicate = [NSPredicate predicateWithValue:YES];
 
@@ -78,7 +77,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 
-
 #pragma mark - Bindings
 
 - (IBAction)checkboxPressed:(NSButton *)checkbox {
@@ -90,27 +88,12 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [self installPackage:package andUpdateCheckbox:checkbox];
 }
 
-- (IBAction)showAllPackagesPressed:(id)sender {
-    [self deselectSelectionToggles:sender];
-    self.selectedPackageClass = nil;
-    [self updatePredicate];
-}
-
-- (IBAction)showOnlyPluginsPressed:(id)sender {
-    [self deselectSelectionToggles:sender];
-    self.selectedPackageClass = [ATZPlugin class];
-    [self updatePredicate];
-}
-
-- (IBAction)showOnlyColorSchemesPressed:(id)sender {
-    [self deselectSelectionToggles:sender];
-    self.selectedPackageClass = [ATZColorScheme class];
-    [self updatePredicate];
-}
-
-- (IBAction)showOnlyTemplatesPressed:(id)sender {
-    [self deselectSelectionToggles:sender];
-    self.selectedPackageClass = [ATZTemplate class];
+- (IBAction)didClickSegmentedControl:(id)sender {
+    NSInteger selectedSegment = [sender selectedSegment];
+    NSDictionary *segmentClassMapping = @{@(ATZFilterSegmentColorSchemes): [ATZColorScheme class],
+                                          @(ATZFilterSegmentPlugins): [ATZPlugin class],
+                                          @(ATZFilterSegmentTemplates): [ATZTemplate class]};
+    self.selectedPackageClass = segmentClassMapping[@(selectedSegment)];
     [self updatePredicate];
 }
 
@@ -303,25 +286,6 @@ BOOL hasPressedCommandF(NSEvent *event) {
     NSTextField *label = [[ATZVersionLabel alloc] initWithFrame:NSMakeRect(self.window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)];
     label.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin | NSViewNotSizable;
     [windowFrameView addSubview:label];
-}
-
-- (void)setupAllPackagesButton {
-    NSMutableAttributedString *alternateTitle = [[NSMutableAttributedString alloc] initWithString:self.showAllPackagesButton.title];
-    NSRange fullRange = NSMakeRange(0, [alternateTitle length]);
-    [alternateTitle addAttribute:NSForegroundColorAttributeName
-                           value:[NSColor colorWithDeviceRed:0.139 green:0.449 blue:0.867 alpha:1.000]
-                           range:fullRange];
-    [alternateTitle addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:13.0f] range:fullRange];
-    self.showAllPackagesButton.attributedAlternateTitle = alternateTitle;
-}
-
-- (void)deselectSelectionToggles:(id)sender {
-    NSArray *buttons = @[self.showAllPackagesButton, self.pluginsFilterButton, self.colorSchemesFilterButton, self.templatesFilterButton];
-    for (NSButton *button in buttons) {
-        if (![button isEqual:sender]) {
-            [button setState:NSOffState];
-        }
-    }
 }
 
 @end

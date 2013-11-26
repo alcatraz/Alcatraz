@@ -22,6 +22,10 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *const TEMPLATE_ICON_NAME = @"toolbar_templates";
+static NSString *const PLUGIN_ICON_NAME = @"toolbar_plugins";
+static NSString *const COLOR_SCHEME_ICON_NAME = @"toolbar_colors";
+
 @class ATZInstaller;
 
 
