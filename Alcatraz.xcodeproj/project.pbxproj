@@ -10,22 +10,18 @@
 		079C9E03183D8BB8009F5A17 /* link_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 079C9E02183D8BB8009F5A17 /* link_icon.png */; };
 		079C9E05183D8BBD009F5A17 /* link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 079C9E04183D8BBD009F5A17 /* link_icon@2x.png */; };
 		07B02659182F919C00364987 /* ATZPackageCheckboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */; };
+		07EB2B1418442E6500A0040B /* NSActionCell+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB2B1318442E6500A0040B /* NSActionCell+Alcatraz.m */; };
+		07EB2B1718442F1900A0040B /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */; };
 		32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B63216173A3E880076C098 /* ATZPackageTableCellView.m */; };
 		32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC2173A46A900513A7C /* eye_icon.png */; };
 		32D86505173A4555009C724B /* eye_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86503173A4555009C724B /* eye_icon@2x.png */; };
 		481FD71592234AE5B6FFC476 /* libPods-AlcatrazTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CB2C1282B94BF8A3FC4F0A /* libPods-AlcatrazTests.a */; };
 		64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4918136FF30025C0B1 /* toolbar_colors.png */; };
 		64C28A5618136FF30025C0B1 /* toolbar_colors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */; };
-		64C28A5718136FF30025C0B1 /* toolbar_colors_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4B18136FF30025C0B1 /* toolbar_colors_selected.png */; };
-		64C28A5818136FF30025C0B1 /* toolbar_colors_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4C18136FF30025C0B1 /* toolbar_colors_selected@2x.png */; };
 		64C28A5918136FF30025C0B1 /* toolbar_plugins.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4D18136FF30025C0B1 /* toolbar_plugins.png */; };
 		64C28A5A18136FF30025C0B1 /* toolbar_plugins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4E18136FF30025C0B1 /* toolbar_plugins@2x.png */; };
-		64C28A5B18136FF30025C0B1 /* toolbar_plugins_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4F18136FF30025C0B1 /* toolbar_plugins_selected.png */; };
-		64C28A5C18136FF30025C0B1 /* toolbar_plugins_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A5018136FF30025C0B1 /* toolbar_plugins_selected@2x.png */; };
 		64C28A5D18136FF30025C0B1 /* toolbar_templates.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A5118136FF30025C0B1 /* toolbar_templates.png */; };
 		64C28A5E18136FF30025C0B1 /* toolbar_templates@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A5218136FF30025C0B1 /* toolbar_templates@2x.png */; };
-		64C28A5F18136FF30025C0B1 /* toolbar_templates_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A5318136FF30025C0B1 /* toolbar_templates_selected.png */; };
-		64C28A6018136FF30025C0B1 /* toolbar_templates_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A5418136FF30025C0B1 /* toolbar_templates_selected@2x.png */; };
 		8907C00B1743F78D00C91A4C /* Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 890A4B4D171F031300AFE577 /* Alcatraz.m */; };
 		890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B42171F031300AFE577 /* AppKit.framework */; };
 		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
@@ -56,6 +52,8 @@
 		89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
+		89E6BCDB1841D30900472ED8 /* ATZPluginInstallerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E6BCDA1841D30900472ED8 /* ATZPluginInstallerTests.m */; };
+		89E6BCDF1841D54500472ED8 /* ATZInstallerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E6BCDE1841D54500472ED8 /* ATZInstallerTests.m */; };
 		8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */; };
 		8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A44EF741745D13200411834 /* ATZVersionLabel.m */; };
 		8A44EF761745D13200411834 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A44EF741745D13200411834 /* ATZVersionLabel.m */; };
@@ -92,6 +90,10 @@
 		079C9E04183D8BBD009F5A17 /* link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link_icon@2x.png"; sourceTree = "<group>"; };
 		07B02657182F919C00364987 /* ATZPackageCheckboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageCheckboxCell.h; path = Views/ATZPackageCheckboxCell.h; sourceTree = "<group>"; };
 		07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageCheckboxCell.m; path = Views/ATZPackageCheckboxCell.m; sourceTree = "<group>"; };
+		07EB2B1218442E6500A0040B /* NSActionCell+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSActionCell+Alcatraz.h"; sourceTree = "<group>"; };
+		07EB2B1318442E6500A0040B /* NSActionCell+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSActionCell+Alcatraz.m"; sourceTree = "<group>"; };
+		07EB2B1518442F1900A0040B /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZSegmentedCell.h; path = Views/ATZSegmentedCell.h; sourceTree = "<group>"; };
+		07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedCell.m; path = Views/ATZSegmentedCell.m; sourceTree = "<group>"; };
 		2A9816423A9B4C04AA35F239 /* Pods-AlcatrazTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlcatrazTests.xcconfig"; path = "Pods/Pods-AlcatrazTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		32B63215173A3E880076C098 /* ATZPackageTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageTableCellView.h; path = Views/ATZPackageTableCellView.h; sourceTree = "<group>"; };
 		32B63216173A3E880076C098 /* ATZPackageTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableCellView.m; path = Views/ATZPackageTableCellView.m; sourceTree = "<group>"; };
@@ -99,16 +101,10 @@
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
 		64C28A4918136FF30025C0B1 /* toolbar_colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_colors.png; sourceTree = "<group>"; };
 		64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_colors@2x.png"; sourceTree = "<group>"; };
-		64C28A4B18136FF30025C0B1 /* toolbar_colors_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_colors_selected.png; sourceTree = "<group>"; };
-		64C28A4C18136FF30025C0B1 /* toolbar_colors_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_colors_selected@2x.png"; sourceTree = "<group>"; };
 		64C28A4D18136FF30025C0B1 /* toolbar_plugins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_plugins.png; sourceTree = "<group>"; };
 		64C28A4E18136FF30025C0B1 /* toolbar_plugins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_plugins@2x.png"; sourceTree = "<group>"; };
-		64C28A4F18136FF30025C0B1 /* toolbar_plugins_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_plugins_selected.png; sourceTree = "<group>"; };
-		64C28A5018136FF30025C0B1 /* toolbar_plugins_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_plugins_selected@2x.png"; sourceTree = "<group>"; };
 		64C28A5118136FF30025C0B1 /* toolbar_templates.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_templates.png; sourceTree = "<group>"; };
 		64C28A5218136FF30025C0B1 /* toolbar_templates@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_templates@2x.png"; sourceTree = "<group>"; };
-		64C28A5318136FF30025C0B1 /* toolbar_templates_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_templates_selected.png; sourceTree = "<group>"; };
-		64C28A5418136FF30025C0B1 /* toolbar_templates_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_templates_selected@2x.png"; sourceTree = "<group>"; };
 		890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alcatraz.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		890A4B42171F031300AFE577 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		890A4B44171F031300AFE577 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -168,6 +164,8 @@
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
 		89D40AFA1721CBD600A67BB3 /* ATZPluginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPluginWindowController.h; path = Controllers/ATZPluginWindowController.h; sourceTree = "<group>"; };
 		89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPluginWindowController.m; path = Controllers/ATZPluginWindowController.m; sourceTree = "<group>"; };
+		89E6BCDA1841D30900472ED8 /* ATZPluginInstallerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPluginInstallerTests.m; sourceTree = "<group>"; };
+		89E6BCDE1841D54500472ED8 /* ATZInstallerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZInstallerTests.m; sourceTree = "<group>"; };
 		8A0C0A4B1726C076006E7AD2 /* ATZStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZStatusView.h; path = Views/ATZStatusView.h; sourceTree = "<group>"; };
 		8A0C0A4C1726C076006E7AD2 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZStatusView.m; path = Views/ATZStatusView.m; sourceTree = "<group>"; };
 		8A44EF731745D13200411834 /* ATZVersionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZVersionLabel.h; path = Views/ATZVersionLabel.h; sourceTree = "<group>"; };
@@ -210,16 +208,10 @@
 			children = (
 				64C28A4918136FF30025C0B1 /* toolbar_colors.png */,
 				64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */,
-				64C28A4B18136FF30025C0B1 /* toolbar_colors_selected.png */,
-				64C28A4C18136FF30025C0B1 /* toolbar_colors_selected@2x.png */,
 				64C28A4D18136FF30025C0B1 /* toolbar_plugins.png */,
 				64C28A4E18136FF30025C0B1 /* toolbar_plugins@2x.png */,
-				64C28A4F18136FF30025C0B1 /* toolbar_plugins_selected.png */,
-				64C28A5018136FF30025C0B1 /* toolbar_plugins_selected@2x.png */,
 				64C28A5118136FF30025C0B1 /* toolbar_templates.png */,
 				64C28A5218136FF30025C0B1 /* toolbar_templates@2x.png */,
-				64C28A5318136FF30025C0B1 /* toolbar_templates_selected.png */,
-				64C28A5418136FF30025C0B1 /* toolbar_templates_selected@2x.png */,
 			);
 			path = Resources;
 			sourceTree = SOURCE_ROOT;
@@ -333,6 +325,8 @@
 			children = (
 				8917DA0B1726B57B00F0B2D2 /* NSFileManager+Alcatraz.h */,
 				8917DA0C1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m */,
+				07EB2B1218442E6500A0040B /* NSActionCell+Alcatraz.h */,
+				07EB2B1318442E6500A0040B /* NSActionCell+Alcatraz.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -377,6 +371,8 @@
 				8966AFDB173EB7BF004150C0 /* AlcatrazTests.m */,
 				8966AFD5173EB7BF004150C0 /* Supporting Files */,
 				8AE8A72917426AB500915C20 /* Packages */,
+				89E6BCDA1841D30900472ED8 /* ATZPluginInstallerTests.m */,
+				89E6BCDE1841D54500472ED8 /* ATZInstallerTests.m */,
 			);
 			path = AlcatrazTests;
 			sourceTree = "<group>";
@@ -406,6 +402,8 @@
 				8A44EF741745D13200411834 /* ATZVersionLabel.m */,
 				07B02657182F919C00364987 /* ATZPackageCheckboxCell.h */,
 				07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */,
+				07EB2B1518442F1900A0040B /* ATZSegmentedCell.h */,
+				07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -514,21 +512,15 @@
 			files = (
 				890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */,
 				64C28A5618136FF30025C0B1 /* toolbar_colors@2x.png in Resources */,
-				64C28A6018136FF30025C0B1 /* toolbar_templates_selected@2x.png in Resources */,
-				64C28A5F18136FF30025C0B1 /* toolbar_templates_selected.png in Resources */,
 				079C9E05183D8BBD009F5A17 /* link_icon@2x.png in Resources */,
 				64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */,
-				64C28A5B18136FF30025C0B1 /* toolbar_plugins_selected.png in Resources */,
 				64C28A5A18136FF30025C0B1 /* toolbar_plugins@2x.png in Resources */,
 				89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */,
 				079C9E03183D8BB8009F5A17 /* link_icon.png in Resources */,
-				64C28A5718136FF30025C0B1 /* toolbar_colors_selected.png in Resources */,
-				64C28A5818136FF30025C0B1 /* toolbar_colors_selected@2x.png in Resources */,
 				32D86505173A4555009C724B /* eye_icon@2x.png in Resources */,
 				64C28A5D18136FF30025C0B1 /* toolbar_templates.png in Resources */,
 				32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */,
 				64C28A5E18136FF30025C0B1 /* toolbar_templates@2x.png in Resources */,
-				64C28A5C18136FF30025C0B1 /* toolbar_plugins_selected@2x.png in Resources */,
 				64C28A5918136FF30025C0B1 /* toolbar_plugins.png in Resources */,
 				8AD5249F174102F9008B451F /* Localizable.strings in Resources */,
 			);
@@ -611,12 +603,14 @@
 				8917DA101726B5BA00F0B2D2 /* ATZPackageFactory.m in Sources */,
 				8917DA181726B63B00F0B2D2 /* ATZDownloader.m in Sources */,
 				8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */,
+				07EB2B1418442E6500A0040B /* NSActionCell+Alcatraz.m in Sources */,
 				8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */,
 				8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */,
 				8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */,
 				8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */,
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
+				07EB2B1718442F1900A0040B /* ATZSegmentedCell.m in Sources */,
 				07B02659182F919C00364987 /* ATZPackageCheckboxCell.m in Sources */,
 				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,
 				32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */,
@@ -641,6 +635,8 @@
 				8AE8A7321742773D00915C20 /* ATZInstaller.m in Sources */,
 				8AE8A7331742773F00915C20 /* ATZColorSchemeInstaller.m in Sources */,
 				8AE8A7341742774200915C20 /* ATZFileTemplateInstaller.m in Sources */,
+				89E6BCDF1841D54500472ED8 /* ATZInstallerTests.m in Sources */,
+				89E6BCDB1841D30900472ED8 /* ATZPluginInstallerTests.m in Sources */,
 				8AE8A7351742774500915C20 /* ATZPluginInstaller.m in Sources */,
 				8AE8A7361742774800915C20 /* ATZProjectTemplateInstaller.m in Sources */,
 				8AE8A7371742774A00915C20 /* ATZTemplateInstaller.m in Sources */,
