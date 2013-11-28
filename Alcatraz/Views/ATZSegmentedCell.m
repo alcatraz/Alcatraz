@@ -15,11 +15,6 @@
 
 static NSString *const ALL_ITEMS_TITLE = @"All";
 
-@interface ATZSegmentedCell ()
-@property (nonatomic, strong) NSMutableAttributedString *allItemsLabelSelected;
-@property (nonatomic, strong) NSMutableAttributedString *allItemsLabelUnselected;
-@end
-
 @implementation ATZSegmentedCell
 
 - (void)drawSegment:(NSInteger)segment inFrame:(NSRect)frame withView:(NSView *)controlView {
@@ -45,41 +40,50 @@ static NSString *const ALL_ITEMS_TITLE = @"All";
 
 #pragma mark - Private
 
+- (NSDictionary *)segmentIconMapping {
+    static NSDictionary *segmentIconMapping;
+    if (!segmentIconMapping) {
+        segmentIconMapping = @{@(ATZFilterSegmentColorSchemes): COLOR_SCHEME_ICON_NAME,
+                               @(ATZFilterSegmentPlugins): PLUGIN_ICON_NAME,
+                               @(ATZFilterSegmentTemplates): TEMPLATE_ICON_NAME};
+    }
+    return segmentIconMapping;
+}
+
 - (NSImage *)iconForSegment:(ATZFilterSegment)segment {
-    NSDictionary *segmentIconMapping = @{@(ATZFilterSegmentColorSchemes): COLOR_SCHEME_ICON_NAME,
-                                         @(ATZFilterSegmentPlugins): PLUGIN_ICON_NAME,
-                                         @(ATZFilterSegmentTemplates): TEMPLATE_ICON_NAME};
-    return [[[Alcatraz sharedPlugin] bundle] imageForResource:segmentIconMapping[@(segment)]];
+    return [[[Alcatraz sharedPlugin] bundle] imageForResource:[self segmentIconMapping][@(segment)]];
 }
 
 - (void)drawAllItemsSegmentInFrame:(CGRect)frame withSelection:(BOOL)selected {
-    NSAttributedString *title = selected ? self.allItemsLabelSelected : self.allItemsLabelUnselected;
+    NSAttributedString *title = selected ? [self allItemsLabelSelected] : [self allItemsLabelUnselected];
     frame.origin.y = (frame.size.height - title.size.height) / 2;
     [title drawInRect:frame];
 }
 
 - (NSMutableAttributedString *)allItemsLabelUnselected {
-    if (!_allItemsLabelUnselected) {
-        _allItemsLabelUnselected = [[NSMutableAttributedString alloc] initWithString:ALL_ITEMS_TITLE];
-        NSRange fullRange = NSMakeRange(0, [_allItemsLabelUnselected length]);
-        [_allItemsLabelUnselected addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:13.0f] range:fullRange];
-        [_allItemsLabelUnselected addAttribute:NSForegroundColorAttributeName
-                                         value:[NSColor blackColor]
-                                         range:fullRange];
+    static NSMutableAttributedString *allItemsLabelUnselected;
+    if (!allItemsLabelUnselected) {
+        allItemsLabelUnselected = [[NSMutableAttributedString alloc] initWithString:ALL_ITEMS_TITLE];
+        NSRange fullRange = NSMakeRange(0, [allItemsLabelUnselected length]);
+        [allItemsLabelUnselected addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:13.0f] range:fullRange];
+        [allItemsLabelUnselected addAttribute:NSForegroundColorAttributeName
+                                        value:[NSColor blackColor]
+                                        range:fullRange];
     }
-    return _allItemsLabelUnselected;
+    return allItemsLabelUnselected;
 }
 
 - (NSMutableAttributedString *)allItemsLabelSelected {
-    if (!_allItemsLabelSelected) {
-        _allItemsLabelSelected = [[NSMutableAttributedString alloc] initWithString:ALL_ITEMS_TITLE];
-        NSRange fullRange = NSMakeRange(0, [_allItemsLabelSelected length]);
-        [_allItemsLabelSelected addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:13.0f] range:fullRange];
-        [_allItemsLabelSelected addAttribute:NSForegroundColorAttributeName
+    static NSMutableAttributedString *allItemsLabelSelected;
+    if (!allItemsLabelSelected) {
+        allItemsLabelSelected = [[NSMutableAttributedString alloc] initWithString:ALL_ITEMS_TITLE];
+        NSRange fullRange = NSMakeRange(0, [allItemsLabelSelected length]);
+        [allItemsLabelSelected addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:13.0f] range:fullRange];
+        [allItemsLabelSelected addAttribute:NSForegroundColorAttributeName
                                        value:[NSColor colorWithDeviceRed:0.139 green:0.449 blue:0.867 alpha:1.000]
                                        range:fullRange];
     }
-    return _allItemsLabelSelected;
+    return allItemsLabelSelected;
 }
 
 

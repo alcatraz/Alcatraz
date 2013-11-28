@@ -88,12 +88,19 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [self installPackage:package andUpdateCheckbox:checkbox];
 }
 
+- (NSDictionary *)segmentClassMapping {
+    static NSDictionary *segmentClassMapping;
+    if (!segmentClassMapping) {
+       segmentClassMapping = @{@(ATZFilterSegmentColorSchemes): [ATZColorScheme class],
+            @(ATZFilterSegmentPlugins): [ATZPlugin class],
+            @(ATZFilterSegmentTemplates): [ATZTemplate class]};
+    }
+    return segmentClassMapping;
+}
+
 - (IBAction)segmentedControlPressed:(id)sender {
     NSInteger selectedSegment = [sender selectedSegment];
-    NSDictionary *segmentClassMapping = @{@(ATZFilterSegmentColorSchemes): [ATZColorScheme class],
-                                          @(ATZFilterSegmentPlugins): [ATZPlugin class],
-                                          @(ATZFilterSegmentTemplates): [ATZTemplate class]};
-    self.selectedPackageClass = segmentClassMapping[@(selectedSegment)];
+    self.selectedPackageClass = [self segmentClassMapping][@(selectedSegment)];
     [self updatePredicate];
 }
 
