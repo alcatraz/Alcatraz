@@ -13,11 +13,11 @@ SPEC_BEGIN(PluginInstaller)
 
 describe(@"Installer", ^{
    
-    let(installer, ^{ return [ATZPluginInstaller new]; });
+//    let(installer, ^{ return [ATZPluginInstaller new]; });
     
-    it(@"reports install progress", ^{
-        [installer installPackage:<#(ATZPackage *)#> progress:<#^(NSString *progressMessage)progress#> completion:<#^(NSError *error)completion#>]
-    });
+//    it(@"reports install progress", ^{
+//
+//    });
     
 });
 
