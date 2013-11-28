@@ -24,10 +24,10 @@ static NSString *const ALL_ITEMS_TITLE = @"All";
     } else {
         NSImage *icon = [self iconForSegment:segment];
         CGFloat cellWidth = frame.size.width / self.segmentCount;
-        CGRect segmentFrame = CGRectMake(segment * cellWidth,
-                                         frame.size.height / 2 - icon.size.height,
-                                         icon.size.width,
-                                         icon.size.height);
+        CGRect segmentFrame = CGRectIntegral(CGRectMake(segment * cellWidth,
+                                                        -((frame.size.height - icon.size.height) / 2), // we're drawing in a flipped context
+                                                        icon.size.width,
+                                                        icon.size.height));
         [self drawIcon:icon withSelection:selected inFrame:segmentFrame];
     }
 }
