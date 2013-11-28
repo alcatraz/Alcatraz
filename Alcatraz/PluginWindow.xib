@@ -7,24 +7,20 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATZPluginWindowController">
             <connections>
-                <outlet property="colorSchemesFilterButton" destination="wtc-cQ-rJ2" id="Vc0-Qf-JTK"/>
-                <outlet property="pluginsFilterButton" destination="tR4-Y8-70i" id="0eo-oQ-eKk"/>
                 <outlet property="previewImageView" destination="1349" id="1365"/>
                 <outlet property="previewPanel" destination="1347" id="1364"/>
                 <outlet property="progressIndicator" destination="604" id="608"/>
                 <outlet property="restartLabel" destination="676" id="726"/>
                 <outlet property="searchField" destination="8my-Ez-NU4" id="58K-3e-lWQ"/>
-                <outlet property="showAllPackagesButton" destination="IsG-Yv-vzO" id="4Dv-3n-fd3"/>
                 <outlet property="statusLabel" destination="521" id="544"/>
                 <outlet property="tableView" destination="24" id="437"/>
-                <outlet property="templatesFilterButton" destination="Tpt-iw-b6m" id="53R-iL-bJr"/>
                 <outlet property="window" destination="125" id="fbl-LK-VKh"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
         <window title="Package Manager" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="com.mneorr.Alcatraz.MainWindow" animationBehavior="default" id="125">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="200" y="250" width="500" height="618"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
@@ -32,10 +28,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                    <scrollView ambiguous="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
                         <rect key="frame" x="0.0" y="20" width="500" height="560"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" copiesOnScroll="NO" id="2OX-MH-qJ4">
+                        <clipView key="contentView" ambiguous="YES" misplaced="YES" copiesOnScroll="NO" id="2OX-MH-qJ4">
                             <rect key="frame" x="0.0" y="0.0" width="500" height="560"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -226,7 +222,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8my-Ez-NU4">
+                    <searchField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8my-Ez-NU4">
                         <rect key="frame" x="346" y="588" width="139" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
@@ -291,59 +287,28 @@
                             <constraint firstItem="521" firstAttribute="bottom" secondItem="676" secondAttribute="bottom" id="741"/>
                         </constraints>
                     </customView>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="tR4-Y8-70i">
-                        <rect key="frame" x="48" y="591" width="16" height="16"/>
+                    <segmentedControl focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1lO-z8-UW7">
+                        <rect key="frame" x="11" y="586" width="137" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="16" id="6sU-I5-hvr"/>
-                        </constraints>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_plugins" imagePosition="left" alignment="left" alternateImage="toolbar_plugins_selected" inset="2" id="H9k-dM-WQ4">
-                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                        <segmentedCell key="cell" focusRingType="none" alignment="left" style="texturedRounded" trackingMode="selectOne" id="vaZ-Yu-jkt" customClass="ATZSegmentedCell">
                             <font key="font" metaFont="system"/>
-                        </buttonCell>
+                            <segments>
+                                <segment label="All" toolTip="All Packages" width="32" selected="YES"/>
+                                <segment toolTip="Plugins" image="toolbar_plugins" width="32">
+                                    <nil key="label"/>
+                                </segment>
+                                <segment toolTip="Colorschemes" image="toolbar_colors" width="32">
+                                    <nil key="label"/>
+                                </segment>
+                                <segment toolTip="Templates" image="toolbar_templates">
+                                    <nil key="label"/>
+                                </segment>
+                            </segments>
+                        </segmentedCell>
                         <connections>
-                            <action selector="showOnlyPluginsPressed:" target="-2" id="cL7-k9-MY4"/>
+                            <action selector="segmentedControlPressed:" target="-2" id="Y5y-Ug-5OC"/>
                         </connections>
-                    </button>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="wtc-cQ-rJ2">
-                        <rect key="frame" x="75" y="591" width="16" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="16" id="eps-CF-ycZ"/>
-                        </constraints>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_colors" imagePosition="left" alignment="left" alternateImage="toolbar_colors_selected" inset="2" id="9w5-fJ-Yuu">
-                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showOnlyColorSchemesPressed:" target="-2" id="eFF-ZE-547"/>
-                        </connections>
-                    </button>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Tpt-iw-b6m">
-                        <rect key="frame" x="102" y="591" width="16" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="16" id="uO2-qa-l8R"/>
-                        </constraints>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="toolbar_templates" imagePosition="left" alignment="left" alternateImage="toolbar_templates_selected" inset="2" id="GK8-rO-M7B">
-                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showOnlyTemplatesPressed:" target="-2" id="2uA-rq-ECp"/>
-                        </connections>
-                    </button>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="IsG-Yv-vzO">
-                        <rect key="frame" x="9" y="585" width="21" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="All" bezelStyle="texturedRounded" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="mA5-im-DuP">
-                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showAllPackagesPressed:" target="-2" id="AvQ-M0-KCW"/>
-                        </connections>
-                    </button>
+                    </segmentedControl>
                 </subviews>
                 <constraints>
                     <constraint firstItem="23" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="146"/>
@@ -352,16 +317,7 @@
                     <constraint firstItem="500" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="513"/>
                     <constraint firstAttribute="trailing" secondItem="500" secondAttribute="trailing" id="515"/>
                     <constraint firstItem="500" firstAttribute="top" secondItem="23" secondAttribute="bottom" id="517"/>
-                    <constraint firstItem="wtc-cQ-rJ2" firstAttribute="leading" secondItem="tR4-Y8-70i" secondAttribute="trailing" constant="11" id="2D2-cC-IWH"/>
-                    <constraint firstItem="wtc-cQ-rJ2" firstAttribute="baseline" secondItem="tR4-Y8-70i" secondAttribute="baseline" id="33p-Nm-kdn"/>
-                    <constraint firstItem="Tpt-iw-b6m" firstAttribute="baseline" secondItem="8my-Ez-NU4" secondAttribute="baseline" id="A5d-tx-aaf"/>
-                    <constraint firstItem="tR4-Y8-70i" firstAttribute="centerY" secondItem="IsG-Yv-vzO" secondAttribute="centerY" constant="-1.5" id="APL-z1-7u2"/>
-                    <constraint firstItem="Tpt-iw-b6m" firstAttribute="leading" secondItem="wtc-cQ-rJ2" secondAttribute="trailing" constant="11" id="CdL-W9-2lK"/>
                     <constraint firstItem="23" firstAttribute="top" secondItem="8my-Ez-NU4" secondAttribute="bottom" constant="8" id="H0S-Tn-qso"/>
-                    <constraint firstItem="Tpt-iw-b6m" firstAttribute="baseline" secondItem="wtc-cQ-rJ2" secondAttribute="baseline" id="JUU-oO-8kA"/>
-                    <constraint firstItem="tR4-Y8-70i" firstAttribute="top" secondItem="126" secondAttribute="top" constant="11" id="Jva-Ee-d5H"/>
-                    <constraint firstItem="tR4-Y8-70i" firstAttribute="leading" secondItem="IsG-Yv-vzO" secondAttribute="trailing" constant="18" id="Sp9-vx-bJm"/>
-                    <constraint firstItem="tR4-Y8-70i" firstAttribute="leading" secondItem="126" secondAttribute="leading" constant="48" id="fgu-5h-aDn"/>
                     <constraint firstAttribute="trailing" secondItem="8my-Ez-NU4" secondAttribute="trailing" constant="15" id="nqn-C5-m8z"/>
                 </constraints>
             </view>
@@ -399,10 +355,7 @@
         <image name="eye_icon" width="16" height="16"/>
         <image name="link_icon" width="14" height="14"/>
         <image name="toolbar_colors" width="16" height="16"/>
-        <image name="toolbar_colors_selected" width="16" height="15"/>
         <image name="toolbar_plugins" width="16" height="16"/>
-        <image name="toolbar_plugins_selected" width="16" height="15"/>
         <image name="toolbar_templates" width="16" height="16"/>
-        <image name="toolbar_templates_selected" width="16" height="15"/>
     </resources>
 </document>

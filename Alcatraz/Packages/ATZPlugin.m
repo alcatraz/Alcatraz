@@ -25,7 +25,6 @@
 
 static NSString *const PLUGIN = @"Plugin";
 static NSString *const XCPLUGIN = @".xcplugin";
-static NSString *const PLUGIN_ICON_NAME = @"toolbar_plugins";
 
 @implementation ATZPlugin
 @synthesize requiresRestart;
