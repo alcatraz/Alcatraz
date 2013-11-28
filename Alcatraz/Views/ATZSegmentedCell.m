@@ -8,8 +8,10 @@
 
 #import "ATZSegmentedCell.h"
 #import "NSActionCell+Alcatraz.h"
-#import "ATZPackage.h"
 #import "Alcatraz.h"
+#import "ATZColorScheme.h"
+#import "ATZPlugin.h"
+#import "ATZTemplate.h"
 
 static NSString *const ALL_ITEMS_TITLE = @"All";
 
