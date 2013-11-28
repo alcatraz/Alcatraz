@@ -306,7 +306,7 @@
                             </segments>
                         </segmentedCell>
                         <connections>
-                            <action selector="didClickSegmentedControl:" target="-2" id="LMo-2Y-xf9"/>
+                            <action selector="segmentedControlPressed:" target="-2" id="Y5y-Ug-5OC"/>
                         </connections>
                     </segmentedControl>
                 </subviews>

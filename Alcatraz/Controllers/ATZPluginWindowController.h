@@ -41,7 +41,7 @@
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender;
 - (IBAction)displayScreenshotPressed:(NSButton *)sender;
 
-- (IBAction)didClickSegmentedControl:(id)sender;
+- (IBAction)segmentedControlPressed:(id)sender;
 
 - (void)reloadPackages;
 

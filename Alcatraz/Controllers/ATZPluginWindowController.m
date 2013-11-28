@@ -88,7 +88,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [self installPackage:package andUpdateCheckbox:checkbox];
 }
 
-- (IBAction)didClickSegmentedControl:(id)sender {
+- (IBAction)segmentedControlPressed:(id)sender {
     NSInteger selectedSegment = [sender selectedSegment];
     NSDictionary *segmentClassMapping = @{@(ATZFilterSegmentColorSchemes): [ATZColorScheme class],
                                           @(ATZFilterSegmentPlugins): [ATZPlugin class],
