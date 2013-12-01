@@ -132,7 +132,7 @@
                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <font key="titleFont" metaFont="system"/>
                                                         </box>
-                                                        <customView focusRingType="none" appearanceType="lightContent" translatesAutoresizingMaskIntoConstraints="NO" id="R0c-wL-QhR">
+                                                        <customView focusRingType="none" appearanceType="Light Content" translatesAutoresizingMaskIntoConstraints="NO" id="R0c-wL-QhR">
                                                             <rect key="frame" x="421" y="3" width="29" height="59"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
