@@ -1,4 +1,5 @@
 rvm: 1.9.3
 language: objective-c
-
-script: make ci
+before_install:
+  - gem install xcpretty
+script: make ci | xcpretty -c
