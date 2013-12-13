@@ -1,4 +1,7 @@
 rvm: 1.9.3
 language: objective-c
 
+xcode_workspace: Alcatraz.xcworkspace
+xcode_scheme: AlcatrazTests
 script: make ci
+
