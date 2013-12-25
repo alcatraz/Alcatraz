@@ -7,6 +7,7 @@
 //
 
 #import "NSActionCell+Alcatraz.h"
+#import "NSColor+Alcatraz.h"
 
 @implementation NSActionCell (Alcatraz)
 
@@ -27,7 +28,7 @@
 
         CGContextClipToMask(contextRef, NSRectToCGRect(frame), imageRef);
         if (selection) {
-            [[NSColor colorWithDeviceRed:0.139 green:0.449 blue:0.867 alpha:1.000] setFill];
+            [[NSColor alcatrazBlueColor] setFill];
         } else {
             [[NSColor colorWithDeviceWhite:0.1f alpha:1.0f] setFill];
         }

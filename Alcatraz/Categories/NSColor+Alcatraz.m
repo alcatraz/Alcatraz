@@ -20,10 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Cocoa/Cocoa.h>
+#import "NSColor+Alcatraz.h"
 
-@interface NSImage (Alcatraz)
+@implementation NSColor (Alcatraz)
 
-+ (NSImage *)imageForAwesomeFuckingPieProgressIndicatorThingWithProgressPercentage:(CGFloat)progress size:(CGSize)size color:(NSColor *)color;
++ (instancetype)alcatrazBlueColor
+{
+    return [NSColor colorWithDeviceRed:0.139 green:0.449 blue:0.867 alpha:1.000];
+}
 
 @end

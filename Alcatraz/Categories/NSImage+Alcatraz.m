@@ -24,13 +24,12 @@
 
 @implementation NSImage (Alcatraz)
 
-+ (NSImage *)imageForAwesomeFuckingPieProgressIndicatorThingWithProgressPercentage:(CGFloat)progress size:(CGSize)size {
++ (NSImage *)imageForAwesomeFuckingPieProgressIndicatorThingWithProgressPercentage:(CGFloat)progress size:(CGSize)size color:(NSColor *)color {
     NSImage *image          = [[NSImage alloc] initWithSize:size];
     NSRect ovalRect         = NSMakeRect(0, 0, size.width, size.height);
     CGFloat ovalStartAngle  = 90;
     CGFloat ovalEndAngle    = 90 - (360 * progress);
     CGFloat strokeWidth     = 2.0;
-    NSColor *color          = [NSColor blackColor];
     
     [image lockFocus];
     

@@ -22,8 +22,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface NSImage (Alcatraz)
+@interface NSColor (Alcatraz)
 
-+ (NSImage *)imageForAwesomeFuckingPieProgressIndicatorThingWithProgressPercentage:(CGFloat)progress size:(CGSize)size color:(NSColor *)color;
++ (instancetype)alcatrazBlueColor;
 
 @end

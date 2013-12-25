@@ -22,6 +22,7 @@
 
 #import "ATZRadialProgressControl.h"
 #import "NSImage+Alcatraz.h"
+#import "NSColor+Alcatraz.h"
 #import <QuartzCore/QuartzCore.h>
 
 const CGFloat ATZRadialProgressControl_FakeInstallProgress = 0.33;
@@ -31,12 +32,14 @@ const CGFloat ATZRadialProgressControl_FakeRemoveProgress = 0.66;
 
 #pragma mark - NSView
 
-- (void)drawRect:(NSRect)dirtyRect
+- (void)drawRect:(NSRect)rect
 {
-    CGFloat minDimension = MIN(dirtyRect.size.width, dirtyRect.size.height);
-    dirtyRect.size = CGSizeMake(minDimension, minDimension);
-    NSImage *image = [NSImage imageForAwesomeFuckingPieProgressIndicatorThingWithProgressPercentage:self.progress size:dirtyRect.size];
-    [image drawInRect:dirtyRect];
+    CGFloat minDimension = MIN(rect.size.width, rect.size.height);
+    rect.size = CGSizeMake(minDimension, minDimension);
+    NSImage *image = [NSImage imageForAwesomeFuckingPieProgressIndicatorThingWithProgressPercentage:self.progress
+                                                                                               size:rect.size
+                                                                                              color:self.tintColor];
+    [image drawInRect:rect];
 }
 
 + (id)defaultAnimationForKey:(NSString *)key
@@ -64,6 +67,17 @@ const CGFloat ATZRadialProgressControl_FakeRemoveProgress = 0.66;
     else {
         self.progress = progress;
     }
+}
+
+#pragma mark - Private methods
+
+- (NSColor *)tintColor
+{
+    NSColor *tintColor = [NSColor alcatrazBlueColor];
+    CGFloat red = self.progress * [tintColor redComponent];
+    CGFloat green = self.progress * [tintColor greenComponent];
+    CGFloat blue = self.progress * [tintColor blueComponent];
+    return [NSColor colorWithDeviceRed:red green:green blue:blue alpha:1.0];
 }
 
 @end
