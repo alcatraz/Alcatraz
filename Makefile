@@ -21,6 +21,10 @@ clean:
 # Run tests
 spec: clean
 	$(BUILD_TOOL) $(DEFAULT_BUILD_ARGS) test
+	echo "status: $?"
+ifneq ($?, 0)
+	cat xcodebuild.log
+endif
 
 # Merge changes into deploy branch
 update:
