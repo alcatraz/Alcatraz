@@ -18,9 +18,11 @@ DerivedData
 *.hmapods/*
 *.hmap
 *.xccheckout
+xcodebuild.log
 
 # Shipping
 build/
 
 #CocoaPods
 Pods
+
