@@ -23,7 +23,8 @@ spec: clean
 	$(BUILD_TOOL) $(DEFAULT_BUILD_ARGS) test
 	echo "status: $?"
 ifneq ($?, 0)
-	cat xcodebuild.log
+	echo 'RAW XCODEBUILD:'
+	tail xcodebuild.log
 endif
 
 # Merge changes into deploy branch
