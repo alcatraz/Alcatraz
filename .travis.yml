@@ -1,6 +1,9 @@
 language: objective-c
 before_install:
   - gem install xcpretty
+  - gem install cocoapods --no-ri --no-rdoc
+  - gem install xcpretty  --no-ri --no-rdoc
+install:
+  - pod install
 script: make ci | xcpretty -c
-
 
