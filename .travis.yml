@@ -7,6 +7,5 @@ install:
   - pod install
 script: 
   - make ci | tee xcodebuild.log | xcpretty -c
-  - echo "Status: $?"
-  - tail xcodebuild.log
+  - tail -n 50 xcodebuild.log
 
