@@ -6,7 +6,10 @@ before_install:
 install:
   - pod install
 script: 
-  - make ci | tee xcodebuild.log | xcpretty -c; exit ${PIPESTATUS[0]}
+  - make ci 2> error.log | tee xcodebuild.log | xcpretty -c; exit ${PIPESTATUS[0]}
   - echo "Status: $?"
+  - echo "STDOUT:"
   - tail -n 50 xcodebuild.log
+  - echo "STDERR:"
+  - tail -n 50 error.log
 
