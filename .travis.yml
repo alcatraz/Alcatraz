@@ -5,5 +5,8 @@ before_install:
   - gem install xcpretty  --no-ri --no-rdoc
 install:
   - pod install
-script: make ci | xcpretty -c
+script: 
+  - make ci | tee xcodebuild.log | xcpretty -c
+  - echo "Status: $?"
+  - tail xcodebuild.log
 

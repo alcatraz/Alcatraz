@@ -20,7 +20,7 @@ clean:
 
 # Run tests
 spec: clean
-	$(BUILD_TOOL) $(DEFAULT_BUILD_ARGS) test; echo "status: $?"; tail xcodebuild.log
+	$(BUILD_TOOL) $(DEFAULT_BUILD_ARGS) test
 
 # Merge changes into deploy branch
 update:
