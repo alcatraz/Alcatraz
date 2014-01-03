@@ -1,5 +1,10 @@
-rvm: 1.9.3
 language: objective-c
 before_install:
   - gem install xcpretty
-script: make ci | xcpretty -c
+  - gem install cocoapods --no-ri --no-rdoc
+  - gem install xcpretty  --no-ri --no-rdoc
+install:
+  - pod install
+script: 
+  - make ci | xcpretty -c; exit ${PIPESTATUS[0]}
+
