@@ -25,14 +25,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView ambiguous="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="76" horizontalPageScroll="10" verticalLineScroll="76" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
                         <rect key="frame" x="0.0" y="0.0" width="500" height="580"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" ambiguous="YES" misplaced="YES" copiesOnScroll="NO" id="2OX-MH-qJ4">
+                        <clipView key="contentView" copiesOnScroll="NO" id="2OX-MH-qJ4">
                             <rect key="frame" x="0.0" y="0.0" width="500" height="580"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="24">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="74" rowSizeStyle="automatic" viewBased="YES" id="24">
                                     <rect key="frame" x="0.0" y="0.0" width="500" height="580"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -234,7 +234,7 @@
                             <outlet property="delegate" destination="-2" id="MtT-UQ-xZM"/>
                         </connections>
                     </searchField>
-                    <segmentedControl focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1lO-z8-UW7">
+                    <segmentedControl focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1lO-z8-UW7">
                         <rect key="frame" x="11" y="586" width="137" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <segmentedCell key="cell" focusRingType="none" alignment="left" style="texturedRounded" trackingMode="selectOne" id="vaZ-Yu-jkt" customClass="ATZSegmentedCell">
@@ -260,12 +260,16 @@
                 <constraints>
                     <constraint firstItem="23" firstAttribute="leading" secondItem="126" secondAttribute="leading" id="146"/>
                     <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" id="449"/>
+                    <constraint firstItem="1lO-z8-UW7" firstAttribute="leading" secondItem="126" secondAttribute="leading" constant="11" id="Ahs-iz-7jQ"/>
                     <constraint firstItem="23" firstAttribute="top" secondItem="8my-Ez-NU4" secondAttribute="bottom" constant="8" symbolic="YES" id="FTe-5U-XkD"/>
                     <constraint firstItem="23" firstAttribute="top" secondItem="8my-Ez-NU4" secondAttribute="bottom" constant="8" id="H0S-Tn-qso"/>
+                    <constraint firstItem="23" firstAttribute="top" secondItem="1lO-z8-UW7" secondAttribute="bottom" constant="8" symbolic="YES" id="WFl-2x-5DE"/>
+                    <constraint firstAttribute="bottom" secondItem="23" secondAttribute="bottom" id="cfD-c6-M4g"/>
                     <constraint firstItem="8my-Ez-NU4" firstAttribute="baseline" secondItem="1lO-z8-UW7" secondAttribute="baseline" id="e4E-Em-eUw"/>
                     <constraint firstItem="8my-Ez-NU4" firstAttribute="top" secondItem="126" secondAttribute="top" constant="8" id="ijp-FY-f1B"/>
                     <constraint firstItem="23" firstAttribute="top" secondItem="8my-Ez-NU4" secondAttribute="bottom" constant="8" id="nWp-rA-DZL"/>
                     <constraint firstAttribute="trailing" secondItem="8my-Ez-NU4" secondAttribute="trailing" constant="15" id="nqn-C5-m8z"/>
+                    <constraint firstItem="23" firstAttribute="top" secondItem="1lO-z8-UW7" secondAttribute="bottom" constant="8" id="tss-r0-WqW"/>
                 </constraints>
             </view>
         </window>
