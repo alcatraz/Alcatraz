@@ -73,11 +73,8 @@ const CGFloat ATZRadialProgressControl_FakeRemoveProgress = 0.66;
 
 - (NSColor *)tintColor
 {
-    NSColor *tintColor = [NSColor alcatrazBlueColor];
-    CGFloat red = self.progress * [tintColor redComponent];
-    CGFloat green = self.progress * [tintColor greenComponent];
-    CGFloat blue = self.progress * [tintColor blueComponent];
-    return [NSColor colorWithDeviceRed:red green:green blue:blue alpha:1.0];
+    return [[NSColor alcatrazProgressGrayColor] blendedColorWithFraction:self.progress
+                                                                 ofColor:[NSColor alcatrazBlueColor]];
 }
 
 @end

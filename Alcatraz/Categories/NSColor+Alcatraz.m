@@ -29,4 +29,9 @@
     return [NSColor colorWithDeviceRed:0.139 green:0.449 blue:0.867 alpha:1.000];
 }
 
++ (instancetype)alcatrazProgressGrayColor
+{
+    return [NSColor colorWithWhite:0.7 alpha:0.9];;
+}
+
 @end

@@ -22,7 +22,7 @@
 
 #import "NSImage+Alcatraz.h"
 
-static CGFloat const STROKE_WIDTH = 2.f;
+static CGFloat const STROKE_WIDTH = 1.f;
 
 @implementation NSImage (Alcatraz)
 
