@@ -33,18 +33,19 @@ const CGFloat ATZRadialProgressControl_FakeRemoveProgress = 0.66;
 
 #pragma mark - NSView
 
-- (void)drawRect:(NSRect)rect
+- (void)drawRect:(NSRect)dirtyRect
 {
-    CGFloat minDimension = MIN(rect.size.width, rect.size.height);
-    rect.size = CGSizeMake(minDimension, minDimension);
+    NSRect bounds = self.bounds;
+    CGFloat minDimension = MIN(bounds.size.width, bounds.size.height);
+    bounds.size = CGSizeMake(minDimension, minDimension);
     NSTableCellView *tableCell = (NSTableCellView *)self.superview;
     ATZPackage *package = [tableCell objectValue];
     if (self.progress == 0.f && package.isInstalled) self.progress = 1.f;
     NSImage *image = [NSImage imageForProgressIndicatorWithCompletionPercentage:self.progress
                                                                         package:package
-                                                                           size:rect.size
+                                                                           size:bounds.size
                                                                           color:self.tintColor];
-    [image drawInRect:rect];
+    [image drawInRect:bounds];
 }
 
 + (id)defaultAnimationForKey:(NSString *)key
