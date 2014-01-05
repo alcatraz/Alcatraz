@@ -26,6 +26,7 @@
 
 @interface ATZPackageTableCellView()
 @property (assign) BOOL isHighlighted;
+@property (assign) CGRect originalWebsiteButtonPosition;
 @end
 
 @implementation ATZPackageTableCellView
@@ -33,6 +34,7 @@
 - (void)awakeFromNib {
     [self.buttonsContainerView setWantsLayer:YES];
     [self createTrackingArea];
+    _originalWebsiteButtonPosition = self.websiteButton.frame;
 }
 
 - (void)setButtonsHighlighted:(BOOL)highlighted animated:(BOOL)animated {
@@ -49,6 +51,9 @@
         CGRect websiteButtonFrame = self.websiteButton.frame;
         websiteButtonFrame.origin.y = self.frame.size.height / 2 - websiteButtonFrame.size.height;
         self.websiteButton.frame = websiteButtonFrame;
+    } else {
+        [self.screenshotButton setHidden:NO];
+        self.websiteButton.frame = self.originalWebsiteButtonPosition;
     }
     [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
     [self setButtonsHighlighted:self.isHighlighted animated:NO];
@@ -86,7 +91,7 @@
     NSPoint globalLocation = [NSEvent mouseLocation];
     NSPoint windowLocation = [self.window convertScreenToBase:globalLocation];
     NSPoint viewLocation = [self convertPoint:windowLocation fromView:nil];
-    if(NSPointInRect(viewLocation, self.bounds)) {
+    if (NSPointInRect(viewLocation, self.bounds)) {
         [self setButtonsHighlighted:YES animated:YES];
     }
 }
