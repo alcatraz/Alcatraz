@@ -23,6 +23,7 @@
 #import "ATZRadialProgressControl.h"
 #import "NSImage+Alcatraz.h"
 #import "NSColor+Alcatraz.h"
+#import "ATZPackage.h"
 #import <QuartzCore/QuartzCore.h>
 
 const CGFloat ATZRadialProgressControl_FakeInstallProgress = 0.33;
@@ -36,9 +37,13 @@ const CGFloat ATZRadialProgressControl_FakeRemoveProgress = 0.66;
 {
     CGFloat minDimension = MIN(rect.size.width, rect.size.height);
     rect.size = CGSizeMake(minDimension, minDimension);
-    NSImage *image = [NSImage imageForAwesomeFuckingPieProgressIndicatorThingWithProgressPercentage:self.progress
-                                                                                               size:rect.size
-                                                                                              color:self.tintColor];
+    NSTableCellView *tableCell = (NSTableCellView *)self.superview;
+    ATZPackage *package = [tableCell objectValue];
+    if (self.progress == 0.f && package.isInstalled) self.progress = 1.f;
+    NSImage *image = [NSImage imageForProgressIndicatorWithCompletionPercentage:self.progress
+                                                                        package:package
+                                                                           size:rect.size
+                                                                          color:self.tintColor];
     [image drawInRect:rect];
 }
 

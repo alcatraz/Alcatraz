@@ -31,7 +31,7 @@
 
 + (instancetype)alcatrazProgressGrayColor
 {
-    return [NSColor colorWithWhite:0.7 alpha:0.9];;
+    return [NSColor colorWithWhite:0.5 alpha:0.9];;
 }
 
 @end

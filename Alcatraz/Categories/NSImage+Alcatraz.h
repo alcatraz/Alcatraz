@@ -22,8 +22,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ATZPackage;
+
 @interface NSImage (Alcatraz)
 
-+ (NSImage *)imageForAwesomeFuckingPieProgressIndicatorThingWithProgressPercentage:(CGFloat)progress size:(CGSize)size color:(NSColor *)color;
++ (NSImage *)imageForProgressIndicatorWithCompletionPercentage:(CGFloat)progress package:(ATZPackage *)package size:(CGSize)size color:(NSColor *)color;
 
++ (void)drawImage:(NSImage *)icon withColor:(NSColor *)color inFrame:(NSRect)frame flipVertically:(BOOL)shouldFlip;
 @end

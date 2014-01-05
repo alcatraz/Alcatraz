@@ -7,7 +7,8 @@
 //
 
 #import "ATZSegmentedCell.h"
-#import "NSActionCell+Alcatraz.h"
+#import "NSColor+Alcatraz.h"
+#import "NSImage+Alcatraz.h"
 #import "Alcatraz.h"
 #import "ATZColorScheme.h"
 #import "ATZPlugin.h"
@@ -18,9 +19,8 @@ static NSString *const ALL_ITEMS_TITLE = @"All";
 @implementation ATZSegmentedCell
 
 - (void)drawSegment:(NSInteger)segment inFrame:(NSRect)frame withView:(NSView *)controlView {
-    BOOL selected = self.selectedSegment == segment;
     if (ATZFilterSegmentAll == segment) {
-        [self drawAllItemsSegmentInFrame:frame withSelection:selected];
+        [self drawAllItemsSegmentInFrame:frame];
     } else {
         NSImage *icon = [self iconForSegment:segment];
         CGFloat cellWidth = frame.size.width / self.segmentCount;
@@ -28,7 +28,17 @@ static NSString *const ALL_ITEMS_TITLE = @"All";
                                                         -((frame.size.height - icon.size.height) / 2), // we're drawing in a flipped context
                                                         icon.size.width,
                                                         icon.size.height));
-        [self drawIcon:icon withSelection:selected inFrame:segmentFrame];
+        NSColor * color = [self colorForSegmentAtIndex:segment];
+        [NSImage drawImage:icon withColor:color inFrame:segmentFrame flipVertically:YES];
+    }
+}
+
+- (NSColor *)colorForSegmentAtIndex:(NSInteger)segmentIndex
+{
+    if (self.selectedSegment == segmentIndex) {
+        return [NSColor alcatrazBlueColor];
+    } else {
+        return [NSColor colorWithDeviceWhite:0.1f alpha:1.0f];
     }
 }
 
@@ -54,7 +64,8 @@ static NSString *const ALL_ITEMS_TITLE = @"All";
     return [[[Alcatraz sharedPlugin] bundle] imageForResource:[self segmentIconMapping][@(segment)]];
 }
 
-- (void)drawAllItemsSegmentInFrame:(CGRect)frame withSelection:(BOOL)selected {
+- (void)drawAllItemsSegmentInFrame:(CGRect)frame {
+    BOOL selected = self.selectedSegment == 0;
     NSAttributedString *title = selected ? [self allItemsLabelSelected] : [self allItemsLabelUnselected];
     frame.origin.y = (frame.size.height - title.size.height) / 2;
     [title drawInRect:frame];

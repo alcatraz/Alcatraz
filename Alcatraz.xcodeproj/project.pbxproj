@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		079C9E03183D8BB8009F5A17 /* link_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 079C9E02183D8BB8009F5A17 /* link_icon.png */; };
 		079C9E05183D8BBD009F5A17 /* link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 079C9E04183D8BBD009F5A17 /* link_icon@2x.png */; };
-		07B02659182F919C00364987 /* ATZPackageCheckboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */; };
-		07EB2B1418442E6500A0040B /* NSActionCell+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB2B1318442E6500A0040B /* NSActionCell+Alcatraz.m */; };
 		07EB2B1718442F1900A0040B /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */; };
 		0C49775E186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */; };
 		0C49775F186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */; };
@@ -94,10 +92,6 @@
 /* Begin PBXFileReference section */
 		079C9E02183D8BB8009F5A17 /* link_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link_icon.png; sourceTree = "<group>"; };
 		079C9E04183D8BBD009F5A17 /* link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link_icon@2x.png"; sourceTree = "<group>"; };
-		07B02657182F919C00364987 /* ATZPackageCheckboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageCheckboxCell.h; path = Views/ATZPackageCheckboxCell.h; sourceTree = "<group>"; };
-		07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageCheckboxCell.m; path = Views/ATZPackageCheckboxCell.m; sourceTree = "<group>"; };
-		07EB2B1218442E6500A0040B /* NSActionCell+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSActionCell+Alcatraz.h"; sourceTree = "<group>"; };
-		07EB2B1318442E6500A0040B /* NSActionCell+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSActionCell+Alcatraz.m"; sourceTree = "<group>"; };
 		07EB2B1518442F1900A0040B /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZSegmentedCell.h; path = Views/ATZSegmentedCell.h; sourceTree = "<group>"; };
 		07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedCell.m; path = Views/ATZSegmentedCell.m; sourceTree = "<group>"; };
 		0C49775C186AB8170059AB6B /* NSImage+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Alcatraz.h"; sourceTree = "<group>"; };
@@ -338,8 +332,6 @@
 		8917DA0A1726B57B00F0B2D2 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				07EB2B1218442E6500A0040B /* NSActionCell+Alcatraz.h */,
-				07EB2B1318442E6500A0040B /* NSActionCell+Alcatraz.m */,
 				8917DA0B1726B57B00F0B2D2 /* NSFileManager+Alcatraz.h */,
 				8917DA0C1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m */,
 				0C49775C186AB8170059AB6B /* NSImage+Alcatraz.h */,
@@ -419,8 +411,6 @@
 				32B63216173A3E880076C098 /* ATZPackageTableCellView.m */,
 				8A44EF731745D13200411834 /* ATZVersionLabel.h */,
 				8A44EF741745D13200411834 /* ATZVersionLabel.m */,
-				07B02657182F919C00364987 /* ATZPackageCheckboxCell.h */,
-				07B02658182F919C00364987 /* ATZPackageCheckboxCell.m */,
 				07EB2B1518442F1900A0040B /* ATZSegmentedCell.h */,
 				07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */,
 				0C7AF647186B4A440064EE7B /* ATZRadialProgressControl.h */,
@@ -626,7 +616,6 @@
 				8917DA101726B5BA00F0B2D2 /* ATZPackageFactory.m in Sources */,
 				8917DA181726B63B00F0B2D2 /* ATZDownloader.m in Sources */,
 				8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */,
-				07EB2B1418442E6500A0040B /* NSActionCell+Alcatraz.m in Sources */,
 				0C7AF649186B4A440064EE7B /* ATZRadialProgressControl.m in Sources */,
 				8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */,
 				8A0C0A4D1726C076006E7AD2 /* ATZStatusView.m in Sources */,
@@ -635,7 +624,6 @@
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
 				07EB2B1718442F1900A0040B /* ATZSegmentedCell.m in Sources */,
-				07B02659182F919C00364987 /* ATZPackageCheckboxCell.m in Sources */,
 				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,
 				32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */,
 				8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */,
