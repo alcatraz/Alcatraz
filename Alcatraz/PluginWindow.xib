@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A2093" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1080" defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -23,7 +23,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="200" y="250" width="500" height="618"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1600"/>
             <view key="contentView" id="126">
                 <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -137,7 +137,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="1051" customClass="ATZDetailItemButton">
-                                                                    <rect key="frame" x="4" y="26" width="20" height="20"/>
+                                                                    <rect key="frame" x="4" y="27" width="20" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="20" id="1338"/>
@@ -172,7 +172,7 @@
                                                                 <constraint firstItem="1057" firstAttribute="centerX" secondItem="R0c-wL-QhR" secondAttribute="centerX" id="Jq0-ZQ-u0f"/>
                                                                 <constraint firstAttribute="bottom" secondItem="1057" secondAttribute="bottom" constant="7" id="c40-Qd-bX0"/>
                                                                 <constraint firstItem="1051" firstAttribute="leading" secondItem="R0c-wL-QhR" secondAttribute="leading" constant="4" id="jCS-AB-cc4"/>
-                                                                <constraint firstItem="1057" firstAttribute="top" secondItem="1051" secondAttribute="bottom" constant="-1" id="nHU-oj-Kc0"/>
+                                                                <constraint firstItem="1057" firstAttribute="top" secondItem="1051" secondAttribute="bottom" id="nHU-oj-Kc0"/>
                                                             </constraints>
                                                         </customView>
                                                     </subviews>
@@ -332,7 +332,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="285"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1600"/>
             <view key="contentView" id="1348">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>

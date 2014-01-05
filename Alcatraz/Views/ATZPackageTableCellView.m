@@ -44,12 +44,7 @@
 }
 
 - (void)viewWillDraw {
-    if (![(ATZPackage *)self.objectValue screenshotPath]) {
-        [self.screenshotButton setHidden:YES];
-        CGRect websiteButtonFrame = self.websiteButton.frame;
-        websiteButtonFrame.origin.y = self.frame.size.height / 2 - websiteButtonFrame.size.height;
-        self.websiteButton.frame = websiteButtonFrame;
-    }
+    [self showScreenshotButtonIfNeeded];
     [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
     [self setButtonsHighlighted:self.isHighlighted animated:NO];
 }
@@ -86,9 +81,21 @@
     NSPoint globalLocation = [NSEvent mouseLocation];
     NSPoint windowLocation = [self.window convertScreenToBase:globalLocation];
     NSPoint viewLocation = [self convertPoint:windowLocation fromView:nil];
-    if(NSPointInRect(viewLocation, self.bounds)) {
+    if (NSPointInRect(viewLocation, self.bounds)) {
         [self setButtonsHighlighted:YES animated:YES];
     }
+}
+
+- (void)showScreenshotButtonIfNeeded {
+    CGRect websiteButtonFrame = self.websiteButton.frame;
+    if (![(ATZPackage *)self.objectValue screenshotPath]) {
+        [self.screenshotButton setHidden:YES];
+        websiteButtonFrame.origin.y = self.frame.size.height / 2 - websiteButtonFrame.size.height;
+    } else {
+        websiteButtonFrame.origin.y = (self.frame.size.height - websiteButtonFrame.size.height) / 2;
+        [self.screenshotButton setHidden:NO];
+    }
+    self.websiteButton.frame = websiteButtonFrame;
 }
 
 @end
