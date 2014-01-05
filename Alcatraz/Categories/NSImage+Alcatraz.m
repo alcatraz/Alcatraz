@@ -22,44 +22,43 @@
 
 #import "NSImage+Alcatraz.h"
 
+static CGFloat const STROKE_WIDTH = 2.f;
+
 @implementation NSImage (Alcatraz)
 
 + (NSImage *)imageForAwesomeFuckingPieProgressIndicatorThingWithProgressPercentage:(CGFloat)progress size:(CGSize)size color:(NSColor *)color {
     NSImage *image          = [[NSImage alloc] initWithSize:size];
     NSRect ovalRect         = NSMakeRect(0, 0, size.width, size.height);
+
+    [image lockFocus];
+    [self drawPieInRect:ovalRect usingColor:color withProgressPercentage:progress];
+    [self strokeInRect:ovalRect usingColor:color];
+    [image unlockFocus];
+    return image;
+}
+
++ (void)drawPieInRect:(NSRect)ovalRect usingColor:(NSColor *)color withProgressPercentage:(CGFloat)progress {
     CGFloat ovalStartAngle  = 90;
     CGFloat ovalEndAngle    = 90 - (360 * progress);
-    CGFloat strokeWidth     = 2.0;
-    
-    [image lockFocus];
-    
-    //// Pie drawing
-    {
-        NSBezierPath *ovalPath = [NSBezierPath bezierPath];
-        [ovalPath appendBezierPathWithArcWithCenter:NSMakePoint(NSMidX(ovalRect), NSMidY(ovalRect))
-                                             radius:NSWidth(ovalRect) / 2
-                                         startAngle:ovalStartAngle
-                                           endAngle:ovalEndAngle
-                                          clockwise:YES];
-        [ovalPath lineToPoint:NSMakePoint(NSMidX(ovalRect), NSMidY(ovalRect))];
-        [ovalPath closePath];
-        
-        [color setFill];
-        [ovalPath fill];
-    }
-    
-    //// Stroke
-    {
-        NSRect strokeRect = NSInsetRect(ovalRect, strokeWidth / 2.0, strokeWidth / 2.0);
-        NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:strokeRect];
-        [color setStroke];
-        [ovalPath setLineWidth:strokeWidth];
-        [ovalPath stroke];
-    }
-    
-    [image unlockFocus];
-    
-    return image;
+    NSBezierPath *ovalPath = [NSBezierPath bezierPath];
+    [ovalPath appendBezierPathWithArcWithCenter:NSMakePoint(NSMidX(ovalRect), NSMidY(ovalRect))
+                                         radius:NSWidth(ovalRect) / 2
+                                     startAngle:ovalStartAngle
+                                       endAngle:ovalEndAngle
+                                      clockwise:YES];
+    [ovalPath lineToPoint:NSMakePoint(NSMidX(ovalRect), NSMidY(ovalRect))];
+    [ovalPath closePath];
+
+    [color setFill];
+    [ovalPath fill];
+}
+
++ (void)strokeInRect:(NSRect)rect usingColor:(NSColor *)color {
+    NSRect strokeRect = NSInsetRect(rect, STROKE_WIDTH / 2.0, STROKE_WIDTH / 2.0);
+    NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:strokeRect];
+    [color setStroke];
+    [ovalPath setLineWidth:STROKE_WIDTH];
+    [ovalPath stroke];
 }
 
 @end
