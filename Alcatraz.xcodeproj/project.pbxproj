@@ -15,7 +15,6 @@
 		0C49775E186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */; };
 		0C49775F186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */; };
 		0C7AF649186B4A440064EE7B /* ATZRadialProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AF648186B4A440064EE7B /* ATZRadialProgressControl.m */; };
-		0C7AF64A186B4A440064EE7B /* ATZRadialProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AF648186B4A440064EE7B /* ATZRadialProgressControl.m */; };
 		0C7AF650186B4E890064EE7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AF64F186B4E890064EE7B /* QuartzCore.framework */; };
 		0C7AF657186B82A00064EE7B /* NSColor+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AF656186B82A00064EE7B /* NSColor+Alcatraz.m */; };
 		0C7AF658186B82A00064EE7B /* NSColor+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AF656186B82A00064EE7B /* NSColor+Alcatraz.m */; };
@@ -663,7 +662,6 @@
 				8AE8A7341742774200915C20 /* ATZFileTemplateInstaller.m in Sources */,
 				89E6BCDF1841D54500472ED8 /* ATZInstallerTests.m in Sources */,
 				89E6BCDB1841D30900472ED8 /* ATZPluginInstallerTests.m in Sources */,
-				0C7AF64A186B4A440064EE7B /* ATZRadialProgressControl.m in Sources */,
 				8AE8A7351742774500915C20 /* ATZPluginInstaller.m in Sources */,
 				8AE8A7361742774800915C20 /* ATZProjectTemplateInstaller.m in Sources */,
 				8AE8A7371742774A00915C20 /* ATZTemplateInstaller.m in Sources */,
