@@ -67,7 +67,7 @@ static NSString *const ALL_ITEMS_TITLE = @"All";
 - (void)drawAllItemsSegmentInFrame:(CGRect)frame {
     BOOL selected = self.selectedSegment == 0;
     NSAttributedString *title = selected ? [self allItemsLabelSelected] : [self allItemsLabelUnselected];
-    frame.origin.y = (frame.size.height - title.size.height) / 2;
+    frame.origin.y = (frame.size.height - title.size.height) - 2;
     [title drawInRect:frame];
 }
 

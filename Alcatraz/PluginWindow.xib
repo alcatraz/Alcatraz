@@ -56,9 +56,9 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="331" customClass="ATZRadialProgressControl">
-                                                            <rect key="frame" x="9" y="21" width="22" height="18"/>
+                                                            <rect key="frame" x="9" y="28" width="22" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" allowsMixedState="YES" inset="2" id="332" customClass="ATZPackageCheckboxCell">
+                                                            <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" allowsMixedState="YES" inset="2" id="332">
                                                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
@@ -70,7 +70,7 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="331" firstAttribute="centerX" secondItem="303" secondAttribute="centerX" id="348"/>
-                                                        <constraint firstItem="331" firstAttribute="centerY" secondItem="303" secondAttribute="centerY" id="387"/>
+                                                        <constraint firstItem="331" firstAttribute="centerY" secondItem="303" secondAttribute="centerY" constant="-7" id="387"/>
                                                     </constraints>
                                                 </tableCellView>
                                             </prototypeCellViews>
@@ -93,7 +93,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="390" userLabel="Package Description">
-                                                            <rect key="frame" x="1" y="9" width="414" height="28"/>
+                                                            <rect key="frame" x="1" y="17" width="414" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="28" id="843"/>
@@ -109,7 +109,7 @@
                                                             </connections>
                                                         </textField>
                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="959" userLabel="Package Name">
-                                                            <rect key="frame" x="0.0" y="45" width="266" height="17"/>
+                                                            <rect key="frame" x="0.0" y="53" width="266" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="266" id="973"/>
@@ -176,13 +176,13 @@
                                                     <constraints>
                                                         <constraint firstItem="390" firstAttribute="leading" secondItem="315" secondAttribute="leading" constant="3" id="393"/>
                                                         <constraint firstAttribute="trailing" secondItem="390" secondAttribute="trailing" constant="41" id="543"/>
-                                                        <constraint firstItem="959" firstAttribute="top" secondItem="315" secondAttribute="top" constant="12" id="1009"/>
+                                                        <constraint firstItem="959" firstAttribute="top" secondItem="315" secondAttribute="top" constant="4" id="1009"/>
                                                         <constraint firstItem="390" firstAttribute="top" secondItem="959" secondAttribute="bottom" constant="8" symbolic="YES" id="1201"/>
                                                         <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="R0c-wL-QhR" secondAttribute="trailing" constant="4" id="0Qm-2I-1L8"/>
                                                         <constraint firstItem="58h-17-rJo" firstAttribute="leading" secondItem="315" secondAttribute="leading" constant="3" id="2Dl-P4-fJU"/>
                                                         <constraint firstAttribute="trailing" secondItem="58h-17-rJo" secondAttribute="trailing" constant="3" id="EJ3-5f-biw"/>
                                                         <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="R0c-wL-QhR" secondAttribute="trailing" constant="4" id="FW7-Ej-4PU"/>
-                                                        <constraint firstItem="390" firstAttribute="top" secondItem="R0c-wL-QhR" secondAttribute="bottom" constant="-34" id="G9G-Hm-PgL"/>
+                                                        <constraint firstItem="390" firstAttribute="top" secondItem="R0c-wL-QhR" secondAttribute="bottom" constant="-42" id="G9G-Hm-PgL"/>
                                                         <constraint firstItem="959" firstAttribute="leading" secondItem="58h-17-rJo" secondAttribute="leading" constant="-3" id="bPg-Mh-qkf"/>
                                                         <constraint firstAttribute="trailing" secondItem="R0c-wL-QhR" secondAttribute="trailing" constant="4" id="gSs-CN-1eU"/>
                                                         <constraint firstItem="58h-17-rJo" firstAttribute="top" secondItem="315" secondAttribute="top" constant="70" id="lSK-4r-CE4"/>
@@ -235,19 +235,19 @@
                         </connections>
                     </searchField>
                     <segmentedControl focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1lO-z8-UW7">
-                        <rect key="frame" x="11" y="586" width="137" height="25"/>
+                        <rect key="frame" x="11" y="586" width="106" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <segmentedCell key="cell" focusRingType="none" alignment="left" style="texturedRounded" trackingMode="selectOne" id="vaZ-Yu-jkt" customClass="ATZSegmentedCell">
+                        <segmentedCell key="cell" focusRingType="none" alignment="left" style="texturedSquare" trackingMode="selectOne" id="vaZ-Yu-jkt" customClass="ATZSegmentedCell">
                             <font key="font" metaFont="system"/>
                             <segments>
-                                <segment label="All" toolTip="All Packages" width="32" selected="YES"/>
-                                <segment toolTip="Plugins" image="toolbar_plugins" width="32">
+                                <segment label="All" toolTip="All Packages" width="26" selected="YES"/>
+                                <segment toolTip="Plugins" image="toolbar_plugins" width="25">
                                     <nil key="label"/>
                                 </segment>
-                                <segment toolTip="Colorschemes" image="toolbar_colors" width="32">
+                                <segment toolTip="Colorschemes" image="toolbar_colors" width="25">
                                     <nil key="label"/>
                                 </segment>
-                                <segment toolTip="Templates" image="toolbar_templates">
+                                <segment toolTip="Templates" image="toolbar_templates" width="25">
                                     <nil key="label"/>
                                 </segment>
                             </segments>
