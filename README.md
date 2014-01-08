@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/mneorr/Alcatraz.png?label=ready)](https://waffle.io/mneorr/Alcatraz)
 # ATTENTION: Xcode 5 is work in progress
 We're working on releasing Alcatraz 1.0 for Xcode 5.
 Please be patient and don't create issues until 1.0 gets released. Thanks!
