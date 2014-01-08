@@ -1,4 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/mneorr/Alcatraz.png?label=ready)](https://waffle.io/mneorr/Alcatraz)
 # ATTENTION: Xcode 5 is work in progress
 We're working on releasing Alcatraz 1.0 for Xcode 5.
 Please be patient and don't create issues until 1.0 gets released. Thanks!
@@ -8,6 +7,7 @@ The Xcode Package Manager!
 
 Alcatraz is an open-source package manager for Xcode 5. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.
 
+[![Stories in Ready](https://badge.waffle.io/mneorr/Alcatraz.png?label=ready)](https://waffle.io/mneorr/Alcatraz)
 [![Build Status](https://travis-ci.org/mneorr/Alcatraz.png?branch=master)](https://travis-ci.org/mneorr/Alcatraz)
 ![Package Manager UI](http://i.imgur.com/ezqtIRU.png)
 
