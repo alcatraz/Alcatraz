@@ -35,6 +35,8 @@
 #import "ATZShell.h"
 #import "ATZSegmentedCell.h"
 
+#import "ATZRadialProgressControl.h"
+
 static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
 static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@)";
@@ -79,13 +81,13 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 #pragma mark - Bindings
 
-- (IBAction)checkboxPressed:(NSButton *)checkbox {
-    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:checkbox]];
+- (IBAction)checkboxPressed:(ATZRadialProgressControl *)control {
+    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:control]];
     
     if (package.isInstalled)
-        [self removePackage:package andUpdateCheckbox:checkbox];
+        [self removePackage:package andUpdateControl:control];
     else
-        [self installPackage:package andUpdateCheckbox:checkbox];
+        [self installPackage:package andUpdateControl:control];
 }
 
 - (NSDictionary *)segmentClassMapping {
@@ -129,8 +131,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 #pragma mark - Private
 
-- (void)removePackage:(ATZPackage *)package andUpdateCheckbox:(NSButton *)checkbox {
+- (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
     [self showInstallationIndicators];
+    [control setProgress:ATZRadialProgressControl_FakeRemoveProgress animated:YES];
     
     [package removeWithCompletion:^(NSError *failure) {
 
@@ -138,12 +141,14 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
                                       [NSString stringWithFormat:@"%@ uninstalled.", package.name];
 
         [self flashNotice:message];
-        [self reloadUIForPackage:package fromCheckbox:checkbox];
+        [self reloadUIForPackage:package fromControl:control];
     }];
 }
 
-- (void)installPackage:(ATZPackage *)package andUpdateCheckbox:(NSButton *)checkbox {
+- (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
     [self showInstallationIndicators];
+    [control setProgress:ATZRadialProgressControl_FakeInstallProgress animated:YES];
+    
     [package installWithProgressMessage:^(NSString *progressMessage) { self.statusLabel.stringValue = progressMessage; }
                              completion:^(NSError *failure) {
         
@@ -151,14 +156,17 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
                                       [NSString stringWithFormat:@"%@ installed.", package.name];
 
         [self flashNotice:message];
-        [self reloadUIForPackage:package fromCheckbox:checkbox];
+        [self reloadUIForPackage:package fromControl:control];
         [self postNotificationForInstalledPackage:package];
     }];
 }
 
-- (void)reloadUIForPackage:(ATZPackage *)package fromCheckbox:(NSButton *)checkbox {
+- (void)reloadUIForPackage:(ATZPackage *)package fromControl:(ATZRadialProgressControl *)control {
     [self hideInstallationIndicators];
-    [self reloadCheckbox:checkbox];
+    
+    CGFloat progress = package.isInstalled ? 1.0 : 0.0;
+    [control setProgress:progress animated:YES];
+    
     if (package.requiresRestart) [self.restartLabel setHidden:NO];
 }
 
@@ -185,11 +193,6 @@ BOOL hasPressedCommandF(NSEvent *event) {
 - (void)showInstallationIndicators {
     [[self progressIndicator] setHidden:NO];
     [[self progressIndicator] startAnimation:nil];
-}
-
-- (void)reloadCheckbox:(NSButton *)checkbox {
-    [self.tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:[self.tableView rowForView:checkbox]]
-                              columnIndexes:[NSIndexSet indexSetWithIndex:0]];
 }
 
 - (void)updatePredicate {
