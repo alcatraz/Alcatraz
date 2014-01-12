@@ -7,3 +7,7 @@ install:
 script: 
   - make ci | xcpretty -c; exit ${PIPESTATUS[0]}
 
+notifications:
+  webhooks:
+    - https://alcatraz.slack.com/services/hooks/travis?token=S0o4aeCC7ZGBNiaMyGMv5Fed
+
