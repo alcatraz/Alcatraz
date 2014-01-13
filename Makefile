@@ -5,22 +5,21 @@ URL="https://s3.amazonaws.com/${BUCKET}/${ARCHIVE}"
 INSTALL_PATH="~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/"
 VERSION_LOCATION="Alcatraz/Views/ATZVersionLabel.m"
 VERSION_TMP_FILE="output.m"
-BUILD_TOOL=xcodebuild
 DEFAULT_BUILD_ARGS=-workspace Alcatraz.xcworkspace -scheme Alcatraz
 
-default: spec
+default: test
 
-ci: spec
+ci: clean test
 
 shipit: update build upload
 
 clean:
-	$(BUILD_TOOL) $(DEFAULT_BUILD_ARGS) clean
+	xcodebuild $(DEFAULT_BUILD_ARGS) clean
 	rm -rf build
 
 # Run tests
-spec: clean
-	$(BUILD_TOOL) $(DEFAULT_BUILD_ARGS) test
+test:
+	xcodebuild $(DEFAULT_BUILD_ARGS) test | xcpretty -c; exit ${PIPESTATUS[0]}
 
 # Merge changes into deploy branch
 update:
@@ -35,7 +34,7 @@ endif
 
 # Build archive ready for distribution
 build: clean
-	$(BUILD_TOOL) -project Alcatraz.xcodeproj build
+	xcodebuild -project Alcatraz.xcodeproj build
 	rm -rf ${BUNDLE_NAME}
 	cp -r ${INSTALL_PATH} ${BUNDLE_NAME}
 	tar -czf ${ARCHIVE} ${BUNDLE_NAME}
