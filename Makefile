@@ -19,7 +19,7 @@ clean:
 
 # Run tests
 test:
-	xcodebuild $(DEFAULT_BUILD_ARGS) test | xcpretty -c; exit ${PIPESTATUS[0]}
+	xcodebuild $(DEFAULT_BUILD_ARGS) test | xcpretty -c && exit ${PIPESTATUS[0]}
 
 # Merge changes into deploy branch
 update:
