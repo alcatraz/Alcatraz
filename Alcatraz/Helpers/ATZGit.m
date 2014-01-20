@@ -29,12 +29,14 @@
 + (void)updateRepository:(NSString *)localPath revision:(NSString *)revision
               completion:(void(^)(NSString *output, NSError *error))completion {
 
+    NSLog(@"Updating Repo: %@", localPath);
     [self updateLocalProject:localPath revision:revision completion:completion];
 }
 
 + (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
              completion:(void (^)(NSError *))completion {
-    
+
+    NSLog(@"Cloning Repo: %@", localPath);
     [self clone:remotePath to:localPath completion:completion];
 }
 

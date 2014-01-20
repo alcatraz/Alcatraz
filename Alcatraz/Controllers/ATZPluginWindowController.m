@@ -198,7 +198,7 @@ BOOL hasPressedCommandF(NSEvent *event) {
 - (void)updatePredicate {
     // TODO: refactor, use compound predicates.
 
-    NSString *searchText = self.searchField.stringValue;    
+    NSString *searchText = self.searchField.stringValue;
     // filter by type and search field text
     if (self.selectedPackageClass && searchText.length > 0) {
         self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_AND_CLASS_PREDICATE_FORMAT, searchText, searchText, self.selectedPackageClass];
@@ -270,13 +270,13 @@ BOOL hasPressedCommandF(NSEvent *event) {
         
         [self.previewImageView.animator setFrame:(CGRect){ .origin = CGPointMake(0, 0), .size = image.size }];
         CGRect previewPanelFrame = (CGRect){.origin = self.previewPanel.frame.origin, .size = image.size};
-        [self.previewPanel setFrame:previewPanelFrame display:NO animate:YES];
+        [self.previewPanel setFrame:previewPanelFrame display:NO animate:NO];
+        [self.previewPanel.animator center];
         
         [NSAnimationContext endGrouping];
         
         [self.previewPanel makeKeyAndOrderFront:self];
         [self.previewPanel.animator setAlphaValue:1.f];
-        
     }];
 }
 
