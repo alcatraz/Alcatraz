@@ -45,7 +45,7 @@ const CGFloat ATZRadialProgressControl_FakeRemoveProgress = 0.66;
                                                                         package:package
                                                                            size:bounds.size
                                                                           color:self.tintColor];
-    [image drawInRect:bounds];
+    [image drawInRect:bounds fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1 respectFlipped:YES hints:nil];
 }
 
 + (id)defaultAnimationForKey:(NSString *)key
