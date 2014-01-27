@@ -40,7 +40,11 @@ const CGFloat ATZRadialProgressControl_FakeRemoveProgress = 0.66;
     bounds.size = CGSizeMake(minDimension, minDimension);
     NSTableCellView *tableCell = (NSTableCellView *)self.superview;
     ATZPackage *package = [tableCell objectValue];
-    if (self.progress == 0.f && package.isInstalled) _progress = 1.f;
+    if (self.progress == 0.f && package.isInstalled) {
+        _progress = 1.f;
+    } else if (self.progress == 1.f && !package.isInstalled) {
+        _progress = 0.f;
+    }
     NSImage *image = [NSImage imageForProgressIndicatorWithCompletionPercentage:self.progress
                                                                         package:package
                                                                            size:bounds.size
