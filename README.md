@@ -9,6 +9,7 @@ Alcatraz is an open-source package manager for Xcode 5. It lets you discover and
 
 [![Stories in Ready](https://badge.waffle.io/mneorr/Alcatraz.png?label=ready)](https://waffle.io/mneorr/Alcatraz)
 [![Build Status](https://travis-ci.org/mneorr/Alcatraz.png?branch=master)](https://travis-ci.org/mneorr/Alcatraz)
+[![Alcatraz chat](https://badges.gitter.im/mneorr/alcatraz.png)](https://gitter.im/mneorr/alcatraz)
 ![Package Manager UI](http://i.imgur.com/ezqtIRU.png)
 
 ## Installation
