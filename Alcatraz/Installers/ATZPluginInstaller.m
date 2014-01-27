@@ -34,6 +34,9 @@ static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
 static NSString *const PROJECT = @"-project";
 static NSString *const XCODEPROJ = @".xcodeproj";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
+static NSString *const INSTALL_BUILD_ACTION = @"install";
+static NSString *const DSTROOT_BUILD_SETTING = @"DSTROOT";
+static NSString *const INSTALL_PATH_BUILD_SETTING = @"INSTALL_PATH";
 
 @implementation ATZPluginInstaller
 
@@ -105,7 +108,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 #pragma mark - Private
 
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
-
+    
     NSString *xcodeProjPath;
     
     @try { xcodeProjPath = [self findXcodeprojPathForPlugin:plugin]; }
@@ -114,8 +117,11 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
         return;
     }
     
+    NSString *dstRootArgument = [NSString stringWithFormat:@"%@=%@", DSTROOT_BUILD_SETTING, NSHomeDirectory()];
+    NSString *installPathArgument = [NSString stringWithFormat:@"%@=/%@", INSTALL_PATH_BUILD_SETTING, INSTALLED_PLUGINS_RELATIVE_PATH];
+    
     ATZShell *shell = [ATZShell new];
-    [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
+    [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath, INSTALL_BUILD_ACTION, dstRootArgument, installPathArgument] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
         completion(error);
     }];
