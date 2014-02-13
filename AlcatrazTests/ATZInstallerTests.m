@@ -14,7 +14,7 @@ SPEC_BEGIN(ATZInstallerTests)
 
 describe(@"ATZInstaller", ^{
 
-    let(installer, ^{ return [ATZInstaller new]; });
+    ATZInstaller *installer = [ATZInstaller new];
     
     it(@"stops installing if download returned an error", ^{
         

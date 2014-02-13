@@ -283,12 +283,16 @@ BOOL hasPressedCommandF(NSEvent *event) {
 - (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath completion:(void (^)(NSImage *))completion {
     
     ATZDownloader *downloader = [ATZDownloader new];
-    [downloader downloadFileFromPath:screenshotPath completion:^(NSData *responseData, NSError *error) {
+    [downloader downloadFileFromPath:screenshotPath
+                            progress:^(CGFloat progress) {
+                                // TODO: hook up with progress indicators
+                            }
+                          completion:^(NSData *responseData, NSError *error) {
+                              
+                              NSImage *image = [[NSImage alloc] initWithData:responseData];
+                              completion(image);
+                          }];
     
-        NSImage *image = [[NSImage alloc] initWithData:responseData];
-        completion(image);
-    }];
-
 }
 
 - (void)addVersionToWindow {

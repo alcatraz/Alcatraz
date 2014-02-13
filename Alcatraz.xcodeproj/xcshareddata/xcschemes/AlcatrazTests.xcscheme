@@ -17,7 +17,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8966AFCA173EB7BF004150C0"
-               BuildableName = "AlcatrazTests.octest"
+               BuildableName = "AlcatrazTests.xctest"
                BlueprintName = "AlcatrazTests"
                ReferencedContainer = "container:Alcatraz.xcodeproj">
             </BuildableReference>
