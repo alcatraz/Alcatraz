@@ -34,14 +34,14 @@ static NSString *const DOWNLOADED_COLOR_SCHEMES_RELATIVE_PATH = @"FontAndColorTh
 
 - (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
     ATZDownloader *downloader = [ATZDownloader new];
-    [downloader downloadFileFromPath:package.remotePath completion:^(NSData *responseData, NSError *error) {
-        
-        if (error) completion(error);
-        [self createDownloadedColorsDirectoryIfNeeded];
-        [self saveColorScheme:package withContents:responseData completion:^(NSError *error) {
-            completion(error);
-        }];
-        
+    [downloader downloadFileFromPath:package.remotePath
+        progress:^(CGFloat progress) {} // todo: wire up the progress
+        completion:^(NSData *responseData, NSError *error) {
+            if (error) completion(error);
+            [self createDownloadedColorsDirectoryIfNeeded];
+            [self saveColorScheme:package withContents:responseData completion:^(NSError *error) {
+                completion(error);
+            }];
     }];
 }
 
