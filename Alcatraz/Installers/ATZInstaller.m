@@ -53,8 +53,11 @@ static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatra
         
         [self installPackage:package completion:^(NSError *error) {
             
-            if (error) completion(error);
-            [self reloadXcodeForPackage:package completion:completion];
+            if (error) {
+                completion(error);
+            } else {
+                [self reloadXcodeForPackage:package completion:completion];
+            }
         }];
     }];
 }
