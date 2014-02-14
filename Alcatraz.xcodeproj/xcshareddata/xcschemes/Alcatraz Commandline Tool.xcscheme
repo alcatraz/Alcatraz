@@ -64,7 +64,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "BBUDebuggerTuckAway"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <EnvironmentVariables>

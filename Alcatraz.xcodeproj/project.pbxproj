@@ -49,6 +49,7 @@
 		860E54E218AADE2400CA8BBB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860E54E118AADE2400CA8BBB /* Cocoa.framework */; };
 		860E54E518AADEE800CA8BBB /* ATZCommandlineInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 860E54E418AADEE800CA8BBB /* ATZCommandlineInstaller.m */; };
 		860E54E818AAE14500CA8BBB /* ATZCommandlineAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 860E54E718AAE14500CA8BBB /* ATZCommandlineAppDelegate.m */; };
+		8648D91518AE998200B826AF /* NSFileManager+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917DA0C1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m */; };
 		8907C00B1743F78D00C91A4C /* Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 890A4B4D171F031300AFE577 /* Alcatraz.m */; };
 		890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B42171F031300AFE577 /* AppKit.framework */; };
 		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
@@ -683,6 +684,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8648D91518AE998200B826AF /* NSFileManager+Alcatraz.m in Sources */,
 				860E54D618AAD84E00CA8BBB /* ATZColorScheme.m in Sources */,
 				860E54D018AAD7DB00CA8BBB /* ATZDownloader.m in Sources */,
 				860E54D918AAD86500CA8BBB /* ATZAlcatrazPackage.m in Sources */,

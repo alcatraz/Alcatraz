@@ -14,12 +14,16 @@
 
 @implementation ATZCommandlineInstaller
 
++(void)installPackage:(ATZPackage*)package completion:(void (^)(NSError *))completion {
+    [package installWithProgressMessage:^(NSString *proggressMessage) {
+        NSLog(@"%@", proggressMessage);
+    } completion:completion];
+}
+
 +(void)installPackageNamed:(NSString*)name fromPackages:(NSArray*)packages {
     for (ATZPackage* package in packages) {
         if ([package.name isEqualToString:name]) {
-            [package installWithProgressMessage:^(NSString *proggressMessage) {
-                NSLog(@"%@", proggressMessage);
-            } completion:^(NSError *failure) {
+            [self installPackage:package completion:^(NSError* failure) {
                 if (failure) {
                     NSLog(@"Error: %@", failure.localizedDescription);
                 }
