@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 mneorr.com. All rights reserved.
 //
 
+#import <Cocoa/Cocoa.h>
+
 #import "ATZCommandlineInstaller.h"
 #import "ATZPackage.h"
 #import "ATZPackageFactory.h"
@@ -18,7 +20,11 @@
             [package installWithProgressMessage:^(NSString *proggressMessage) {
                 NSLog(@"%@", proggressMessage);
             } completion:^(NSError *failure) {
-                NSLog(@"%@", failure.localizedDescription);
+                if (failure) {
+                    NSLog(@"Error: %@", failure.localizedDescription);
+                }
+                
+                [NSApp terminate:nil];
             }];
         }
     }
