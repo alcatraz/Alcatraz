@@ -21,8 +21,12 @@
 }
 
 +(void)installPackageNamed:(NSString*)name fromPackages:(NSArray*)packages {
+    BOOL found = NO;
+    
     for (ATZPackage* package in packages) {
         if ([package.name isEqualToString:name]) {
+            found = YES;
+            
             [self installPackage:package completion:^(NSError* failure) {
                 if (failure) {
                     NSLog(@"Error: %@", failure.localizedDescription);
@@ -31,6 +35,11 @@
                 [NSApp terminate:nil];
             }];
         }
+    }
+    
+    if (!found) {
+        NSLog(@"Package not found: %@", name);
+        [NSApp terminate:nil];
     }
 }
 
