@@ -45,4 +45,13 @@ static NSString *const XCPLUGIN = @".xcplugin";
     return PLUGIN_ICON_NAME;
 }
 
+- (NSArray*) compatibilityUUIDs {
+  id plist = self.plistPath  ? [NSDictionary dictionaryWithContentsOfFile:self.plistPath] : nil;
+  return plist ? [plist objectForKey:@"DVTPlugInCompatibilityUUIDs"] : nil;
+}
+
+- (NSString*) plistPath {
+  return [[self.installer pathForInstalledPackage:self] stringByAppendingString:@"/Contents/Info.plist"];
+}
+
 @end

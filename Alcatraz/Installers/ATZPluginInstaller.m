@@ -121,8 +121,8 @@ static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
     ATZShell *shell = [ATZShell new];
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
-        completion(error);
         if (!error) [self forceCompatibilityUUIDs:ACTIVECOMPATIBILITYUUIDS forPlugin:plugin];
+        completion(error);
     }];
 }
 
@@ -151,22 +151,12 @@ static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
 
 - (BOOL) forceCompatibilityUUIDs:(NSArray*)uuids forPlugin:(ATZPlugin*)plugin { id plist;
 
-  if ([[self compatibilityUUIDsForPlugin:plugin] isEqualToArray:uuids]) return YES;
-  if (!(plist = [NSMutableDictionary dictionaryWithContentsOfFile:[self plistPathForPlugin:plugin]])) return NO;
+  if ([plugin.compatibilityUUIDs isEqualToArray:uuids]) return YES;
+  if (!(plist = [NSMutableDictionary dictionaryWithContentsOfFile:plugin.plistPath])) return NO;
   NSArray *existingUUIDs = [plist objectForKey:@"DVTPlugInCompatibilityUUIDs"] ?: @[];
   [plist setObject:[existingUUIDs arrayByAddingObjectsFromArray:uuids] forKey:@"DVTPlugInCompatibilityUUIDs"];
-  return [plist writeToFile:[self plistPathForPlugin:plugin] atomically:YES];
-}
-
-- (NSArray*) compatibilityUUIDsForPlugin:(ATZPlugin*)plugin {
-
-  id plist = [self plistPathForPlugin:plugin] ? [NSDictionary dictionaryWithContentsOfFile:[self plistPathForPlugin:plugin]] : nil;
-  return plist ? [plist objectForKey:@"DVTPlugInCompatibilityUUIDs"] : nil;
-}
-
-- (NSString*) plistPathForPlugin:(ATZPlugin*)plugin {
-
-  return [[self pathForInstalledPackage:plugin] stringByAppendingString:@"/Contents/Info.plist"];
+  NSLog(@"[Alcatraz] Setting compatibility UUID's for %@", plugin.plistPath);
+  return [plist writeToFile:plugin.plistPath atomically:YES];
 }
 
 @end
