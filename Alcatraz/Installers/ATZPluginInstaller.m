@@ -35,6 +35,13 @@ static NSString *const PROJECT = @"-project";
 static NSString *const XCODEPROJ = @".xcodeproj";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
+<<<<<<< HEAD
+=======
+static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
+
+#define ACTIVECOMPATIBILITYUUIDS @[XCODE502UUID]
+
+>>>>>>> Implemented check and rewrite of missing DVTPlugInCompatibilityUUIDs.
 @implementation ATZPluginInstaller
 
 #pragma mark - Abstract
@@ -118,6 +125,11 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
         completion(error);
+<<<<<<< HEAD
+=======
+        [shell release];
+        [self forceCompatibilityUUIDs:ACTIVECOMPATIBILITYUUIDS forPlugin:plugin];
+>>>>>>> Implemented check and rewrite of missing DVTPlugInCompatibilityUUIDs.
     }];
 }
 
@@ -136,12 +148,33 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
 }
 
+<<<<<<< HEAD
 - (NSString *)installNameFromPbxproj:(ATZPackage *)package {
     NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
                                stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
                              stringByAppendingPathComponent:PROJECT_PBXPROJ];
     
     return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
+=======
+- (BOOL) forceCompatibilityUUIDs:(NSArray*)uuids forPlugin:(ATZPlugin*)plugin { id plist;
+
+  if ([[self compatibilityUUIDsForPlugin:plugin] isEqualToArray:uuids]) return YES;
+  if (!(plist = [NSMutableDictionary dictionaryWithContentsOfFile:[self plistPathForPlugin:plugin]])) return NO;
+  NSArray *existingUUIDs = [plist objectForKey:@"DVTPlugInCompatibilityUUIDs"] ?: @[];
+  [plist setObject:[existingUUIDs arrayByAddingObjectsFromArray:uuids] forKey:@"DVTPlugInCompatibilityUUIDs"];
+  return [plist writeToFile:[self plistPathForPlugin:plugin] atomically:YES];
+}
+
+- (NSArray*) compatibilityUUIDsForPlugin:(ATZPlugin*)plugin {
+
+  id plist = [self plistPathForPlugin:plugin] ? [NSDictionary dictionaryWithContentsOfFile:[self plistPathForPlugin:plugin]] : nil;
+  return plist ? [plist objectForKey:@"DVTPlugInCompatibilityUUIDs"] : nil;
+}
+
+- (NSString*) plistPathForPlugin:(ATZPlugin*)plugin {
+
+  return [[self pathForInstalledPackage:plugin] stringByAppendingString:@"/Contents/Info.plist"];
+>>>>>>> Implemented check and rewrite of missing DVTPlugInCompatibilityUUIDs.
 }
 
 @end
