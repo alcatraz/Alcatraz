@@ -35,13 +35,10 @@ static NSString *const PROJECT = @"-project";
 static NSString *const XCODEPROJ = @".xcodeproj";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
-<<<<<<< HEAD
-=======
 static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
 
 #define ACTIVECOMPATIBILITYUUIDS @[XCODE502UUID]
 
->>>>>>> Implemented check and rewrite of missing DVTPlugInCompatibilityUUIDs.
 @implementation ATZPluginInstaller
 
 #pragma mark - Abstract
@@ -83,7 +80,6 @@ static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
     
     NSBundle *pluginBundle = [NSBundle bundleWithPath:[self pathForInstalledPackage:plugin]];
     NSLog(@"Trying to reload plugin: %@ with bundle: %@", plugin.name, pluginBundle);
-<<<<<<< HEAD
     
     if (!pluginBundle) {
         completion([NSError errorWithDomain:@"Bundle was not found" code:669 userInfo:nil]);
@@ -99,23 +95,6 @@ static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
     if (!loaded)
         NSLog(@"[Alcatraz] Plugin load error: %@", loadError);
     
-=======
-    
-    if (!pluginBundle) {
-        completion([NSError errorWithDomain:@"Bundle was not found" code:669 userInfo:nil]);
-        return;
-    }
-    else if ([pluginBundle isLoaded]) {
-        completion(nil);
-        return;
-    }
-    
-    NSError *loadError = nil;
-    BOOL loaded = [pluginBundle loadAndReturnError:&loadError];
-    if (!loaded)
-        NSLog(@"[Alcatraz] Plugin load error: %@", loadError);
-    
->>>>>>> attempting to rebase off of neonichu/commandline-tool
     Class principalClass = [pluginBundle principalClass];
     if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
         [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
@@ -161,6 +140,7 @@ static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
     NSLog(@"Wasn't able to find: %@ in %@", xcodeProjFilename, clonedDirectory);
     @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
 }
+
 - (NSString *)installNameFromPbxproj:(ATZPackage *)package {
     NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
                                stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
