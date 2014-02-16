@@ -83,6 +83,7 @@ static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
     
     NSBundle *pluginBundle = [NSBundle bundleWithPath:[self pathForInstalledPackage:plugin]];
     NSLog(@"Trying to reload plugin: %@ with bundle: %@", plugin.name, pluginBundle);
+<<<<<<< HEAD
     
     if (!pluginBundle) {
         completion([NSError errorWithDomain:@"Bundle was not found" code:669 userInfo:nil]);
@@ -98,6 +99,23 @@ static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
     if (!loaded)
         NSLog(@"[Alcatraz] Plugin load error: %@", loadError);
     
+=======
+    
+    if (!pluginBundle) {
+        completion([NSError errorWithDomain:@"Bundle was not found" code:669 userInfo:nil]);
+        return;
+    }
+    else if ([pluginBundle isLoaded]) {
+        completion(nil);
+        return;
+    }
+    
+    NSError *loadError = nil;
+    BOOL loaded = [pluginBundle loadAndReturnError:&loadError];
+    if (!loaded)
+        NSLog(@"[Alcatraz] Plugin load error: %@", loadError);
+    
+>>>>>>> attempting to rebase off of neonichu/commandline-tool
     Class principalClass = [pluginBundle principalClass];
     if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
         [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
@@ -125,11 +143,7 @@ static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
         completion(error);
-<<<<<<< HEAD
-=======
-        [shell release];
-        [self forceCompatibilityUUIDs:ACTIVECOMPATIBILITYUUIDS forPlugin:plugin];
->>>>>>> Implemented check and rewrite of missing DVTPlugInCompatibilityUUIDs.
+        if (!error) [self forceCompatibilityUUIDs:ACTIVECOMPATIBILITYUUIDS forPlugin:plugin];
     }];
 }
 
@@ -147,15 +161,14 @@ static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
     NSLog(@"Wasn't able to find: %@ in %@", xcodeProjFilename, clonedDirectory);
     @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
 }
-
-<<<<<<< HEAD
 - (NSString *)installNameFromPbxproj:(ATZPackage *)package {
     NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
                                stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
                              stringByAppendingPathComponent:PROJECT_PBXPROJ];
     
     return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
-=======
+}
+
 - (BOOL) forceCompatibilityUUIDs:(NSArray*)uuids forPlugin:(ATZPlugin*)plugin { id plist;
 
   if ([[self compatibilityUUIDsForPlugin:plugin] isEqualToArray:uuids]) return YES;
@@ -174,7 +187,6 @@ static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
 - (NSString*) plistPathForPlugin:(ATZPlugin*)plugin {
 
   return [[self pathForInstalledPackage:plugin] stringByAppendingString:@"/Contents/Info.plist"];
->>>>>>> Implemented check and rewrite of missing DVTPlugInCompatibilityUUIDs.
 }
 
 @end
