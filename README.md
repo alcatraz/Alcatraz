@@ -36,10 +36,6 @@ Fork the [Alcatraz package repository](https://github.com/mneorr/alcatraz-packag
 
 ## Development
 
-Alcatraz is in early alpha, and you should forgive him for any inconvenience.
-
-Public Trello board can be found [here](https://trello.com/b/ZODgq5Av).
-
 Alcatraz has a few [contribution guidelines](https://github.com/mneorr/Alcatraz/blob/master/CONTRIBUTING.md), for anyone looking to make it more awesome.
 
 ## Uninstall
