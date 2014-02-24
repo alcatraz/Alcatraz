@@ -27,4 +27,6 @@ static NSString *const PLUGIN_ICON_NAME = @"toolbar_plugins";
 
 @interface ATZPlugin : ATZPackage
 
+@property (readonly)  NSArray * compatibilityUUIDs;
+@property (readonly) NSString * plistPath;
 @end

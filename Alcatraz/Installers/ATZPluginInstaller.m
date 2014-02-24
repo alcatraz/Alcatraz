@@ -35,6 +35,10 @@ static NSString *const PROJECT = @"-project";
 static NSString *const XCODEPROJ = @".xcodeproj";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
+static NSString *const XCODE502UUID = @"37B30044-3B14-46BA-ABAA-F01000C27B63";
+
+#define ACTIVECOMPATIBILITYUUIDS @[XCODE502UUID]
+
 @implementation ATZPluginInstaller
 
 #pragma mark - Abstract
@@ -117,6 +121,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     ATZShell *shell = [ATZShell new];
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
+        if (!error) [self forceCompatibilityUUIDs:ACTIVECOMPATIBILITYUUIDS forPlugin:plugin];
         completion(error);
     }];
 }
@@ -142,6 +147,16 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
                              stringByAppendingPathComponent:PROJECT_PBXPROJ];
     
     return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
+}
+
+- (BOOL) forceCompatibilityUUIDs:(NSArray*)uuids forPlugin:(ATZPlugin*)plugin { id plist;
+
+  if ([plugin.compatibilityUUIDs isEqualToArray:uuids]) return YES;
+  if (!(plist = [NSMutableDictionary dictionaryWithContentsOfFile:plugin.plistPath])) return NO;
+  NSArray *existingUUIDs = [plist objectForKey:@"DVTPlugInCompatibilityUUIDs"] ?: @[];
+  [plist setObject:[existingUUIDs arrayByAddingObjectsFromArray:uuids] forKey:@"DVTPlugInCompatibilityUUIDs"];
+  NSLog(@"[Alcatraz] Setting compatibility UUID's for %@", plugin.plistPath);
+  return [plist writeToFile:plugin.plistPath atomically:YES];
 }
 
 @end
