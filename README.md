@@ -7,9 +7,9 @@ The Xcode Package Manager!
 
 Alcatraz is an open-source package manager for Xcode 5. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.
 
-[![Stories in Ready](https://badge.waffle.io/mneorr/Alcatraz.png?label=ready)](https://waffle.io/mneorr/Alcatraz)
-[![Build Status](https://travis-ci.org/mneorr/Alcatraz.png?branch=master)](https://travis-ci.org/mneorr/Alcatraz)
-[![Alcatraz chat](https://badges.gitter.im/mneorr/alcatraz.png)](https://gitter.im/mneorr/alcatraz)
+[![Stories in Ready](https://badge.waffle.io/supermarin/Alcatraz.png?label=ready)](https://waffle.io/supermarin/Alcatraz)
+[![Build Status](https://travis-ci.org/supermarin/Alcatraz.png?branch=master)](https://travis-ci.org/supermarin/Alcatraz)
+[![Alcatraz chat](https://badges.gitter.im/supermarin/alcatraz.png)](https://gitter.im/supermarin/alcatraz)
 ![Package Manager UI](http://i.imgur.com/ezqtIRU.png)
 
 ## Installation
@@ -28,15 +28,15 @@ Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via 
 
 Select `Package Manager` from the `Window` menu, then check or uncheck packages to install or remove them. You'll need to restart Xcode after installing plugins or templates. Installed plugins are checked and updated each time Alcatraz is launched.
 
-![Window Menu Item](http://mneorr.github.io/Alcatraz/images/menu.png)
+![Window Menu Item](http://supermarin.github.io/Alcatraz/images/menu.png)
 
 ## I want to submit my package!
 
-Fork the [Alcatraz package repository](https://github.com/mneorr/alcatraz-packages) and include your package with `name`, `description`, `URL`, and optional `screenshot`. Don't forget to submit a pull request. Further instructions are included in the package repository documentation.
+Fork the [Alcatraz package repository](https://github.com/supermarin/alcatraz-packages) and include your package with `name`, `description`, `URL`, and optional `screenshot`. Don't forget to submit a pull request. Further instructions are included in the package repository documentation.
 
 ## Development
 
-Alcatraz has a few [contribution guidelines](https://github.com/mneorr/Alcatraz/blob/master/CONTRIBUTING.md), for anyone looking to make it more awesome.
+Alcatraz has a few [contribution guidelines](https://github.com/supermarin/Alcatraz/blob/master/CONTRIBUTING.md), for anyone looking to make it more awesome.
 
 ## Uninstall
 
@@ -44,8 +44,6 @@ The installation process creates `~/Library/Application\ Support/Developer/Share
 
 ## Team
 
-[Marin Usalj](http://mneorr.com) ([@mneorr](https://github.com/mneorr))<br>
+[Marin Usalj](http://supermar.in) ([@supermarin](https://github.com/supermarin))<br>
 [Delisa Mason](http://delisa.me) ([@kattrali](https://github.com/kattrali))<br>
 Jurre Stender ([@jurre](https://github.com/jurre))<br>
-
-Icon by [Derek Briggs](http://derekbriggs.com)
