@@ -19,7 +19,6 @@
 		32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B63216173A3E880076C098 /* ATZPackageTableCellView.m */; };
 		32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC2173A46A900513A7C /* eye_icon.png */; };
 		32D86505173A4555009C724B /* eye_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86503173A4555009C724B /* eye_icon@2x.png */; };
-		6415DD92188CBAC7000DDEC0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6415DD91188CBAC7000DDEC0 /* SenTestingKit.framework */; };
 		644846A818AC44D000A7FF4D /* ATZDownloaderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 644846A718AC44D000A7FF4D /* ATZDownloaderSpec.m */; };
 		644846A918AC593600A7FF4D /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B42171F031300AFE577 /* AppKit.framework */; };
 		64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4918136FF30025C0B1 /* toolbar_colors.png */; };
@@ -109,7 +108,6 @@
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
 		5F2302EEB43C4F6B95E62F75 /* libPods-AlcatrazTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AlcatrazTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6415DD91188CBAC7000DDEC0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		644846A718AC44D000A7FF4D /* ATZDownloaderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZDownloaderSpec.m; sourceTree = "<group>"; };
 		64C28A4918136FF30025C0B1 /* toolbar_colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_colors.png; sourceTree = "<group>"; };
 		64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_colors@2x.png"; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				644846A918AC593600A7FF4D /* AppKit.framework in Frameworks */,
-				6415DD92188CBAC7000DDEC0 /* SenTestingKit.framework in Frameworks */,
 				D1993E22936041BFBD497F9D /* libPods-AlcatrazTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,7 +245,6 @@
 		890A4B41171F031300AFE577 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6415DD91188CBAC7000DDEC0 /* SenTestingKit.framework */,
 				64EDC500188CB55A00D45F1D /* Cocoa.framework */,
 				0C7AF64F186B4E890064EE7B /* QuartzCore.framework */,
 				890A4B42171F031300AFE577 /* AppKit.framework */,

@@ -6,7 +6,7 @@ INSTALL_PATH="~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${B
 VERSION_LOCATION="Alcatraz/Views/ATZVersionLabel.m"
 VERSION_TMP_FILE="output.m"
 DEFAULT_BUILD_ARGS=-workspace Alcatraz.xcworkspace -scheme Alcatraz
-BUILD_TASK=xcodebuild $(DEFAULT_BUILD_ARGS)
+XCODEBUILD=xcodebuild $(DEFAULT_BUILD_ARGS)
 
 default: test
 
@@ -15,15 +15,15 @@ ci: clean test
 shipit: update build upload
 
 clean:
-	$(BUILD_TASK) clean | xcpretty -c
+	$(XCODEBUILD) clean | xcpretty -c
 	rm -rf build
 
 # Run tests
 ci_test:
-	$(BUILD_TASK) test | xcpretty -c && exit ${PIPESTATUS[0]}
+	$(XCODEBUILD) test | xcpretty -c; exit ${PIPESTATUS[0]}
 
 test:
-	$(BUILD_TASK) test | tee xcodebuild.log | xcpretty -tc
+	$(XCODEBUILD) test | tee xcodebuild.log | xcpretty -tc
 
 # Merge changes into deploy branch
 update:
