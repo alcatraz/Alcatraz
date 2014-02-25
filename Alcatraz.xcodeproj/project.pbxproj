@@ -783,8 +783,7 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Alcatraz.xcplugin/Contents/MacOS/Alcatraz";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_FRAMEWORKS_DIR)";
-				GCC_ENABLE_OBJC_GC = supported;
-				"GCC_ENABLE_OBJC_GC[arch=*]" = YES;
+				GCC_ENABLE_OBJC_GC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlcatrazTests/AlcatrazTests-Prefix.pch";
 				INFOPLIST_FILE = "AlcatrazTests/AlcatrazTests-Info.plist";
@@ -801,8 +800,7 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Alcatraz.xcplugin/Contents/MacOS/Alcatraz";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_FRAMEWORKS_DIR)";
-				GCC_ENABLE_OBJC_GC = supported;
-				"GCC_ENABLE_OBJC_GC[arch=*]" = YES;
+				GCC_ENABLE_OBJC_GC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AlcatrazTests/AlcatrazTests-Prefix.pch";
 				INFOPLIST_FILE = "AlcatrazTests/AlcatrazTests-Info.plist";
