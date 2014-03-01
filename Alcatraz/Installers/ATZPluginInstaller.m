@@ -92,8 +92,11 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
         NSLog(@"[Alcatraz] Plugin load error: %@", loadError);
     
     Class principalClass = [pluginBundle principalClass];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
         [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
+#pragma clang diagnostic pop
     } else
         NSLog(@"%@",[NSString stringWithFormat:@"%@ does not implement the pluginDidLoad: method.", plugin.name]);
     
