@@ -10,7 +10,7 @@ XCODEBUILD=xcodebuild $(DEFAULT_BUILD_ARGS)
 
 default: test
 
-ci: clean test
+ci: clean ci_test
 
 shipit: update build upload
 
