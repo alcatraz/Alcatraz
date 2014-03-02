@@ -23,7 +23,7 @@ ci_test:
 	$(XCODEBUILD) test | xcpretty -c; exit ${PIPESTATUS[0]}
 
 test:
-	$(XCODEBUILD) test | tee xcodebuild.log | xcpretty -tc
+	$(XCODEBUILD) test | tee xcodebuild.log | xcpretty -c
 
 # Merge changes into deploy branch
 update:

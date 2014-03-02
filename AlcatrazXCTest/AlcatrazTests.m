@@ -52,14 +52,20 @@ describe(@"Alcatraz.m", ^{
     __block NSError *error = nil;
     NSBundle *pluginBundle = [NSBundle bundleWithPath:[NSHomeDirectory() stringByAppendingPathComponent:ALCATRAZ_PATH]];
     
+    __block SEL initWithBundle;
+    __block SEL pluginDidLoad;
+    
     beforeEach(^{
         [NSApp stub:@selector(mainMenu) andReturn:createFakeMenu()];
+        pluginDidLoad = NSSelectorFromString(@"pluginDidLoad:");
+        initWithBundle = NSSelectorFromString(@"initWithBundle:");
         
         [pluginBundle loadAndReturnError:&error];
-        [pluginBundle.principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
+        [pluginBundle.principalClass performSelector:pluginDidLoad withObject:pluginBundle];
         
         if (error) NSLog(@"ZOMG ERRRO! %@", error);
-        alcatraz = [[[pluginBundle principalClass] alloc] performSelector:@selector(initWithBundle:) withObject:pluginBundle];
+
+        alcatraz = [[[pluginBundle principalClass] alloc] performSelector:initWithBundle withObject:pluginBundle];
     });
     
     describe(@"loading plugin", ^{
@@ -76,7 +82,7 @@ describe(@"Alcatraz.m", ^{
         it(@"updates alcatraz", ^{
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [[ATZAlcatrazPackage should] receive:@selector(update)];
-                [alcatraz performSelector:@selector(initWithBundle:) withObject:pluginBundle];
+                [alcatraz performSelector:initWithBundle withObject:pluginBundle];
             }];
         });
         

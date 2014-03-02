@@ -3,23 +3,9 @@
    LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "NO"
-      buildImplicitDependencies = "NO">
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E3C2ED9DB92D4FE2930888C9"
-               BuildableName = "libPods-AlcatrazTests.a"
-               BlueprintName = "Pods-AlcatrazTests"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -42,9 +28,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8966AFCA173EB7BF004150C0"
-               BuildableName = "AlcatrazTests.xctest"
-               BlueprintName = "AlcatrazTests"
+               BlueprintIdentifier = "893AA68518C3D6A20079823D"
+               BuildableName = "AlcatrazXCTest.xctest"
+               BlueprintName = "AlcatrazXCTest"
                ReferencedContainer = "container:Alcatraz.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -60,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8966AFCA173EB7BF004150C0"
-               BuildableName = "AlcatrazTests.xctest"
-               BlueprintName = "AlcatrazTests"
+               BlueprintIdentifier = "893AA68518C3D6A20079823D"
+               BuildableName = "AlcatrazXCTest.xctest"
+               BlueprintName = "AlcatrazXCTest"
                ReferencedContainer = "container:Alcatraz.xcodeproj">
             </BuildableReference>
          </TestableReference>
