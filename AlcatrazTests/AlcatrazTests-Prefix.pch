@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'AlcatrazTests' target in the 'AlcatrazTests' project
-//
-
-#ifdef __OBJC__
-    #import <AppKit/AppKit.h>
-#endif
