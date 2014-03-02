@@ -31,7 +31,7 @@
 + (BOOL)areCommandLineToolsAvailable {
     BOOL areAvailable = YES;
     @try {
-        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/git" arguments:@[]];
+        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/git" arguments:@[@"--version"]];
     }
     @catch (NSException *exception) {
         areAvailable = NO;

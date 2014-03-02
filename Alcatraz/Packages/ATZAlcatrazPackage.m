@@ -37,7 +37,7 @@
                            @"description": @"Self updating installer",
                            @"branch": @"deploy"
                            }];
-    
+
     [alcatraz updateWithProgressMessage:^(NSString *proggressMessage){} completion:^(NSError *failure) {
         if (failure)
             NSLog(@"Alcatraz update failed! %@", failure);

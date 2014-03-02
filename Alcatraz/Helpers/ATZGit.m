@@ -34,7 +34,7 @@
 }
 
 + (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
-             completion:(void (^)(NSError *))completion {
+             completion:(void (^)(NSString *, NSError *))completion {
 
     NSLog(@"Cloning Repo: %@", localPath);
     [self clone:remotePath to:localPath completion:completion];
@@ -50,14 +50,14 @@
 
 #pragma mark - Private
 
-+ (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSError *))completion {
++ (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
     ATZShell *shell = [ATZShell new];
     
     [shell executeCommand:GIT withArguments:@[CLONE, remotePath, localPath, IGNORE_PUSH_CONFIG]
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git Clone output: %@", output);
-        completion(error);
+        completion(output, error);
     }];
 }
 
