@@ -97,10 +97,10 @@
         </customObject>
         <menu title="AMainMenu" systemMenu="main" id="29">
             <items>
-                <menuItem title="AlcatrazTests" id="56">
-                    <menu key="submenu" title="AlcatrazTests" systemMenu="apple" id="57">
+                <menuItem title="TestProject" id="56">
+                    <menu key="submenu" title="TestProject" systemMenu="apple" id="57">
                         <items>
-                            <menuItem title="About AlcatrazTests" id="58">
+                            <menuItem title="About TestProject" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="236">
@@ -116,7 +116,7 @@
                             <menuItem isSeparatorItem="YES" id="144">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Hide AlcatrazTests" keyEquivalent="h" id="134"/>
+                            <menuItem title="Hide TestProject" keyEquivalent="h" id="134"/>
                             <menuItem title="Hide Others" keyEquivalent="h" id="145">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                             </menuItem>
@@ -124,7 +124,7 @@
                             <menuItem isSeparatorItem="YES" id="149">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Quit AlcatrazTests" keyEquivalent="q" id="136"/>
+                            <menuItem title="Quit TestProject" keyEquivalent="q" id="136"/>
                         </items>
                     </menu>
                 </menuItem>
@@ -433,13 +433,13 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="491">
                         <items>
-                            <menuItem title="AlcatrazTests Help" keyEquivalent="?" id="492"/>
+                            <menuItem title="TestProject Help" keyEquivalent="?" id="492"/>
                         </items>
                     </menu>
                 </menuItem>
             </items>
         </menu>
-        <window title="AlcatrazTests" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
+        <window title="TestProject" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="480" height="360"/>

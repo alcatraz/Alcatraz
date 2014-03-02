@@ -1,0 +1,6 @@
+platform :osx, '10.8'
+
+target :TestProjectTests, :exclusive => true do
+  pod 'Kiwi/XCTest'
+end
+

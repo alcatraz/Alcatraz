@@ -5,7 +5,7 @@ URL="https://s3.amazonaws.com/${BUCKET}/${ARCHIVE}"
 INSTALL_PATH="~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/"
 VERSION_LOCATION="Alcatraz/Views/ATZVersionLabel.m"
 VERSION_TMP_FILE="output.m"
-DEFAULT_BUILD_ARGS=-workspace Alcatraz.xcworkspace -scheme Alcatraz
+DEFAULT_BUILD_ARGS=-workspace TestProject/TestProject.xcworkspace -scheme TestProject
 XCODEBUILD=xcodebuild $(DEFAULT_BUILD_ARGS)
 
 default: test

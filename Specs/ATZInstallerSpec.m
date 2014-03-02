@@ -14,11 +14,11 @@ SPEC_BEGIN(ATZInstallerTests)
 
 describe(@"ATZInstaller", ^{
 
-    ATZInstaller *installer = [ATZInstaller new];
-    
-    it(@"stops installing if download returned an error", ^{
-        
-    });
+//    ATZInstaller *installer = [ATZInstaller new];
+//    
+//    it(@"stops installing if download returned an error", ^{
+//        
+//    });
     
 });
 

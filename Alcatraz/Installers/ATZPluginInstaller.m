@@ -91,16 +91,9 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     if (!loaded)
         NSLog(@"[Alcatraz] Plugin load error: %@", loadError);
     
-    Class principalClass = [pluginBundle principalClass];
-    if ([principalClass respondsToSelector:@selector(pluginDidLoad:)]) {
-        [principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
-    } else
-        NSLog(@"%@",[NSString stringWithFormat:@"%@ does not implement the pluginDidLoad: method.", plugin.name]);
-    
+    [self reloadPluginBundleWithoutWarnings:pluginBundle forPlugin:plugin];
     completion(nil);
 }
-
-
 
 #pragma mark - Private
 
@@ -142,6 +135,18 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
                              stringByAppendingPathComponent:PROJECT_PBXPROJ];
     
     return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
+}
+
+- (void)reloadPluginBundleWithoutWarnings:(NSBundle *)pluginBundle forPlugin:(ATZPackage *)plugin {
+    Class principalClass = [pluginBundle principalClass];
+    if ([principalClass respondsToSelector:NSSelectorFromString(@"pluginDidLoad:")]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [principalClass performSelector:NSSelectorFromString(@"pluginDidLoad:") withObject:pluginBundle];
+#pragma clang diagnostic pop
+        
+    } else
+        NSLog(@"%@",[NSString stringWithFormat:@"%@ does not implement the pluginDidLoad: method.", plugin.name]);
 }
 
 @end
