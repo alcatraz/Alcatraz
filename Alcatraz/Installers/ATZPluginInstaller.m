@@ -40,13 +40,13 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 #pragma mark - Abstract
 
 - (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
-    
+
     [ATZGit cloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
                  completion:completion];
 }
 
 - (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
-    
+
     [ATZGit updateRepository:[self pathForDownloadedPackage:package] revision:package.revision
                   completion:completion];
 }
@@ -64,7 +64,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
     NSString *pluginsInstallPath = [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PLUGINS_RELATIVE_PATH];
     NSString *pluginInstallName = [self installNameFromPbxproj:package] ?: package.name;
-    
+
     return [[pluginsInstallPath stringByAppendingPathComponent:pluginInstallName]
                                        stringByAppendingString:package.extension];
 }
@@ -73,10 +73,10 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 #pragma mark - Hooks
 // Note: this is an early alpha implementation. It needs some love
 - (void)reloadXcodeForPackage:(ATZPackage *)plugin completion:(void(^)(NSError *))completion {
-    
+
     NSBundle *pluginBundle = [NSBundle bundleWithPath:[self pathForInstalledPackage:plugin]];
     NSLog(@"Trying to reload plugin: %@ with bundle: %@", plugin.name, pluginBundle);
-    
+
     if (!pluginBundle) {
         completion([NSError errorWithDomain:@"Bundle was not found" code:669 userInfo:nil]);
         return;
@@ -85,13 +85,14 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
         completion(nil);
         return;
     }
-    
+
     NSError *loadError = nil;
     BOOL loaded = [pluginBundle loadAndReturnError:&loadError];
     if (!loaded)
         NSLog(@"[Alcatraz] Plugin load error: %@", loadError);
-    
+
     [self reloadPluginBundleWithoutWarnings:pluginBundle forPlugin:plugin];
+
     completion(nil);
 }
 
@@ -100,13 +101,13 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
 
     NSString *xcodeProjPath;
-    
+
     @try { xcodeProjPath = [self findXcodeprojPathForPlugin:plugin]; }
     @catch (NSException *exception) {
         completion([NSError errorWithDomain:exception.reason code:666 userInfo:nil]);
         return;
     }
-    
+
     ATZShell *shell = [ATZShell new];
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
@@ -117,14 +118,14 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 - (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
     NSString *clonedDirectory = [self pathForDownloadedPackage:plugin];
     NSString *xcodeProjFilename = [plugin.name stringByAppendingString:XCODEPROJ];
-    
+
     NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];
     NSString *directoryEntry;
-    
+
     while (directoryEntry = [enumerator nextObject])
         if ([directoryEntry.pathComponents.lastObject isEqualToString:xcodeProjFilename])
             return [clonedDirectory stringByAppendingPathComponent:directoryEntry];
-    
+
     NSLog(@"Wasn't able to find: %@ in %@", xcodeProjFilename, clonedDirectory);
     @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
 }
@@ -133,7 +134,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
                                stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
                              stringByAppendingPathComponent:PROJECT_PBXPROJ];
-    
+
     return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
 }
 
@@ -144,9 +145,10 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [principalClass performSelector:NSSelectorFromString(@"pluginDidLoad:") withObject:pluginBundle];
 #pragma clang diagnostic pop
-        
-    } else
+
+    } else {
         NSLog(@"%@",[NSString stringWithFormat:@"%@ does not implement the pluginDidLoad: method.", plugin.name]);
+    }
 }
 
 @end
