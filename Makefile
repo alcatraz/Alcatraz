@@ -1,7 +1,5 @@
-ARCHIVE="alcatraz.tar.gz"
+ARCHIVE="Alcatraz.tar.gz"
 BUNDLE_NAME="Alcatraz.xcplugin"
-BUCKET="xcode-fun-time"
-URL="https://s3.amazonaws.com/${BUCKET}/${ARCHIVE}"
 INSTALL_PATH="~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/"
 VERSION_LOCATION="Alcatraz/Views/ATZVersionLabel.m"
 VERSION_TMP_FILE="output.m"
@@ -12,7 +10,7 @@ default: test
 
 ci: clean test
 
-shipit: update build upload
+shipit: update version build release
 
 clean:
 	$(XCODEBUILD) clean | xcpretty -c
@@ -49,9 +47,9 @@ install:
 	rm -rf $INSTALL_PATH
 	curl $URL | tar xv -C ${BUNDLE_NAME} -
 
-# Upload build to S3
-upload:
-	ruby scripts/upload_build.rb ${ARCHIVE} ${BUCKET}
+# Create a Github release
+release:
+	gh release create -d -f ${ARCHIVE} -m "Release ${VERSION}" ${VERSION}
 
 # Set latest version
 # Requires VERSION argument set
