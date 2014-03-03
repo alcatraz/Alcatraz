@@ -1,6 +1,6 @@
 ARCHIVE="Alcatraz.tar.gz"
 BUNDLE_NAME="Alcatraz.xcplugin"
-INSTALL_PATH="~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/"
+INSTALL_PATH=~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/
 VERSION_LOCATION="Alcatraz/Views/ATZVersionLabel.m"
 VERSION_TMP_FILE="output.m"
 DEFAULT_BUILD_ARGS=-workspace TestProject/TestProject.xcworkspace -scheme TestProject
