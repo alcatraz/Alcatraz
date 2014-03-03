@@ -50,6 +50,8 @@ install:
 
 # Create a Github release
 release:
+	git push
+	git push --tags
 	gh release create -d -m "Release ${VERSION}" ${VERSION}
 
 # Set latest version
