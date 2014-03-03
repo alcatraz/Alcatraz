@@ -155,8 +155,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
                              completion:^(NSError *failure) {
 
         [control setProgress:failure ? 0 : 1 animated:YES];
-        if (package.requiresRestart)
-            [self postNotificationForInstalledPackage:package];
+        if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
     }];
 }
 
