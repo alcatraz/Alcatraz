@@ -48,7 +48,7 @@ const CGFloat ATZFakeInstallProgress = 0.66;
             completion:(void(^)(NSError *error))completion {
 
     progress([NSString stringWithFormat:DOWNLOADING_FORMAT, package.name], ATZFakeDownloadProgress);
-    [self downloadOrUpdatePackage:package completion:^(NSError *error) {
+    [self downloadOrUpdatePackage:package completion:^(NSString *output, NSError *error) {
        
         if (error) { completion(error); return; }
         progress([NSString stringWithFormat:INSTALLING_FORMAT, package.name], ATZFakeInstallProgress);
@@ -67,7 +67,7 @@ const CGFloat ATZFakeInstallProgress = 0.66;
            completion:(void(^)(NSError *error))completion {
     
     progress([NSString stringWithFormat:UPDATING_FORMAT, package.name], ATZFakeDownloadProgress);
-    [self updatePackage:package completion:^(NSString *output, NSError *error) {
+    [self downloadOrUpdatePackage:package completion:^(NSString *output, NSError *error) {
         
         BOOL needsUpdate = output.length > 0;
         if (error || !needsUpdate) { completion(error); return; }
@@ -98,7 +98,7 @@ const CGFloat ATZFakeInstallProgress = 0.66;
 }
 
 
-- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Abstract Installer doesn't know how to download" userInfo:nil];
 }
@@ -133,11 +133,11 @@ const CGFloat ATZFakeInstallProgress = 0.66;
 
 #pragma mark - Private
 
-- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
+- (void)downloadOrUpdatePackage:(ATZPackage *)package completion:(void (^)(NSString *, NSError *))completion {
     
     if ([[NSFileManager sharedManager] fileExistsAtPath:[self pathForDownloadedPackage:package]])
         [self updatePackage:package completion:^(NSString *output, NSError *error) {
-            completion(error);
+            completion(output, error);
         }];
     else
         [self downloadPackage:package completion:completion];
