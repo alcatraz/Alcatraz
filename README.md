@@ -19,6 +19,10 @@ or download the repository from Github and build it in Xcode. You'll need to res
 
 Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via `Preferences > Downloads`.
 
+## Requirements
+
+Alcatraz for Xcode 5 only supports OS X 10.9+.
+
 ## Usage
 
 Select `Package Manager` from the `Window` menu, then check or uncheck packages to install or remove them. You'll need to restart Xcode after installing plugins or templates. Installed plugins are checked and updated each time Alcatraz is launched.
@@ -35,7 +39,7 @@ Alcatraz has a few [contribution guidelines](https://github.com/supermarin/Alcat
 
 ## Uninstall
 
-The installation process creates `~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin`, which can be deleted to uninstall the plugin completely. To remove all packages installed via Alcatraz, run `rm -rf ~/Library/Application\ Support/Alcatraz/`.
+The installation process creates `rm -rf ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin`, which can be deleted to uninstall the plugin completely. To remove all packages installed via Alcatraz, run `rm -rf ~/Library/Application\ Support/Alcatraz/`.
 
 ## Team
 
