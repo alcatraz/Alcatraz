@@ -23,7 +23,7 @@ Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via 
 
 Select `Package Manager` from the `Window` menu, then check or uncheck packages to install or remove them. You'll need to restart Xcode after installing plugins or templates. Installed plugins are checked and updated each time Alcatraz is launched.
 
-![Window Menu Item](http://alcatraz.io/images/menu@2x.png)
+<img src="http://alcatraz.io/images/menu@2x.png" width="411px"/>
 
 ## I want to submit my package!
 
