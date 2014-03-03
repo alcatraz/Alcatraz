@@ -1,9 +1,5 @@
-# ATTENTION: Xcode 5 is work in progress
-We're working on releasing Alcatraz 1.0 for Xcode 5.
-Please be patient and don't create issues until 1.0 gets released. Thanks!
-
 # Alcatraz
-The Xcode Package Manager!
+The Package Manager for Xcode 5!
 
 Alcatraz is an open-source package manager for Xcode 5. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.
 
