@@ -129,49 +129,39 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [super keyDown:event];
 }
 
+
 #pragma mark - Private
 
-- (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
-    [self showInstallationIndicators];
-    [control setProgress:ATZRadialProgressControl_FakeRemoveProgress animated:YES];
-    
-    [package removeWithCompletion:^(NSError *failure) {
+- (void)enqueuePackageUpdate:(ATZPackage *)package {
+    if (!package.isInstalled) return;
 
-        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to uninstall :( Error: %@", package.name, failure.domain] :
-                                      [NSString stringWithFormat:@"%@ uninstalled.", package.name];
-
-        [self flashNotice:message];
-        [self reloadUIForPackage:package fromControl:control];
+    NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
+        [package updateWithProgressMessage:^(NSString *proggressMessage){}
+                                completion:^(NSError *failure){}];
     }];
+    [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
+    [[NSOperationQueue mainQueue] addOperation:updateOperation];
+}
+
+- (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
+    [control setProgress:0 animated:YES];
+    [package removeWithCompletion:^(NSError *failure) {}];
 }
 
 - (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
-    [self showInstallationIndicators];
     [control setProgress:ATZRadialProgressControl_FakeInstallProgress animated:YES];
     
-    [package installWithProgressMessage:^(NSString *progressMessage) { self.statusLabel.stringValue = progressMessage; }
+    [package installWithProgressMessage:^(NSString *progressMessage){} //TODO: see if we can get rid of NSString progress
                              completion:^(NSError *failure) {
-        
-        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :( Error: %@", package.name, failure.domain] :
-                                      [NSString stringWithFormat:@"%@ installed.", package.name];
 
-        [self flashNotice:message];
-        [self reloadUIForPackage:package fromControl:control];
-        [self postNotificationForInstalledPackage:package];
+        [control setProgress:failure ? 0 : 1 animated:YES];
+        if (package.requiresRestart)
+            [self postNotificationForInstalledPackage:package];
     }];
 }
 
-- (void)reloadUIForPackage:(ATZPackage *)package fromControl:(ATZRadialProgressControl *)control {
-    [self hideInstallationIndicators];
-    
-    CGFloat progress = package.isInstalled ? 1.0 : 0.0;
-    [control setProgress:progress animated:YES];
-    
-    if (package.requiresRestart) [self.restartLabel setHidden:NO];
-}
-
 - (void)postNotificationForInstalledPackage:(ATZPackage *)package {
-    if (![NSUserNotificationCenter class] || !package.isInstalled || self.window.isKeyWindow) return;
+    if (![NSUserNotificationCenter class] || !package.isInstalled) return;
     
     NSUserNotification *notification = [NSUserNotification new];
     notification.title = [NSString stringWithFormat:@"%@ installed", package.type];
@@ -183,16 +173,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 BOOL hasPressedCommandF(NSEvent *event) {
     return ([event modifierFlags] & NSCommandKeyMask) && [[event characters] characterAtIndex:0] == 'f';
-}
-
-- (void)hideInstallationIndicators {
-    [[self progressIndicator] stopAnimation:nil];
-    [[self progressIndicator] setHidden:YES];
-}
-
-- (void)showInstallationIndicators {
-    [[self progressIndicator] setHidden:NO];
-    [[self progressIndicator] startAnimation:nil];
 }
 
 - (void)updatePredicate {
@@ -223,7 +203,6 @@ BOOL hasPressedCommandF(NSEvent *event) {
         
         if (error) {
             NSLog(@"Error while downloading packages! %@", error);
-            [self flashNotice:[NSString stringWithFormat:@"Download failed: %@", error.domain]];
         } else {
             self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
             [self updatePackages];
@@ -233,26 +212,8 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
 - (void)updatePackages {
     for (ATZPackage *package in self.packages) {
-        
-        if (package.isInstalled) {
-            NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
-                [package updateWithProgressMessage:^(NSString *proggressMessage) {
-                    
-                    [self flashNotice:proggressMessage];
-                    
-                } completion:^(NSError *failure) {}];
-            }];
-            [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
-            [[NSOperationQueue mainQueue] addOperation:updateOperation];
-        }
+        [self enqueuePackageUpdate:package];
     }
-}
-
-- (void)flashNotice:(NSString *)notice {
-    self.statusLabel.stringValue = notice;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.statusLabel performSelector:@selector(setStringValue:) withObject:@"" afterDelay:3];
-    }];
 }
 
 - (void)openWebsite:(NSString *)address {
