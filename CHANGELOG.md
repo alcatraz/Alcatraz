@@ -1,3 +1,7 @@
+## 1.0
+
+- Support for Xcode 5
+
 ## 0.6.1
 
 #### Bug fixes
