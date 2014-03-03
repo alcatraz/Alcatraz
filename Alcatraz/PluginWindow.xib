@@ -109,10 +109,10 @@
                                                             </connections>
                                                         </textField>
                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="959" userLabel="Package Name">
-                                                            <rect key="frame" x="0.0" y="53" width="266" height="17"/>
+                                                            <rect key="frame" x="0.0" y="53" width="413" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="266" id="973"/>
+                                                                <constraint firstAttribute="width" constant="413" id="973"/>
                                                             </constraints>
                                                             <buttonCell key="cell" type="bevel" title="Button" bezelStyle="regularSquare" imagePosition="right" alignment="left" imageScaling="proportionallyDown" inset="2" id="960">
                                                                 <behavior key="behavior" lightByContents="YES"/>
