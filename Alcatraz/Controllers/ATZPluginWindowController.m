@@ -136,7 +136,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     if (!package.isInstalled) return;
 
     NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
-        [package updateWithProgressMessage:^(NSString *proggressMessage){}
+        [package updateWithProgress:^(NSString *proggressMessage, CGFloat progress){}
                                 completion:^(NSError *failure){}];
     }];
     [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
@@ -149,11 +149,10 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
-    [control setProgress:ATZRadialProgressControl_FakeInstallProgress animated:YES];
-    
-    [package installWithProgressMessage:^(NSString *progressMessage){} //TODO: see if we can get rid of NSString progress
-                             completion:^(NSError *failure) {
-
+    [package installWithProgress:^(NSString *progressMessage, CGFloat progress) { //TODO: see if we can get rid of NSString progress
+        [control setProgress:progress animated:YES];
+    }
+                      completion:^(NSError *failure) {
         [control setProgress:failure ? 0 : 1 animated:YES];
         if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
     }];
@@ -223,7 +222,11 @@ BOOL hasPressedCommandF(NSEvent *event) {
     
     [self.previewPanel.animator setAlphaValue:0.f];
     self.previewPanel.title = title;
-    [self retrieveImageViewForScreenshot:screenshotPath completion:^(NSImage *image) {
+    [self retrieveImageViewForScreenshot:screenshotPath
+                                progress:^(CGFloat progress) {
+
+    }
+                              completion:^(NSImage *image) {
         
         self.previewImageView.image = image;
         [NSAnimationContext beginGrouping];
@@ -240,12 +243,12 @@ BOOL hasPressedCommandF(NSEvent *event) {
     }];
 }
 
-- (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath completion:(void (^)(NSImage *))completion {
+- (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath progress:(void (^)(CGFloat))downloadProgress completion:(void (^)(NSImage *))completion {
     
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadFileFromPath:screenshotPath
                             progress:^(CGFloat progress) {
-                                // TODO: hook up with progress indicators
+                                downloadProgress(progress);
                             }
                           completion:^(NSData *responseData, NSError *error) {
                               

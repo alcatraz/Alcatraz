@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1080" defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -51,7 +51,7 @@
                                             </buttonCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView id="303">
+                                                <tableCellView id="303" customClass="ATZTableCellView">
                                                     <rect key="frame" x="1" y="1" width="40" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -72,6 +72,9 @@
                                                         <constraint firstItem="331" firstAttribute="centerX" secondItem="303" secondAttribute="centerX" id="348"/>
                                                         <constraint firstItem="331" firstAttribute="centerY" secondItem="303" secondAttribute="centerY" constant="-7" id="387"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outlet property="progressControl" destination="331" id="Ol9-UZ-c35"/>
+                                                    </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
