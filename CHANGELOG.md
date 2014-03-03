@@ -1,3 +1,7 @@
+## 1.0.1
+
+- Fixed auto-updating plugins
+
 ## 1.0
 
 - Support for Xcode 5
