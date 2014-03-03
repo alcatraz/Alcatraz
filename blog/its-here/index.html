@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Alcatraz | The Package manager for Xcode 5</title>
+        <title>It's here</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
         <link rel="stylesheet" href="/css/syntax.css">
@@ -52,56 +52,34 @@
           </section>
         </header>
 
-        <script src="/javascripts/parallax.js"></script>
-<section class="landing">
-  <img class="logo" src="images/logo.svg"/>
-  <h1>Alcatraz</h1>
-  <label>The package manager for Xcode</label>
-</section>
+        <section class="content">
+  <section class="post">
 
-<section class="content home">
-  <section class="intro">
-    <img class="screenshot" src="images/screenshot@2x.png" />
-    <p class="description">Alcatraz is an open-source package manager for Xcode. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.</p>
-    <p class="drama">Plugins. Color Schemes. Templates.</p>
-    <img class="package-type" src="images/plugin.svg"/>
-    <img class="package-type" src="images/color-schemes.svg"/>
-    <img class="package-type" src="images/templates.svg"/>
-  </section>
-  <section id="usage">
-    <h3>Usage</h3>
-    <img class="menu" src="images/menu@2x.png" />
-    <p>Select Package Manager from the Window menu, then check or uncheck packages to install or remove them. You'll need to restart Xcode after installing certain packages, as indicated after installation.</p>
-  </section>
-  <section id="package-submissions">
-    <h3>I want to submit my package!</h3>
-    <p>Fork and edit the Alcatraz package repository to include your package name, description, and URL in the plugins, color schemes, or templates section, and submit a pull request.</p>
-    <pre>
-{
-  "name": "Excellent-Plugin",
-  "url": "https://github.com/me/xcode-excellent-plugin",
-  "description": "Makes Xcode stop, collaborate and listen."
-}
-    </pre>
-  </section>
-  <section class="installation">
-    <h3>Install</h3>
-    <p>
-    Paste this into your terminal:
-    <pre>
-    mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins;
-    curl -L goo.gl/zoAnfh | tar xv -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -
-    </pre>
-    </p>
-  </section>
-  <section class="uninstallation">
-    <h3>Uninstall</h3>
-    <p>
-      Delete the plugin:
-      <pre>~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin</pre>
-      Remove all cached data:
-      <pre>rm -rf ~/Library/Application\ Support/Alcatraz/</pre>
-    </p>
+    <h2>It&#39;s here.</h2>
+
+<p>It&#39;s been almost a year since we shipped a prototype of Alcatraz for Xcode 4.</p>
+
+<p>Lots of things happened in the meantime.
+Apple has released Xcode 5; Yes, it did break things. Yes, it disabled GC supported ARC. Yes, it&#39;s the best Xcode so far.
+There was plenty of work both we and plugin maintainers needed to do to stop crashing Xcode. Sorry Apple.
+Delisa and I both changed jobs and moved to San Francisco. It took us some time and energy to get back on track.</p>
+
+<p>Today, we&#39;re proud to announce Alcatraz 1.0 with support for Xcode 5, together
+with it&#39;s <a href="http://alcatraz.io">shiny new logo and website</a>!
+You can expect some content related to Xcode plugins in the near future.</p>
+
+<p>I&#39;d like to use this opportunity to give thanks to people that supported us:</p>
+
+<ul>
+<li><a href="http://mattt.me">Mattt Thompson</a>, for being a friend and spreading the word on conferences</li>
+<li><a href="http://github.io/alloy">Eloy Duran</a>, for doing so much for the whole community and inspiring us</li>
+<li><a href="http://github.io/jurre">Jurre Stender</a> for joining our team and making some cool stuff</li>
+<li><a href="https://orta.github.io">Orta Therox</a> and <a href="https://github.io/irrationalfab">Fabio Pelosin</a>, for helping out with redesigning Alcatraz &lt;3</li>
+<li><a href="http://schukin.com">Dave Schukin</a> for making that neat radial progress control which caused so many bugs</li>
+<li><a href="https://github.com/tonyarnold">Tony Arnold</a>, <a href="https://github.com/neonichu">Boris Bügling</a> and <a href="https://github.com/supermarin/alcatraz-packages/graphs/contributors">many other contributors</a> for spreading out ideas, writing plugins and making all this possible</li>
+</ul>
+
+
   </section>
 </section>
 

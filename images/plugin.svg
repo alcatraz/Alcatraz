@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="116px" height="108px" viewBox="0 0 116 108" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Plugin</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Icons" sketch:type="MSLayerGroup" transform="translate(-50.000000, -60.000000)" stroke="#F7F7F7" stroke-width="4.5">
+            <g id="Plugin" transform="translate(53.000000, 63.000000)" sketch:type="MSShapeGroup">
+                <path d="M36.6667799,0 L28.2052937,0 C21.0130305,0 19.7438075,1.4415 19.7438075,9 L19.7438075,18 L8.46182594,18 C1.18494781,18 0.000339746706,19.6815 0.000339746706,27 L0.000339746706,92.994 C-0.0278652073,100.2825 1.69122674,102 8.46182594,102 L101.538174,102 C108.308773,102 110.027865,100.2825 109.99966,92.994 L109.99966,27 C109.99966,19.6815 108.815052,18 101.538174,18 L90.2561925,18 L90.2561925,9 C90.2561925,1.4415 88.9869695,0 81.7947063,0 L73.3332201,0 C66.056342,0 64.8717339,1.2885 64.8717339,9 L64.8717339,18 L45.1282661,18 L45.1282661,9 C45.1282661,1.2885 43.943658,0 36.6667799,0 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

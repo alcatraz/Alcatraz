@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="335px" height="332px" viewBox="0 0 335 332" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>logo</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Sticker" sketch:type="MSLayerGroup" transform="translate(4.000000, 2.000000)">
+            <g id="background-:-circles" sketch:type="MSShapeGroup">
+                <circle id="Oval-1-copy" fill="#FFFFFF" cx="163" cy="163" r="163"></circle>
+                <circle id="Oval-1" fill="#289580" cx="162.5" cy="162.5" r="143.5"></circle>
+            </g>
+            <g id="Tower" transform="translate(80.000000, 70.000000)" sketch:type="MSShapeGroup">
+                <path d="M24.8732304,39.3968891 C11.6249109,33.7703661 3.97545152,27.6192135 1.71391111,25.6483468 L1.71391111,25.6483468 L-0.43860018,25 L83,-0.132108488 L163.156053,24.0112809 L165,24 C165,24 164.830212,24.1452832 164.493509,24.4141292 L166.4386,25 L161.875985,26.3742818 C158.263007,28.9436362 151.561688,33.2432334 142.009738,37.4755345 L145.89174,90.5206996 C145.963578,90.84471 146,91.1712321 146,91.5 C146,91.6106874 145.995872,91.7211202 145.987653,91.8312882 L146,92 L145.971852,92 C144.970596,100.881391 117.384239,108 83.5,108 C49.6157605,108 22.0294039,100.881391 21.0281482,92 L21,92 L21.0123849,91.8317982 C21.0041412,91.721461 21,91.6108582 21,91.5 C21,91.1697227 21.0367574,90.841712 21.1092512,90.5162372 L24.8732304,39.3968891 Z" id="Path-2" fill="#FFFFFF"></path>
+                <path d="M84.5,95.5390071 L84.5,246.460993 L84.5,95.5390071 Z M120.5,93.5 L158.5,220.5 L120.5,93.5 Z M48.5,93.5 L4.5,220.5 L48.5,93.5 Z" id="Legs" stroke="#FFFFFF" stroke-width="15" stroke-linecap="square"></path>
+                <g id="Singles" transform="translate(13.000000, 132.000000)" stroke="#FFFFFF" stroke-width="12" stroke-linecap="square">
+                    <path d="M139,2 L71,72" id="Line-copy-7" transform="translate(105.000000, 37.000000) scale(1, -1) translate(-105.000000, -37.000000) "></path>
+                    <path d="M73,0 L112,81" id="Line-copy-8" transform="translate(92.500000, 40.500000) scale(1, -1) translate(-92.500000, -40.500000) "></path>
+                    <path d="M0,5 L68,66" id="Line-copy-9" transform="translate(34.000000, 35.500000) scale(1, -1) translate(-34.000000, -35.500000) "></path>
+                    <path d="M71,2 L29,81" id="Line-copy-10" transform="translate(50.000000, 41.500000) scale(1, -1) translate(-50.000000, -41.500000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

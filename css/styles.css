@@ -1,0 +1,271 @@
+body {
+  font-family: Avenir Next, Helvetica, sans-serif;
+  background-color: #DEDEDE;
+  font-size: 1em;
+  color: #4A4A4A;
+  width: 100%;
+  margin: 0;
+}
+
+h1 {
+  font-size: 64px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 2.5em;
+  margin-bottom: 0.2em;
+  font-weight: normal;
+  font-family: "Helvetica Neue", Helvetica, sans-serif
+}
+
+label {
+  font-size: 18px;
+}
+
+section {
+    padding: 20px;
+}
+
+p {
+  margin-top: 3em;
+}
+
+footer {
+  text-align: center;
+  font-weight: lighter;
+}
+
+pre {
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 5px;
+  padding: 1em;
+  overflow: scroll;
+  background: rgba(0,0,0,0.1);
+}
+
+a:link, a:visited {
+  color: #281E29;
+}
+
+.logo {
+  width: 12em;
+}
+
+.landing {
+  background-position: 50% 20em;
+  background-size: 1000px;
+  background-image: url('/images/Alcatraz_Island@2x.png');
+  background-repeat: no-repeat;
+  margin-top: 60px;
+  padding: 1.3em 0 18.7em 0;
+  text-align: center;
+}
+
+.home + footer {
+  background-color: #281E29;
+  color: #fff;
+}
+
+.home + footer a:link, .home + footer a:visited {
+  color: white;
+}
+
+.nav {
+  margin-bottom: 6em;
+}
+
+.nav a:link, .nav a:visited, .nav a:hover {
+  color: #4A4A4A;
+  text-decoration: none;
+  float: right;
+  margin: 10px;
+}
+
+.nav a.active:link {
+  font-weight: bold;
+}
+
+header > section, .content > section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.description {
+  float:right;
+  padding-top: 4em;
+  text-align: left;
+  width: 45%;
+  color: #4A4A4A;
+}
+
+.content {
+  color: #F6F6F6;
+  background-color: #281E29;
+  display: block;
+}
+
+.content > section {
+  margin-bottom: 3em;
+}
+
+.content a:link, .content a:visited {
+  color: #fff;
+}
+
+.screenshot {
+  float: left;
+  margin-left: -4em;
+  width: 614px;
+}
+
+.drama {
+  font-size: 1.5em;
+}
+
+.package-type {
+  margin: 2em;
+  width: 4em;
+  float: left;
+}
+
+.menu {
+  float: right;
+  border: 1px solid #000;
+  border-radius: 3px;
+  margin-left: 3em;
+  margin-right: 3em;
+  width: 400px;
+}
+
+.action-button {
+  display: block;
+  width: 60%;
+  text-align: center;
+  padding: 0.7em;
+  font-size: 1.5em;
+  border: 1px solid #052E26;
+  border-radius: 8px;
+  margin: 2.5em auto 0;
+  background-color: #289580;
+  background-image: -webkit-linear-gradient(top, #289580, #1B6456);
+  background-image:    -moz-linear-gradient(top, #289580, #1B6456);
+  background-image:     -ms-linear-gradient(top, #289580, #1B6456);
+  background-image:      -o-linear-gradient(top, #289580, #1B6456);
+  background-image:         linear-gradient(to bottom, #289580, #1B6456);
+  text-decoration: none;
+}
+
+#package-submissions {
+  margin-top: 6em;
+}
+
+#usage {
+  margin-top: 20em;
+}
+
+@media (max-width: 1100px) {
+  h3 {
+    margin: 0;
+    font-size: 2em;
+  }
+
+  p {
+    margin-top: 1em;
+  }
+
+  .content {
+    width: auto;
+  }
+
+  .intro {
+    text-align: center;
+  }
+
+  .screenshot {
+    margin: 0 auto;
+    float: none;
+  }
+
+  .package-type {
+    margin: 1em;
+    float: none;
+  }
+
+  .description {
+    margin: 0;
+    padding: 0;
+    float: none;
+    width: auto;
+    margin-top: 0 !important;
+    color: white;
+    margin-bottom: 3em;
+  }
+
+  .drama {
+    font-size: 1em;
+  }
+
+  .menu {
+    margin: 1em 0 0.5em;
+    display: block;
+    float: none;
+  }
+
+  #usage {
+    margin-top: 0;
+  }
+
+  #package-submissions {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 800px) and (min-width: 601px) {
+  .drama {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .screenshot {
+    width: 90%;
+  }
+}
+
+@media (max-width: 640px) {
+    .nav {
+      text-align: center;
+      margin: 0 auto;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .nav a:link {
+      float: none;
+    }
+
+    .landing {
+      opacity: 1 !important;
+      margin-top: 0;
+    }
+
+    .content {
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+    }
+
+    .package-type {
+      float: none;
+      margin: 0.5em;
+      width: 3em;
+    }
+
+    .menu {
+      width: 90%;
+    }
+
+    .screenshot {
+      margin-top: -250px !important;
+    }
+}
