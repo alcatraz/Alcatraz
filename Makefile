@@ -10,7 +10,7 @@ default: test
 
 ci: clean test
 
-shipit: update version build release
+shipit: version build release update
 
 clean:
 	$(XCODEBUILD) clean | xcpretty -c
