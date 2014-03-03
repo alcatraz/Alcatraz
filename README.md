@@ -13,7 +13,7 @@ To install, open up your terminal and paste this:
 
 ``` bash
 mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins;
-curl -L http://goo.gl/zoAnfh | tar xvz -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins
+curl -L http://git.io/lOQWeA | tar xvz -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins
 ```
 or download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
 
