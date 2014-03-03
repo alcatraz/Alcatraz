@@ -24,7 +24,7 @@
 #import "Alcatraz.h"
 #import "ATZPluginWindowController.h"
 #import "ATZAlcatrazPackage.h"
-#import "ATZShell.h"
+#import "ATZGit.h"
 
 static Alcatraz *sharedPlugin;
 
@@ -69,7 +69,7 @@ static Alcatraz *sharedPlugin;
 
 - (void)checkForCMDLineToolsAndOpenWindow {
     
-    if ([ATZShell areCommandLineToolsAvailable])
+    if ([ATZGit areCommandLineToolsAvailable])
         [self loadWindowAndPutInFront];
     else
         [self presentAlertForInstallingCMDLineTools];

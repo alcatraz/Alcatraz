@@ -28,17 +28,6 @@
 
 @implementation ATZShell
 
-+ (BOOL)areCommandLineToolsAvailable {
-    BOOL areAvailable = YES;
-    @try {
-        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/git" arguments:@[@"--version"]];
-    }
-    @catch (NSException *exception) {
-        areAvailable = NO;
-    }
-    return areAvailable;
-}
-
 - (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments
             completion:(void(^)(NSString *taskOutput, NSError *error))completion {
     

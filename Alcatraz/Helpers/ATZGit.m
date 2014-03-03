@@ -47,6 +47,16 @@
         dict[COMMIT] ?: nil;
 }
 
++ (BOOL)areCommandLineToolsAvailable {
+    BOOL areAvailable = YES;
+    @try {
+        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/git" arguments:@[@"--version"]];
+    }
+    @catch (NSException *exception) {
+        areAvailable = NO;
+    }
+    return areAvailable;
+}
 
 #pragma mark - Private
 
