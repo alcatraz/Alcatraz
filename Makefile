@@ -39,7 +39,8 @@ build: clean
 	xcodebuild -project Alcatraz.xcodeproj build
 	rm -rf ${BUNDLE_NAME}
 	cp -r ${INSTALL_PATH} ${BUNDLE_NAME}
-	tar -czf ${ARCHIVE} ${BUNDLE_NAME}
+	mkdir -p releases/${VERSION}
+	tar -czf releases/${VERSION}/${ARCHIVE} ${BUNDLE_NAME}
 	rm -rf ${BUNDLE_NAME}
 
 # Download and install latest build
@@ -49,7 +50,7 @@ install:
 
 # Create a Github release
 release:
-	gh release create -d -f ${ARCHIVE} -m "Release ${VERSION}" ${VERSION}
+	gh release create -d -m "Release ${VERSION}" ${VERSION}
 
 # Set latest version
 # Requires VERSION argument set

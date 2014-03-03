@@ -22,7 +22,10 @@ xcodebuild.log
 
 # Shipping
 build/
+releases/
 
 #CocoaPods
 Pods
+
+
 
