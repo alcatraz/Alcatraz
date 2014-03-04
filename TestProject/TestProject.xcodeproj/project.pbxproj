@@ -60,7 +60,6 @@
 		89BBB2BF18C3EAA200546623 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BBB29518C3EAA200546623 /* ATZProgressIndicator.m */; };
 		89BBB2C018C3EAA200546623 /* ATZRadialProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BBB29718C3EAA200546623 /* ATZRadialProgressControl.m */; };
 		89BBB2C118C3EAA200546623 /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BBB29918C3EAA200546623 /* ATZSegmentedCell.m */; };
-		89BBB2C218C3EAA200546623 /* ATZStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BBB29B18C3EAA200546623 /* ATZStatusView.m */; };
 		89BBB2C318C3EAA200546623 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BBB29D18C3EAA200546623 /* ATZVersionLabel.m */; };
 		89BBB2C618C3EB0C00546623 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BBB2C418C3EAFD00546623 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -167,8 +166,6 @@
 		89BBB29718C3EAA200546623 /* ATZRadialProgressControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZRadialProgressControl.m; sourceTree = "<group>"; };
 		89BBB29818C3EAA200546623 /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZSegmentedCell.h; sourceTree = "<group>"; };
 		89BBB29918C3EAA200546623 /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZSegmentedCell.m; sourceTree = "<group>"; };
-		89BBB29A18C3EAA200546623 /* ATZStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZStatusView.h; sourceTree = "<group>"; };
-		89BBB29B18C3EAA200546623 /* ATZStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZStatusView.m; sourceTree = "<group>"; };
 		89BBB29C18C3EAA200546623 /* ATZVersionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZVersionLabel.h; sourceTree = "<group>"; };
 		89BBB29D18C3EAA200546623 /* ATZVersionLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZVersionLabel.m; sourceTree = "<group>"; };
 		89BBB2C418C3EAFD00546623 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -421,8 +418,6 @@
 				89BBB29718C3EAA200546623 /* ATZRadialProgressControl.m */,
 				89BBB29818C3EAA200546623 /* ATZSegmentedCell.h */,
 				89BBB29918C3EAA200546623 /* ATZSegmentedCell.m */,
-				89BBB29A18C3EAA200546623 /* ATZStatusView.h */,
-				89BBB29B18C3EAA200546623 /* ATZStatusView.m */,
 				89BBB29C18C3EAA200546623 /* ATZVersionLabel.h */,
 				89BBB29D18C3EAA200546623 /* ATZVersionLabel.m */,
 			);
@@ -597,7 +592,6 @@
 				89BBB2BD18C3EAA200546623 /* ATZDetailItemButton.m in Sources */,
 				89BBB2B718C3EAA200546623 /* ATZPackage.m in Sources */,
 				89BBB2C118C3EAA200546623 /* ATZSegmentedCell.m in Sources */,
-				89BBB2C218C3EAA200546623 /* ATZStatusView.m in Sources */,
 				89BBB2AF18C3EAA200546623 /* ATZPluginInstaller.m in Sources */,
 				89BBB2AA18C3EAA200546623 /* ATZPBXProjParser.m in Sources */,
 				89BBB2A318C3EAA200546623 /* ATZPluginWindowController.m in Sources */,
