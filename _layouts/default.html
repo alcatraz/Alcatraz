@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Alcatraz | about</title>
+        <title>{{ page.title }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
         <link rel="stylesheet" href="/css/syntax.css">
@@ -13,13 +13,13 @@
         <script src="/javascripts/menu.js"></script>
 
         <!--SEO-->
-        <meta name="author" content="Marin Usalj">
+        <meta name="author" content="{{ site.author }}">
 
-        
-        <meta name="description" content="Package manager for Xcode that lets you discover and install Plugins, Color Schemes and Templates.">
+        {% capture description %}{% if page.description %}{{ page.description }}{% elsif site.description %}{{ site.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+        <meta name="description" content="{{ description }}">
 
-        
-        <meta name="keywords" content="ios development, alcatraz, cocoapods, objective c, github, plugin, plugins">
+        {% capture keywords %}{% if page.keywords %}{{ page.keywords }}{% elsif site.keywords %}{{ site.keywords }}{% endif %}{% endcapture %}
+        <meta name="keywords" content="{{ keywords | strip_html | condense_spaces }}">
 
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@alcatraz_xcode">
@@ -46,26 +46,13 @@
         <header>
           <section class="nav">
             <a href="https://github.com/supermarin/Alcatraz">GITHUB</a>
-            <a id="about" href="/about">ABOUT</a>
+            <!--<a id="about" href="/about">ABOUT</a>-->
             <a id="blog" href="/blog">BLOG</a>
             <a id="index" href="/">HOME</a>
           </section>
         </header>
 
-        <section class="content">
-  <section class="post">
-
-    <h2>So dece</h2>
-
-<p>Bacon ipsum dolor sit amet shoulder landjaeger fatback jowl rump turkey turducken flank porchetta biltong capicola tail tri-tip andouille. Boudin pork loin kevin, leberkas meatball filet mignon short loin corned beef sausage. Boudin chuck beef filet mignon shoulder flank brisket bacon pastrami shank. Andouille tail shankle pastrami, swine beef frankfurter pig pork chop beef ribs. Ribeye tail meatball porchetta strip steak frankfurter. Spare ribs pork chop leberkas shankle bresaola landjaeger frankfurter salami andouille flank sirloin filet mignon short loin tenderloin. Prosciutto pork loin doner sausage meatloaf andouille.</p>
-
-<p>Ground round sausage filet mignon tenderloin bresaola kielbasa, frankfurter short ribs sirloin pastrami cow shoulder doner beef. Venison beef ribs turducken, pastrami tongue pork loin sirloin tenderloin pig beef doner short loin. Pig prosciutto turducken ham hock corned beef kielbasa short loin frankfurter flank doner jowl. Ribeye fatback bacon turkey ham hock turducken. Bacon strip steak leberkas, hamburger chuck pig brisket ball tip venison pork belly biltong meatball tail ham hock. Pancetta ball tip leberkas capicola shoulder andouille. Shank boudin brisket landjaeger.</p>
-
-
-  </section>
-</section>
-
-
+        {{ content }}
 
         <footer>
           <section>

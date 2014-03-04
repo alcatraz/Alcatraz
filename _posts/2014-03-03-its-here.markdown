@@ -1,0 +1,31 @@
+---
+layout: page
+title: "It's here"
+date: 2014-03-03T05:14:50Z
+comments: true
+external-url:
+categories:
+---
+
+## It's here.
+
+It's been almost a year since we shipped a prototype of Alcatraz for Xcode 4.
+
+Lots of things happened in the meantime.
+Apple has released Xcode 5; Yes, it did break things. Yes, it disabled GC and supported ARC. Yes, it's the best Xcode so far.
+There was plenty of work both we and plugin maintainers needed to do to stop crashing Xcode. Sorry Apple.
+Delisa and I both changed jobs and moved to San Francisco. It took us some time and energy to get back on track.
+
+Today, we're proud to announce Alcatraz 1.0 with support for Xcode 5, together
+with it's [shiny new logo and website](http://alcatraz.io)!
+You can expect some content related to Xcode plugins in the near future.
+
+
+I'd like to use this opportunity to give thanks to people that supported us:
+
+- [Mattt Thompson](http://mattt.me), for being a friend and spreading the word on conferences
+- [Eloy Durán](http://github.com/alloy), for doing so much for the whole community and inspiring us
+- [Jurre Stender](http://github.com/jurre) for joining our team and making some cool stuff
+- [Orta Therox](https://orta.github.io) and [Fabio Pelosin](https://github.io/irrationalfab), for helping out with redesigning Alcatraz <3
+- [Boris Bügling](https://github.com/neonichu), [Tony Arnold](https://github.com/tonyarnold) and [many other contributors](https://github.com/supermarin/alcatraz-packages/graphs/contributors) for spreading out ideas, writing plugins and making all this possible
+

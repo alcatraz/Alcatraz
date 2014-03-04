@@ -1,0 +1,10 @@
+name: Alcatraz.io
+author: Marin Usalj
+markdown: redcarpet
+permalink: /blog/:title/
+pygments: true
+exclude: ['Gemfile', 'Rakefile', 'Gemfile.lock', 'Guardfile', 'Alcatraz.io.sketch']
+
+description: Package manager for Xcode that lets you discover and install Plugins, Color Schemes and Templates.
+keywords: ios development, alcatraz, cocoapods, objective c, github, plugin, plugins
+
