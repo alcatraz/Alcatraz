@@ -21,7 +21,7 @@ ci_test:
 	$(XCODEBUILD) test | xcpretty -c; exit ${PIPESTATUS[0]}
 
 test:
-	$(XCODEBUILD) test | tee xcodebuild.log | xcpretty -tc
+	set -o pipefail && $(XCODEBUILD) test | tee xcodebuild.log | xcpretty -tc
 
 # Merge changes into deploy branch
 update:
