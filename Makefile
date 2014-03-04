@@ -8,7 +8,7 @@ XCODEBUILD=xcodebuild $(DEFAULT_BUILD_ARGS)
 
 default: test
 
-ci: clean test
+ci: clean ci_test
 
 shipit: version build release update
 
@@ -18,7 +18,7 @@ clean:
 
 # Run tests
 ci_test:
-	$(XCODEBUILD) test | xcpretty -c; exit ${PIPESTATUS[0]}
+	set -o pipefail && $(XCODEBUILD) test | xcpretty -c
 
 test:
 	set -o pipefail && $(XCODEBUILD) test | tee xcodebuild.log | xcpretty -tc
