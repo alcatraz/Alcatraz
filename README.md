@@ -39,9 +39,7 @@ Alcatraz has a few [contribution guidelines](https://github.com/supermarin/Alcat
 
 ## Uninstall
 
-The installation process creates `~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin`, which can be deleted to uninstall the plugin completely. 
-
-To remove, open up your terminal and paste this: 
+Open up your terminal and paste this: 
 
 ```bash
 rm -rf ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin
