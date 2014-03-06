@@ -12,8 +12,7 @@ Alcatraz is an open-source package manager for Xcode 5. It lets you discover and
 To install, open up your terminal and paste this:
 
 ``` bash
-mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins;
-curl -L http://git.io/lOQWeA | tar xvz -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins
+curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh | sh
 ```
 or download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
 
