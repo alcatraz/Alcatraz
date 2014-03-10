@@ -1,9 +1,10 @@
-ARCHIVE="Alcatraz.tar.gz"
-BUNDLE_NAME="Alcatraz.xcplugin"
-VERSION_LOCATION="Alcatraz/ATZVersion.h"
-INSTALL_PATH="~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/"
-DEFAULT_BUILD_ARGS=-workspace TestProject/TestProject.xcworkspace -scheme TestProject
-XCODEBUILD=xcodebuild $(DEFAULT_BUILD_ARGS)
+ARCHIVE            = "Alcatraz.tar.gz"
+BUNDLE_NAME        = "Alcatraz.xcplugin"
+VERSION_LOCATION   = "Alcatraz/ATZVersion.h"
+INSTALL_PATH       = "~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/"
+DEFAULT_BUILD_ARGS = -workspace TestProject/TestProject.xcworkspace -scheme TestProject
+XCODEBUILD         = xcodebuild $(DEFAULT_BUILD_ARGS)
+VERSION            = $(shell grep 'ATZ_VERSION' Alcatraz/ATZVersion.h | cut -d " " -f 3 | tr -d '"''"')
 
 default: test
 
@@ -57,9 +58,7 @@ github_release:
 # Set latest version
 # Requires VERSION argument set
 version:
-	VERSION=$(shell cat Alcatraz/ATZVersion.h | grep ATZ_VERSION | cut -d " " -f 3 | tr -d '"''"')
-	echo "VERSIONNNNN: $VERSION"
-	git add ${VERSION_LOCATION}
-	git commit -m "Bump version ${VERSION}"
-	git tag ${VERSION}
+	git add $(VERSION_LOCATION)
+	git commit -m "Bump version $(VERSION)"
+	git tag $(VERSION)
 
