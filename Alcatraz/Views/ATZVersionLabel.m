@@ -22,10 +22,7 @@
 // THE SOFTWARE.
 
 #import "ATZVersionLabel.h"
-
-// Don't update these numbers manually. They're automatically updated from a rake task
-#define ATZ_VERSION "1.0.1"
-#define ATZ_REVISION "d7115ea"
+#import "ATZVersion.h"
 
 @implementation ATZVersionLabel
 
@@ -50,7 +47,7 @@
     [self setDrawsBackground:NO];
     [self setEditable:NO];
     [self setSelectable:NO];
-    [self setToolTip:[NSString stringWithFormat:@"revision: %s", ATZ_REVISION]];
+//    [self setToolTip:[NSString stringWithFormat:@"revision: %s", ATZ_REVISION]];
 }
 
 @end

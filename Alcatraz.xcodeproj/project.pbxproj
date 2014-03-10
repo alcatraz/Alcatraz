@@ -72,6 +72,7 @@
 		32B63216173A3E880076C098 /* ATZPackageTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableCellView.m; path = Views/ATZPackageTableCellView.m; sourceTree = "<group>"; };
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
+		6449530218CE826C009494BD /* ATZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZVersion.h; sourceTree = "<group>"; };
 		64C28A4918136FF30025C0B1 /* toolbar_colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_colors.png; sourceTree = "<group>"; };
 		64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_colors@2x.png"; sourceTree = "<group>"; };
 		64C28A4D18136FF30025C0B1 /* toolbar_plugins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_plugins.png; sourceTree = "<group>"; };
@@ -209,6 +210,7 @@
 				890A4B4D171F031300AFE577 /* Alcatraz.m */,
 				890A4B47171F031300AFE577 /* Supporting Files */,
 				89C4C685171F1B5C004A88E7 /* PluginWindow.xib */,
+				6449530218CE826C009494BD /* ATZVersion.h */,
 			);
 			path = Alcatraz;
 			sourceTree = "<group>";

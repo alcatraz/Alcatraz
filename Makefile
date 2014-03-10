@@ -1,8 +1,7 @@
 ARCHIVE="Alcatraz.tar.gz"
 BUNDLE_NAME="Alcatraz.xcplugin"
-INSTALL_PATH=~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/
-VERSION_LOCATION="Alcatraz/Views/ATZVersionLabel.m"
-VERSION_TMP_FILE="output.m"
+VERSION_LOCATION="Alcatraz/ATZVersion.h"
+INSTALL_PATH="~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/"
 DEFAULT_BUILD_ARGS=-workspace TestProject/TestProject.xcworkspace -scheme TestProject
 XCODEBUILD=xcodebuild $(DEFAULT_BUILD_ARGS)
 
@@ -10,7 +9,7 @@ default: test
 
 ci: clean ci_test
 
-shipit: version build release update
+shipit: version build github_release push_deploy_branch
 
 clean:
 	$(XCODEBUILD) clean | xcpretty -c
@@ -24,12 +23,13 @@ test:
 	set -o pipefail && $(XCODEBUILD) test | tee xcodebuild.log | xcpretty -tc
 
 # Merge changes into deploy branch
-update:
+push_deploy_branch:
 	git fetch origin
 ifeq ($(shell git diff origin/master..master),)
 	git checkout deploy
 	git reset --hard origin/master
 	git push origin deploy
+	git checkout -
 else
 	$(error you have unpushed commits on the master branch)
 endif
@@ -49,7 +49,7 @@ install:
 	curl $URL | tar xv -C ${BUNDLE_NAME} -
 
 # Create a Github release
-release:
+github_release:
 	git push
 	git push --tags
 	gh release create -d -m "Release ${VERSION}" ${VERSION}
@@ -57,15 +57,9 @@ release:
 # Set latest version
 # Requires VERSION argument set
 version:
-ifdef VERSION
-	git checkout master
-	sed 's/ATZ_VERSION "[0-9]\{1,3\}.[0-9]\{1,3\}"/ATZ_VERSION "${VERSION}"/g' ${VERSION_LOCATION} > ${VERSION_TMP_FILE}
-	sed 's/ATZ_REVISION "[0-f]\{7\}"/ATZ_REVISION "$(shell git log --pretty=format:'%h' -n 1)"/g' ${VERSION_TMP_FILE} > ${VERSION_LOCATION}
-	rm ${VERSION_TMP_FILE}
+	VERSION=$(shell cat Alcatraz/ATZVersion.h | grep ATZ_VERSION | cut -d " " -f 3 | tr -d '"''"')
+	echo "VERSIONNNNN: $VERSION"
 	git add ${VERSION_LOCATION}
-	git commit -m "Release ${VERSION}"
+	git commit -m "Bump version ${VERSION}"
 	git tag ${VERSION}
-else
-	$(error VERSION has not been set)
-endif
 

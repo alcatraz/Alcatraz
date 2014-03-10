@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Support Xcode 5.1
+
 ## 1.0.1
 
 - Fixed auto-updating plugins
