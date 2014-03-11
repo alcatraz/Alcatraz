@@ -9,7 +9,7 @@
 #ifndef Alcatraz_Version_h
 #define Alcatraz_Version_h
 
-#define ATZ_VERSION "1.0.3"
+#define ATZ_VERSION "1.0.4"
 
 #endif
 
