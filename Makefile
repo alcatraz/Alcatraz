@@ -53,8 +53,8 @@ github_release:
 # Set latest version
 # Requires VERSION argument set
 version: update_install_url
-	git add $(VERSION_LOCATION)
-	git commit -m "Bump version $(VERSION)"
+	git add .
+	git commit -am "Bump version $(VERSION)"
 	git tag $(VERSION)
 
 update_install_url:
