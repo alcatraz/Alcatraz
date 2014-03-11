@@ -44,11 +44,6 @@ build: clean
 	tar -czf releases/${VERSION}/${ARCHIVE} ${BUNDLE_NAME}
 	rm -rf ${BUNDLE_NAME}
 
-# Download and install latest build
-install:
-	rm -rf $INSTALL_PATH
-	curl $URL | tar xv -C ${BUNDLE_NAME} -
-
 # Create a Github release
 github_release:
 	git push
