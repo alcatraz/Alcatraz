@@ -77,6 +77,7 @@
 /* Begin PBXFileReference section */
 		184F21C3BE2247CC8E85A843 /* libPods-TestProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EE715908F945E8AD052880 /* Pods-TestProjectTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProjectTests.xcconfig"; path = "Pods/Pods-TestProjectTests.xcconfig"; sourceTree = "<group>"; };
+		642E464918CEC119004BF276 /* ATZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZVersion.h; path = ../../Alcatraz/ATZVersion.h; sourceTree = "<group>"; };
 		89BBB20B18C3E99E00546623 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89BBB20E18C3E99E00546623 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		89BBB21118C3E99E00546623 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -242,6 +243,7 @@
 				89BBB25018C3EAA200546623 /* Alcatraz */,
 				89BBB22018C3E99E00546623 /* ATZAppDelegate.h */,
 				89BBB22118C3E99E00546623 /* ATZAppDelegate.m */,
+				642E464918CEC119004BF276 /* ATZVersion.h */,
 				89BBB22318C3E99E00546623 /* MainMenu.xib */,
 				89BBB22618C3E99E00546623 /* Images.xcassets */,
 				89BBB21518C3E99E00546623 /* Supporting Files */,
