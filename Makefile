@@ -52,8 +52,12 @@ github_release:
 
 # Set latest version
 # Requires VERSION argument set
-version:
+version: update_install_url
 	git add $(VERSION_LOCATION)
 	git commit -m "Bump version $(VERSION)"
 	git tag $(VERSION)
+
+update_install_url:
+	echo "UPDATING INSTALL SCRIPT WITH VERSION: ${VERSION}"
+	sed 's/[.0-9]\{3,5\}/${VERSION}/' Scripts/install.sh | tee Scripts/install.sh
 
