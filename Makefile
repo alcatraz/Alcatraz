@@ -4,7 +4,7 @@ VERSION_LOCATION   = "Alcatraz/ATZVersion.h"
 INSTALL_PATH       = "~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/"
 DEFAULT_BUILD_ARGS = -workspace TestProject/TestProject.xcworkspace -scheme TestProject
 XCODEBUILD         = xcodebuild $(DEFAULT_BUILD_ARGS)
-VERSION            = $(shell grep 'ATZ_VERSION' Alcatraz/ATZVersion.h | cut -d " " -f 3 | tr -d '"''"')
+VERSION            = $(shell grep 'ATZ_VERSION' Alcatraz/ATZVersion.h | cut -d " " -f 3 | tr -d '"')
 
 default: test
 
