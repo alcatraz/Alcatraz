@@ -58,6 +58,5 @@ version: update_install_url
 	git tag $(VERSION)
 
 update_install_url:
-	echo "UPDATING INSTALL SCRIPT WITH VERSION: ${VERSION}"
 	sed -i '' -e 's/[.0-9]\{3,5\}/${VERSION}/' Scripts/install.sh
 
