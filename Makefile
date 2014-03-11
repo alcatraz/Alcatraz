@@ -59,5 +59,5 @@ version: update_install_url
 
 update_install_url:
 	echo "UPDATING INSTALL SCRIPT WITH VERSION: ${VERSION}"
-	sed 's/[.0-9]\{3,5\}/${VERSION}/' Scripts/install.sh | tee Scripts/install.sh
+	sed -i '' -e 's/[.0-9]\{3,5\}/${VERSION}/' Scripts/install.sh
 
