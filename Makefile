@@ -48,7 +48,7 @@ build: clean
 github_release:
 	git push
 	git push --tags
-	gh release create -d -m "Release ${VERSION}" ${VERSION}
+	gh release create -m "Release ${VERSION}" ${VERSION}
 
 # Set latest version
 # Requires VERSION argument set
