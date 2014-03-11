@@ -33,6 +33,8 @@
 }
 
 - (void)setStyle {
+    self.alignment         = NSRightTextAlignment;
+    self.autoresizingMask  = NSViewMinXMargin | NSViewMinYMargin | NSViewNotSizable;
     self.backgroundColor   = [NSColor clearColor];
     self.layer.borderColor = [NSColor clearColor].CGColor;
     self.textColor         = [NSColor colorWithDeviceWhite:0.75 alpha:1.f];
@@ -47,7 +49,6 @@
     [self setDrawsBackground:NO];
     [self setEditable:NO];
     [self setSelectable:NO];
-//    [self setToolTip:[NSString stringWithFormat:@"revision: %s", ATZ_REVISION]];
 }
 
 @end

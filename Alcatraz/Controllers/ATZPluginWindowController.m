@@ -260,8 +260,12 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
 - (void)addVersionToWindow {
     NSView *windowFrameView = [[self.window contentView] superview];
-    NSTextField *label = [[ATZVersionLabel alloc] initWithFrame:NSMakeRect(self.window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)];
-    label.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin | NSViewNotSizable;
+    NSTextField *label = [[ATZVersionLabel alloc] initWithFrame:(NSRect){
+        .origin.x = self.window.frame.size.width - 46,
+        .origin.y = windowFrameView.bounds.size.height - 26,
+        .size.width = 40,
+        .size.height = 20
+    }];
     [windowFrameView addSubview:label];
 }
 
