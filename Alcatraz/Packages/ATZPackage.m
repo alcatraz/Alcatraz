@@ -26,7 +26,7 @@
 #import "Alcatraz.h"
 
 @implementation ATZPackage
-@dynamic isInstalled, type, website, extension, iconName;
+@dynamic isInstalled, type, website, username, repository, extension, iconName;
 
 - (id)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
@@ -62,6 +62,17 @@
     else return self.remotePath;
 }
 
+- (NSString *)username {
+    NSString *username = self.website.pathComponents[2];
+
+    return username;
+}
+
+- (NSString *)repository {
+    NSString *repository = self.website.pathComponents[3];
+
+    return repository;
+}
 
 #pragma mark - Abstract
 

@@ -35,6 +35,8 @@
 @property (strong, nonatomic) NSString *screenshotPath;
 @property (strong, nonatomic) NSString *iconName;
 @property (nonatomic, readonly) NSString *website;
+@property (nonatomic, readonly) NSString *username;
+@property (nonatomic, readonly) NSString *repository;
 @property (nonatomic, readonly) NSString *extension;
 @property (nonatomic, readonly) BOOL isInstalled;
 @property (nonatomic, assign)   BOOL requiresRestart;
