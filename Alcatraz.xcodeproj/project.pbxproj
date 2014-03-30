@@ -9,12 +9,8 @@
 /* Begin PBXBuildFile section */
 		07EB2B1718442F1900A0040B /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */; };
 		0C49775E186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */; };
-		0C7AF650186B4E890064EE7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AF64F186B4E890064EE7B /* QuartzCore.framework */; };
 		0C7AF657186B82A00064EE7B /* NSColor+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AF656186B82A00064EE7B /* NSColor+Alcatraz.m */; };
 		32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B63216173A3E880076C098 /* ATZPackageTableCellView.m */; };
-		64EDC501188CB55A00D45F1D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EDC500188CB55A00D45F1D /* Cocoa.framework */; };
-		890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B42171F031300AFE577 /* AppKit.framework */; };
-		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
 		890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 890A4B49171F031300AFE577 /* InfoPlist.strings */; };
 		890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 890A4B4D171F031300AFE577 /* Alcatraz.m */; };
 		8917D9F31726B4EE00F0B2D2 /* ATZColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 8917D9E81726B4EE00F0B2D2 /* ATZColorScheme.m */; };
@@ -54,16 +50,12 @@
 		07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedCell.m; path = Views/ATZSegmentedCell.m; sourceTree = "<group>"; };
 		0C49775C186AB8170059AB6B /* NSImage+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Alcatraz.h"; sourceTree = "<group>"; };
 		0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Alcatraz.m"; sourceTree = "<group>"; };
-		0C7AF64F186B4E890064EE7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C7AF655186B82A00064EE7B /* NSColor+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Alcatraz.h"; sourceTree = "<group>"; };
 		0C7AF656186B82A00064EE7B /* NSColor+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Alcatraz.m"; sourceTree = "<group>"; };
 		32B63215173A3E880076C098 /* ATZPackageTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageTableCellView.h; path = Views/ATZPackageTableCellView.h; sourceTree = "<group>"; };
 		32B63216173A3E880076C098 /* ATZPackageTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableCellView.m; path = Views/ATZPackageTableCellView.m; sourceTree = "<group>"; };
 		6449530218CE826C009494BD /* ATZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZVersion.h; sourceTree = "<group>"; };
-		64EDC500188CB55A00D45F1D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alcatraz.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		890A4B42171F031300AFE577 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		890A4B44171F031300AFE577 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		890A4B48171F031300AFE577 /* Alcatraz-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alcatraz-Info.plist"; sourceTree = "<group>"; };
 		890A4B4A171F031300AFE577 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		890A4B4C171F031300AFE577 /* Alcatraz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alcatraz.h; sourceTree = "<group>"; };
@@ -133,10 +125,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64EDC501188CB55A00D45F1D /* Cocoa.framework in Frameworks */,
-				0C7AF650186B4E890064EE7B /* QuartzCore.framework in Frameworks */,
-				890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */,
-				890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				890A4B46171F031300AFE577 /* Alcatraz */,
-				890A4B41171F031300AFE577 /* Frameworks */,
 				890A4B40171F031300AFE577 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -158,17 +145,6 @@
 				890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		890A4B41171F031300AFE577 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				64EDC500188CB55A00D45F1D /* Cocoa.framework */,
-				0C7AF64F186B4E890064EE7B /* QuartzCore.framework */,
-				890A4B42171F031300AFE577 /* AppKit.framework */,
-				890A4B44171F031300AFE577 /* Foundation.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		890A4B46171F031300AFE577 /* Alcatraz */ = {
@@ -442,6 +418,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -473,6 +450,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
