@@ -22,10 +22,14 @@
 // THE SOFTWARE.
 #import <AppKit/AppKit.h>
 
+@class ATZInstallButton;
+
 @interface ATZPackageTableCellView : NSTableCellView
 
+@property (assign) IBOutlet ATZInstallButton *installButton;
 @property (assign) IBOutlet NSButton *screenshotButton;
 @property (assign) IBOutlet NSButton *websiteButton;
-@property (assign) IBOutlet NSView *buttonsContainerView;
+@property (assign) IBOutlet NSImageView *typeImageView;
+@property (assign) IBOutlet NSImageView *screenshotImageView;
 
 @end

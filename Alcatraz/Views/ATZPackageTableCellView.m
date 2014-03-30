@@ -23,6 +23,9 @@
 
 #import "ATZPackageTableCellView.h"
 #import "ATZPackage.h"
+#import "Alcatraz.h"
+
+#import "ATZInstallButton.h"
 
 @interface ATZPackageTableCellView()
 @property (assign) BOOL isHighlighted;
@@ -31,36 +34,7 @@
 @implementation ATZPackageTableCellView
 
 - (void)awakeFromNib {
-    [self.buttonsContainerView setWantsLayer:YES];
     [self createTrackingArea];
-}
-
-- (void)setButtonsHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    float alphaValue = highlighted ? 1.0f : 0.0f;
-
-    id buttonsContainerView = animated ? self.buttonsContainerView.animator : self.buttonsContainerView;
-
-    [buttonsContainerView setAlphaValue: alphaValue];
-}
-
-- (void)viewWillDraw {
-    [self showScreenshotButtonIfNeeded];
-    [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
-    [self setButtonsHighlighted:self.isHighlighted animated:NO];
-}
-
-- (void)mouseEntered:(NSEvent *)theEvent {
-    [self showButtonsIfNeeded];
-}
-
-- (void)mouseExited:(NSEvent *)theEvent {
-    self.isHighlighted = NO;
-    [self setButtonsHighlighted:NO animated:YES];
-}
-
-- (void)mouseMoved:(NSEvent *)theEvent {
-    if (!self.isHighlighted)
-        [self showButtonsIfNeeded];
 }
 
 #pragma mark - Private
@@ -75,27 +49,6 @@
                                                        owner:self
                                                     userInfo:nil];
     [self addTrackingArea:focusTrackingArea];
-}
-
-- (void)showButtonsIfNeeded {
-    NSPoint globalLocation = [NSEvent mouseLocation];
-    NSPoint windowLocation = [self.window convertScreenToBase:globalLocation];
-    NSPoint viewLocation = [self convertPoint:windowLocation fromView:nil];
-    if (NSPointInRect(viewLocation, self.bounds)) {
-        [self setButtonsHighlighted:YES animated:YES];
-    }
-}
-
-- (void)showScreenshotButtonIfNeeded {
-    CGRect websiteButtonFrame = self.websiteButton.frame;
-    if (![(ATZPackage *)self.objectValue screenshotPath]) {
-        [self.screenshotButton setHidden:YES];
-        websiteButtonFrame.origin.y = self.frame.size.height / 2 - websiteButtonFrame.size.height;
-    } else {
-        websiteButtonFrame.origin.y = (self.frame.size.height - websiteButtonFrame.size.height) / 2;
-        [self.screenshotButton setHidden:NO];
-    }
-    self.websiteButton.frame = websiteButtonFrame;
 }
 
 @end
