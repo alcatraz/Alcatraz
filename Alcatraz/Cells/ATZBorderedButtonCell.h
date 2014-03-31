@@ -5,7 +5,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ATZBorderedButton : NSButtonCell
+@interface ATZBorderedButtonCell : NSButtonCell
 
 @property(readwrite, nonatomic, copy) NSColor *borderColor;
 

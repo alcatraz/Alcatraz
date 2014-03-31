@@ -91,7 +91,7 @@
                                                                 <constraint firstAttribute="height" constant="48" id="3m5-u5-Utu"/>
                                                                 <constraint firstAttribute="width" constant="48" id="Q2y-Q2-on6"/>
                                                             </constraints>
-                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="r1q-fJ-E2V" customClass="ATZBorderedButton">
+                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="r1q-fJ-E2V" customClass="ATZBorderedButtonCell">
                                                                 <behavior key="behavior" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>

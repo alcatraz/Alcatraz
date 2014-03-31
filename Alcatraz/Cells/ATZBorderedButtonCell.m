@@ -3,10 +3,10 @@
 //  Copyright (c) 2014 mneorr.com. All rights reserved.
 //
 
-#import "ATZBorderedButton.h"
+#import "ATZBorderedButtonCell.h"
 #import "NSColor+Alcatraz.h"
 
-@implementation ATZBorderedButton
+@implementation ATZBorderedButtonCell
 
 - (id)initTextCell:(NSString *)aString
 {
@@ -43,6 +43,19 @@
     return NO;
 }
 
+- (void)drawImage:(NSImage*)image withFrame:(NSRect)frame inView:(NSView*)controlView
+{
+    NSRect controlBounds = [controlView bounds];
+    NSBezierPath *outerEdgePath = [self p_bezierPathForRect:controlBounds];
+
+    [NSGraphicsContext saveGraphicsState];
+    [outerEdgePath addClip];
+
+    [image drawInRect:controlBounds fromRect:NSMakeRect(0, image.size.height - NSHeight(controlBounds), NSWidth(controlBounds), NSHeight(controlBounds)) operation:NSCompositeSourceOver fraction:1.f respectFlipped:YES hints:nil];
+
+    [NSGraphicsContext restoreGraphicsState];
+}
+
 - (void)drawBezelWithFrame:(NSRect)frame inView:(NSView *)controlView
 {
     NSBezierPath *outerEdgePath = [self p_bezierPathForRect:frame];
@@ -70,7 +83,7 @@
     self.borderColor = [NSColor colorWithCalibratedWhite:0.521 alpha:1.000];
     [self setBackgroundColor:[NSColor whiteColor]];
 
-    [self setButtonType:NSMomentaryChangeButton];
+    [self setButtonType:NSMomentaryLightButton];
     [self setBezelStyle:NSRegularSquareBezelStyle];
     [self setBordered:YES];
     [self setAllowsMixedState:NO];

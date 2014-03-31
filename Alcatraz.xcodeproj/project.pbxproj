@@ -39,12 +39,12 @@
 		8AD5249F174102F9008B451F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD524A2174102F9008B451F /* Localizable.strings */; };
 		9064C5DB18E849C0009B44D7 /* Image Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9064C5DA18E849C0009B44D7 /* Image Assets.xcassets */; };
 		9064C5DF18E85209009B44D7 /* NSAttributedString+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9064C5DE18E85209009B44D7 /* NSAttributedString+Geometry.m */; };
-		907ECF3218E8E6DE009E5049 /* ATZBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3118E8E6DE009E5049 /* ATZBorderedButton.m */; };
 		907ECF3818E8E7CB009E5049 /* ATZInstallButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3518E8E7CB009E5049 /* ATZInstallButtonCell.m */; };
 		907ECF3918E8E7CB009E5049 /* ATZPaddedImageButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3718E8E7CB009E5049 /* ATZPaddedImageButtonCell.m */; };
 		907ECF5F18E8E9FB009E5049 /* ATZHeightAutosizingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF5C18E8E9FB009E5049 /* ATZHeightAutosizingTextField.m */; };
 		907ECF6018E8E9FB009E5049 /* ATZInstallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF5E18E8E9FB009E5049 /* ATZInstallButton.m */; };
 		907ECF6318E8EA05009E5049 /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF6218E8EA05009E5049 /* ATZSegmentedCell.m */; };
+		90C5856C18E8F4E000F82100 /* ATZBorderedButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C5856B18E8F4E000F82100 /* ATZBorderedButtonCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,8 +112,6 @@
 		9064C5DA18E849C0009B44D7 /* Image Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Image Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		9064C5DD18E85209009B44D7 /* NSAttributedString+Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Geometry.h"; sourceTree = "<group>"; };
 		9064C5DE18E85209009B44D7 /* NSAttributedString+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Geometry.m"; sourceTree = "<group>"; };
-		907ECF3018E8E6DE009E5049 /* ATZBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZBorderedButton.h; path = Views/ATZBorderedButton.h; sourceTree = "<group>"; };
-		907ECF3118E8E6DE009E5049 /* ATZBorderedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZBorderedButton.m; path = Views/ATZBorderedButton.m; sourceTree = "<group>"; };
 		907ECF3418E8E7CB009E5049 /* ATZInstallButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZInstallButtonCell.h; sourceTree = "<group>"; };
 		907ECF3518E8E7CB009E5049 /* ATZInstallButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZInstallButtonCell.m; sourceTree = "<group>"; };
 		907ECF3618E8E7CB009E5049 /* ATZPaddedImageButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPaddedImageButtonCell.h; sourceTree = "<group>"; };
@@ -124,6 +122,8 @@
 		907ECF5E18E8E9FB009E5049 /* ATZInstallButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZInstallButton.m; path = Views/ATZInstallButton.m; sourceTree = "<group>"; };
 		907ECF6118E8EA05009E5049 /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZSegmentedCell.h; path = Views/ATZSegmentedCell.h; sourceTree = "<group>"; };
 		907ECF6218E8EA05009E5049 /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedCell.m; path = Views/ATZSegmentedCell.m; sourceTree = "<group>"; };
+		90C5856A18E8F4E000F82100 /* ATZBorderedButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZBorderedButtonCell.h; sourceTree = "<group>"; };
+		90C5856B18E8F4E000F82100 /* ATZBorderedButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZBorderedButtonCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,8 +267,6 @@
 		8A0C0A4A1726C04A006E7AD2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				907ECF3018E8E6DE009E5049 /* ATZBorderedButton.h */,
-				907ECF3118E8E6DE009E5049 /* ATZBorderedButton.m */,
 				8A96E0C61729DC1200350F67 /* ATZDetailItemButton.h */,
 				8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */,
 				907ECF5B18E8E9FB009E5049 /* ATZHeightAutosizingTextField.h */,
@@ -299,6 +297,8 @@
 		907ECF3318E8E7CB009E5049 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				90C5856A18E8F4E000F82100 /* ATZBorderedButtonCell.h */,
+				90C5856B18E8F4E000F82100 /* ATZBorderedButtonCell.m */,
 				907ECF3418E8E7CB009E5049 /* ATZInstallButtonCell.h */,
 				907ECF3518E8E7CB009E5049 /* ATZInstallButtonCell.m */,
 				907ECF3618E8E7CB009E5049 /* ATZPaddedImageButtonCell.h */,
@@ -381,6 +381,7 @@
 				8917D9F51726B4EE00F0B2D2 /* ATZPackage.m in Sources */,
 				8917D9F61726B4EE00F0B2D2 /* ATZPlugin.m in Sources */,
 				8917D9F71726B4EE00F0B2D2 /* ATZProjectTemplate.m in Sources */,
+				90C5856C18E8F4E000F82100 /* ATZBorderedButtonCell.m in Sources */,
 				8917D9F81726B4EE00F0B2D2 /* ATZTemplate.m in Sources */,
 				8917DA051726B53000F0B2D2 /* ATZColorSchemeInstaller.m in Sources */,
 				8917DA061726B53000F0B2D2 /* ATZFileTemplateInstaller.m in Sources */,
@@ -390,7 +391,6 @@
 				8917DA081726B53000F0B2D2 /* ATZProjectTemplateInstaller.m in Sources */,
 				8917DA091726B53000F0B2D2 /* ATZTemplateInstaller.m in Sources */,
 				8917DA0D1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m in Sources */,
-				907ECF3218E8E6DE009E5049 /* ATZBorderedButton.m in Sources */,
 				907ECF6318E8EA05009E5049 /* ATZSegmentedCell.m in Sources */,
 				907ECF3918E8E7CB009E5049 /* ATZPaddedImageButtonCell.m in Sources */,
 				8917DA101726B5BA00F0B2D2 /* ATZPackageFactory.m in Sources */,
