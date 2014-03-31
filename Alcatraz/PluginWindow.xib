@@ -116,9 +116,9 @@
                                                         <button verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CQF-e0-VwE">
                                                             <rect key="frame" x="124" y="23" width="150" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <buttonCell key="cell" type="roundRect" title="username / repository" bezelStyle="roundedRect" image="github_logo" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="UJa-zN-ZUr" customClass="ATZPaddedImageButtonCell">
+                                                            <buttonCell key="cell" type="roundRect" title="username / repository" bezelStyle="roundedRect" image="github_logo" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="UJa-zN-ZUr" customClass="ATZPaddedImageButtonCell">
                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                <font key="font" metaFont="cellTitle"/>
+                                                                <font key="font" size="12" name="Helvetica"/>
                                                             </buttonCell>
                                                             <connections>
                                                                 <action selector="openPackageWebsitePressed:" target="-2" id="wHr-tD-PPF"/>
