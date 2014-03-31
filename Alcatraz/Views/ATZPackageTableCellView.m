@@ -28,13 +28,19 @@
 #import "ATZInstallButton.h"
 #import "ATZPaddedImageButtonCell.h"
 
-@interface ATZPackageTableCellView()
+// Frameworks
+#import <QuartzCore/QuartzCore.h>
+
+@interface ATZPackageTableCellView ()
+
 @property (assign) BOOL isHighlighted;
+
 @end
 
 @implementation ATZPackageTableCellView
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [self createTrackingArea];
 
     ATZPaddedImageButtonCell *websiteButtonCell = (ATZPaddedImageButtonCell *)[self.websiteButton cell];
@@ -43,10 +49,9 @@
 
 - (void)setScreenshotImage:(NSImage *)image isLoading:(BOOL)isLoading animated:(BOOL)animated
 {
-    BOOL hasImage = nil != image;
-    BOOL shouldDisplayWithProperBounds = hasImage || isLoading;
+    BOOL shouldDisplayWithProperBounds = (nil != image) || isLoading;
 
-    if (isLoading) {
+    if (shouldDisplayWithProperBounds) {
         [self.screenshotButtonActivityIndicator startAnimation:nil];
     }
 
@@ -54,13 +59,14 @@
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
         context.allowsImplicitAnimation = YES;
         context.duration = animated ? 0.36f : 0.f;
+        context.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 
         self.screenshotButtonWidthConstraint.constant = shouldDisplayWithProperBounds ? 48.f : 0.f;
         self.screenshotButtonHeightConstraint.constant = shouldDisplayWithProperBounds ? 48.f : 0.f;
         self.screenshotButtonHorizontalPaddingConstraint.constant = shouldDisplayWithProperBounds ? 14.f : 0.f;
 
-        [self.screenshotButton.animator setAlphaValue:shouldDisplayWithProperBounds ? 1.f:0.f];
         [self.screenshotButton.animator setImage:image];
+        [self.screenshotButton.animator setAlphaValue:shouldDisplayWithProperBounds ? 1.f:0.f];
         [self setNeedsLayout:YES];
     } completionHandler:^{
         [self.screenshotButtonActivityIndicator stopAnimation:nil];
@@ -69,15 +75,15 @@
 
 #pragma mark - Private
 
-- (void)createTrackingArea {
-    NSTrackingAreaOptions focusTrackingAreaOptions = NSTrackingActiveInActiveApp | NSTrackingMouseEnteredAndExited |
-                                                     NSTrackingAssumeInside      | NSTrackingInVisibleRect |
-                                                     NSTrackingMouseMoved;
-    
+- (void)createTrackingArea
+{
+    NSTrackingAreaOptions focusTrackingAreaOptions = NSTrackingActiveInActiveApp | NSTrackingMouseEnteredAndExited | NSTrackingAssumeInside | NSTrackingInVisibleRect | NSTrackingMouseMoved;
+
     NSTrackingArea *focusTrackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
-                                                     options:focusTrackingAreaOptions
-                                                       owner:self
-                                                    userInfo:nil];
+                                                                     options:focusTrackingAreaOptions
+                                                                       owner:self
+                                                                    userInfo:nil];
+
     [self addTrackingArea:focusTrackingArea];
 }
 
