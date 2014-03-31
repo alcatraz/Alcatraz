@@ -38,11 +38,13 @@
 		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
 		8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */; };
 		8AD5249F174102F9008B451F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD524A2174102F9008B451F /* Localizable.strings */; };
-		9064C5D218E83D65009B44D7 /* ATZInstallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9064C5CF18E83D65009B44D7 /* ATZInstallButton.m */; };
-		9064C5D318E83D65009B44D7 /* ATZInstallButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9064C5D118E83D65009B44D7 /* ATZInstallButtonCell.m */; };
-		9064C5D618E83E20009B44D7 /* ATZHeightAutosizingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9064C5D518E83E20009B44D7 /* ATZHeightAutosizingTextField.m */; };
 		9064C5DB18E849C0009B44D7 /* Image Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9064C5DA18E849C0009B44D7 /* Image Assets.xcassets */; };
 		9064C5DF18E85209009B44D7 /* NSAttributedString+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9064C5DE18E85209009B44D7 /* NSAttributedString+Geometry.m */; };
+		907ECF3218E8E6DE009E5049 /* ATZBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3118E8E6DE009E5049 /* ATZBorderedButton.m */; };
+		907ECF3818E8E7CB009E5049 /* ATZInstallButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3518E8E7CB009E5049 /* ATZInstallButtonCell.m */; };
+		907ECF3918E8E7CB009E5049 /* ATZPaddedImageButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3718E8E7CB009E5049 /* ATZPaddedImageButtonCell.m */; };
+		907ECF3E18E8E7DF009E5049 /* ATZHeightAutosizingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3B18E8E7DF009E5049 /* ATZHeightAutosizingTextField.m */; };
+		907ECF3F18E8E7DF009E5049 /* ATZInstallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3D18E8E7DF009E5049 /* ATZInstallButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,15 +111,19 @@
 		8A96E0C61729DC1200350F67 /* ATZDetailItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZDetailItemButton.h; path = Views/ATZDetailItemButton.h; sourceTree = "<group>"; };
 		8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZDetailItemButton.m; path = Views/ATZDetailItemButton.m; sourceTree = "<group>"; };
 		8AD524A1174102F9008B451F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		9064C5CE18E83D65009B44D7 /* ATZInstallButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZInstallButton.h; sourceTree = "<group>"; };
-		9064C5CF18E83D65009B44D7 /* ATZInstallButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZInstallButton.m; sourceTree = "<group>"; };
-		9064C5D018E83D65009B44D7 /* ATZInstallButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZInstallButtonCell.h; sourceTree = "<group>"; };
-		9064C5D118E83D65009B44D7 /* ATZInstallButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZInstallButtonCell.m; sourceTree = "<group>"; };
-		9064C5D418E83E20009B44D7 /* ATZHeightAutosizingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZHeightAutosizingTextField.h; sourceTree = "<group>"; };
-		9064C5D518E83E20009B44D7 /* ATZHeightAutosizingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZHeightAutosizingTextField.m; sourceTree = "<group>"; };
 		9064C5DA18E849C0009B44D7 /* Image Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Image Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		9064C5DD18E85209009B44D7 /* NSAttributedString+Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Geometry.h"; sourceTree = "<group>"; };
 		9064C5DE18E85209009B44D7 /* NSAttributedString+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Geometry.m"; sourceTree = "<group>"; };
+		907ECF3018E8E6DE009E5049 /* ATZBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZBorderedButton.h; path = Views/ATZBorderedButton.h; sourceTree = "<group>"; };
+		907ECF3118E8E6DE009E5049 /* ATZBorderedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZBorderedButton.m; path = Views/ATZBorderedButton.m; sourceTree = "<group>"; };
+		907ECF3418E8E7CB009E5049 /* ATZInstallButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZInstallButtonCell.h; sourceTree = "<group>"; };
+		907ECF3518E8E7CB009E5049 /* ATZInstallButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZInstallButtonCell.m; sourceTree = "<group>"; };
+		907ECF3618E8E7CB009E5049 /* ATZPaddedImageButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPaddedImageButtonCell.h; sourceTree = "<group>"; };
+		907ECF3718E8E7CB009E5049 /* ATZPaddedImageButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPaddedImageButtonCell.m; sourceTree = "<group>"; };
+		907ECF3A18E8E7DF009E5049 /* ATZHeightAutosizingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZHeightAutosizingTextField.h; path = Views/ATZHeightAutosizingTextField.h; sourceTree = "<group>"; };
+		907ECF3B18E8E7DF009E5049 /* ATZHeightAutosizingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZHeightAutosizingTextField.m; path = Views/ATZHeightAutosizingTextField.m; sourceTree = "<group>"; };
+		907ECF3C18E8E7DF009E5049 /* ATZInstallButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZInstallButton.h; path = Views/ATZInstallButton.h; sourceTree = "<group>"; };
+		907ECF3D18E8E7DF009E5049 /* ATZInstallButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZInstallButton.m; path = Views/ATZInstallButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,7 @@
 				8917D9F91726B53000F0B2D2 /* Installers */,
 				8917D9E61726B4EE00F0B2D2 /* Packages */,
 				892C7DD7171F2A2000A21B12 /* Controllers */,
+				907ECF3318E8E7CB009E5049 /* Cells */,
 				8A0C0A4A1726C04A006E7AD2 /* Views */,
 				890A4B4C171F031300AFE577 /* Alcatraz.h */,
 				890A4B4D171F031300AFE577 /* Alcatraz.m */,
@@ -260,14 +267,14 @@
 		8A0C0A4A1726C04A006E7AD2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				907ECF3018E8E6DE009E5049 /* ATZBorderedButton.h */,
+				907ECF3118E8E6DE009E5049 /* ATZBorderedButton.m */,
 				8A96E0C61729DC1200350F67 /* ATZDetailItemButton.h */,
 				8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */,
-				9064C5D418E83E20009B44D7 /* ATZHeightAutosizingTextField.h */,
-				9064C5D518E83E20009B44D7 /* ATZHeightAutosizingTextField.m */,
-				9064C5CE18E83D65009B44D7 /* ATZInstallButton.h */,
-				9064C5CF18E83D65009B44D7 /* ATZInstallButton.m */,
-				9064C5D018E83D65009B44D7 /* ATZInstallButtonCell.h */,
-				9064C5D118E83D65009B44D7 /* ATZInstallButtonCell.m */,
+				907ECF3A18E8E7DF009E5049 /* ATZHeightAutosizingTextField.h */,
+				907ECF3B18E8E7DF009E5049 /* ATZHeightAutosizingTextField.m */,
+				907ECF3C18E8E7DF009E5049 /* ATZInstallButton.h */,
+				907ECF3D18E8E7DF009E5049 /* ATZInstallButton.m */,
 				32B63215173A3E880076C098 /* ATZPackageTableCellView.h */,
 				32B63216173A3E880076C098 /* ATZPackageTableCellView.m */,
 				8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */,
@@ -287,6 +294,17 @@
 				8AD524A2174102F9008B451F /* Localizable.strings */,
 			);
 			name = en.lproj;
+			sourceTree = "<group>";
+		};
+		907ECF3318E8E7CB009E5049 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				907ECF3418E8E7CB009E5049 /* ATZInstallButtonCell.h */,
+				907ECF3518E8E7CB009E5049 /* ATZInstallButtonCell.m */,
+				907ECF3618E8E7CB009E5049 /* ATZPaddedImageButtonCell.h */,
+				907ECF3718E8E7CB009E5049 /* ATZPaddedImageButtonCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,7 +379,6 @@
 				9064C5DF18E85209009B44D7 /* NSAttributedString+Geometry.m in Sources */,
 				8917D9F41726B4EE00F0B2D2 /* ATZFileTemplate.m in Sources */,
 				8917D9F51726B4EE00F0B2D2 /* ATZPackage.m in Sources */,
-				9064C5D618E83E20009B44D7 /* ATZHeightAutosizingTextField.m in Sources */,
 				8917D9F61726B4EE00F0B2D2 /* ATZPlugin.m in Sources */,
 				8917D9F71726B4EE00F0B2D2 /* ATZProjectTemplate.m in Sources */,
 				8917D9F81726B4EE00F0B2D2 /* ATZTemplate.m in Sources */,
@@ -371,10 +388,12 @@
 				0C49775E186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */,
 				8917DA071726B53000F0B2D2 /* ATZPluginInstaller.m in Sources */,
 				8917DA081726B53000F0B2D2 /* ATZProjectTemplateInstaller.m in Sources */,
+				907ECF3E18E8E7DF009E5049 /* ATZHeightAutosizingTextField.m in Sources */,
 				8917DA091726B53000F0B2D2 /* ATZTemplateInstaller.m in Sources */,
-				9064C5D318E83D65009B44D7 /* ATZInstallButtonCell.m in Sources */,
+				907ECF3F18E8E7DF009E5049 /* ATZInstallButton.m in Sources */,
 				8917DA0D1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m in Sources */,
-				9064C5D218E83D65009B44D7 /* ATZInstallButton.m in Sources */,
+				907ECF3218E8E6DE009E5049 /* ATZBorderedButton.m in Sources */,
+				907ECF3918E8E7CB009E5049 /* ATZPaddedImageButtonCell.m in Sources */,
 				8917DA101726B5BA00F0B2D2 /* ATZPackageFactory.m in Sources */,
 				8917DA181726B63B00F0B2D2 /* ATZDownloader.m in Sources */,
 				8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */,
@@ -387,6 +406,7 @@
 				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,
 				32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */,
 				8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */,
+				907ECF3818E8E7CB009E5049 /* ATZInstallButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

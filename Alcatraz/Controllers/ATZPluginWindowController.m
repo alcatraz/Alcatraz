@@ -152,24 +152,19 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [cell.installButton setButtonState:package.isInstalled ? AZTInstallButtonStateInstalled : AZTInstallButtonStateNotInstalled];
     [cell.websiteButton setTitle:websiteButtonTitle];
     [cell.websiteButton setToolTip:package.website];
+
     [cell.typeImageView setImage:[[NSBundle bundleForClass:[self class]] imageForResource:package.iconName]];
 
-    if (package.screenshotPath.length == 0) {
-        [NSAnimationContext beginGrouping];
-        [cell.screenshotButton setAlphaValue:0.f];
-        [cell.screenshotImageView.animator setImage:nil];
-        [cell.screenshotImageView setAlphaValue:0.f];
-        [NSAnimationContext endGrouping];
-    } else {
+    if (package.screenshotPath.length > 0) {
+        [cell setScreenshotImage:nil isLoading:YES animated:YES];
+
         [self retrieveImageViewForScreenshot:package.screenshotPath progress:nil completion:^(NSImage *screenshotImage) {
             if ([cell.objectValue isEqualTo:package]) {
-                [NSAnimationContext beginGrouping];
-                [cell.screenshotButton setAlphaValue:1.f];
-                [cell.screenshotImageView.animator setImage:screenshotImage];
-                [cell.screenshotImageView setAlphaValue:1.f];
-                [NSAnimationContext endGrouping];
+                [cell setScreenshotImage:screenshotImage isLoading:NO animated:YES];
             }
         }];
+    } else {
+        [cell setScreenshotImage:nil isLoading:NO animated:YES];
     }
 
     return cell;
@@ -193,8 +188,8 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         self.samplePackageCellView = [tableView makeViewWithIdentifier:[firstColumn identifier] owner:[tableView delegate]];
     }
 
-    self.samplePackageCellView.bounds = NSMakeRect(0.f, 0.f, firstColumn.width, 98.f);
     self.samplePackageCellView.objectValue = package;
+    self.samplePackageCellView.bounds = NSMakeRect(0.f, 0.f, firstColumn.width, 98.f);
 
     [self.samplePackageCellView layoutSubtreeIfNeeded];
 

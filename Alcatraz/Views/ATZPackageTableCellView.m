@@ -26,6 +26,7 @@
 #import "Alcatraz.h"
 
 #import "ATZInstallButton.h"
+#import "ATZPaddedImageButtonCell.h"
 
 @interface ATZPackageTableCellView()
 @property (assign) BOOL isHighlighted;
@@ -35,6 +36,35 @@
 
 - (void)awakeFromNib {
     [self createTrackingArea];
+
+    ATZPaddedImageButtonCell *websiteButtonCell = (ATZPaddedImageButtonCell *)[self.websiteButton cell];
+    websiteButtonCell.spacingBetweenImageAndText = 3.f; // Plus the original 2 offset, and somehow we're at 7 pixels?! Oh AppKit!
+}
+
+- (void)setScreenshotImage:(NSImage *)image isLoading:(BOOL)isLoading animated:(BOOL)animated
+{
+    BOOL hasImage = nil != image;
+    BOOL shouldDisplayWithProperBounds = hasImage || isLoading;
+
+    if (isLoading) {
+        [self.screenshotButtonActivityIndicator startAnimation:nil];
+    }
+
+    [self setNeedsLayout:YES];
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        context.allowsImplicitAnimation = YES;
+        context.duration = animated ? 0.36f : 0.f;
+
+        self.screenshotButtonWidthConstraint.constant = shouldDisplayWithProperBounds ? 48.f : 0.f;
+        self.screenshotButtonHeightConstraint.constant = shouldDisplayWithProperBounds ? 48.f : 0.f;
+        self.screenshotButtonHorizontalPaddingConstraint.constant = shouldDisplayWithProperBounds ? 14.f : 0.f;
+
+        [self.screenshotButton.animator setAlphaValue:shouldDisplayWithProperBounds ? 1.f:0.f];
+        [self.screenshotButton.animator setImage:image];
+        [self setNeedsLayout:YES];
+    } completionHandler:^{
+        [self.screenshotButtonActivityIndicator stopAnimation:nil];
+    }];
 }
 
 #pragma mark - Private

@@ -26,10 +26,17 @@
 
 @interface ATZPackageTableCellView : NSTableCellView
 
-@property (assign) IBOutlet ATZInstallButton *installButton;
-@property (assign) IBOutlet NSButton *screenshotButton;
-@property (assign) IBOutlet NSButton *websiteButton;
 @property (assign) IBOutlet NSImageView *typeImageView;
-@property (assign) IBOutlet NSImageView *screenshotImageView;
+@property (assign) IBOutlet NSTextField *descriptionField;
+@property (assign) IBOutlet ATZInstallButton *installButton;
+@property (assign) IBOutlet NSButton *websiteButton;
+
+@property (assign) IBOutlet NSButton *screenshotButton;
+@property (assign) IBOutlet NSProgressIndicator *screenshotButtonActivityIndicator;
+@property (assign) IBOutlet NSLayoutConstraint *screenshotButtonWidthConstraint;
+@property (assign) IBOutlet NSLayoutConstraint *screenshotButtonHeightConstraint;
+@property (assign) IBOutlet NSLayoutConstraint *screenshotButtonHorizontalPaddingConstraint;
+
+- (void)setScreenshotImage:(NSImage *)image isLoading:(BOOL)isLoading animated:(BOOL)animated;
 
 @end
