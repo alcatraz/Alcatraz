@@ -33,7 +33,9 @@ NSMenu *createFakeMenu() {
     NSMenuItem *windowMenu = [[NSMenuItem alloc] initWithTitle:@"Window" action:nil keyEquivalent:@""];
     windowMenu.submenu = [[NSMenu alloc] initWithTitle:@"FakeSubmenu"];
     [windowMenu.submenu addItemWithTitle:@"Organizer" action:nil keyEquivalent:@""];
-    
+    [windowMenu.submenu addItem:[NSMenuItem separatorItem]];
+    [windowMenu.submenu addItemWithTitle:@"Bring All to Front" action:nil keyEquivalent:@""];
+
     [fakeMenu addItem:windowMenu];
     return fakeMenu;
 }

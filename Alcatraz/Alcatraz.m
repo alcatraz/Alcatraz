@@ -63,8 +63,9 @@ static Alcatraz *sharedPlugin;
                                                         keyEquivalent:@"9"];
     pluginManagerItem.keyEquivalentModifierMask = NSCommandKeyMask | NSShiftKeyMask;
     pluginManagerItem.target = self;
+
     [windowMenuItem.submenu insertItem:pluginManagerItem
-                               atIndex:[windowMenuItem.submenu indexOfItemWithTitle:@"Organizer"] + 1];
+                               atIndex:[windowMenuItem.submenu indexOfItemWithTitle:@"Bring All to Front"] - 1];
 }
 
 - (void)checkForCMDLineToolsAndOpenWindow {
