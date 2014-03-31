@@ -25,7 +25,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="138" horizontalPageScroll="10" verticalLineScroll="138" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="136" horizontalPageScroll="10" verticalLineScroll="136" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23">
                         <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" copiesOnScroll="NO" id="2OX-MH-qJ4">
@@ -33,9 +33,8 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="136" rowSizeStyle="automatic" viewBased="YES" id="24">
-                                    <rect key="frame" x="0.0" y="0.0" width="503" height="618"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="618"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
@@ -53,7 +52,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="315" customClass="ATZPackageTableCellView">
-                                                    <rect key="frame" x="1" y="1" width="500" height="136"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="500" height="136"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rv6-Zu-yMY">
@@ -193,7 +192,7 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="299"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="500" id="300"/>
                         </constraints>
-                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="25">
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="25">
                             <rect key="frame" x="0.0" y="602" width="500" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
