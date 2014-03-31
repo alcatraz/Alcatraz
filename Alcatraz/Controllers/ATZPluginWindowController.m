@@ -164,7 +164,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             }
         }];
     } else {
-        [cell setScreenshotImage:nil isLoading:NO animated:YES];
+        [cell setScreenshotImage:nil isLoading:NO animated:NO];
     }
 
     return cell;
@@ -341,7 +341,6 @@ BOOL hasPressedCommandF(NSEvent *event) {
                                 }
                             }
                           completion:^(NSData *responseData, NSError *error) {
-                              
                               NSImage *image = [[NSImage alloc] initWithData:responseData];
 
                               if (completion) {
