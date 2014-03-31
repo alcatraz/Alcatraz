@@ -1,7 +1,7 @@
 PODS:
-  - Kiwi/ARC (2.2.3)
-  - Kiwi/NonARC (2.2.3)
-  - Kiwi/XCTest (2.2.3):
+  - Kiwi/ARC (2.2.4)
+  - Kiwi/NonARC (2.2.4)
+  - Kiwi/XCTest (2.2.4):
     - Kiwi/ARC
     - Kiwi/NonARC
 
@@ -9,6 +9,6 @@ DEPENDENCIES:
   - Kiwi/XCTest
 
 SPEC CHECKSUMS:
-  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
+  Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.30.0

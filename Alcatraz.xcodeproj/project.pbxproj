@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07EB2B1718442F1900A0040B /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */; };
 		0C49775E186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */; };
 		0C7AF657186B82A00064EE7B /* NSColor+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AF656186B82A00064EE7B /* NSColor+Alcatraz.m */; };
 		32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B63216173A3E880076C098 /* ATZPackageTableCellView.m */; };
@@ -43,13 +42,12 @@
 		907ECF3218E8E6DE009E5049 /* ATZBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3118E8E6DE009E5049 /* ATZBorderedButton.m */; };
 		907ECF3818E8E7CB009E5049 /* ATZInstallButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3518E8E7CB009E5049 /* ATZInstallButtonCell.m */; };
 		907ECF3918E8E7CB009E5049 /* ATZPaddedImageButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3718E8E7CB009E5049 /* ATZPaddedImageButtonCell.m */; };
-		907ECF3E18E8E7DF009E5049 /* ATZHeightAutosizingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3B18E8E7DF009E5049 /* ATZHeightAutosizingTextField.m */; };
-		907ECF3F18E8E7DF009E5049 /* ATZInstallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF3D18E8E7DF009E5049 /* ATZInstallButton.m */; };
+		907ECF5F18E8E9FB009E5049 /* ATZHeightAutosizingTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF5C18E8E9FB009E5049 /* ATZHeightAutosizingTextField.m */; };
+		907ECF6018E8E9FB009E5049 /* ATZInstallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF5E18E8E9FB009E5049 /* ATZInstallButton.m */; };
+		907ECF6318E8EA05009E5049 /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907ECF6218E8EA05009E5049 /* ATZSegmentedCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		07EB2B1518442F1900A0040B /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZSegmentedCell.h; path = Views/ATZSegmentedCell.h; sourceTree = "<group>"; };
-		07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedCell.m; path = Views/ATZSegmentedCell.m; sourceTree = "<group>"; };
 		0C49775C186AB8170059AB6B /* NSImage+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Alcatraz.h"; sourceTree = "<group>"; };
 		0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Alcatraz.m"; sourceTree = "<group>"; };
 		0C7AF655186B82A00064EE7B /* NSColor+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Alcatraz.h"; sourceTree = "<group>"; };
@@ -120,10 +118,12 @@
 		907ECF3518E8E7CB009E5049 /* ATZInstallButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZInstallButtonCell.m; sourceTree = "<group>"; };
 		907ECF3618E8E7CB009E5049 /* ATZPaddedImageButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPaddedImageButtonCell.h; sourceTree = "<group>"; };
 		907ECF3718E8E7CB009E5049 /* ATZPaddedImageButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPaddedImageButtonCell.m; sourceTree = "<group>"; };
-		907ECF3A18E8E7DF009E5049 /* ATZHeightAutosizingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZHeightAutosizingTextField.h; path = Views/ATZHeightAutosizingTextField.h; sourceTree = "<group>"; };
-		907ECF3B18E8E7DF009E5049 /* ATZHeightAutosizingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZHeightAutosizingTextField.m; path = Views/ATZHeightAutosizingTextField.m; sourceTree = "<group>"; };
-		907ECF3C18E8E7DF009E5049 /* ATZInstallButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZInstallButton.h; path = Views/ATZInstallButton.h; sourceTree = "<group>"; };
-		907ECF3D18E8E7DF009E5049 /* ATZInstallButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZInstallButton.m; path = Views/ATZInstallButton.m; sourceTree = "<group>"; };
+		907ECF5B18E8E9FB009E5049 /* ATZHeightAutosizingTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZHeightAutosizingTextField.h; path = Views/ATZHeightAutosizingTextField.h; sourceTree = "<group>"; };
+		907ECF5C18E8E9FB009E5049 /* ATZHeightAutosizingTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZHeightAutosizingTextField.m; path = Views/ATZHeightAutosizingTextField.m; sourceTree = "<group>"; };
+		907ECF5D18E8E9FB009E5049 /* ATZInstallButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZInstallButton.h; path = Views/ATZInstallButton.h; sourceTree = "<group>"; };
+		907ECF5E18E8E9FB009E5049 /* ATZInstallButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZInstallButton.m; path = Views/ATZInstallButton.m; sourceTree = "<group>"; };
+		907ECF6118E8EA05009E5049 /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZSegmentedCell.h; path = Views/ATZSegmentedCell.h; sourceTree = "<group>"; };
+		907ECF6218E8EA05009E5049 /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedCell.m; path = Views/ATZSegmentedCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,16 +271,16 @@
 				907ECF3118E8E6DE009E5049 /* ATZBorderedButton.m */,
 				8A96E0C61729DC1200350F67 /* ATZDetailItemButton.h */,
 				8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */,
-				907ECF3A18E8E7DF009E5049 /* ATZHeightAutosizingTextField.h */,
-				907ECF3B18E8E7DF009E5049 /* ATZHeightAutosizingTextField.m */,
-				907ECF3C18E8E7DF009E5049 /* ATZInstallButton.h */,
-				907ECF3D18E8E7DF009E5049 /* ATZInstallButton.m */,
+				907ECF5B18E8E9FB009E5049 /* ATZHeightAutosizingTextField.h */,
+				907ECF5C18E8E9FB009E5049 /* ATZHeightAutosizingTextField.m */,
+				907ECF5D18E8E9FB009E5049 /* ATZInstallButton.h */,
+				907ECF5E18E8E9FB009E5049 /* ATZInstallButton.m */,
 				32B63215173A3E880076C098 /* ATZPackageTableCellView.h */,
 				32B63216173A3E880076C098 /* ATZPackageTableCellView.m */,
 				8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */,
 				8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */,
-				07EB2B1518442F1900A0040B /* ATZSegmentedCell.h */,
-				07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */,
+				907ECF6118E8EA05009E5049 /* ATZSegmentedCell.h */,
+				907ECF6218E8EA05009E5049 /* ATZSegmentedCell.m */,
 				8A44EF731745D13200411834 /* ATZVersionLabel.h */,
 				8A44EF741745D13200411834 /* ATZVersionLabel.m */,
 			);
@@ -388,21 +388,21 @@
 				0C49775E186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */,
 				8917DA071726B53000F0B2D2 /* ATZPluginInstaller.m in Sources */,
 				8917DA081726B53000F0B2D2 /* ATZProjectTemplateInstaller.m in Sources */,
-				907ECF3E18E8E7DF009E5049 /* ATZHeightAutosizingTextField.m in Sources */,
 				8917DA091726B53000F0B2D2 /* ATZTemplateInstaller.m in Sources */,
-				907ECF3F18E8E7DF009E5049 /* ATZInstallButton.m in Sources */,
 				8917DA0D1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m in Sources */,
 				907ECF3218E8E6DE009E5049 /* ATZBorderedButton.m in Sources */,
+				907ECF6318E8EA05009E5049 /* ATZSegmentedCell.m in Sources */,
 				907ECF3918E8E7CB009E5049 /* ATZPaddedImageButtonCell.m in Sources */,
 				8917DA101726B5BA00F0B2D2 /* ATZPackageFactory.m in Sources */,
 				8917DA181726B63B00F0B2D2 /* ATZDownloader.m in Sources */,
 				8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */,
 				8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */,
+				907ECF5F18E8E9FB009E5049 /* ATZHeightAutosizingTextField.m in Sources */,
 				8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */,
 				8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */,
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
-				07EB2B1718442F1900A0040B /* ATZSegmentedCell.m in Sources */,
+				907ECF6018E8E9FB009E5049 /* ATZInstallButton.m in Sources */,
 				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,
 				32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */,
 				8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */,
