@@ -115,7 +115,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (IBAction)displayScreenshotPressed:(NSButton *)sender {
     ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
     
-    [self displayScreenshot:package.screenshotPath withTitle:package.name];
+    [self displayScreenshot:package.screenshotPath withTitle:package.name sender:sender];
 }
 
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender {
@@ -306,28 +306,28 @@ BOOL hasPressedCommandF(NSEvent *event) {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:address]];
 }
 
-- (void)displayScreenshot:(NSString *)screenshotPath withTitle:(NSString *)title {
-    
-    [self.previewPanel.animator setAlphaValue:0.f];
-    self.previewPanel.title = title;
-    [self retrieveImageViewForScreenshot:screenshotPath
-                                progress:^(CGFloat progress) {
+- (void)displayScreenshot:(NSString *)screenshotPath withTitle:(NSString *)title sender:(NSButton *)sender {
 
-    }
-                              completion:^(NSImage *image) {
-        
+    [self.previewPanel setAlphaValue:0.f];
+    NSRect buttonFrameOnScreen = [self.window convertRectToScreen:[sender frame]];
+    [self.previewPanel setFrame:buttonFrameOnScreen display:YES animate:NO];
+    [self.previewPanel orderFront:self];
+
+    self.previewPanel.title = title;
+    [self retrieveImageViewForScreenshot:screenshotPath progress:nil completion:^(NSImage *image) {
         self.previewImageView.image = image;
-        [NSAnimationContext beginGrouping];
-        
-        [self.previewImageView.animator setFrame:(CGRect){ .origin = CGPointMake(0, 0), .size = image.size }];
-        CGRect previewPanelFrame = (CGRect){.origin = self.previewPanel.frame.origin, .size = image.size};
-        [self.previewPanel setFrame:previewPanelFrame display:NO animate:NO];
-        [self.previewPanel.animator center];
-        
-        [NSAnimationContext endGrouping];
-        
-        [self.previewPanel makeKeyAndOrderFront:self];
-        [self.previewPanel.animator setAlphaValue:1.f];
+        [self.previewPanel layoutIfNeeded];
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            context.duration = 0.25f;
+            context.allowsImplicitAnimation = YES;
+
+
+            [self.previewPanel.animator setAlphaValue:1.f];
+            [self.previewPanel.animator center];
+            [self.previewPanel.animator layoutIfNeeded];
+        } completionHandler:^{
+            [self.previewPanel makeKeyAndOrderFront:self];
+        }];
     }];
 }
 

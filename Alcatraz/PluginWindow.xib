@@ -274,7 +274,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="285"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="1349" customClass="NSImageView">
+                    <customView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="1349" customClass="NSImageView">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="285"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
