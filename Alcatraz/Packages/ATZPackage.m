@@ -44,6 +44,7 @@
     self.description = dictionary[@"description"];
     self.remotePath = dictionary[@"url"];
     self.screenshotPath = dictionary[@"screenshot"];
+    self.iconPath = dictionary[@"icon"];
     self.revision = [ATZGit parseRevisionFromDictionary:dictionary];
 }
 

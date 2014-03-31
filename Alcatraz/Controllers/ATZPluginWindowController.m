@@ -155,10 +155,12 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
     [cell.typeImageView setImage:[[NSBundle bundleForClass:[self class]] imageForResource:package.iconName]];
 
-    if (package.screenshotPath.length > 0) {
+    NSString *previewImagePath = package.iconPath ?: package.screenshotPath;
+
+    if ([previewImagePath length] > 0) {
         [cell setScreenshotImage:nil isLoading:YES animated:YES];
 
-        [self retrieveImageViewForScreenshot:package.screenshotPath progress:nil completion:^(NSImage *screenshotImage) {
+        [self retrieveImageViewForScreenshot:previewImagePath progress:nil completion:^(NSImage *screenshotImage) {
             if ([cell.objectValue isEqualTo:package]) {
                 [cell setScreenshotImage:screenshotImage isLoading:NO animated:YES];
             }
