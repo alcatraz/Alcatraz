@@ -103,11 +103,21 @@ static const CGFloat BUTTON_CORNER_RADIUS = 3.f;
     [ctx restoreGraphicsState];
 }
 
+- (NSSize)cellSizeForBounds:(NSRect)aRect
+{
+    NSSize cellSizeForBounds = [super cellSizeForBounds:aRect];
+
+    cellSizeForBounds.width -= 12.f;
+    cellSizeForBounds.height -= 6.f;
+
+    return cellSizeForBounds;
+}
+
 - (NSRect)titleRectForBounds:(NSRect)theRect
 {
     NSRect modifiedRect = theRect;
 
-    modifiedRect.origin.y += 0.5;
+    modifiedRect.origin.y += 1.f;
 
     return modifiedRect;
 }
