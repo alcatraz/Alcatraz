@@ -23,79 +23,68 @@
 
 #import "ATZPackageTableCellView.h"
 #import "ATZPackage.h"
+#import "Alcatraz.h"
 
-@interface ATZPackageTableCellView()
+#import "ATZInstallButton.h"
+#import "ATZPaddedImageButtonCell.h"
+
+// Frameworks
+#import <QuartzCore/QuartzCore.h>
+
+@interface ATZPackageTableCellView ()
+
 @property (assign) BOOL isHighlighted;
+
 @end
 
 @implementation ATZPackageTableCellView
 
-- (void)awakeFromNib {
-    [self.buttonsContainerView setWantsLayer:YES];
+- (void)awakeFromNib
+{
     [self createTrackingArea];
+
+    ATZPaddedImageButtonCell *websiteButtonCell = (ATZPaddedImageButtonCell *)[self.websiteButton cell];
+    websiteButtonCell.spacingBetweenImageAndText = 3.f; // Plus the original 2 offset, and somehow we're at 7 pixels?! Oh AppKit!
 }
 
-- (void)setButtonsHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    float alphaValue = highlighted ? 1.0f : 0.0f;
+- (void)setScreenshotImage:(NSImage *)image isLoading:(BOOL)isLoading animated:(BOOL)animated
+{
+    BOOL shouldDisplayWithProperBounds = (nil != image) || isLoading;
 
-    id buttonsContainerView = animated ? self.buttonsContainerView.animator : self.buttonsContainerView;
+    if (shouldDisplayWithProperBounds) {
+        [self.screenshotButtonActivityIndicator startAnimation:nil];
+    }
 
-    [buttonsContainerView setAlphaValue: alphaValue];
-}
+    [self setNeedsLayout:YES];
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        context.allowsImplicitAnimation = YES;
+        context.duration = animated ? 0.36f : 0.f;
+        context.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 
-- (void)viewWillDraw {
-    [self showScreenshotButtonIfNeeded];
-    [self.websiteButton setToolTip:[(ATZPackage *)self.objectValue website]];
-    [self setButtonsHighlighted:self.isHighlighted animated:NO];
-}
+        self.screenshotButtonWidthConstraint.constant = shouldDisplayWithProperBounds ? 48.f : 0.f;
+        self.screenshotButtonHeightConstraint.constant = shouldDisplayWithProperBounds ? 48.f : 0.f;
+        self.screenshotButtonHorizontalPaddingConstraint.constant = shouldDisplayWithProperBounds ? 14.f : 0.f;
 
-- (void)mouseEntered:(NSEvent *)theEvent {
-    [self showButtonsIfNeeded];
-}
-
-- (void)mouseExited:(NSEvent *)theEvent {
-    self.isHighlighted = NO;
-    [self setButtonsHighlighted:NO animated:YES];
-}
-
-- (void)mouseMoved:(NSEvent *)theEvent {
-    if (!self.isHighlighted)
-        [self showButtonsIfNeeded];
+        [self.screenshotButton.animator setImage:image];
+        [self.screenshotButton.animator setAlphaValue:shouldDisplayWithProperBounds ? 1.f:0.f];
+        [self setNeedsLayout:YES];
+    } completionHandler:^{
+        [self.screenshotButtonActivityIndicator stopAnimation:nil];
+    }];
 }
 
 #pragma mark - Private
 
-- (void)createTrackingArea {
-    NSTrackingAreaOptions focusTrackingAreaOptions = NSTrackingActiveInActiveApp | NSTrackingMouseEnteredAndExited |
-                                                     NSTrackingAssumeInside      | NSTrackingInVisibleRect |
-                                                     NSTrackingMouseMoved;
-    
+- (void)createTrackingArea
+{
+    NSTrackingAreaOptions focusTrackingAreaOptions = NSTrackingActiveInActiveApp | NSTrackingMouseEnteredAndExited | NSTrackingAssumeInside | NSTrackingInVisibleRect | NSTrackingMouseMoved;
+
     NSTrackingArea *focusTrackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect
-                                                     options:focusTrackingAreaOptions
-                                                       owner:self
-                                                    userInfo:nil];
+                                                                     options:focusTrackingAreaOptions
+                                                                       owner:self
+                                                                    userInfo:nil];
+
     [self addTrackingArea:focusTrackingArea];
-}
-
-- (void)showButtonsIfNeeded {
-    NSPoint globalLocation = [NSEvent mouseLocation];
-    NSPoint windowLocation = [self.window convertScreenToBase:globalLocation];
-    NSPoint viewLocation = [self convertPoint:windowLocation fromView:nil];
-    if (NSPointInRect(viewLocation, self.bounds)) {
-        [self setButtonsHighlighted:YES animated:YES];
-    }
-}
-
-- (void)showScreenshotButtonIfNeeded {
-    CGRect websiteButtonFrame = self.websiteButton.frame;
-    if (![(ATZPackage *)self.objectValue screenshotPath]) {
-        [self.screenshotButton setHidden:YES];
-        websiteButtonFrame.origin.y = self.frame.size.height / 2 - websiteButtonFrame.size.height;
-    } else {
-        websiteButtonFrame.origin.y = (self.frame.size.height - websiteButtonFrame.size.height) / 2;
-        [self.screenshotButton setHidden:NO];
-    }
-    self.websiteButton.frame = websiteButtonFrame;
 }
 
 @end

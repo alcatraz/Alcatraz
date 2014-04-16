@@ -25,6 +25,7 @@
 @interface NSColor (Alcatraz)
 
 + (instancetype)alcatrazBlueColor;
++ (instancetype)alcatrazProgressBlueColor;
 + (instancetype)alcatrazProgressGrayColor;
 
 @end

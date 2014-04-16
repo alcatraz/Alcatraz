@@ -22,7 +22,7 @@
 
 #import <AppKit/AppKit.h>
 
-@interface ATZPluginWindowController : NSWindowController<NSTableViewDelegate, NSControlTextEditingDelegate, NSUserNotificationCenterDelegate>
+@interface ATZPluginWindowController : NSWindowController<NSTableViewDataSource, NSTableViewDelegate, NSControlTextEditingDelegate, NSUserNotificationCenterDelegate>
 
 @property (nonatomic, retain) NSArray *packages;
 @property (nonatomic, retain) NSPredicate *filterPredicate;
@@ -34,7 +34,7 @@
 
 - (id)initWithBundle:(NSBundle *)bundle;
 
-- (IBAction)checkboxPressed:(NSButton *)sender;
+- (IBAction)performPackageActivity:(NSButton *)sender;
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender;
 - (IBAction)displayScreenshotPressed:(NSButton *)sender;
 

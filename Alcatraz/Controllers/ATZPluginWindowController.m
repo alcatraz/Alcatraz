@@ -35,7 +35,7 @@
 #import "ATZShell.h"
 #import "ATZSegmentedCell.h"
 
-#import "ATZRadialProgressControl.h"
+#import "ATZInstallButton.h"
 
 static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
@@ -45,6 +45,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 @interface ATZPluginWindowController ()
 @property (nonatomic, assign) Class selectedPackageClass;
 @property (nonatomic, assign) NSView *hoverButtonsContainer;
+
+@property (nonatomic, strong) NSCache *rowHeightCache;
+@property (nonatomic, strong) ATZPackageTableCellView *samplePackageCellView;
 @end
 
 @implementation ATZPluginWindowController
@@ -60,6 +63,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [self addVersionToWindow];
 
         _filterPredicate = [NSPredicate predicateWithValue:YES];
+
+        _rowHeightCache = [[NSCache alloc] init];
+        _rowHeightCache.countLimit = 1024;
 
         @try {
             if ([NSUserNotificationCenter class])
@@ -81,13 +87,13 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 #pragma mark - Bindings
 
-- (IBAction)checkboxPressed:(ATZRadialProgressControl *)control {
-    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:control]];
-    
+- (IBAction)performPackageActivity:(ATZInstallButton *)sender {
+    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
+
     if (package.isInstalled)
-        [self removePackage:package andUpdateControl:control];
+        [self removePackage:package andUpdateControl:sender];
     else
-        [self installPackage:package andUpdateControl:control];
+        [self installPackage:package andUpdateControl:sender];
 }
 
 - (NSDictionary *)segmentClassMapping {
@@ -109,7 +115,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 - (IBAction)displayScreenshotPressed:(NSButton *)sender {
     ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
     
-    [self displayScreenshot:package.screenshotPath withTitle:package.name];
+    [self displayScreenshot:package.screenshotPath withTitle:package.name sender:sender];
 }
 
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender {
@@ -129,6 +135,83 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [super keyDown:event];
 }
 
+#pragma mark - NSTableViewDataSource
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    return [self.packages count];
+}
+
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    ATZPackageTableCellView *cell = [tableView makeViewWithIdentifier:[tableColumn identifier] owner:[tableView delegate]];
+    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][row];
+
+    NSString *websiteButtonTitle = [NSString stringWithFormat:@"%@ / %@", package.username, package.repository];
+
+    [cell.installButton setButtonState:package.isInstalled ? AZTInstallButtonStateInstalled : AZTInstallButtonStateNotInstalled];
+    [cell.websiteButton setTitle:websiteButtonTitle];
+    [cell.websiteButton setToolTip:package.website];
+
+    [cell.typeImageView setImage:[[NSBundle bundleForClass:[self class]] imageForResource:package.iconName]];
+
+    NSString *previewImagePath = package.iconPath ?: package.screenshotPath;
+
+    if ([previewImagePath length] > 0) {
+        [cell setScreenshotImage:nil isLoading:YES animated:YES];
+
+        [self retrieveImageViewForScreenshot:previewImagePath progress:nil completion:^(NSImage *screenshotImage) {
+            if ([cell.objectValue isEqualTo:package]) {
+                [cell setScreenshotImage:screenshotImage isLoading:NO animated:YES];
+            }
+        }];
+    } else {
+        [cell setScreenshotImage:nil isLoading:NO animated:NO];
+    }
+
+    return cell;
+}
+
+#pragma mark - NSTableViewDelegate
+
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
+{
+    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][row];
+    NSTableColumn *firstColumn = [tableView.tableColumns firstObject];
+    NSString *rowKey = [NSString stringWithFormat:@"%tu-%f", [package hash], firstColumn.width];
+
+    NSNumber *cachedRowHeight = [self.rowHeightCache objectForKey:rowKey];
+
+    if (nil != cachedRowHeight) {
+        return [cachedRowHeight floatValue];
+    }
+
+    if (nil == self.samplePackageCellView) {
+        self.samplePackageCellView = [tableView makeViewWithIdentifier:[firstColumn identifier] owner:[tableView delegate]];
+    }
+
+    self.samplePackageCellView.objectValue = package;
+    self.samplePackageCellView.bounds = NSMakeRect(0.f, 0.f, firstColumn.width, 98.f);
+
+    [self.samplePackageCellView layoutSubtreeIfNeeded];
+
+    CGFloat rowHeight = [self.samplePackageCellView fittingSize].height;
+
+    [self.rowHeightCache setObject:@(rowHeight) forKey:rowKey];
+
+    return MAX(98.f, rowHeight);
+}
+
+- (void)tableViewColumnDidResize:(NSNotification *)notification
+{
+    NSTableView *tableView = [notification object];
+    NSRange rowRange = [tableView rowsInRect:[tableView visibleRect]];
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        context.duration = 0;
+        context.allowsImplicitAnimation = NO;
+        [tableView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndexesInRange:rowRange]];
+    } completionHandler:nil];
+}
 
 #pragma mark - Private
 
@@ -143,18 +226,25 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [[NSOperationQueue mainQueue] addOperation:updateOperation];
 }
 
-- (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
-    [control setProgress:0 animated:YES];
-    [package removeWithCompletion:^(NSError *failure) {}];
+- (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZInstallButton *)control {
+    [control setProgress:0.f animated:YES];
+    [package removeWithCompletion:^(NSError *failure) {
+        [control setButtonState:AZTInstallButtonStateNotInstalled animated:YES];
+    }];
 }
 
-- (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
-    [package installWithProgress:^(NSString *progressMessage, CGFloat progress) { //TODO: see if we can get rid of NSString progress
+- (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZInstallButton *)control {
+    [control setButtonState:AZTInstallButtonStateInstalling animated:YES];
+
+    [package installWithProgress:^(NSString *progressMessage, CGFloat progress) {
         [control setProgress:progress animated:YES];
-    }
-                      completion:^(NSError *failure) {
-        [control setProgress:failure ? 0 : 1 animated:YES];
-        if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
+    } completion:^(NSError *failure) {
+        [control setProgress:failure ? 0.f : 1.f animated:YES];
+        [control setButtonState:failure ? AZTInstallButtonStateError : AZTInstallButtonStateInstalled animated:YES];
+
+        if (package.requiresRestart) {
+            [self postNotificationForInstalledPackage:package];
+        }
     }];
 }
 
@@ -218,28 +308,28 @@ BOOL hasPressedCommandF(NSEvent *event) {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:address]];
 }
 
-- (void)displayScreenshot:(NSString *)screenshotPath withTitle:(NSString *)title {
-    
-    [self.previewPanel.animator setAlphaValue:0.f];
-    self.previewPanel.title = title;
-    [self retrieveImageViewForScreenshot:screenshotPath
-                                progress:^(CGFloat progress) {
+- (void)displayScreenshot:(NSString *)screenshotPath withTitle:(NSString *)title sender:(NSButton *)sender {
 
-    }
-                              completion:^(NSImage *image) {
-        
+    [self.previewPanel setAlphaValue:0.f];
+    NSRect buttonFrameOnScreen = [self.window convertRectToScreen:[sender frame]];
+    [self.previewPanel setFrame:buttonFrameOnScreen display:YES animate:NO];
+    [self.previewPanel orderFront:self];
+
+    self.previewPanel.title = title;
+    [self retrieveImageViewForScreenshot:screenshotPath progress:nil completion:^(NSImage *image) {
         self.previewImageView.image = image;
-        [NSAnimationContext beginGrouping];
-        
-        [self.previewImageView.animator setFrame:(CGRect){ .origin = CGPointMake(0, 0), .size = image.size }];
-        CGRect previewPanelFrame = (CGRect){.origin = self.previewPanel.frame.origin, .size = image.size};
-        [self.previewPanel setFrame:previewPanelFrame display:NO animate:NO];
-        [self.previewPanel.animator center];
-        
-        [NSAnimationContext endGrouping];
-        
-        [self.previewPanel makeKeyAndOrderFront:self];
-        [self.previewPanel.animator setAlphaValue:1.f];
+        [self.previewPanel layoutIfNeeded];
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            context.duration = 0.25f;
+            context.allowsImplicitAnimation = YES;
+
+
+            [self.previewPanel.animator setAlphaValue:1.f];
+            [self.previewPanel.animator center];
+            [self.previewPanel.animator layoutIfNeeded];
+        } completionHandler:^{
+            [self.previewPanel makeKeyAndOrderFront:self];
+        }];
     }];
 }
 
@@ -248,12 +338,16 @@ BOOL hasPressedCommandF(NSEvent *event) {
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadFileFromPath:screenshotPath
                             progress:^(CGFloat progress) {
-                                downloadProgress(progress);
+                                if (downloadProgress) {
+                                    downloadProgress(progress);
+                                }
                             }
                           completion:^(NSData *responseData, NSError *error) {
-                              
                               NSImage *image = [[NSImage alloc] initWithData:responseData];
-                              completion(image);
+
+                              if (completion) {
+                                  completion(image);
+                              }
                           }];
     
 }

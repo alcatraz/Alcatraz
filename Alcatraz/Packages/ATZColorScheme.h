@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 #import "ATZPackage.h"
 
-static NSString *const COLOR_SCHEME_ICON_NAME = @"toolbar_colors";
+static NSString *const COLOR_SCHEME_ICON_NAME = @"toolbar_themes";
 
 @interface ATZColorScheme : ATZPackage
 
