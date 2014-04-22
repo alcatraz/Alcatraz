@@ -32,7 +32,10 @@ static NSString *const DOWNLOADED_PLUGINS_RELATIVE_PATH = @"Plug-ins";
 
 static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
 static NSString *const PROJECT = @"-project";
+static NSString *const WORKSPACE = @"-workspace";
+static NSString *const SCHEME = @"-scheme";
 static NSString *const XCODEPROJ = @".xcodeproj";
+static NSString *const XCWORKSPACE = @".xcworkspace";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 @implementation ATZPluginInstaller
@@ -99,35 +102,54 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 #pragma mark - Private
 
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
-
-    NSString *xcodeProjPath;
-
-    @try { xcodeProjPath = [self findXcodeprojPathForPlugin:plugin]; }
-    @catch (NSException *exception) {
-        completion([NSError errorWithDomain:exception.reason code:666 userInfo:nil]);
+    
+    NSString *workspacePath = [self findWorkspacePathForPlugin:plugin];
+    if (workspacePath) {
+        [self buildWithArguments:@[WORKSPACE, workspacePath, SCHEME, plugin.name] completion:completion];
         return;
     }
+    
+    NSString *xcodeProjPath = [self findXcodeprojPathForPlugin:plugin];
+    if (xcodeProjPath) {
+        [self buildWithArguments:@[PROJECT, xcodeProjPath] completion:completion];
+        return;
+    }
+    
+    NSLog(@"Couldn't find .xcodeproj nor .xcworkspace for plugin: %@", plugin.name);
+    completion([NSError errorWithDomain:@"Build Error" code:666 userInfo:nil]);
+}
 
+- (void)buildWithArguments:(NSArray *)arguments completion:(void (^)(NSError *))completion {
     ATZShell *shell = [ATZShell new];
-    [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
+    [shell executeCommand:XCODE_BUILD withArguments:arguments completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
         completion(error);
     }];
 }
 
+- (NSString *)findWorkspacePathForPlugin:(ATZPlugin *)plugin {
+    NSString *clonedDirectory = [self pathForDownloadedPackage:plugin];
+    NSString *workspaceFilename = [plugin.name stringByAppendingString:XCWORKSPACE];
+    
+    return [self findFileNamed:workspaceFilename inDirectory:clonedDirectory];
+}
+
 - (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
     NSString *clonedDirectory = [self pathForDownloadedPackage:plugin];
     NSString *xcodeProjFilename = [plugin.name stringByAppendingString:XCODEPROJ];
+    
+    return [self findFileNamed:xcodeProjFilename inDirectory:clonedDirectory];
+}
 
-    NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];
+- (NSString *)findFileNamed:(NSString *)filename inDirectory:(NSString *)directory {
+	NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:directory];
     NSString *directoryEntry;
-
+    
     while (directoryEntry = [enumerator nextObject])
-        if ([directoryEntry.pathComponents.lastObject isEqualToString:xcodeProjFilename])
-            return [clonedDirectory stringByAppendingPathComponent:directoryEntry];
-
-    NSLog(@"Wasn't able to find: %@ in %@", xcodeProjFilename, clonedDirectory);
-    @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
+        if ([directoryEntry.pathComponents.lastObject isEqualToString:filename])
+            return [directory stringByAppendingPathComponent:directoryEntry];
+    
+    return nil;
 }
 
 - (NSString *)installNameFromPbxproj:(ATZPackage *)package {
