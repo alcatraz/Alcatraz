@@ -61,6 +61,10 @@ static NSString *const ALL_ITEMS_TITLE = @"All";
 }
 
 - (NSImage *)iconForSegment:(ATZFilterSegment)segment {
+    if (self.tag > 0) {
+        // hack to use system icon
+        return [self imageForSegment:segment];
+    }
     return [[[Alcatraz sharedPlugin] bundle] imageForResource:[self segmentIconMapping][@(segment)]];
 }
 

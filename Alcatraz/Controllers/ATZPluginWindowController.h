@@ -31,6 +31,7 @@
 @property (assign) IBOutlet NSImageView *previewImageView;
 @property (assign) IBOutlet NSSearchField *searchField;
 @property (assign) IBOutlet NSTableView *tableView;
+@property (assign) IBOutlet NSSegmentedControl *installedFilterControl;
 
 - (id)initWithBundle:(NSBundle *)bundle;
 
@@ -39,6 +40,7 @@
 - (IBAction)displayScreenshotPressed:(NSButton *)sender;
 
 - (IBAction)segmentedControlPressed:(id)sender;
+- (IBAction)installedFilterControlPressed:(id)sender;
 
 - (void)reloadPackages;
 
