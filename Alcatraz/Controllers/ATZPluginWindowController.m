@@ -152,7 +152,9 @@ static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR desc
 
 - (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
     [control setProgress:0 animated:YES];
-    [package removeWithCompletion:^(NSError *failure) {}];
+    [package removeWithCompletion:^(NSError *failure) {
+        [self updatePredicate];
+    }];
 }
 
 - (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
@@ -181,7 +183,6 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)updatePredicate {
-    // TODO: refactor, use compound predicates.
 
     NSString *searchText = self.searchField.stringValue;
     // filter by type and search field text
