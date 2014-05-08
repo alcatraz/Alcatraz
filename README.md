@@ -36,6 +36,14 @@ Fork the [Alcatraz package repository](https://github.com/supermarin/alcatraz-pa
 
 Alcatraz has a few [contribution guidelines](https://github.com/supermarin/Alcatraz/blob/master/CONTRIBUTING.md), for anyone looking to make it more awesome.
 
+## Troubleshooting
+
+If "nothing" happens when installing packages, try the following self-help steps:
+
+1. Verify which copy (if more than one are installed) of git is being run (`which git`).
+2. Make sure you're running a recent version of git (`git --version`).
+3. If you've used Xcode developer preview releases in the past, make certain Xcode isn't stuck using an inappropriate developer path by resetting it (`sudo xcode-select --reset`).
+
 ## Uninstall
 
 Open up your terminal and paste this: 
