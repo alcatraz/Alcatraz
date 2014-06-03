@@ -56,7 +56,7 @@ describe(@"Package", ^{
 
     it(@"initializes correctly", ^{
         [[package.name should] equal:name];
-        [[package.description should] equal:description];
+        [[package.summary should] equal:description];
         [[package.remotePath should] equal:urlString];
         [[package.screenshotPath should] equal:screenshotPath];
     });
