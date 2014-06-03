@@ -28,7 +28,7 @@
 @interface ATZPackage : NSObject
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *summary;
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSString *remotePath;
 @property (strong, nonatomic) NSString *revision;

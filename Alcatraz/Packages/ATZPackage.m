@@ -41,7 +41,7 @@
 
 - (void)unpackFromDictionary:(NSDictionary *)dictionary {
     self.name = dictionary[@"name"];
-    self.description = dictionary[@"description"];
+    self.summary = dictionary[@"description"];
     self.remotePath = dictionary[@"url"];
     self.screenshotPath = dictionary[@"screenshot"];
     self.revision = [ATZGit parseRevisionFromDictionary:dictionary];

@@ -108,7 +108,7 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="315" name="value" keyPath="objectValue.description" id="402"/>
+                                                                <binding destination="315" name="value" keyPath="objectValue.summary" id="G1A-FS-Ta9"/>
                                                             </connections>
                                                         </textField>
                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="959" userLabel="Package Name">
