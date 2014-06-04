@@ -1,3 +1,8 @@
+## 1.0.6
+
+- Fix summary field naming conflict
+- Experimental support for new betas
+
 ## 1.0.3
 
 - Support Xcode 5.1
