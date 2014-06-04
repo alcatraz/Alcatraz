@@ -46,7 +46,7 @@ build: clean
 
 # Create a Github release
 github_release:
-	git push
+	git push -u origin master
 	git push --tags
 	gh release create -m "Release ${VERSION}" ${VERSION}
 
