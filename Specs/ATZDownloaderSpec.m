@@ -3,7 +3,7 @@
 //  Alcatraz
 //
 //  Created by Marin Usalj on 2/12/14.
-//  Copyright 2014 mneorr.com. All rights reserved.
+//  Copyright 2014 supermar.in. All rights reserved.
 //
 
 #import <Kiwi/Kiwi.h>

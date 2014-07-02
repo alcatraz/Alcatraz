@@ -3,7 +3,7 @@
 //  Alcatraz
 //
 //  Created by Marin Usalj on 3/10/14.
-//  Copyright (c) 2014 mneorr.com. All rights reserved.
+//  Copyright (c) 2014 supermar.in. All rights reserved.
 //
 
 #ifndef Alcatraz_Version_h

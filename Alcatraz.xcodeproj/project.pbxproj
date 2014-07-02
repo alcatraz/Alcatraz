@@ -374,7 +374,7 @@
 			attributes = {
 				CLASSPREFIX = ATZ;
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = mneorr.com;
+				ORGANIZATIONNAME = supermar.in;
 			};
 			buildConfigurationList = 890A4B3A171F031300AFE577 /* Build configuration list for PBXProject "Alcatraz" */;
 			compatibilityVersion = "Xcode 3.2";

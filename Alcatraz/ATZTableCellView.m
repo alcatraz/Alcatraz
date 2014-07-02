@@ -3,7 +3,7 @@
 //  Alcatraz
 //
 //  Created by Marin Usalj on 3/2/14.
-//  Copyright (c) 2014 mneorr.com. All rights reserved.
+//  Copyright (c) 2014 supermar.in. All rights reserved.
 //
 
 #import "ATZTableCellView.h"
