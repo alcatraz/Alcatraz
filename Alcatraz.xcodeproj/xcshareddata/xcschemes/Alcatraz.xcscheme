@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5F335CA1B8A142AB97DD9754"
-               BuildableName = "libPods-AlcatrazTests.a"
-               BlueprintName = "Pods-AlcatrazTests"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "890A4B3E171F031300AFE577"
                BuildableName = "Alcatraz.xcplugin"
                BlueprintName = "Alcatraz"
@@ -43,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8966AFCA173EB7BF004150C0"
-               BuildableName = "AlcatrazTests.octest"
+               BuildableName = "AlcatrazTests.xctest"
                BlueprintName = "AlcatrazTests"
                ReferencedContainer = "container:Alcatraz.xcodeproj">
             </BuildableReference>
@@ -56,16 +42,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8966AFCA173EB7BF004150C0"
-               BuildableName = "AlcatrazTests.octest"
-               BlueprintName = "AlcatrazTests"
-               ReferencedContainer = "container:Alcatraz.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

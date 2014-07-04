@@ -22,10 +22,7 @@
 // THE SOFTWARE.
 
 #import "ATZVersionLabel.h"
-
-// Don't update these numbers manually. They're automatically updated from a rake task
-#define ATZ_VERSION "0.6.1"
-#define ATZ_REVISION "3e07372"
+#import "ATZVersion.h"
 
 @implementation ATZVersionLabel
 
@@ -36,6 +33,8 @@
 }
 
 - (void)setStyle {
+    self.alignment         = NSRightTextAlignment;
+    self.autoresizingMask  = NSViewMinXMargin | NSViewMinYMargin | NSViewNotSizable;
     self.backgroundColor   = [NSColor clearColor];
     self.layer.borderColor = [NSColor clearColor].CGColor;
     self.textColor         = [NSColor colorWithDeviceWhite:0.75 alpha:1.f];
@@ -50,7 +49,6 @@
     [self setDrawsBackground:NO];
     [self setEditable:NO];
     [self setSelectable:NO];
-    [self setToolTip:[NSString stringWithFormat:@"revision: %s", ATZ_REVISION]];
 }
 
 @end

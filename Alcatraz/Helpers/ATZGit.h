@@ -37,12 +37,14 @@ static NSString *const HARD = @"--hard";
 @interface ATZGit : NSObject
 
 + (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
-             completion:(void(^)(NSError *error))completion;
+             completion:(void(^)(NSString *output, NSError *error))completion;
 
 + (void)updateRepository:(NSString *)localPath revision:(NSString *)revision
               completion:(void(^)(NSString *output, NSError *error))completion;
 
 + (NSString *)parseRevisionFromDictionary:(NSDictionary *)dict;
+
++ (BOOL)areCommandLineToolsAvailable;
 
 @end
 

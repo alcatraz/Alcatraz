@@ -33,7 +33,9 @@ NSMenu *createFakeMenu() {
     NSMenuItem *windowMenu = [[NSMenuItem alloc] initWithTitle:@"Window" action:nil keyEquivalent:@""];
     windowMenu.submenu = [[NSMenu alloc] initWithTitle:@"FakeSubmenu"];
     [windowMenu.submenu addItemWithTitle:@"Organizer" action:nil keyEquivalent:@""];
-    
+    [windowMenu.submenu addItem:[NSMenuItem separatorItem]];
+    [windowMenu.submenu addItemWithTitle:@"Bring All to Front" action:nil keyEquivalent:@""];
+
     [fakeMenu addItem:windowMenu];
     return fakeMenu;
 }
@@ -50,16 +52,21 @@ describe(@"Alcatraz.m", ^{
    
     __block Alcatraz *alcatraz;
     __block NSError *error = nil;
+    __block SEL pluginDidLoad;
+    __block SEL initWithBundle;
+    
     NSBundle *pluginBundle = [NSBundle bundleWithPath:[NSHomeDirectory() stringByAppendingPathComponent:ALCATRAZ_PATH]];
     
     beforeEach(^{
         [NSApp stub:@selector(mainMenu) andReturn:createFakeMenu()];
+        pluginDidLoad = NSSelectorFromString(@"pluginDidLoad:");
+        initWithBundle = NSSelectorFromString(@"initWithBundle:");
         
         [pluginBundle loadAndReturnError:&error];
-        [pluginBundle.principalClass performSelector:@selector(pluginDidLoad:) withObject:pluginBundle];
+        [pluginBundle.principalClass performSelector:pluginDidLoad withObject:pluginBundle];
         
         if (error) NSLog(@"ZOMG ERRRO! %@", error);
-        alcatraz = [[[pluginBundle principalClass] alloc] performSelector:@selector(initWithBundle:) withObject:pluginBundle];
+        alcatraz = [[[pluginBundle principalClass] alloc] performSelector:initWithBundle withObject:pluginBundle];
     });
     
     describe(@"loading plugin", ^{
@@ -76,7 +83,7 @@ describe(@"Alcatraz.m", ^{
         it(@"updates alcatraz", ^{
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [[ATZAlcatrazPackage should] receive:@selector(update)];
-                [alcatraz performSelector:@selector(initWithBundle:) withObject:pluginBundle];
+                [alcatraz performSelector:initWithBundle withObject:pluginBundle];
             }];
         });
         

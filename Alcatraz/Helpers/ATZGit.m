@@ -27,14 +27,16 @@
 @implementation ATZGit
 
 + (void)updateRepository:(NSString *)localPath revision:(NSString *)revision
-              completion:(void(^)(NSString *output, NSError *error))completion {
+                                             completion:(void(^)(NSString *output, NSError *error))completion {
 
+    NSLog(@"Updating Repo: %@", localPath);
     [self updateLocalProject:localPath revision:revision completion:completion];
 }
 
 + (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
-             completion:(void (^)(NSError *))completion {
-    
+                                                completion:(void (^)(NSString *output, NSError *))completion {
+
+    NSLog(@"Cloning Repo: %@", localPath);
     [self clone:remotePath to:localPath completion:completion];
 }
 
@@ -45,17 +47,27 @@
         dict[COMMIT] ?: nil;
 }
 
++ (BOOL)areCommandLineToolsAvailable {
+    BOOL areAvailable = YES;
+    @try {
+        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/git" arguments:@[@"--version"]];
+    }
+    @catch (NSException *exception) {
+        areAvailable = NO;
+    }
+    return areAvailable;
+}
 
 #pragma mark - Private
 
-+ (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSError *))completion {
++ (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
     ATZShell *shell = [ATZShell new];
     
     [shell executeCommand:GIT withArguments:@[CLONE, remotePath, localPath, IGNORE_PUSH_CONFIG]
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git Clone output: %@", output);
-        completion(error);
+        completion(output, error);
     }];
 }
 

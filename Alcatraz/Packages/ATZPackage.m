@@ -41,7 +41,7 @@
 
 - (void)unpackFromDictionary:(NSDictionary *)dictionary {
     self.name = dictionary[@"name"];
-    self.description = dictionary[@"description"];
+    self.summary = dictionary[@"description"];
     self.remotePath = dictionary[@"url"];
     self.screenshotPath = dictionary[@"screenshot"];
     self.revision = [ATZGit parseRevisionFromDictionary:dictionary];
@@ -73,11 +73,11 @@
     @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Some packages don't require restarting!" userInfo:nil];
 }
 
-- (void)installWithProgressMessage:(void (^)(NSString *))progress completion:(void (^)(NSError *))completion {
+- (void)installWithProgress:(void (^)(NSString *, CGFloat))progress completion:(void (^)(NSError *))completion {
     [[self installer] installPackage:self progress:progress completion:completion];
 }
 
-- (void)updateWithProgressMessage:(void (^)(NSString *))progress completion:(void (^)(NSError *))completion {
+- (void)updateWithProgress:(void (^)(NSString *, CGFloat))progress completion:(void (^)(NSError *))completion {
     [[self installer] updatePackage:self progress:progress completion:completion];
 }
 

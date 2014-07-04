@@ -1,66 +1,61 @@
-ARCHIVE="alcatraz.tar.gz"
-BUNDLE_NAME="Alcatraz.xcplugin"
-BUCKET="xcode-fun-time"
-URL="https://s3.amazonaws.com/${BUCKET}/${ARCHIVE}"
-INSTALL_PATH="~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/"
-VERSION_LOCATION="Alcatraz/Views/ATZVersionLabel.m"
-VERSION_TMP_FILE="output.m"
-DEFAULT_BUILD_ARGS=-workspace Alcatraz.xcworkspace -scheme Alcatraz
+ARCHIVE            = "Alcatraz.tar.gz"
+BUNDLE_NAME        = "Alcatraz.xcplugin"
+VERSION_LOCATION   = "Alcatraz/ATZVersion.h"
+INSTALL_PATH       = ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/
+TEST_BUILD_ARGS	   = -workspace TestProject/TestProject.xcworkspace -scheme TestProject
+XCODEBUILD         = xcodebuild $(TEST_BUILD_ARGS)
+VERSION            = $(shell grep 'ATZ_VERSION' Alcatraz/ATZVersion.h | cut -d " " -f 3 | tr -d '"')
 
 default: test
 
-ci: clean test
+ci: clean ci_test
 
-shipit: update build upload
+shipit: version build github_release push_deploy_branch
 
 clean:
-	xcodebuild $(DEFAULT_BUILD_ARGS) clean
+	$(XCODEBUILD) clean | xcpretty -c
 	rm -rf build
 
 # Run tests
+ci_test:
+	set -o pipefail && $(XCODEBUILD) test | xcpretty -c
+
 test:
-	xcodebuild $(DEFAULT_BUILD_ARGS) test | xcpretty -c && exit ${PIPESTATUS[0]}
+	set -o pipefail && $(XCODEBUILD) test | tee xcodebuild.log | xcpretty -tc
 
 # Merge changes into deploy branch
-update:
+push_deploy_branch:
 	git fetch origin
 ifeq ($(shell git diff origin/master..master),)
 	git checkout deploy
 	git reset --hard origin/master
 	git push origin deploy
+	git checkout -
 else
 	$(error you have unpushed commits on the master branch)
 endif
 
 # Build archive ready for distribution
 build: clean
-	xcodebuild -project Alcatraz.xcodeproj build
+	xcodebuild -project Alcatraz.xcodeproj build | tee xcodebuild.log | xcpretty -c
 	rm -rf ${BUNDLE_NAME}
 	cp -r ${INSTALL_PATH} ${BUNDLE_NAME}
-	tar -czf ${ARCHIVE} ${BUNDLE_NAME}
+	mkdir -p releases/${VERSION}
+	tar -czf releases/${VERSION}/${ARCHIVE} ${BUNDLE_NAME}
 	rm -rf ${BUNDLE_NAME}
 
-# Download and install latest build
-install:
-	rm -rf $INSTALL_PATH
-	curl $URL | tar xv -C ${BUNDLE_NAME} -
+# Create a Github release
+github_release:
+	git push -u origin master
+	git push --tags
+	gh release create -m "Release ${VERSION}" ${VERSION}
 
-# Upload build to S3
-upload:
-	ruby scripts/upload_build.rb ${ARCHIVE} ${BUCKET}
+# Commit & tag the version from ATZVersion.h
+version: update_install_url
+	git add .
+	git commit -am "Bump version $(VERSION)"
+	git tag $(VERSION)
 
-# Set latest version
-# Requires VERSION argument set
-version:
-ifdef VERSION
-	git checkout master
-	sed 's/ATZ_VERSION "[0-9]\{1,3\}.[0-9]\{1,3\}"/ATZ_VERSION "${VERSION}"/g' ${VERSION_LOCATION} > ${VERSION_TMP_FILE}
-	sed 's/ATZ_REVISION "[0-f]\{7\}"/ATZ_REVISION "$(shell git log --pretty=format:'%h' -n 1)"/g' ${VERSION_TMP_FILE} > ${VERSION_LOCATION}
-	rm ${VERSION_TMP_FILE}
-	git add ${VERSION_LOCATION}
-	git commit -m "Release ${VERSION}"
-	git tag ${VERSION}
-else
-	$(error VERSION has not been set)
-endif
+update_install_url:
+	sed -i '' -e 's/[.0-9]\{3,5\}/${VERSION}/' Scripts/install.sh
 

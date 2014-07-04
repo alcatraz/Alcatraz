@@ -15,8 +15,8 @@
 @implementation ATZCommandlineInstaller
 
 +(void)installPackage:(ATZPackage*)package completion:(void (^)(NSError *))completion {
-    [package installWithProgressMessage:^(NSString *proggressMessage) {
-        NSLog(@"%@", proggressMessage);
+    [package installWithProgress:^(NSString *proggressMessage, CGFloat progress) {
+        NSLog(@"%.2f %@", progress, proggressMessage);
     } completion:completion];
 }
 

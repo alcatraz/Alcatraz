@@ -24,3 +24,9 @@ Some helpful tips for making Alcatraz more awesome
 Output for development and crash reports can be obtained via running `tail -f /var/log/system.log`, and is a helpful addition to issue submissions.
 
 Check out [this post](https://coderwall.com/p/-mgtww) by @kattrali on how to debug Xcode plugins like a boss.
+
+
+## Typo fixes
+
+That one in `install.sh` is not a typo. Please don't open pull-requests for that.
+More info here http://knowyourmeme.com/memes/the-1-phenomenon

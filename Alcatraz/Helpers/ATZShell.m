@@ -28,17 +28,6 @@
 
 @implementation ATZShell
 
-+ (BOOL)areCommandLineToolsAvailable {
-    BOOL areAvailable = YES;
-    @try {
-        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/git" arguments:@[]];
-    }
-    @catch (NSException *exception) {
-        areAvailable = NO;
-    }
-    return areAvailable;
-}
-
 - (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments
             completion:(void(^)(NSString *taskOutput, NSError *error))completion {
     
@@ -83,7 +72,14 @@
     [task setTerminationHandler:^(NSTask *task) {
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            completion([[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding], nil);
+            NSString* output = [[NSString alloc] initWithData:self.taskOutput encoding:NSUTF8StringEncoding];
+            
+            if (task.terminationStatus == 0) {
+                completion(output, nil);
+            } else {
+                NSString* reason = [NSString stringWithFormat:@"Task exited with status %d", task.terminationStatus];
+                completion(output, [NSError errorWithDomain:reason code:666 userInfo:@{ NSLocalizedDescriptionKey: reason }]);
+            }
         }];
         
         [task.standardOutput fileHandleForReading].readabilityHandler = nil;

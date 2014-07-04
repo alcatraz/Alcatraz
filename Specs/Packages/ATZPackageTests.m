@@ -56,7 +56,7 @@ describe(@"Package", ^{
 
     it(@"initializes correctly", ^{
         [[package.name should] equal:name];
-        [[package.description should] equal:description];
+        [[package.summary should] equal:description];
         [[package.remotePath should] equal:urlString];
         [[package.screenshotPath should] equal:screenshotPath];
     });
@@ -99,7 +99,7 @@ describe(@"Package", ^{
         __block NSString *progressMessage;
         __block NSError *completionError;
         
-        void (^progressBlock)(NSString *) = ^(NSString *proggressMessage){ progressMessage = @"OH HAI!"; };
+        void (^progressBlock)(NSString *, CGFloat) = ^(NSString *proggressMessage, CGFloat progress){ progressMessage = @"OH HAI!"; };
         void (^completionBlock)(NSError *) = ^(NSError *failure){ completionError = [NSError errorWithDomain:@"MEH" code:666 userInfo:nil]; };
 
         beforeEach(^{
@@ -116,7 +116,7 @@ describe(@"Package", ^{
         });
         
         it(@"forwards install to installer", ^{
-            [package installWithProgressMessage:progressBlock completion:completionBlock];
+            [package installWithProgress:progressBlock completion:completionBlock];
             [[progressMessage should] equal:@"OH HAI!"];
             [[completionError should] equal:[NSError errorWithDomain:@"MEH" code:666 userInfo:nil]];
         });
@@ -127,7 +127,7 @@ describe(@"Package", ^{
         });
         
         it(@"forwards update to installer", ^{
-            [package updateWithProgressMessage:progressBlock completion:completionBlock];
+            [package updateWithProgress:progressBlock completion:completionBlock];
             [[progressMessage should] equal:@"OH HAI!"];
             [[completionError should] equal:[NSError errorWithDomain:@"MEH" code:666 userInfo:nil]];
         });

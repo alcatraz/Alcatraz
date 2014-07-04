@@ -8,3 +8,5 @@
 "CMDLineToolsWarning" = "Xcode Command Line Tools are not currently installed, and are required to run Alcatraz.
 
 Command Line Tools are available for installation in the Downloads section of Preferences.";
+
+"MavericksOnlyWarning" = "Alcatraz for Xcode 5 only supports OS X 10.9+.";

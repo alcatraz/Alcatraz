@@ -129,49 +129,37 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [super keyDown:event];
 }
 
+
 #pragma mark - Private
 
-- (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
-    [self showInstallationIndicators];
-    [control setProgress:ATZRadialProgressControl_FakeRemoveProgress animated:YES];
-    
-    [package removeWithCompletion:^(NSError *failure) {
+- (void)enqueuePackageUpdate:(ATZPackage *)package {
+    if (!package.isInstalled) return;
 
-        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to uninstall :( Error: %@", package.name, failure.domain] :
-                                      [NSString stringWithFormat:@"%@ uninstalled.", package.name];
-
-        [self flashNotice:message];
-        [self reloadUIForPackage:package fromControl:control];
+    NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
+        [package updateWithProgress:^(NSString *proggressMessage, CGFloat progress){}
+                                completion:^(NSError *failure){}];
     }];
+    [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
+    [[NSOperationQueue mainQueue] addOperation:updateOperation];
+}
+
+- (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
+    [control setProgress:0 animated:YES];
+    [package removeWithCompletion:^(NSError *failure) {}];
 }
 
 - (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
-    [self showInstallationIndicators];
-    [control setProgress:ATZRadialProgressControl_FakeInstallProgress animated:YES];
-    
-    [package installWithProgressMessage:^(NSString *progressMessage) { self.statusLabel.stringValue = progressMessage; }
-                             completion:^(NSError *failure) {
-        
-        NSString *message = failure ? [NSString stringWithFormat:@"%@ failed to install :( Error: %@", package.name, failure.domain] :
-                                      [NSString stringWithFormat:@"%@ installed.", package.name];
-
-        [self flashNotice:message];
-        [self reloadUIForPackage:package fromControl:control];
-        [self postNotificationForInstalledPackage:package];
+    [package installWithProgress:^(NSString *progressMessage, CGFloat progress) { //TODO: see if we can get rid of NSString progress
+        [control setProgress:progress animated:YES];
+    }
+                      completion:^(NSError *failure) {
+        [control setProgress:failure ? 0 : 1 animated:YES];
+        if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
     }];
 }
 
-- (void)reloadUIForPackage:(ATZPackage *)package fromControl:(ATZRadialProgressControl *)control {
-    [self hideInstallationIndicators];
-    
-    CGFloat progress = package.isInstalled ? 1.0 : 0.0;
-    [control setProgress:progress animated:YES];
-    
-    if (package.requiresRestart) [self.restartLabel setHidden:NO];
-}
-
 - (void)postNotificationForInstalledPackage:(ATZPackage *)package {
-    if (![NSUserNotificationCenter class] || !package.isInstalled || self.window.isKeyWindow) return;
+    if (![NSUserNotificationCenter class] || !package.isInstalled) return;
     
     NSUserNotification *notification = [NSUserNotification new];
     notification.title = [NSString stringWithFormat:@"%@ installed", package.type];
@@ -185,20 +173,10 @@ BOOL hasPressedCommandF(NSEvent *event) {
     return ([event modifierFlags] & NSCommandKeyMask) && [[event characters] characterAtIndex:0] == 'f';
 }
 
-- (void)hideInstallationIndicators {
-    [[self progressIndicator] stopAnimation:nil];
-    [[self progressIndicator] setHidden:YES];
-}
-
-- (void)showInstallationIndicators {
-    [[self progressIndicator] setHidden:NO];
-    [[self progressIndicator] startAnimation:nil];
-}
-
 - (void)updatePredicate {
     // TODO: refactor, use compound predicates.
 
-    NSString *searchText = self.searchField.stringValue;    
+    NSString *searchText = self.searchField.stringValue;
     // filter by type and search field text
     if (self.selectedPackageClass && searchText.length > 0) {
         self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_AND_CLASS_PREDICATE_FORMAT, searchText, searchText, self.selectedPackageClass];
@@ -223,7 +201,6 @@ BOOL hasPressedCommandF(NSEvent *event) {
         
         if (error) {
             NSLog(@"Error while downloading packages! %@", error);
-            [self flashNotice:[NSString stringWithFormat:@"Download failed: %@", error.domain]];
         } else {
             self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
             [self updatePackages];
@@ -233,26 +210,8 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
 - (void)updatePackages {
     for (ATZPackage *package in self.packages) {
-        
-        if (package.isInstalled) {
-            NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
-                [package updateWithProgressMessage:^(NSString *proggressMessage) {
-                    
-                    [self flashNotice:proggressMessage];
-                    
-                } completion:^(NSError *failure) {}];
-            }];
-            [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
-            [[NSOperationQueue mainQueue] addOperation:updateOperation];
-        }
+        [self enqueuePackageUpdate:package];
     }
-}
-
-- (void)flashNotice:(NSString *)notice {
-    self.statusLabel.stringValue = notice;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.statusLabel performSelector:@selector(setStringValue:) withObject:@"" afterDelay:3];
-    }];
 }
 
 - (void)openWebsite:(NSString *)address {
@@ -263,38 +222,50 @@ BOOL hasPressedCommandF(NSEvent *event) {
     
     [self.previewPanel.animator setAlphaValue:0.f];
     self.previewPanel.title = title;
-    [self retrieveImageViewForScreenshot:screenshotPath completion:^(NSImage *image) {
+    [self retrieveImageViewForScreenshot:screenshotPath
+                                progress:^(CGFloat progress) {
+
+    }
+                              completion:^(NSImage *image) {
         
         self.previewImageView.image = image;
         [NSAnimationContext beginGrouping];
         
         [self.previewImageView.animator setFrame:(CGRect){ .origin = CGPointMake(0, 0), .size = image.size }];
         CGRect previewPanelFrame = (CGRect){.origin = self.previewPanel.frame.origin, .size = image.size};
-        [self.previewPanel setFrame:previewPanelFrame display:NO animate:YES];
+        [self.previewPanel setFrame:previewPanelFrame display:NO animate:NO];
+        [self.previewPanel.animator center];
         
         [NSAnimationContext endGrouping];
         
         [self.previewPanel makeKeyAndOrderFront:self];
         [self.previewPanel.animator setAlphaValue:1.f];
-        
     }];
 }
 
-- (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath completion:(void (^)(NSImage *))completion {
+- (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath progress:(void (^)(CGFloat))downloadProgress completion:(void (^)(NSImage *))completion {
     
     ATZDownloader *downloader = [ATZDownloader new];
-    [downloader downloadFileFromPath:screenshotPath completion:^(NSData *responseData, NSError *error) {
+    [downloader downloadFileFromPath:screenshotPath
+                            progress:^(CGFloat progress) {
+                                downloadProgress(progress);
+                            }
+                          completion:^(NSData *responseData, NSError *error) {
+                              
+                              NSImage *image = [[NSImage alloc] initWithData:responseData];
+                              completion(image);
+                          }];
     
-        NSImage *image = [[NSImage alloc] initWithData:responseData];
-        completion(image);
-    }];
-
 }
 
 - (void)addVersionToWindow {
     NSView *windowFrameView = [[self.window contentView] superview];
-    NSTextField *label = [[ATZVersionLabel alloc] initWithFrame:NSMakeRect(self.window.frame.size.width - 38, windowFrameView.bounds.size.height - 26, 30, 20)];
-    label.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin | NSViewNotSizable;
+    NSTextField *label = [[ATZVersionLabel alloc] initWithFrame:(NSRect){
+        .origin.x = self.window.frame.size.width - 46,
+        .origin.y = windowFrameView.bounds.size.height - 26,
+        .size.width = 40,
+        .size.height = 20
+    }];
     [windowFrameView addSubview:label];
 }
 

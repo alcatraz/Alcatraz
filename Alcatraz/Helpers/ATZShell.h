@@ -24,8 +24,6 @@
 
 @interface ATZShell : NSObject
 
-+ (BOOL)areCommandLineToolsAvailable;
-
 - (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments
             completion:(void(^)(NSString *output, NSError *error))completion;
 
