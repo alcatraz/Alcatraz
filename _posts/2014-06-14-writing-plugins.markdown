@@ -27,10 +27,6 @@ Even though method swizzling is a supported part of the Objective-C runtime, aug
 
 When you grep through the Xcode headers, you will sometimes end up with hits for the *Xcode3Core* and *Xcode3UI* plugins. It is generally a good idea to avoid them, as most of that functionality is no longer used by modern versions of Xcode. Those plugins are a shim added during the times of Xcode 4, so that they could ship before all the functionality was rewritten, but it is used less and less with each new version.
 
-### Check in your Pods directory
-
-Even though it is normally a subject of extended debate, if you use CocoaPods for your Xcode plugin, definetely check in your *Pods* directory. Alcatraz will only run `xcodebuild` on your project, so if you don't check the *Pods* directory into version control, your project will not build -> sad 🐼.
-
 ### Test your plugin after adding it to Alcatraz
 
 After you submitted your pull request to the [packages repository][10], delete your local copy of the plugin and try to download & install it via Alcatraz to make sure it actually works correctly.
