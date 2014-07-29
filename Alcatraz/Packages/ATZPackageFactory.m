@@ -1,6 +1,6 @@
 // PackageFactory.m
 // 
-// Copyright (c) 2013 Marin Usalj | mneorr.com
+// Copyright (c) 2013 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -56,7 +56,7 @@ static NSDictionary *packageClasses;
 
 + (NSArray *)sortPackagesByName:(NSArray *)unsortedPackages {
     return [unsortedPackages sortedArrayUsingComparator:^(ATZPackage *first, ATZPackage *second) {
-        return [first.name localizedCaseInsensitiveCompare:second.name];
+        return [first.name caseInsensitiveCompare:second.name];
     }];
 }
 

@@ -1,6 +1,6 @@
 // Package.h
 //
-// Copyright (c) 2013 Marin Usalj | mneorr.com
+// Copyright (c) 2013 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
 @interface ATZPackage : NSObject
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *summary;
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSString *remotePath;
 @property (strong, nonatomic) NSString *revision;

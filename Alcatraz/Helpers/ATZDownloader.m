@@ -1,6 +1,6 @@
 // Downloader.m
 //
-// Copyright (c) 2013 Marin Usalj | mneorr.com
+// Copyright (c) 2013 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -91,6 +91,10 @@ static NSString *const COMPLETION = @"completion";
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes {}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler {
+    completionHandler(request);
+}
 
 
 #pragma mark - NSURLSessionTask delegate

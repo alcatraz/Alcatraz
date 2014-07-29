@@ -3,7 +3,7 @@
 //  Alcatraz
 //
 //  Created by Jurre Stender on 25/11/13.
-//  Copyright (c) 2013 mneorr.com. All rights reserved.
+//  Copyright (c) 2013 supermar.in. All rights reserved.
 //
 
 #import "ATZSegmentedCell.h"

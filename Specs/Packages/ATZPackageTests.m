@@ -3,7 +3,7 @@
 //  Alcatraz
 //
 //  Created by Delisa Mason on 5/14/13.
-//  Copyright (c) 2013 mneorr.com. All rights reserved.
+//  Copyright (c) 2013 supermar.in. All rights reserved.
 //
 
 #import "Kiwi.h"
@@ -56,7 +56,7 @@ describe(@"Package", ^{
 
     it(@"initializes correctly", ^{
         [[package.name should] equal:name];
-        [[package.description should] equal:description];
+        [[package.summary should] equal:description];
         [[package.remotePath should] equal:urlString];
         [[package.screenshotPath should] equal:screenshotPath];
     });

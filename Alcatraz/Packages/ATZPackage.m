@@ -1,6 +1,6 @@
 // Package.m
 //
-// Copyright (c) 2013 Marin Usalj | mneorr.com
+// Copyright (c) 2013 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@
 
 - (void)unpackFromDictionary:(NSDictionary *)dictionary {
     self.name = dictionary[@"name"];
-    self.description = dictionary[@"description"];
+    self.summary = dictionary[@"description"];
     self.remotePath = dictionary[@"url"];
     self.screenshotPath = dictionary[@"screenshot"];
     self.revision = [ATZGit parseRevisionFromDictionary:dictionary];

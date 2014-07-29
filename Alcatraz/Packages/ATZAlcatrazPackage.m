@@ -1,7 +1,7 @@
 //
 //  ATZAlcatrazPackage.m
 //
-// Copyright (c) 2013 Marin Usalj | mneorr.com
+// Copyright (c) 2013 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@
 + (void)update {
     ATZPackage *alcatraz = [[ATZAlcatrazPackage alloc] initWithDictionary:@{
         @"name": @"Alcatraz",
-        @"url": @"https://github.com/mneorr/Alcatraz",
+        @"url": @"https://github.com/supermarin/Alcatraz",
         @"description": @"Self updating installer",
         @"branch": @"deploy"
     }];
