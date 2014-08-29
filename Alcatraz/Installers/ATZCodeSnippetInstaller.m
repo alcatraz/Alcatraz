@@ -22,6 +22,7 @@
 
 #import "ATZCodeSnippetInstaller.h"
 #import "ATZPackage.h"
+#import "ATZGit.h"
 
 static NSString *const INSTALLED_CODE_SNIPPETS_RELATIVE_PATH = @"Library/Developer/Xcode/UserData/CodeSnippets";
 static NSString *const DOWNLOADED_CODE_SNIPPETS_RELATIVE_PATH = @"CodeSnippets";
@@ -29,6 +30,20 @@ static NSString *const DOWNLOADED_CODE_SNIPPETS_RELATIVE_PATH = @"CodeSnippets";
 @implementation ATZCodeSnippetInstaller
 
 #pragma mark - Abstract
+
+- (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
+    [ATZGit cloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
+                 completion:completion];
+}
+
+- (void)updatePackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
+    [ATZGit updateRepository:[self pathForDownloadedPackage:package] revision:package.revision
+                  completion:completion];
+}
+
+- (void)installPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
+    [self copySnippetsToXcode:package completion:completion];
+}
 
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
     return [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_CODE_SNIPPETS_RELATIVE_PATH];
@@ -40,6 +55,58 @@ static NSString *const DOWNLOADED_CODE_SNIPPETS_RELATIVE_PATH = @"CodeSnippets";
 
 #pragma mark - Private
 
+- (void)copySnippetsToXcode:(ATZPackage *)snippet completion:(void (^)(NSError *))completion {
+    NSError *error = nil;
+    [self createSnippetInstallDirectory:snippet error:&error];
+    
+    if (error) {
+        completion(error);
+    }
+    
+    for (NSString *snippetPath in [self templateFilesForClonedTemplate:snippet]) {
+        [self installCodeSnippetFromPath:snippetPath error:&error];
+    }
+    
+    completion(error);
+}
 
+- (void)createSnippetInstallDirectory:(ATZPackage *)snippet error:(NSError **)error {
+    [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:snippet]
+                             withIntermediateDirectories:YES attributes:nil error:error];
+}
+
+- (NSArray *)templateFilesForClonedTemplate:(ATZPackage *)snippet {
+    @autoreleasepool {
+        NSString *clonePath = [self pathForDownloadedPackage:snippet];
+        NSMutableArray *foundTemplates = [NSMutableArray new];
+        
+        @try {
+            NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonePath];
+            NSString *directoryEntry;
+            
+            while (directoryEntry = [enumerator nextObject]) {
+                if ([directoryEntry hasSuffix:snippet.extension])
+                    [foundTemplates addObject:[clonePath stringByAppendingPathComponent:directoryEntry]];
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Exception occurred while loading template files from clone: %@", exception);
+        }
+        return foundTemplates;
+    }
+}
+
+- (void)installCodeSnippetFromPath:(NSString*)snippetPath error:(NSError **)error {
+    NSMutableDictionary *snippetDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:snippetPath];
+    
+    NSString *snippetFileName = snippetPath.pathComponents.lastObject;
+    NSString *installPath = [[self pathForInstalledPackage:nil] stringByAppendingPathComponent:snippetFileName];
+    
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    
+    [snippetDictionary setValue:uuid forKey:@"IDECodeSnippetIdentifier"];
+    
+    [snippetDictionary writeToFile:installPath atomically:YES];
+}
 
 @end

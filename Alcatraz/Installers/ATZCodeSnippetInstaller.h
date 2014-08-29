@@ -21,8 +21,8 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "ATZTemplateInstaller.h"
+#import "ATZInstaller.h"
 
-@interface ATZCodeSnippetInstaller : ATZTemplateInstaller
+@interface ATZCodeSnippetInstaller : ATZInstaller
 
 @end
