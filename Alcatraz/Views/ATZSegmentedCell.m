@@ -57,7 +57,7 @@ static NSString *const ALL_ITEMS_TITLE = @"All";
         segmentIconMapping = @{@(ATZFilterSegmentColorSchemes): COLOR_SCHEME_ICON_NAME,
                                @(ATZFilterSegmentPlugins): PLUGIN_ICON_NAME,
                                @(ATZFilterSegmentTemplates): TEMPLATE_ICON_NAME,
-                               @(ATZFilterSegmentCodeSnippets): COLOR_SCHEME_ICON_NAME};
+                               @(ATZFilterSegmentCodeSnippets): CODE_SNIPPET_ICON_NAME};
     }
     return segmentIconMapping;
 }

@@ -253,7 +253,7 @@
                                 <segment toolTip="Templates" image="toolbar_templates" width="25">
                                     <nil key="label"/>
                                 </segment>
-                                <segment toolTip="Code Snippets" image="toolbar_templates" width="26">
+                                <segment toolTip="Code Snippets" image="toolbar_codesnippet" width="26">
                                     <nil key="label"/>
                                 </segment>
                             </segments>
@@ -311,6 +311,7 @@
     <resources>
         <image name="eye_icon" width="16" height="16"/>
         <image name="link_icon" width="14" height="14"/>
+        <image name="toolbar_codesnippet" width="16" height="16"/>
         <image name="toolbar_colors" width="16" height="16"/>
         <image name="toolbar_plugins" width="16" height="16"/>
         <image name="toolbar_templates" width="16" height="16"/>

@@ -45,7 +45,7 @@ static NSString *const CODE_SNIPPET_EXTENSION = @".codesnippet";
 }
 
 - (NSString *)iconName {
-    return nil; // TODO Get a snippet icon
+    return CODE_SNIPPET_ICON_NAME;
 }
 
 @end

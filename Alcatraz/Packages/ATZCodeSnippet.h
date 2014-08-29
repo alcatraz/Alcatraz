@@ -22,6 +22,8 @@
 
 #import "ATZPackage.h"
 
+static NSString *const CODE_SNIPPET_ICON_NAME = @"toolbar_codesnippet";
+
 @interface ATZCodeSnippet : ATZPackage
 
 @end

@@ -17,6 +17,8 @@
 		32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B63216173A3E880076C098 /* ATZPackageTableCellView.m */; };
 		32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC2173A46A900513A7C /* eye_icon.png */; };
 		32D86505173A4555009C724B /* eye_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86503173A4555009C724B /* eye_icon@2x.png */; };
+		4D885A0C19B0D6230026614E /* toolbar_codesnippet.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D885A0A19B0D6230026614E /* toolbar_codesnippet.png */; };
+		4D885A0D19B0D6230026614E /* toolbar_codesnippet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D885A0B19B0D6230026614E /* toolbar_codesnippet@2x.png */; };
 		4D9B439119B0BBF000BE2436 /* ATZCodeSnippetInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B439019B0BBF000BE2436 /* ATZCodeSnippetInstaller.m */; };
 		4D9B439419B0BD3400BE2436 /* ATZCodeSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B439319B0BD3400BE2436 /* ATZCodeSnippet.m */; };
 		64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4918136FF30025C0B1 /* toolbar_colors.png */; };
@@ -74,6 +76,8 @@
 		32B63216173A3E880076C098 /* ATZPackageTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableCellView.m; path = Views/ATZPackageTableCellView.m; sourceTree = "<group>"; };
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
+		4D885A0A19B0D6230026614E /* toolbar_codesnippet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_codesnippet.png; sourceTree = "<group>"; };
+		4D885A0B19B0D6230026614E /* toolbar_codesnippet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_codesnippet@2x.png"; sourceTree = "<group>"; };
 		4D9B438F19B0BBF000BE2436 /* ATZCodeSnippetInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZCodeSnippetInstaller.h; sourceTree = "<group>"; };
 		4D9B439019B0BBF000BE2436 /* ATZCodeSnippetInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZCodeSnippetInstaller.m; sourceTree = "<group>"; };
 		4D9B439219B0BD3400BE2436 /* ATZCodeSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZCodeSnippet.h; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 		64C28A4818136FF30025C0B1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4D885A0A19B0D6230026614E /* toolbar_codesnippet.png */,
+				4D885A0B19B0D6230026614E /* toolbar_codesnippet@2x.png */,
 				64C28A4918136FF30025C0B1 /* toolbar_colors.png */,
 				64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */,
 				64C28A4D18136FF30025C0B1 /* toolbar_plugins.png */,
@@ -416,11 +422,13 @@
 				89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */,
 				079C9E03183D8BB8009F5A17 /* link_icon.png in Resources */,
 				32D86505173A4555009C724B /* eye_icon@2x.png in Resources */,
+				4D885A0C19B0D6230026614E /* toolbar_codesnippet.png in Resources */,
 				64C28A5D18136FF30025C0B1 /* toolbar_templates.png in Resources */,
 				32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */,
 				64C28A5E18136FF30025C0B1 /* toolbar_templates@2x.png in Resources */,
 				64C28A5918136FF30025C0B1 /* toolbar_plugins.png in Resources */,
 				8AD5249F174102F9008B451F /* Localizable.strings in Resources */,
+				4D885A0D19B0D6230026614E /* toolbar_codesnippet@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
