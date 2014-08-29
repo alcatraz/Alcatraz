@@ -40,14 +40,14 @@
                   completion:completion];
 }
 
-- (void)installPackage:(ATZTemplate *)package completion:(void(^)(NSError *))completion {
+- (void)installPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
     [self copyTemplatesToXcode:package completion:completion];
 }
 
 
 #pragma mark - Private
 
-- (void)copyTemplatesToXcode:(ATZTemplate *)template completion:(void (^)(NSError *))completion {
+- (void)copyTemplatesToXcode:(ATZPackage *)template completion:(void (^)(NSError *))completion {
     NSError *error = nil;
     [self createTemplateInstallDirectory:template error:&error];
     
@@ -64,13 +64,13 @@
     completion(error);
 }
 
-- (BOOL)createTemplateInstallDirectory:(ATZTemplate *)template error:(NSError **)error {
+- (BOOL)createTemplateInstallDirectory:(ATZPackage *)template error:(NSError **)error {
     [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:template]
                              withIntermediateDirectories:YES attributes:nil error:error];
     return error == nil;
 }
 
-- (NSArray *)templateFilesForClonedTemplate:(ATZTemplate *)template {
+- (NSArray *)templateFilesForClonedTemplate:(ATZPackage *)template {
     @autoreleasepool {
         NSString *clonePath = [self pathForDownloadedPackage:template];
         NSMutableArray *foundTemplates = [NSMutableArray new];
