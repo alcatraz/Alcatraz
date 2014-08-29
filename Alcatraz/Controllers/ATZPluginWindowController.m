@@ -31,6 +31,7 @@
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
 #import "ATZTemplate.h"
+#import "ATZCodeSnippet.h"
 
 #import "ATZShell.h"
 #import "ATZSegmentedCell.h"
@@ -95,7 +96,8 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     if (!segmentClassMapping) {
        segmentClassMapping = @{@(ATZFilterSegmentColorSchemes): [ATZColorScheme class],
             @(ATZFilterSegmentPlugins): [ATZPlugin class],
-            @(ATZFilterSegmentTemplates): [ATZTemplate class]};
+            @(ATZFilterSegmentTemplates): [ATZTemplate class],
+            @(ATZFilterSegmentCodeSnippets): [ATZCodeSnippet class]};
     }
     return segmentClassMapping;
 }
