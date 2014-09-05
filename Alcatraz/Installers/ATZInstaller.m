@@ -22,8 +22,8 @@
 
 #import "ATZInstaller.h"
 #import "ATZPackage.h"
+#import "ATZUtils.h"
 
-static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatraz";
 const CGFloat ATZFakeDownloadProgress = 0.33;
 const CGFloat ATZFakeInstallProgress = 0.66;
 
@@ -94,7 +94,7 @@ const CGFloat ATZFakeInstallProgress = 0.66;
 #pragma mark - Abstract
 
 - (NSString *)alcatrazDownloadsPath {
-    return [NSHomeDirectory() stringByAppendingPathComponent:ALCATRAZ_DATA_DIR];
+    return ATZPluginsDataDirectoryPath();
 }
 
 

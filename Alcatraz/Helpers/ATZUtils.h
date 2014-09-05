@@ -1,0 +1,3 @@
+NSString *ATZPluginsDataDirectoryPath();
+
+NSString *ATZPluginsInstallPath();

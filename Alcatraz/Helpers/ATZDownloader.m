@@ -23,7 +23,8 @@
 
 #import "ATZDownloader.h"
 
-static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/supermarin/alcatraz-packages/master/packages.json";
+#import "ATZConstants.h"
+
 static NSString *const PROGRESS = @"progress";
 static NSString *const COMPLETION = @"completion";
 
@@ -45,7 +46,7 @@ static NSString *const COMPLETION = @"completion";
 }
 
 - (void)downloadPackageListWithCompletion:(ATZJSONDownloadCompletion)completion {
-    [self downloadFileFromPath:PLUGINS_REPO_PATH
+    [self downloadFileFromPath:kATZPluginsRepoPath
                       progress:^(CGFloat progress) {}
                     completion:^(NSData *data, NSError *error) {
                         
@@ -118,9 +119,5 @@ didCompleteWithError:(NSError *)error {
                                            delegateQueue:[NSOperationQueue mainQueue]];
     return _urlSession;
 }
-
-
-
-
 
 @end
