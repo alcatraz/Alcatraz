@@ -64,6 +64,7 @@
 		89BBB2C618C3EB0C00546623 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BBB2C418C3EAFD00546623 /* QuartzCore.framework */; };
 		CC22B0BC19C13CEB00640934 /* ATZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CC22B0B919C13CEB00640934 /* ATZConstants.m */; };
 		CC22B0BD19C13CEB00640934 /* ATZUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CC22B0BB19C13CEB00640934 /* ATZUtils.m */; };
+		CC22B0C019C13D2D00640934 /* ATZPackageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CC22B0BF19C13D2D00640934 /* ATZPackageUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +177,8 @@
 		CC22B0B919C13CEB00640934 /* ATZConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZConstants.m; sourceTree = "<group>"; };
 		CC22B0BA19C13CEB00640934 /* ATZUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZUtils.h; sourceTree = "<group>"; };
 		CC22B0BB19C13CEB00640934 /* ATZUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZUtils.m; sourceTree = "<group>"; };
+		CC22B0BE19C13D2D00640934 /* ATZPackageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPackageUtils.h; sourceTree = "<group>"; };
+		CC22B0BF19C13D2D00640934 /* ATZPackageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPackageUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +368,8 @@
 				89BBB26718C3EAA200546623 /* ATZDownloader.m */,
 				89BBB26818C3EAA200546623 /* ATZGit.h */,
 				89BBB26918C3EAA200546623 /* ATZGit.m */,
+				CC22B0BE19C13D2D00640934 /* ATZPackageUtils.h */,
+				CC22B0BF19C13D2D00640934 /* ATZPackageUtils.m */,
 				89BBB26A18C3EAA200546623 /* ATZPBXProjParser.h */,
 				89BBB26B18C3EAA200546623 /* ATZPBXProjParser.m */,
 				89BBB26C18C3EAA200546623 /* ATZShell.h */,
@@ -598,6 +603,7 @@
 				89BBB2C018C3EAA200546623 /* ATZRadialProgressControl.m in Sources */,
 				89BBB2AD18C3EAA200546623 /* ATZFileTemplateInstaller.m in Sources */,
 				89BBB21B18C3E99E00546623 /* main.m in Sources */,
+				CC22B0C019C13D2D00640934 /* ATZPackageUtils.m in Sources */,
 				89BBB2B518C3EAA200546623 /* ATZColorScheme.m in Sources */,
 				CC22B0BC19C13CEB00640934 /* ATZConstants.m in Sources */,
 				89BBB2BA18C3EAA200546623 /* ATZProjectTemplate.m in Sources */,

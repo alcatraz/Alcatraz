@@ -22,11 +22,15 @@
 
 
 #import "Alcatraz.h"
-#import "ATZPluginWindowController.h"
+
 #import "ATZAlcatrazPackage.h"
 #import "ATZGit.h"
+#import "ATZPackageUtils.h"
+#import "ATZPluginWindowController.h"
 
 static Alcatraz *sharedPlugin;
+
+static NSTimeInterval const kATZOneHour = 60*60;
 
 @implementation Alcatraz
 
@@ -50,6 +54,9 @@ static Alcatraz *sharedPlugin;
         self.bundle = plugin;
         [self createMenuItem];
         [self updateAlcatraz];
+        [ATZPackageUtils reloadPackages];
+        [NSTimer scheduledTimerWithTimeInterval:kATZOneHour target:[ATZPackageUtils class] selector:@selector(reloadPackages) userInfo:nil repeats:YES];
+
     }
     return self;
 }
@@ -84,7 +91,6 @@ static Alcatraz *sharedPlugin;
         self.windowController = [[ATZPluginWindowController alloc] initWithBundle:self.bundle];
 
     [[self.windowController window] makeKeyAndOrderFront:self];
-    [self.windowController reloadPackages];
 }
 
 - (BOOL)hasNSURLSessionAvailable {

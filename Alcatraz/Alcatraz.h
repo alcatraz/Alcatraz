@@ -30,4 +30,6 @@
 
 + (Alcatraz *)sharedPlugin;
 
+- (void)checkForCMDLineToolsAndOpenWindow;
+
 @end

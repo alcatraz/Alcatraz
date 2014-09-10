@@ -21,8 +21,11 @@
 // THE SOFTWARE.
 
 #import "ATZPluginWindowController.h"
+
+#import "ATZConstants.h"
 #import "ATZDownloader.h"
 #import "ATZPackageFactory.h"
+#import "ATZPackageUtils.h"
 
 #import "ATZDetailItemButton.h"
 #import "ATZPackageTableCellView.h"
@@ -42,7 +45,22 @@ static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
 static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@)";
 static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@) AND (self isKindOfClass: %@)";
 
+@interface ATZPluginWindowController () <NSTableViewDelegate, NSControlTextEditingDelegate>
+@property (assign) IBOutlet NSPanel *previewPanel;
+@property (assign) IBOutlet NSImageView *previewImageView;
+@property (assign) IBOutlet NSSearchField *searchField;
+@property (assign) IBOutlet NSTableView *tableView;
+
+- (IBAction)checkboxPressed:(NSButton *)sender;
+- (IBAction)openPackageWebsitePressed:(NSButton *)sender;
+- (IBAction)displayScreenshotPressed:(NSButton *)sender;
+- (IBAction)segmentedControlPressed:(id)sender;
+@end
+
 @interface ATZPluginWindowController ()
+@property (nonatomic, retain) NSArray *packages;
+@property (nonatomic, retain) NSPredicate *filterPredicate;
+
 @property (nonatomic, assign) Class selectedPackageClass;
 @property (nonatomic, assign) NSView *hoverButtonsContainer;
 @end
@@ -59,25 +77,33 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         
         [self addVersionToWindow];
 
+        self.packages = [ATZPackageUtils allPackages];
         _filterPredicate = [NSPredicate predicateWithValue:YES];
 
-        @try {
-            if ([NSUserNotificationCenter class])
-                [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
-        }
-        @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(listOfPackagesWasUpdated:)
+                                                     name:kATZListOfPackagesWasUpdatedNotification
+                                                   object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(packageWasUpdated:)
+                                                     name:kATZPackageWasUpdatedNotification
+                                                   object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(packageWasInstalled:)
+                                                     name:kATZPackageWasInstalledNotification
+                                                   object:nil];
+
     }
     return self;
 }
 
-- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
-    [self.window makeKeyAndOrderFront:self];
+- (void)windowDidLoad
+{
+  [super windowDidLoad];
+  [self.tableView reloadData];
 }
-
-- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification {
-    return YES;
-}
-
 
 #pragma mark - Bindings
 
@@ -132,17 +158,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 #pragma mark - Private
 
-- (void)enqueuePackageUpdate:(ATZPackage *)package {
-    if (!package.isInstalled) return;
-
-    NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
-        [package updateWithProgress:^(NSString *proggressMessage, CGFloat progress){}
-                                completion:^(NSError *failure){}];
-    }];
-    [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
-    [[NSOperationQueue mainQueue] addOperation:updateOperation];
-}
-
 - (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
     [control setProgress:0 animated:YES];
     [package removeWithCompletion:^(NSError *failure) {}];
@@ -154,19 +169,10 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     }
                       completion:^(NSError *failure) {
         [control setProgress:failure ? 0 : 1 animated:YES];
-        if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
+        if (package.requiresRestart) {
+          [ATZPackageUtils postUserNotificationForInstalledPackage:package];
+        }
     }];
-}
-
-- (void)postNotificationForInstalledPackage:(ATZPackage *)package {
-    if (![NSUserNotificationCenter class] || !package.isInstalled) return;
-    
-    NSUserNotification *notification = [NSUserNotification new];
-    notification.title = [NSString stringWithFormat:@"%@ installed", package.type];
-    NSString *restartText = package.requiresRestart ? @" Please restart Xcode to use it." : @"";
-    notification.informativeText = [NSString stringWithFormat:@"%@ was installed successfully! %@", package.name, restartText];
-
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 BOOL hasPressedCommandF(NSEvent *event) {
@@ -192,25 +198,6 @@ BOOL hasPressedCommandF(NSEvent *event) {
     // show all
     } else {
         self.filterPredicate = [NSPredicate predicateWithValue:YES];
-    }
-}
-
-- (void)reloadPackages {
-    ATZDownloader *downloader = [ATZDownloader new];
-    [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
-        
-        if (error) {
-            NSLog(@"Error while downloading packages! %@", error);
-        } else {
-            self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
-            [self updatePackages];
-        }
-    }];
-}
-
-- (void)updatePackages {
-    for (ATZPackage *package in self.packages) {
-        [self enqueuePackageUpdate:package];
     }
 }
 
@@ -267,6 +254,25 @@ BOOL hasPressedCommandF(NSEvent *event) {
         .size.height = 20
     }];
     [windowFrameView addSubview:label];
+}
+
+#pragma mark -
+#pragma mark Notification Selectors
+
+- (void)listOfPackagesWasUpdated:(NSNotification *)notification
+{
+  self.packages = [ATZPackageUtils allPackages];
+  [self.tableView reloadData];
+}
+
+- (void)packageWasUpdated:(NSNotification *)notification
+{
+  [self listOfPackagesWasUpdated:notification];
+}
+
+- (void)packageWasInstalled:(NSNotification *)notification
+{
+  [self listOfPackagesWasUpdated:notification];
 }
 
 @end

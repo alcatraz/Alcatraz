@@ -22,24 +22,8 @@
 
 #import <AppKit/AppKit.h>
 
-@interface ATZPluginWindowController : NSWindowController<NSTableViewDelegate, NSControlTextEditingDelegate, NSUserNotificationCenterDelegate>
-
-@property (nonatomic, retain) NSArray *packages;
-@property (nonatomic, retain) NSPredicate *filterPredicate;
-
-@property (assign) IBOutlet NSPanel *previewPanel;
-@property (assign) IBOutlet NSImageView *previewImageView;
-@property (assign) IBOutlet NSSearchField *searchField;
-@property (assign) IBOutlet NSTableView *tableView;
+@interface ATZPluginWindowController : NSWindowController
 
 - (id)initWithBundle:(NSBundle *)bundle;
-
-- (IBAction)checkboxPressed:(NSButton *)sender;
-- (IBAction)openPackageWebsitePressed:(NSButton *)sender;
-- (IBAction)displayScreenshotPressed:(NSButton *)sender;
-
-- (IBAction)segmentedControlPressed:(id)sender;
-
-- (void)reloadPackages;
 
 @end
