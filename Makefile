@@ -52,9 +52,7 @@ github_release:
 
 # Commit & tag the version from ATZVersion.h
 version: update_install_url
-	git add .
-	git commit -am "Bump version $(VERSION)"
-	git tag $(VERSION)
+	- git tag $(VERSION)
 
 update_install_url:
 	sed -i '' -e 's/[.0-9]\{3,5\}/${VERSION}/' Scripts/install.sh
