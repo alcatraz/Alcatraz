@@ -1,6 +1,6 @@
 ![Alcatraz](http://alcatraz.io/images/header@2x.png)
 
-Alcatraz is an open-source package manager for Xcode 5. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.
+Alcatraz is an open-source package manager for Xcode 5+. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.
 
 [![Stories in Ready](https://badge.waffle.io/supermarin/Alcatraz.png?label=ready)](https://waffle.io/supermarin/Alcatraz)
 [![Build Status](https://travis-ci.org/supermarin/Alcatraz.svg?branch=master)](https://travis-ci.org/supermarin/Alcatraz)
@@ -20,7 +20,7 @@ Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via 
 
 ## Requirements
 
-Alcatraz for Xcode 5 only supports OS X 10.9+.
+Alcatraz for Xcode only supports OS X 10.9+.
 
 ## Usage
 
