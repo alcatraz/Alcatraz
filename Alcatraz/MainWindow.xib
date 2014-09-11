@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Package Manager" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="io.alcatraz.MainWindow" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="449"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="449"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Fa-9p-0gT">
+                        <rect key="frame" x="0.0" y="420" width="480" height="29"/>
+                        <subviews>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wxk-Va-YMt">
+                                <rect key="frame" x="10" y="4" width="373" height="20"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="TlD-Cy-glk">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <segments>
+                                        <segment label="All" width="61"/>
+                                        <segment label="Installed" width="61" selected="YES" tag="1"/>
+                                        <segment label="Plugins"/>
+                                        <segment label="Color Themes"/>
+                                        <segment label="Templates"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
+                        </subviews>
+                    </customView>
+                </subviews>
+            </view>
+            <toolbar key="toolbar" implicitIdentifier="FBCCA4AF-F352-4D06-BE8A-9B4F7B0F2BDC" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="2cL-tW-Fkw">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="qAt-DD-YaQ"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="8Xt-Wm-M1g"/>
+                    <toolbarItem implicitItemIdentifier="67249FC3-A319-475F-958A-495340CA3D9E" label="Custom View" paletteLabel="Custom View" id="YZl-ST-cLu">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="152" height="22"/>
+                        <size key="maxSize" width="152" height="22"/>
+                        <searchField key="view" verticalHuggingPriority="750" id="I6M-Ju-3f5">
+                            <rect key="frame" x="323" y="3" width="152" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="Jfz-F0-F45">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </searchFieldCell>
+                        </searchField>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="0C959201-C896-410A-89FB-A292881B3A96" label="Options" paletteLabel="Options" image="NSActionTemplate" id="UZV-tX-IeP">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="40" height="28"/>
+                        <size key="maxSize" width="40" height="30"/>
+                        <popUpButton key="view" verticalHuggingPriority="750" id="uFY-6m-M64">
+                            <rect key="frame" x="5" y="13" width="40" height="28"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" selectedItem="8J0-dg-lZo" id="oPO-aS-Txq">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="menu"/>
+                                <menu key="menu" title="Options" showsStateColumn="NO" id="aDr-FA-LAl">
+                                    <items>
+                                        <menuItem image="NSActionTemplate" hidden="YES" id="8J0-dg-lZo"/>
+                                        <menuItem title="Reload Packages" id="kUa-Dw-jhw"/>
+                                        <menuItem isSeparatorItem="YES" id="vFc-SV-EtA"/>
+                                        <menuItem title="Load Default URL" id="bPi-Qr-GWZ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Load Custom URL..." id="VFq-69-wpd"/>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                        </popUpButton>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="UZV-tX-IeP"/>
+                    <toolbarItem reference="8Xt-Wm-M1g"/>
+                    <toolbarItem reference="YZl-ST-cLu"/>
+                </defaultToolbarItems>
+            </toolbar>
+            <point key="canvasLocation" x="258" y="360.5"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
+    </resources>
+</document>

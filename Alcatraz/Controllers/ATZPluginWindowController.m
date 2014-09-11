@@ -1,6 +1,6 @@
 // PluginWindowController.m
 // 
-// Copyright (c) 2013 Marin Usalj | supermar.in
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +54,7 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 }
 
 - (id)initWithBundle:(NSBundle *)bundle {
-    if (self = [super initWithWindowNibName:@"PluginWindow"]) {
+    if (self = [super initWithWindowNibName:@"MainWindow"]) {
         [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
         
         [self addVersionToWindow];
