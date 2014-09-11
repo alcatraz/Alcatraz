@@ -31,6 +31,7 @@
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
 #import "ATZTemplate.h"
+#import "ATZInstaller.h"
 
 #import "ATZShell.h"
 #import "ATZSegmentedCell.h"
@@ -108,13 +109,11 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (IBAction)displayScreenshotPressed:(NSButton *)sender {
     ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
-    
     [self displayScreenshot:package.screenshotPath withTitle:package.name];
 }
 
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender {
     ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
-
     [self openWebsite:package.website];
 }
 
@@ -267,6 +266,24 @@ BOOL hasPressedCommandF(NSEvent *event) {
         .size.height = 20
     }];
     [windowFrameView addSubview:label];
+}
+
+#pragma mark - NSTableViewDelegate 
+
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)rowIndex {
+
+    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][rowIndex];
+    if (!package.isInstalled) {
+        return NO;
+    }
+    
+    [[NSWorkspace sharedWorkspace] launchApplication:@"Finder"];
+    NSString *path = [[[package installer] pathForInstalledPackage:package] stringByExpandingTildeInPath];
+    NSURL *fileURL = [NSURL fileURLWithPath:path isDirectory:YES];
+    NSLog(@"Path %@;\nURL: %@", path, fileURL);
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[ fileURL ]];
+
+    return NO;
 }
 
 @end
