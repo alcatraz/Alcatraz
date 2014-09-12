@@ -105,6 +105,4 @@
     @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Each package has a different extension!" userInfo:nil];
 }
 
-- (void)setIsInstalled:(BOOL)isInstalled { /* Hack for IB bindings. */ }
-
 @end

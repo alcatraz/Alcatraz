@@ -26,8 +26,6 @@
 #import "ATZDownloader.h"
 #import "ATZPackageFactory.h"
 
-#import "ATZDetailItemButton.h"
-#import "ATZPackageTableCellView.h"
 #import "ATZVersionLabel.h"
 
 #import "ATZPlugin.h"
@@ -35,7 +33,6 @@
 #import "ATZTemplate.h"
 
 #import "ATZShell.h"
-#import "ATZSegmentedCell.h"
 
 #import "ATZFillableButton.h"
 #import "ATZPackageTableViewDelegate.h"

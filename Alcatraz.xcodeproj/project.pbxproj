@@ -9,12 +9,7 @@
 /* Begin PBXBuildFile section */
 		079C9E03183D8BB8009F5A17 /* link_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 079C9E02183D8BB8009F5A17 /* link_icon.png */; };
 		079C9E05183D8BBD009F5A17 /* link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 079C9E04183D8BBD009F5A17 /* link_icon@2x.png */; };
-		07EB2B1718442F1900A0040B /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */; };
-		0C49775E186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */; };
-		0C7AF649186B4A440064EE7B /* ATZRadialProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AF648186B4A440064EE7B /* ATZRadialProgressControl.m */; };
 		0C7AF650186B4E890064EE7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AF64F186B4E890064EE7B /* QuartzCore.framework */; };
-		0C7AF657186B82A00064EE7B /* NSColor+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7AF656186B82A00064EE7B /* NSColor+Alcatraz.m */; };
-		32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B63216173A3E880076C098 /* ATZPackageTableCellView.m */; };
 		32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC2173A46A900513A7C /* eye_icon.png */; };
 		32D86505173A4555009C724B /* eye_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86503173A4555009C724B /* eye_icon@2x.png */; };
 		64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4918136FF30025C0B1 /* toolbar_colors.png */; };
@@ -23,7 +18,6 @@
 		64C28A5A18136FF30025C0B1 /* toolbar_plugins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4E18136FF30025C0B1 /* toolbar_plugins@2x.png */; };
 		64C28A5D18136FF30025C0B1 /* toolbar_templates.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A5118136FF30025C0B1 /* toolbar_templates.png */; };
 		64C28A5E18136FF30025C0B1 /* toolbar_templates@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A5218136FF30025C0B1 /* toolbar_templates@2x.png */; };
-		64CF0B7D18C414F100966C58 /* ATZTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF0B7C18C414F100966C58 /* ATZTableCellView.m */; };
 		64EDC501188CB55A00D45F1D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EDC500188CB55A00D45F1D /* Cocoa.framework */; };
 		890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B42171F031300AFE577 /* AppKit.framework */; };
 		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
@@ -48,13 +42,10 @@
 		894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 894714E717302F63003CDDA7 /* ATZInstaller.m */; };
 		897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */; };
 		89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */; };
-		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 		8A133EE319C235FD0068FCB9 /* ATZPackageListTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A133EE219C235FD0068FCB9 /* ATZPackageListTableCellView.m */; };
 		8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A44EF741745D13200411834 /* ATZVersionLabel.m */; };
 		8A56ED9B19C20CCE00309B3C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A56ED9A19C20CCE00309B3C /* MainWindow.xib */; };
-		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
-		8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */; };
 		8A6025AD19C2978900D47F3F /* 740-gear-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A60259819C2978900D47F3F /* 740-gear-selected.png */; };
 		8A6025AE19C2978900D47F3F /* 740-gear-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A60259919C2978900D47F3F /* 740-gear-selected@2x.png */; };
 		8A6025AF19C2978900D47F3F /* 740-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A60259A19C2978900D47F3F /* 740-gear.png */; };
@@ -86,17 +77,7 @@
 /* Begin PBXFileReference section */
 		079C9E02183D8BB8009F5A17 /* link_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link_icon.png; sourceTree = "<group>"; };
 		079C9E04183D8BBD009F5A17 /* link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link_icon@2x.png"; sourceTree = "<group>"; };
-		07EB2B1518442F1900A0040B /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZSegmentedCell.h; path = Views/ATZSegmentedCell.h; sourceTree = "<group>"; };
-		07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedCell.m; path = Views/ATZSegmentedCell.m; sourceTree = "<group>"; };
-		0C49775C186AB8170059AB6B /* NSImage+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Alcatraz.h"; sourceTree = "<group>"; };
-		0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Alcatraz.m"; sourceTree = "<group>"; };
-		0C7AF647186B4A440064EE7B /* ATZRadialProgressControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZRadialProgressControl.h; path = Views/ATZRadialProgressControl.h; sourceTree = "<group>"; };
-		0C7AF648186B4A440064EE7B /* ATZRadialProgressControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZRadialProgressControl.m; path = Views/ATZRadialProgressControl.m; sourceTree = "<group>"; };
 		0C7AF64F186B4E890064EE7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		0C7AF655186B82A00064EE7B /* NSColor+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Alcatraz.h"; sourceTree = "<group>"; };
-		0C7AF656186B82A00064EE7B /* NSColor+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Alcatraz.m"; sourceTree = "<group>"; };
-		32B63215173A3E880076C098 /* ATZPackageTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageTableCellView.h; path = Views/ATZPackageTableCellView.h; sourceTree = "<group>"; };
-		32B63216173A3E880076C098 /* ATZPackageTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageTableCellView.m; path = Views/ATZPackageTableCellView.m; sourceTree = "<group>"; };
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
 		6449530218CE826C009494BD /* ATZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZVersion.h; sourceTree = "<group>"; };
@@ -106,8 +87,6 @@
 		64C28A4E18136FF30025C0B1 /* toolbar_plugins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_plugins@2x.png"; sourceTree = "<group>"; };
 		64C28A5118136FF30025C0B1 /* toolbar_templates.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_templates.png; sourceTree = "<group>"; };
 		64C28A5218136FF30025C0B1 /* toolbar_templates@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_templates@2x.png"; sourceTree = "<group>"; };
-		64CF0B7B18C414F100966C58 /* ATZTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZTableCellView.h; sourceTree = "<group>"; };
-		64CF0B7C18C414F100966C58 /* ATZTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZTableCellView.m; sourceTree = "<group>"; };
 		64EDC500188CB55A00D45F1D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alcatraz.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		890A4B42171F031300AFE577 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -155,7 +134,6 @@
 		897F7898173FC54C006C43E5 /* ATZAlcatrazPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZAlcatrazPackage.m; sourceTree = "<group>"; };
 		89B4F2BC172FF5AC001FD2E3 /* ATZPBXProjParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPBXProjParser.h; sourceTree = "<group>"; };
 		89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPBXProjParser.m; sourceTree = "<group>"; };
-		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
 		89D40AFA1721CBD600A67BB3 /* ATZPluginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPluginWindowController.h; path = Controllers/ATZPluginWindowController.h; sourceTree = "<group>"; };
 		89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPluginWindowController.m; path = Controllers/ATZPluginWindowController.m; sourceTree = "<group>"; };
 		8A133EE119C235FD0068FCB9 /* ATZPackageListTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageListTableCellView.h; path = Views/ATZPackageListTableCellView.h; sourceTree = "<group>"; };
@@ -163,10 +141,6 @@
 		8A44EF731745D13200411834 /* ATZVersionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZVersionLabel.h; path = Views/ATZVersionLabel.h; sourceTree = "<group>"; };
 		8A44EF741745D13200411834 /* ATZVersionLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZVersionLabel.m; path = Views/ATZVersionLabel.m; sourceTree = "<group>"; };
 		8A56ED9A19C20CCE00309B3C /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZProgressIndicator.h; path = Views/ATZProgressIndicator.h; sourceTree = "<group>"; };
-		8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZProgressIndicator.m; path = Views/ATZProgressIndicator.m; sourceTree = "<group>"; };
-		8A96E0C61729DC1200350F67 /* ATZDetailItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZDetailItemButton.h; path = Views/ATZDetailItemButton.h; sourceTree = "<group>"; };
-		8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZDetailItemButton.m; path = Views/ATZDetailItemButton.m; sourceTree = "<group>"; };
 		8A60259819C2978900D47F3F /* 740-gear-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "740-gear-selected.png"; sourceTree = "<group>"; };
 		8A60259919C2978900D47F3F /* 740-gear-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "740-gear-selected@2x.png"; sourceTree = "<group>"; };
 		8A60259A19C2978900D47F3F /* 740-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "740-gear.png"; sourceTree = "<group>"; };
@@ -288,7 +262,6 @@
 				890A4B4C171F031300AFE577 /* Alcatraz.h */,
 				890A4B4D171F031300AFE577 /* Alcatraz.m */,
 				890A4B47171F031300AFE577 /* Supporting Files */,
-				89C4C685171F1B5C004A88E7 /* PluginWindow.xib */,
 				6449530218CE826C009494BD /* ATZVersion.h */,
 				8A56ED9A19C20CCE00309B3C /* MainWindow.xib */,
 			);
@@ -353,10 +326,6 @@
 			children = (
 				8917DA0B1726B57B00F0B2D2 /* NSFileManager+Alcatraz.h */,
 				8917DA0C1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m */,
-				0C49775C186AB8170059AB6B /* NSImage+Alcatraz.h */,
-				0C49775D186AB8170059AB6B /* NSImage+Alcatraz.m */,
-				0C7AF655186B82A00064EE7B /* NSColor+Alcatraz.h */,
-				0C7AF656186B82A00064EE7B /* NSColor+Alcatraz.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -392,12 +361,6 @@
 		8A0C0A4A1726C04A006E7AD2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8A6EA57C1726D55300DAFE47 /* ATZProgressIndicator.h */,
-				8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */,
-				8A96E0C61729DC1200350F67 /* ATZDetailItemButton.h */,
-				8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */,
-				32B63215173A3E880076C098 /* ATZPackageTableCellView.h */,
-				32B63216173A3E880076C098 /* ATZPackageTableCellView.m */,
 				8AA0F57819C2210600556AAF /* ATZFillableButton.h */,
 				8AA0F57919C2210600556AAF /* ATZFillableButton.m */,
 				8A133EE119C235FD0068FCB9 /* ATZPackageListTableCellView.h */,
@@ -405,12 +368,6 @@
 				8A6025C719C29E3100D47F3F /* ATZPackageListTableCellView.xib */,
 				8A44EF731745D13200411834 /* ATZVersionLabel.h */,
 				8A44EF741745D13200411834 /* ATZVersionLabel.m */,
-				07EB2B1518442F1900A0040B /* ATZSegmentedCell.h */,
-				07EB2B1618442F1900A0040B /* ATZSegmentedCell.m */,
-				0C7AF647186B4A440064EE7B /* ATZRadialProgressControl.h */,
-				0C7AF648186B4A440064EE7B /* ATZRadialProgressControl.m */,
-				64CF0B7B18C414F100966C58 /* ATZTableCellView.h */,
-				64CF0B7C18C414F100966C58 /* ATZTableCellView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -503,7 +460,6 @@
 				8A6025B019C2978900D47F3F /* 740-gear@2x.png in Resources */,
 				8A6025AD19C2978900D47F3F /* 740-gear-selected.png in Resources */,
 				64C28A5A18136FF30025C0B1 /* toolbar_plugins@2x.png in Resources */,
-				89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */,
 				8A6025B219C2978900D47F3F /* 808-documents-selected@2x.png in Resources */,
 				079C9E03183D8BB8009F5A17 /* link_icon.png in Resources */,
 				8A6025B519C2978900D47F3F /* 837-palette-selected.png in Resources */,
@@ -536,7 +492,6 @@
 				890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */,
 				89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */,
 				8917D9F31726B4EE00F0B2D2 /* ATZColorScheme.m in Sources */,
-				64CF0B7D18C414F100966C58 /* ATZTableCellView.m in Sources */,
 				8917D9F41726B4EE00F0B2D2 /* ATZFileTemplate.m in Sources */,
 				8917D9F51726B4EE00F0B2D2 /* ATZPackage.m in Sources */,
 				8917D9F61726B4EE00F0B2D2 /* ATZPlugin.m in Sources */,
@@ -544,8 +499,6 @@
 				8917D9F81726B4EE00F0B2D2 /* ATZTemplate.m in Sources */,
 				8917DA051726B53000F0B2D2 /* ATZColorSchemeInstaller.m in Sources */,
 				8917DA061726B53000F0B2D2 /* ATZFileTemplateInstaller.m in Sources */,
-				0C7AF657186B82A00064EE7B /* NSColor+Alcatraz.m in Sources */,
-				0C49775E186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */,
 				8A6025C419C29B0C00D47F3F /* ATZPackageTableViewDelegate.m in Sources */,
 				8917DA071726B53000F0B2D2 /* ATZPluginInstaller.m in Sources */,
 				8917DA081726B53000F0B2D2 /* ATZProjectTemplateInstaller.m in Sources */,
@@ -556,16 +509,11 @@
 				8917DA181726B63B00F0B2D2 /* ATZDownloader.m in Sources */,
 				8AA0F57A19C2210600556AAF /* ATZFillableButton.m in Sources */,
 				8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */,
-				0C7AF649186B4A440064EE7B /* ATZRadialProgressControl.m in Sources */,
 				8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */,
-				8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */,
-				8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */,
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
 				8A133EE319C235FD0068FCB9 /* ATZPackageListTableCellView.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
-				07EB2B1718442F1900A0040B /* ATZSegmentedCell.m in Sources */,
 				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,
-				32B63217173A3E880076C098 /* ATZPackageTableCellView.m in Sources */,
 				8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,6 +552,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -619,6 +568,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_MODULE_NAME = Alcatraz;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -636,6 +586,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -643,6 +594,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_MODULE_NAME = Alcatraz;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -652,6 +604,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -670,6 +623,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
