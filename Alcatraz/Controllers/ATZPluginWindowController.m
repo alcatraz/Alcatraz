@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 }
 
 - (id)initWithBundle:(NSBundle *)bundle {
-    if (self = [super initWithWindowNibName:@"MainWindow"]) {
+    if (self = [super initWithWindowNibName:NSStringFromClass([ATZPluginWindowController class])]) {
         [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
         
         [self addVersionToWindow];

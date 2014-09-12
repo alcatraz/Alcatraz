@@ -34,8 +34,9 @@
 
 #pragma mark Drawing Methods
 
-+ (void)drawFillableButtonWithFrame: (NSRect)frame buttonText: (NSString*)buttonText fillRatio: (CGFloat)fillRatio buttonWidth: (CGFloat)buttonWidth buttonType: (NSString*)buttonType;
++ (void)drawFillableButtonWithFrame: (NSRect)frame buttonText: (NSString*)buttonText fillRatio: (CGFloat)fillRatio buttonWidth: (CGFloat)rawButtonWidth buttonType: (NSString*)buttonType;
 {
+    CGFloat buttonWidth = rawButtonWidth - 4;
     //// General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
 
@@ -75,9 +76,9 @@
     NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
     textStyle.alignment = NSCenterTextAlignment;
 
-    NSDictionary* textFontAttributes = @{NSFontAttributeName: [NSFont fontWithName: @"HelveticaNeue-Light" size: 14], NSForegroundColorAttributeName: buttonTextColor, NSParagraphStyleAttributeName: textStyle};
+    NSDictionary* textFontAttributes = @{NSFontAttributeName: [NSFont fontWithName: @"HelveticaNeue" size: 14], NSForegroundColorAttributeName: buttonTextColor, NSParagraphStyleAttributeName: textStyle};
 
-    [buttonText drawInRect: NSOffsetRect(textRect, 0, 4) withAttributes: textFontAttributes];
+    [buttonText drawInRect: NSOffsetRect(textRect, 0, -2) withAttributes: textFontAttributes];
 }
 
 @end

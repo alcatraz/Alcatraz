@@ -24,13 +24,51 @@
                 <rect key="frame" x="0.0" y="0.0" width="545" height="449"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="0Fa-9p-0gT">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="0Fa-9p-0gT" customClass="ATZFilterBarView">
                         <rect key="frame" x="0.0" y="420" width="545" height="29"/>
                         <subviews>
-                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wxk-Va-YMt">
-                                <rect key="frame" x="143" y="4" width="249" height="20"/>
+                            <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UNr-70-Qql">
+                                <rect key="frame" x="316" y="5" width="220" height="19"/>
+                                <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="PPN-GQ-f8e">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="-2" id="aYK-ci-ffo"/>
+                                </connections>
+                            </searchField>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="reu-CB-C0i" customClass="ATZSegmentedControl">
+                                <rect key="frame" x="8" y="4" width="92" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="jvF-qg-y7j"/>
+                                </constraints>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="5Tl-2Y-k8p">
+                                    <font key="font" size="11" name="HelveticaNeue"/>
+                                    <segments>
+                                        <segment label="All" width="37" selected="YES"/>
+                                        <segment label="Installed" width="38" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="segmentedControlPressed:" target="-2" id="CPU-ex-EvU"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pqv-Vn-hv6">
+                                <rect key="frame" x="89" y="7" width="9" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="|" id="8lK-mI-GT4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wxk-Va-YMt" customClass="ATZSegmentedControl">
+                                <rect key="frame" x="106" y="4" width="202" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="gNb-dE-2sJ"/>
+                                </constraints>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="TlD-Cy-glk">
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" size="11" name="HelveticaNeue"/>
                                     <segments>
                                         <segment label="Plugins" selected="YES"/>
                                         <segment label="Color Themes" tag="1"/>
@@ -41,36 +79,14 @@
                                     <action selector="segmentedControlPressed:" target="-2" id="dQL-wu-Ruf"/>
                                 </connections>
                             </segmentedControl>
-                            <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UNr-70-Qql">
-                                <rect key="frame" x="400" y="5" width="136" height="19"/>
-                                <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="PPN-GQ-f8e">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </searchFieldCell>
-                                <connections>
-                                    <outlet property="delegate" destination="-2" id="aYK-ci-ffo"/>
-                                </connections>
-                            </searchField>
-                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="reu-CB-C0i">
-                                <rect key="frame" x="8" y="4" width="129" height="20"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="5Tl-2Y-k8p">
-                                    <font key="font" metaFont="titleBar" size="12"/>
-                                    <segments>
-                                        <segment label="All" width="61"/>
-                                        <segment label="Installed" width="61" selected="YES" tag="1"/>
-                                    </segments>
-                                </segmentedCell>
-                                <connections>
-                                    <action selector="segmentedControlPressed:" target="-2" id="CPU-ex-EvU"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <constraints>
                             <constraint firstItem="UNr-70-Qql" firstAttribute="leading" secondItem="Wxk-Va-YMt" secondAttribute="trailing" constant="9" id="0V9-EA-P9W"/>
                             <constraint firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" id="2rj-TD-hfT"/>
+                            <constraint firstItem="Pqv-Vn-hv6" firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" constant="-1.5" id="7Ah-Bq-Tnc"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" id="D5D-79-kC3"/>
                             <constraint firstItem="reu-CB-C0i" firstAttribute="leading" secondItem="0Fa-9p-0gT" secondAttribute="leading" constant="9" id="ELF-J2-Y4x"/>
+                            <constraint firstItem="Pqv-Vn-hv6" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="-8" id="Xf9-Qu-JlV"/>
                             <constraint firstAttribute="height" constant="29" id="Yci-xm-ezL"/>
                             <constraint firstAttribute="trailing" secondItem="UNr-70-Qql" secondAttribute="trailing" constant="9" id="cpC-8b-Dc0"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="8" id="eMS-g8-tnJ"/>

@@ -45,7 +45,8 @@
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
 		8A133EE319C235FD0068FCB9 /* ATZPackageListTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A133EE219C235FD0068FCB9 /* ATZPackageListTableCellView.m */; };
 		8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A44EF741745D13200411834 /* ATZVersionLabel.m */; };
-		8A56ED9B19C20CCE00309B3C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A56ED9A19C20CCE00309B3C /* MainWindow.xib */; };
+		8A4C621A19C2D6F1003580BD /* ATZFilterBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4C621919C2D6F1003580BD /* ATZFilterBarView.m */; };
+		8A56ED9B19C20CCE00309B3C /* ATZPluginWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A56ED9A19C20CCE00309B3C /* ATZPluginWindowController.xib */; };
 		8A6025AD19C2978900D47F3F /* 740-gear-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A60259819C2978900D47F3F /* 740-gear-selected.png */; };
 		8A6025AE19C2978900D47F3F /* 740-gear-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A60259919C2978900D47F3F /* 740-gear-selected@2x.png */; };
 		8A6025AF19C2978900D47F3F /* 740-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A60259A19C2978900D47F3F /* 740-gear.png */; };
@@ -72,6 +73,7 @@
 		8AA0F57A19C2210600556AAF /* ATZFillableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA0F57919C2210600556AAF /* ATZFillableButton.m */; };
 		8AA0F57D19C2225A00556AAF /* ATZStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA0F57C19C2225A00556AAF /* ATZStyleKit.m */; };
 		8AD5249F174102F9008B451F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD524A2174102F9008B451F /* Localizable.strings */; };
+		8AF670C919C2DE8A00E1C168 /* ATZSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,7 +142,9 @@
 		8A133EE219C235FD0068FCB9 /* ATZPackageListTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageListTableCellView.m; path = Views/ATZPackageListTableCellView.m; sourceTree = "<group>"; };
 		8A44EF731745D13200411834 /* ATZVersionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZVersionLabel.h; path = Views/ATZVersionLabel.h; sourceTree = "<group>"; };
 		8A44EF741745D13200411834 /* ATZVersionLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZVersionLabel.m; path = Views/ATZVersionLabel.m; sourceTree = "<group>"; };
-		8A56ED9A19C20CCE00309B3C /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		8A4C621819C2D6F1003580BD /* ATZFilterBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZFilterBarView.h; path = Views/ATZFilterBarView.h; sourceTree = "<group>"; };
+		8A4C621919C2D6F1003580BD /* ATZFilterBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZFilterBarView.m; path = Views/ATZFilterBarView.m; sourceTree = "<group>"; };
+		8A56ED9A19C20CCE00309B3C /* ATZPluginWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATZPluginWindowController.xib; sourceTree = "<group>"; };
 		8A60259819C2978900D47F3F /* 740-gear-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "740-gear-selected.png"; sourceTree = "<group>"; };
 		8A60259919C2978900D47F3F /* 740-gear-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "740-gear-selected@2x.png"; sourceTree = "<group>"; };
 		8A60259A19C2978900D47F3F /* 740-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "740-gear.png"; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 		8AA0F57B19C2225A00556AAF /* ATZStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZStyleKit.h; sourceTree = "<group>"; };
 		8AA0F57C19C2225A00556AAF /* ATZStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZStyleKit.m; sourceTree = "<group>"; };
 		8AD524A1174102F9008B451F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8AF670C719C2DE8A00E1C168 /* ATZSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZSegmentedControl.h; path = Views/ATZSegmentedControl.h; sourceTree = "<group>"; };
+		8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedControl.m; path = Views/ATZSegmentedControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,7 +269,6 @@
 				890A4B4D171F031300AFE577 /* Alcatraz.m */,
 				890A4B47171F031300AFE577 /* Supporting Files */,
 				6449530218CE826C009494BD /* ATZVersion.h */,
-				8A56ED9A19C20CCE00309B3C /* MainWindow.xib */,
 			);
 			path = Alcatraz;
 			sourceTree = "<group>";
@@ -350,10 +355,11 @@
 		892C7DD7171F2A2000A21B12 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				89D40AFA1721CBD600A67BB3 /* ATZPluginWindowController.h */,
-				89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */,
 				8A6025C219C29B0C00D47F3F /* ATZPackageTableViewDelegate.h */,
 				8A6025C319C29B0C00D47F3F /* ATZPackageTableViewDelegate.m */,
+				89D40AFA1721CBD600A67BB3 /* ATZPluginWindowController.h */,
+				89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */,
+				8A56ED9A19C20CCE00309B3C /* ATZPluginWindowController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -368,6 +374,10 @@
 				8A6025C719C29E3100D47F3F /* ATZPackageListTableCellView.xib */,
 				8A44EF731745D13200411834 /* ATZVersionLabel.h */,
 				8A44EF741745D13200411834 /* ATZVersionLabel.m */,
+				8A4C621819C2D6F1003580BD /* ATZFilterBarView.h */,
+				8A4C621919C2D6F1003580BD /* ATZFilterBarView.m */,
+				8AF670C719C2DE8A00E1C168 /* ATZSegmentedControl.h */,
+				8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -445,7 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A6025B419C2978900D47F3F /* 808-documents@2x.png in Resources */,
-				8A56ED9B19C20CCE00309B3C /* MainWindow.xib in Resources */,
+				8A56ED9B19C20CCE00309B3C /* ATZPluginWindowController.xib in Resources */,
 				890A4B4B171F031300AFE577 /* InfoPlist.strings in Resources */,
 				8A6025BC19C2978900D47F3F /* git_grayscale.png in Resources */,
 				8A6025BF19C2978900D47F3F /* github_grayscale.png in Resources */,
@@ -499,6 +509,7 @@
 				8917D9F81726B4EE00F0B2D2 /* ATZTemplate.m in Sources */,
 				8917DA051726B53000F0B2D2 /* ATZColorSchemeInstaller.m in Sources */,
 				8917DA061726B53000F0B2D2 /* ATZFileTemplateInstaller.m in Sources */,
+				8AF670C919C2DE8A00E1C168 /* ATZSegmentedControl.m in Sources */,
 				8A6025C419C29B0C00D47F3F /* ATZPackageTableViewDelegate.m in Sources */,
 				8917DA071726B53000F0B2D2 /* ATZPluginInstaller.m in Sources */,
 				8917DA081726B53000F0B2D2 /* ATZProjectTemplateInstaller.m in Sources */,
@@ -514,6 +525,7 @@
 				8A133EE319C235FD0068FCB9 /* ATZPackageListTableCellView.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
 				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,
+				8A4C621A19C2D6F1003580BD /* ATZFilterBarView.m in Sources */,
 				8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
