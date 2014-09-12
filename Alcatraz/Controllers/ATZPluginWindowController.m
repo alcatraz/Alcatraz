@@ -169,6 +169,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 
 - (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZFillableButton *)button {
     button.fillRatio = 0;
+    button.title = @"INSTALL";
     [package removeWithCompletion:NULL];
 }
 
