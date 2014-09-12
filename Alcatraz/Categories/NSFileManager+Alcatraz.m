@@ -42,7 +42,8 @@ static NSFileManager *singleton;
     NSError *error = nil;
     
     [self removeItemAtPath:path error:&error];
-    completion(error);
+    if (completion)
+        completion(error);
 }
 
 @end
