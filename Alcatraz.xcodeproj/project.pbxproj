@@ -50,6 +50,7 @@
 		89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */; };
 		89C4C686171F1B5C004A88E7 /* PluginWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89C4C685171F1B5C004A88E7 /* PluginWindow.xib */; };
 		89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */; };
+		8A133EE319C235FD0068FCB9 /* ATZPackageListTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A133EE219C235FD0068FCB9 /* ATZPackageListTableCellView.m */; };
 		8A44EF751745D13200411834 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A44EF741745D13200411834 /* ATZVersionLabel.m */; };
 		8A56ED9B19C20CCE00309B3C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A56ED9A19C20CCE00309B3C /* MainWindow.xib */; };
 		8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6EA57D1726D55300DAFE47 /* ATZProgressIndicator.m */; };
@@ -157,6 +158,8 @@
 		89C4C685171F1B5C004A88E7 /* PluginWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PluginWindow.xib; sourceTree = "<group>"; };
 		89D40AFA1721CBD600A67BB3 /* ATZPluginWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPluginWindowController.h; path = Controllers/ATZPluginWindowController.h; sourceTree = "<group>"; };
 		89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPluginWindowController.m; path = Controllers/ATZPluginWindowController.m; sourceTree = "<group>"; };
+		8A133EE119C235FD0068FCB9 /* ATZPackageListTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZPackageListTableCellView.h; path = Views/ATZPackageListTableCellView.h; sourceTree = "<group>"; };
+		8A133EE219C235FD0068FCB9 /* ATZPackageListTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPackageListTableCellView.m; path = Views/ATZPackageListTableCellView.m; sourceTree = "<group>"; };
 		8A44EF731745D13200411834 /* ATZVersionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZVersionLabel.h; path = Views/ATZVersionLabel.h; sourceTree = "<group>"; };
 		8A44EF741745D13200411834 /* ATZVersionLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZVersionLabel.m; path = Views/ATZVersionLabel.m; sourceTree = "<group>"; };
 		8A56ED9A19C20CCE00309B3C /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -380,6 +383,8 @@
 			children = (
 				89D40AFA1721CBD600A67BB3 /* ATZPluginWindowController.h */,
 				89D40AFB1721CBD600A67BB3 /* ATZPluginWindowController.m */,
+				8A6025C219C29B0C00D47F3F /* ATZPackageTableViewDelegate.h */,
+				8A6025C319C29B0C00D47F3F /* ATZPackageTableViewDelegate.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -395,6 +400,9 @@
 				32B63216173A3E880076C098 /* ATZPackageTableCellView.m */,
 				8AA0F57819C2210600556AAF /* ATZFillableButton.h */,
 				8AA0F57919C2210600556AAF /* ATZFillableButton.m */,
+				8A133EE119C235FD0068FCB9 /* ATZPackageListTableCellView.h */,
+				8A133EE219C235FD0068FCB9 /* ATZPackageListTableCellView.m */,
+				8A6025C719C29E3100D47F3F /* ATZPackageListTableCellView.xib */,
 				8A44EF731745D13200411834 /* ATZVersionLabel.h */,
 				8A44EF741745D13200411834 /* ATZVersionLabel.m */,
 				07EB2B1518442F1900A0040B /* ATZSegmentedCell.h */,
@@ -538,6 +546,7 @@
 				8917DA061726B53000F0B2D2 /* ATZFileTemplateInstaller.m in Sources */,
 				0C7AF657186B82A00064EE7B /* NSColor+Alcatraz.m in Sources */,
 				0C49775E186AB8170059AB6B /* NSImage+Alcatraz.m in Sources */,
+				8A6025C419C29B0C00D47F3F /* ATZPackageTableViewDelegate.m in Sources */,
 				8917DA071726B53000F0B2D2 /* ATZPluginInstaller.m in Sources */,
 				8917DA081726B53000F0B2D2 /* ATZProjectTemplateInstaller.m in Sources */,
 				8917DA091726B53000F0B2D2 /* ATZTemplateInstaller.m in Sources */,
@@ -552,6 +561,7 @@
 				8A6EA57E1726D55300DAFE47 /* ATZProgressIndicator.m in Sources */,
 				8A96E0C81729DC1200350F67 /* ATZDetailItemButton.m in Sources */,
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
+				8A133EE319C235FD0068FCB9 /* ATZPackageListTableCellView.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
 				07EB2B1718442F1900A0040B /* ATZSegmentedCell.m in Sources */,
 				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,

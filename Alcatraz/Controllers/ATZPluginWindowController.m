@@ -20,6 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import <Cocoa/Cocoa.h>
+
 #import "ATZPluginWindowController.h"
 #import "ATZDownloader.h"
 #import "ATZPackageFactory.h"
@@ -35,16 +37,23 @@
 #import "ATZShell.h"
 #import "ATZSegmentedCell.h"
 
-#import "ATZRadialProgressControl.h"
+#import "ATZFillableButton.h"
+#import "ATZPackageTableViewDelegate.h"
 
 static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
 static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@)";
-static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@) AND (self isKindOfClass: %@)";
+static NSString *const INSTALLED_PREDICATE_FORMAT = @"(installed == YES)";
+
+typedef NS_ENUM(NSInteger, ATZFilterSegment) {
+    ATZFilterSegmentPlugins = 0,
+    ATZFilterSegmentColorSchemes = 1,
+    ATZFilterSegmentTemplates = 2,
+};
 
 @interface ATZPluginWindowController ()
-@property (nonatomic, assign) Class selectedPackageClass;
 @property (nonatomic, assign) NSView *hoverButtonsContainer;
+@property (nonatomic, strong) ATZPackageTableViewDelegate* tableViewDelegate;
 @end
 
 @implementation ATZPluginWindowController
@@ -58,8 +67,6 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
         
         [self addVersionToWindow];
-
-        _filterPredicate = [NSPredicate predicateWithValue:YES];
 
         @try {
             if ([NSUserNotificationCenter class])
@@ -78,16 +85,15 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     return YES;
 }
 
-
 #pragma mark - Bindings
 
-- (IBAction)checkboxPressed:(ATZRadialProgressControl *)control {
-    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:control]];
+- (IBAction)installPressed:(ATZFillableButton *)button {
+    ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:button]];
     
     if (package.isInstalled)
-        [self removePackage:package andUpdateControl:control];
+        [self removePackage:package andUpdateControl:button];
     else
-        [self installPackage:package andUpdateControl:control];
+        [self installPackage:package andUpdateControl:button];
 }
 
 - (NSDictionary *)segmentClassMapping {
@@ -100,20 +106,18 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     return segmentClassMapping;
 }
 
-- (IBAction)segmentedControlPressed:(id)sender {
-    NSInteger selectedSegment = [sender selectedSegment];
-    self.selectedPackageClass = [self segmentClassMapping][@(selectedSegment)];
+- (IBAction)segmentedControlPressed:(NSSegmentedControl*)sender {
     [self updatePredicate];
 }
 
 - (IBAction)displayScreenshotPressed:(NSButton *)sender {
-    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
+    ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:sender]];
     
     [self displayScreenshot:package.screenshotPath withTitle:package.name];
 }
 
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender {
-    ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
+    ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:sender]];
 
     [self openWebsite:package.website];
 }
@@ -129,6 +133,29 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
         [super keyDown:event];
 }
 
+- (IBAction)reloadPackages {
+    ATZDownloader *downloader = [ATZDownloader new];
+    [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
+
+        if (error) {
+            NSLog(@"Error while downloading packages! %@", error);
+        } else {
+            self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
+            [self reloadTableView];
+            [self updatePackages];
+        }
+    }];
+}
+
+- (void)reloadTableView {
+    self.tableViewDelegate = [[ATZPackageTableViewDelegate alloc] initWithPackages:self.packages
+                                                                    tableViewOwner:self];
+    self.tableView.delegate = self.tableViewDelegate;
+    self.tableView.dataSource = self.tableViewDelegate;
+    [self.tableViewDelegate configureTableView:self.tableView];
+    [self updatePredicate];
+    [self.tableView reloadData];
+}
 
 #pragma mark - Private
 
@@ -143,17 +170,18 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [[NSOperationQueue mainQueue] addOperation:updateOperation];
 }
 
-- (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
-    [control setProgress:0 animated:YES];
-    [package removeWithCompletion:^(NSError *failure) {}];
+- (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZFillableButton *)button {
+    button.fillRatio = 0;
+    [package removeWithCompletion:NULL];
 }
 
-- (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
-    [package installWithProgress:^(NSString *progressMessage, CGFloat progress) { //TODO: see if we can get rid of NSString progress
-        [control setProgress:progress animated:YES];
-    }
-                      completion:^(NSError *failure) {
-        [control setProgress:failure ? 0 : 1 animated:YES];
+- (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZFillableButton *)control {
+    [package installWithProgress:^(NSString *progressMessage, CGFloat progress) {
+        control.title = @"INSTALLING";
+        control.fillRatio = progress * 100;
+    } completion:^(NSError *failure) {
+        control.title = package.isInstalled ? @"REMOVE" : @"INSTALL";
+        control.fillRatio = (package.isInstalled ? 100 : 0);
         if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
     }];
 }
@@ -174,38 +202,20 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)updatePredicate {
-    // TODO: refactor, use compound predicates.
-
     NSString *searchText = self.searchField.stringValue;
-    // filter by type and search field text
-    if (self.selectedPackageClass && searchText.length > 0) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_AND_CLASS_PREDICATE_FORMAT, searchText, searchText, self.selectedPackageClass];
-        
-    // filter by type
-    } else if (self.selectedPackageClass) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:CLASS_PREDICATE_FORMAT, self.selectedPackageClass];
-        
-    // filter by search field text
-    } else if (searchText.length > 0) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_PREDICATE_FORMAT, searchText, searchText];
-        
-    // show all
-    } else {
-        self.filterPredicate = [NSPredicate predicateWithValue:YES];
-    }
-}
+    NSMutableArray* predicates = [[NSMutableArray alloc] initWithCapacity:3];
+    Class selectedPackageClass = [self segmentClassMapping][@([self.packageTypeSegmentedControl selectedSegment])];
+    if (selectedPackageClass)
+        [predicates addObject:[NSPredicate predicateWithFormat:CLASS_PREDICATE_FORMAT, selectedPackageClass]];
 
-- (void)reloadPackages {
-    ATZDownloader *downloader = [ATZDownloader new];
-    [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
-        
-        if (error) {
-            NSLog(@"Error while downloading packages! %@", error);
-        } else {
-            self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
-            [self updatePackages];
-        }
-    }];
+    if (searchText.length > 0)
+        [predicates addObject:[NSPredicate predicateWithFormat:SEARCH_PREDICATE_FORMAT, searchText, searchText]];
+
+    if ([self.installationStateSegmentedControl selectedSegment] != 0)
+        [predicates addObject:[NSPredicate predicateWithFormat:INSTALLED_PREDICATE_FORMAT]];
+
+    [self.tableViewDelegate filterUsingPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
+    [self.tableView reloadData];
 }
 
 - (void)updatePackages {

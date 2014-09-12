@@ -1,5 +1,4 @@
-// PluginWindowController.h
-// 
+//
 // Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -8,10 +7,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,26 +19,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <AppKit/AppKit.h>
+#import "ATZPackageListTableCellView.h"
 
-@interface ATZPluginWindowController : NSWindowController<NSTableViewDelegate, NSControlTextEditingDelegate, NSUserNotificationCenterDelegate>
+@implementation ATZPackageListTableCellView
 
-@property (nonatomic, retain) NSArray *packages;
-
-@property (assign) IBOutlet NSPanel *previewPanel;
-@property (assign) IBOutlet NSImageView *previewImageView;
-@property (assign) IBOutlet NSSearchField *searchField;
-@property (assign) IBOutlet NSTableView *tableView;
-@property (weak) IBOutlet NSSegmentedControl *packageTypeSegmentedControl;
-@property (weak) IBOutlet NSSegmentedControl *installationStateSegmentedControl;
-
-- (id)initWithBundle:(NSBundle *)bundle;
-
-- (IBAction)openPackageWebsitePressed:(NSButton *)sender;
-- (IBAction)displayScreenshotPressed:(NSButton *)sender;
-
-- (IBAction)segmentedControlPressed:(id)sender;
-
-- (void)reloadPackages;
+- (void)drawRect:(NSRect)dirtyRect {
+    [super drawRect:dirtyRect];
+    
+    // Drawing code here.
+}
 
 @end

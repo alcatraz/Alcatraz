@@ -1,6 +1,6 @@
 // Package.m
 //
-// Copyright (c) 2013 Marin Usalj | supermar.in
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -45,9 +45,21 @@
     self.remotePath = dictionary[@"url"];
     self.screenshotPath = dictionary[@"screenshot"];
     self.revision = [ATZGit parseRevisionFromDictionary:dictionary];
+    [self parseWebsiteTypeFromURLPath:dictionary[@"url"]];
 }
 
-- (NSString *)projectPathFromRawPath:(NSString *)rawURL {
+- (void)parseWebsiteTypeFromURLPath:(NSString*)URLPath
+{
+    if ([URLPath rangeOfString:@"github.com"].location != NSNotFound || [URLPath rangeOfString:@"githubusercontent.com"].location != NSNotFound) {
+        _websiteType = ATZPackageWebsiteTypeGithub;
+    } else if ([URLPath rangeOfString:@"bitbucket.com"].location != NSNotFound) {
+        _websiteType = ATZPackageWebsiteTypeBitbucket;
+    } else {
+        _websiteType = ATZPackageWebsiteTypeOtherGit;
+    }
+}
+
+- (NSString *)projectPathFromGithubRawPath:(NSString *)rawURL {
     NSString *username = rawURL.pathComponents[2];
     NSString *repository = rawURL.pathComponents[3];
     return [NSString stringWithFormat:@"https://github.com/%@/%@", username, repository];
@@ -56,8 +68,8 @@
 #pragma mark - Property getters
 
 - (NSString *)website {
-    if ([self.remotePath rangeOfString:@"raw.github.com"].location != NSNotFound)
-        return [self projectPathFromRawPath:self.remotePath];
+    if ([self.remotePath rangeOfString:@"raw.github"].location != NSNotFound)
+        return [self projectPathFromGithubRawPath:self.remotePath];
     
     else return self.remotePath;
 }
