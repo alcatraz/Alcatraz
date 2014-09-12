@@ -168,7 +168,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 }
 
 - (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZFillableButton *)button {
-    button.fillRatio = 0;
+    [button setFillRatio:0 animated:YES];
     button.title = @"INSTALL";
     [package removeWithCompletion:NULL];
 }
@@ -176,10 +176,10 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 - (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZFillableButton *)control {
     [package installWithProgress:^(NSString *progressMessage, CGFloat progress) {
         control.title = @"INSTALLING";
-        control.fillRatio = progress * 100;
+        [control setFillRatio:progress * 100 animated:YES];
     } completion:^(NSError *failure) {
         control.title = package.isInstalled ? @"REMOVE" : @"INSTALL";
-        control.fillRatio = (package.isInstalled ? 100 : 0);
+        [control setFillRatio:(package.isInstalled ? 100 : 0) animated:YES];
         if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
     }];
 }

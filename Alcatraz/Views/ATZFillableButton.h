@@ -28,4 +28,6 @@ extern NSString* const ATZFillableButtonTypeNormal;
 
 @property (nonatomic, strong) NSString* buttonBorderStyle;
 @property (nonatomic) float fillRatio;
+
+- (void)setFillRatio:(float)fillRatio animated:(BOOL)animated;
 @end

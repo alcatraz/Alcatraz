@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import <Quartz/Quartz.h>
 #import "ATZFillableButton.h"
 #import "ATZStyleKit.h"
 
@@ -26,6 +27,14 @@ NSString* const ATZFillableButtonTypeInstall = @"install";
 NSString* const ATZFillableButtonTypeNormal = @"normal";
 
 @implementation ATZFillableButton
+
++ (id)defaultAnimationForKey:(NSString *)key {
+    if ([key isEqualToString:NSStringFromSelector(@selector(fillRatio))]) {
+        return [CABasicAnimation animation];
+    }
+
+    return [super defaultAnimationForKey:key];
+}
 
 - (void)drawRect:(NSRect)dirtyRect {
     [ATZStyleKit drawFillableButtonWithFrame:self.bounds
@@ -35,16 +44,22 @@ NSString* const ATZFillableButtonTypeNormal = @"normal";
                                   buttonType:self.buttonBorderStyle?:ATZFillableButtonTypeNormal];
 }
 
-- (void)setButtonBorderStyle:(NSString *)buttonBorderStyle
-{
+- (void)setButtonBorderStyle:(NSString *)buttonBorderStyle {
     _buttonBorderStyle = buttonBorderStyle;
     [self setNeedsDisplay];
 }
 
-- (void)setFillRatio:(float)fillRatio
-{
+- (void)setFillRatio:(float)fillRatio {
     _fillRatio = fillRatio;
     [self setNeedsDisplay];
+}
+
+- (void)setFillRatio:(float)fillRatio animated:(BOOL)animated {
+    if (animated) {
+        self.animator.fillRatio = fillRatio;
+    } else {
+        self.fillRatio = fillRatio;
+    }
 }
 
 @end

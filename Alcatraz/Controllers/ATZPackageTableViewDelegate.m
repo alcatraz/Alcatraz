@@ -85,7 +85,7 @@ static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
     [view.installButton setTitle:([package isInstalled] ? @"REMOVE" : @"INSTALL")];
     ATZFillableButton* installButton = (ATZFillableButton*)view.installButton;
     [installButton setButtonBorderStyle:ATZFillableButtonTypeInstall];
-    installButton.fillRatio = [package isInstalled] ? 100 : 0;
+    [installButton setFillRatio:([package isInstalled] ? 100 : 0) animated:NO];
 
     return view;
 }
