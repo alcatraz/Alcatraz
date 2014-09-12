@@ -361,6 +361,8 @@
 		8917DA111726B63B00F0B2D2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8AA0F57B19C2225A00556AAF /* ATZStyleKit.h */,
+				8AA0F57C19C2225A00556AAF /* ATZStyleKit.m */,
 				8917DA121726B63B00F0B2D2 /* ATZDownloader.h */,
 				8917DA131726B63B00F0B2D2 /* ATZDownloader.m */,
 				8917DA141726B63B00F0B2D2 /* ATZGit.h */,
@@ -391,6 +393,8 @@
 				8A96E0C71729DC1200350F67 /* ATZDetailItemButton.m */,
 				32B63215173A3E880076C098 /* ATZPackageTableCellView.h */,
 				32B63216173A3E880076C098 /* ATZPackageTableCellView.m */,
+				8AA0F57819C2210600556AAF /* ATZFillableButton.h */,
+				8AA0F57919C2210600556AAF /* ATZFillableButton.m */,
 				8A44EF731745D13200411834 /* ATZVersionLabel.h */,
 				8A44EF741745D13200411834 /* ATZVersionLabel.m */,
 				07EB2B1518442F1900A0040B /* ATZSegmentedCell.h */,
@@ -537,9 +541,11 @@
 				8917DA071726B53000F0B2D2 /* ATZPluginInstaller.m in Sources */,
 				8917DA081726B53000F0B2D2 /* ATZProjectTemplateInstaller.m in Sources */,
 				8917DA091726B53000F0B2D2 /* ATZTemplateInstaller.m in Sources */,
+				8AA0F57D19C2225A00556AAF /* ATZStyleKit.m in Sources */,
 				8917DA0D1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m in Sources */,
 				8917DA101726B5BA00F0B2D2 /* ATZPackageFactory.m in Sources */,
 				8917DA181726B63B00F0B2D2 /* ATZDownloader.m in Sources */,
+				8AA0F57A19C2210600556AAF /* ATZFillableButton.m in Sources */,
 				8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */,
 				0C7AF649186B4A440064EE7B /* ATZRadialProgressControl.m in Sources */,
 				8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */,
