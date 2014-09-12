@@ -184,10 +184,10 @@
                                         <menuItem image="NSActionTemplate" hidden="YES" id="8J0-dg-lZo"/>
                                         <menuItem title="Reload Packages" id="kUa-Dw-jhw"/>
                                         <menuItem isSeparatorItem="YES" id="vFc-SV-EtA"/>
-                                        <menuItem title="Load Default URL" id="bPi-Qr-GWZ">
+                                        <menuItem title="Load Default Repository" id="bPi-Qr-GWZ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Load Custom URL..." id="VFq-69-wpd"/>
+                                        <menuItem title="Load Custom Repository..." id="VFq-69-wpd"/>
                                     </items>
                                 </menu>
                             </popUpButtonCell>
