@@ -13,7 +13,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Av5-OP-Joy">
-                    <rect key="frame" x="79" y="116" width="283" height="20"/>
+                    <rect key="frame" x="79" y="116" width="291" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="xnG-kA-OAV"/>
                     </constraints>
@@ -24,7 +24,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHH-X8-YVE">
-                    <rect key="frame" x="79" y="69" width="283" height="38"/>
+                    <rect key="frame" x="79" y="69" width="291" height="38"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Package description. Should be something awesome I hope." id="2Rp-Mp-s8t">
                         <font key="font" size="13" name="HelveticaNeue"/>
                         <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
@@ -32,7 +32,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="NyQ-k4-Y5v">
-                    <rect key="frame" x="81" y="40" width="279" height="20"/>
+                    <rect key="frame" x="81" y="40" width="287" height="20"/>
                     <buttonCell key="cell" type="smallSquare" title="supermarin/Alcatraz" bezelStyle="smallSquare" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="Sl6-x8-HMS">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="13" name="HelveticaNeue-Medium"/>
@@ -50,7 +50,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="pgg-Yv-C6M"/>
                 </imageView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rjv-46-xct" customClass="ATZFillableButton">
-                    <rect key="frame" x="369" y="109" width="92" height="27"/>
+                    <rect key="frame" x="377" y="109" width="92" height="27"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="qLj-pz-VDm"/>
                         <constraint firstAttribute="width" constant="92" id="xOm-jW-Kas"/>
@@ -64,7 +64,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mef-ce-NYb" customClass="ATZFillableButton">
-                    <rect key="frame" x="369" y="73" width="92" height="27"/>
+                    <rect key="frame" x="377" y="78" width="92" height="27"/>
                     <buttonCell key="cell" type="smallSquare" title="PREVIEW" bezelStyle="smallSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="SdV-cv-O2l">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="13" name="HelveticaNeue-Medium"/>
@@ -74,7 +74,7 @@
                     </connections>
                 </button>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="900" translatesAutoresizingMaskIntoConstraints="NO" id="DxI-h9-i7Y">
-                    <rect key="frame" x="81" y="9" width="380" height="23"/>
+                    <rect key="frame" x="81" y="9" width="388" height="23"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="57X-xD-Top"/>
                 </imageView>
             </subviews>
@@ -95,10 +95,10 @@
                 <constraint firstItem="QHH-X8-YVE" firstAttribute="trailing" secondItem="NyQ-k4-Y5v" secondAttribute="trailing" id="hMX-a2-TUd"/>
                 <constraint firstAttribute="bottom" secondItem="DxI-h9-i7Y" secondAttribute="bottom" constant="9" id="jTY-at-qbx"/>
                 <constraint firstItem="mef-ce-NYb" firstAttribute="width" secondItem="Rjv-46-xct" secondAttribute="width" id="nFf-P3-syl"/>
-                <constraint firstItem="mef-ce-NYb" firstAttribute="top" secondItem="Rjv-46-xct" secondAttribute="bottom" constant="9" id="nhC-Tm-yQF"/>
+                <constraint firstItem="mef-ce-NYb" firstAttribute="top" secondItem="Rjv-46-xct" secondAttribute="bottom" constant="4" id="nhC-Tm-yQF"/>
                 <constraint firstItem="Av5-OP-Joy" firstAttribute="top" secondItem="Rjv-46-xct" secondAttribute="top" id="tNY-uO-R4f"/>
                 <constraint firstItem="Rjv-46-xct" firstAttribute="leading" secondItem="Av5-OP-Joy" secondAttribute="trailing" constant="9" id="uyv-rK-VCR"/>
-                <constraint firstAttribute="trailing" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="14" id="w8J-7h-a96"/>
+                <constraint firstAttribute="trailing" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="6" id="w8J-7h-a96"/>
                 <constraint firstItem="DxI-h9-i7Y" firstAttribute="leading" secondItem="NyQ-k4-Y5v" secondAttribute="leading" id="zQp-4H-krX"/>
             </constraints>
             <connections>

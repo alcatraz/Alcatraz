@@ -37,11 +37,10 @@ NSString* const ATZFillableButtonTypeNormal = @"normal";
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-    [ATZStyleKit drawFillableButtonWithFrame:self.bounds
-                                  buttonText:self.title
-                                   fillRatio:self.fillRatio
-                                 buttonWidth:CGRectGetWidth(self.bounds)
-                                  buttonType:self.buttonBorderStyle?:ATZFillableButtonTypeNormal];
+    [ATZStyleKit drawFillableButtonWithButtonText:self.title
+                                        fillRatio:self.fillRatio
+                                      buttonWidth:CGRectGetWidth(self.bounds)
+                                       buttonType:self.buttonBorderStyle?:ATZFillableButtonTypeNormal];
 }
 
 - (void)setButtonBorderStyle:(NSString *)buttonBorderStyle {

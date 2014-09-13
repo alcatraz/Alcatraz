@@ -34,9 +34,8 @@
 
 #pragma mark Drawing Methods
 
-+ (void)drawFillableButtonWithFrame: (NSRect)frame buttonText: (NSString*)buttonText fillRatio: (CGFloat)fillRatio buttonWidth: (CGFloat)rawButtonWidth buttonType: (NSString*)buttonType;
++ (void)drawFillableButtonWithButtonText: (NSString*)buttonText fillRatio: (CGFloat)fillRatio buttonWidth: (CGFloat)buttonWidth buttonType: (NSString*)buttonType;
 {
-    CGFloat buttonWidth = rawButtonWidth - 4;
     //// General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
 
@@ -49,12 +48,24 @@
     //// Variable Declarations
     CGFloat computedFillWidth = fillRatio * buttonWidth * 0.01;
     CGFloat fillWidth = computedFillWidth < 0 ? 0 : (computedFillWidth > buttonWidth ? buttonWidth : computedFillWidth);
-    NSColor* buttonTextColor = fillRatio >= 100 ? white : ([buttonType isEqualToString: @"install"] ? buttonColor : gray);
+    NSColor* buttonTextColor = fillRatio >= 40 ? white : ([buttonType isEqualToString: @"install"] ? buttonColor : gray);
     NSColor* buttonStrokeColor = [buttonType isEqualToString: @"install"] ? buttonColor : gray;
     NSColor* buttonFillColor = fillWidth <= 8 ? clear : buttonStrokeColor;
 
     //// Rectangle Drawing
-    NSBezierPath* rectanglePath = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(1, 1, buttonWidth, 24.5) xRadius: 4 yRadius: 4];
+    NSBezierPath* rectanglePath = NSBezierPath.bezierPath;
+    [rectanglePath moveToPoint: NSMakePoint(1, 5)];
+    [rectanglePath curveToPoint: NSMakePoint(5.04, 1) controlPoint1: NSMakePoint(1, 2.79) controlPoint2: NSMakePoint(2.25, 1)];
+    [rectanglePath lineToPoint: NSMakePoint(84.46, 1)];
+    [rectanglePath curveToPoint: NSMakePoint(88.5, 5) controlPoint1: NSMakePoint(87.25, 1) controlPoint2: NSMakePoint(88.5, 2.79)];
+    [rectanglePath lineToPoint: NSMakePoint(88.5, 21.5)];
+    [rectanglePath curveToPoint: NSMakePoint(84.46, 25.5) controlPoint1: NSMakePoint(88.5, 23.71) controlPoint2: NSMakePoint(87.25, 25.5)];
+    [rectanglePath lineToPoint: NSMakePoint(5.04, 25.5)];
+    [rectanglePath curveToPoint: NSMakePoint(1, 21.5) controlPoint1: NSMakePoint(2.25, 25.5) controlPoint2: NSMakePoint(1, 23.71)];
+    [rectanglePath lineToPoint: NSMakePoint(1, 5)];
+    [rectanglePath closePath];
+    [rectanglePath setLineCapStyle: NSRoundLineCapStyle];
+    [rectanglePath setLineJoinStyle: NSRoundLineJoinStyle];
     [buttonStrokeColor setStroke];
     [rectanglePath setLineWidth: 1];
     [rectanglePath stroke];
@@ -62,9 +73,9 @@
 
     //// Rectangle 2 Drawing
     [NSGraphicsContext saveGraphicsState];
-    CGContextTranslateCTM(context, NSMinX(frame) + 1, NSMaxY(frame) - 24);
+    CGContextTranslateCTM(context, 1, 2);
 
-    NSBezierPath* rectangle2Path = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(0, -1.5, fillWidth, 25) xRadius: 4 yRadius: 4];
+    NSBezierPath* rectangle2Path = [NSBezierPath bezierPathWithRoundedRect: NSMakeRect(0, -1.5, (fillWidth - 3), 25) xRadius: 4 yRadius: 4];
     [buttonFillColor setFill];
     [rectangle2Path fill];
 
@@ -72,13 +83,13 @@
 
 
     //// Text Drawing
-    NSRect textRect = NSMakeRect(1, 3, buttonWidth, 20);
+    NSRect textRect = NSMakeRect(1, -2, (buttonWidth - 1), 20);
     NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
     textStyle.alignment = NSCenterTextAlignment;
 
-    NSDictionary* textFontAttributes = @{NSFontAttributeName: [NSFont fontWithName: @"HelveticaNeue" size: 14], NSForegroundColorAttributeName: buttonTextColor, NSParagraphStyleAttributeName: textStyle};
+    NSDictionary* textFontAttributes = @{NSFontAttributeName: [NSFont fontWithName: @"HelveticaNeue-Light" size: 12], NSForegroundColorAttributeName: buttonTextColor, NSParagraphStyleAttributeName: textStyle};
 
-    [buttonText drawInRect: NSOffsetRect(textRect, 0, -2) withAttributes: textFontAttributes];
+    [buttonText drawInRect: NSOffsetRect(textRect, 0, 4) withAttributes: textFontAttributes];
 }
 
 @end
