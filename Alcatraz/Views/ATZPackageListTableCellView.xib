@@ -75,7 +75,10 @@
                 </button>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="900" translatesAutoresizingMaskIntoConstraints="NO" id="DxI-h9-i7Y">
                     <rect key="frame" x="81" y="9" width="388" height="23"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="57X-xD-Top"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="MHx-O4-W8S"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="bottomRight" imageScaling="proportionallyUpOrDown" id="57X-xD-Top"/>
                 </imageView>
             </subviews>
             <constraints>

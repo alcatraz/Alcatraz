@@ -29,6 +29,7 @@
 #import "ATZPlugin.h"
 #import "ATZTemplate.h"
 #import "ATZColorScheme.h"
+#import "ATZDownloader.h"
 
 @interface ATZPackageTableViewDelegate ()
 
@@ -83,6 +84,17 @@ static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
     [view.typeImageView setImage:[self tableView:tableView packageTypeImageForTableColumn:tableColumn row:row]];
     [view.previewButton setHidden:![package screenshotPath]];
     [view.installButton setTitle:([package isInstalled] ? @"REMOVE" : @"INSTALL")];
+    [view.previewImageView setImageAlignment:NSImageAlignTopLeft];
+    if (package.screenshotPath) {
+        [view.previewImageView setImage:[[self class] cachedImageForPackage:package]];
+        if (!view.previewImageView.image) {
+            __block NSImageView* imageView = view.previewImageView;
+            [[self class] fetchAndCacheImageForPackage:package progress:NULL completion:^(NSImage *image) {
+                imageView.image = image;
+                [tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
+            }];
+        }
+    }
     ATZFillableButton* installButton = (ATZFillableButton*)view.installButton;
     [installButton setButtonBorderStyle:ATZFillableButtonTypeInstall];
     [installButton setFillRatio:([package isInstalled] ? 100 : 0) animated:NO];
@@ -151,6 +163,40 @@ static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
         typeImageName = [NSString stringWithFormat:@"%@-selected", typeImageName];
     }
     return [[Alcatraz sharedPlugin].bundle imageForResource:typeImageName];
+}
+
+#pragma mark - Image Previews
+
++ (NSCache *)imageCache {
+    static NSCache* cache = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        cache = [[NSCache alloc] init];
+    });
+    return cache;
+}
+
++ (NSImage *)cachedImageForPackage:(ATZPackage*)package {
+    return [[self imageCache] objectForKey:package.name];
+}
+
++ (void)cacheImage:(NSImage *)image forPackage:(ATZPackage *)package {
+    [[self imageCache] setObject:image forKey:package.name];
+}
+
++ (void)fetchAndCacheImageForPackage:(ATZPackage*)package progress:(void(^)(CGFloat))progress completion:(void(^)(NSImage *))completion {
+    ATZDownloader *downloader = [ATZDownloader new];
+    [downloader downloadFileFromPath:package.screenshotPath
+                            progress:progress
+                          completion:^(NSData *responseData, NSError *error) {
+                              if (error)
+                                  return;
+
+                              NSImage *image = [[NSImage alloc] initWithData:responseData];
+                              [self cacheImage:image forPackage:package];
+                              if (completion)
+                                  completion(image);
+                          }];
 }
 
 @end
