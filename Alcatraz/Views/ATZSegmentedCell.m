@@ -61,7 +61,7 @@ static NSString *const ALL_ITEMS_TITLE = @"All";
 }
 
 - (NSImage *)iconForSegment:(ATZFilterSegment)segment {
-    return [[[Alcatraz sharedPlugin] bundle] imageForResource:[self segmentIconMapping][@(segment)]];
+    return [[NSBundle bundleForClass:self.class] imageForResource:[self segmentIconMapping][@(segment)]];
 }
 
 - (void)drawAllItemsSegmentInFrame:(CGRect)frame {

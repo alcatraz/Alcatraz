@@ -23,6 +23,10 @@
 #import "ATZInstaller.h"
 #import "ATZPackage.h"
 
+#ifdef ATZ_MENU_ITEM
+#import <Cocoa/Cocoa.h>
+#endif
+
 static NSString *const ALCATRAZ_DATA_DIR = @"Library/Application Support/Alcatraz";
 const CGFloat ATZFakeDownloadProgress = 0.33;
 const CGFloat ATZFakeInstallProgress = 0.66;
@@ -57,7 +61,16 @@ const CGFloat ATZFakeInstallProgress = 0.66;
             if (error) {
                 completion(error);
             } else {
+#ifndef ATZ_MENU_ITEM
                 [self reloadXcodeForPackage:package completion:completion];
+#else
+                if ( [[NSAlert alertWithMessageText:@"Alcatraz"
+                                      defaultButton:@"OK" alternateButton:@"Cancel" otherButton:nil
+                          informativeTextWithFormat:@"Kill and Restart Xcode to load/reload new version of plugin?"]
+                      runModal] == NSAlertDefaultReturn )
+                    system( "(kill -9 `ps auxww | grep '/Xcode$' | awk '{ print $2 }'`; "
+                           "sleep 2; /Applications/Xcode.app/Contents/MacOS/Xcode) &" );
+#endif
             }
         }];
     }];

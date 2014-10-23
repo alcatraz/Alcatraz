@@ -34,7 +34,7 @@ static CGFloat const STROKE_WIDTH = 1.f;
 
     [image lockFocus];
     if (fmod(progress, 1.f) == 0) {
-        NSImage *icon = [[[Alcatraz sharedPlugin] bundle] imageForResource:package.iconName];
+        NSImage *icon = [[NSBundle bundleForClass:[ATZPluginWindowController class]] imageForResource:package.iconName];
         [self drawImage:icon withColor:color inFrame:ovalRect flipVertically:NO];
     } else {
         [self drawPieInRect:ovalRect usingColor:color withProgressPercentage:progress];
