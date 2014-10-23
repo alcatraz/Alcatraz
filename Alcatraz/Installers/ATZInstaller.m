@@ -66,10 +66,12 @@ const CGFloat ATZFakeInstallProgress = 0.66;
 #else
                 if ( [[NSAlert alertWithMessageText:@"Alcatraz"
                                       defaultButton:@"OK" alternateButton:@"Cancel" otherButton:nil
-                          informativeTextWithFormat:@"Kill and Restart Xcode to load/reload new version of plugin?"]
+                          informativeTextWithFormat:@"Kill and Restart Xcode to load/reload plugin?\n"
+                                                            "Be sure to have saved any file edits."]
                       runModal] == NSAlertDefaultReturn )
                     system( "(kill -9 `ps auxww | grep '/Xcode$' | awk '{ print $2 }'`; "
                            "sleep 2; /Applications/Xcode.app/Contents/MacOS/Xcode) &" );
+                completion(nil);
 #endif
             }
         }];
