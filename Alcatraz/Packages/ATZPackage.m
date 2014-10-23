@@ -45,6 +45,8 @@
     self.remotePath = dictionary[@"url"];
     self.screenshotPath = dictionary[@"screenshot"];
     self.revision = [ATZGit parseRevisionFromDictionary:dictionary];
+    if ( dictionary[@"stars"] )
+        self.stars = [[dictionary[@"stars"] stringValue] stringByAppendingString:@"☆"];
 }
 
 - (NSString *)projectPathFromRawPath:(NSString *)rawURL {
