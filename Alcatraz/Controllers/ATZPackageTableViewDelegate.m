@@ -193,6 +193,9 @@ static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
                                   return;
 
                               NSImage *image = [[NSImage alloc] initWithData:responseData];
+                              if (!image)
+                                  return;
+                              
                               [self cacheImage:image forPackage:package];
                               if (completion)
                                   completion(image);
