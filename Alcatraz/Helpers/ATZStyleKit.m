@@ -34,7 +34,7 @@
 
 #pragma mark Drawing Methods
 
-+ (void)drawFillableButtonWithButtonText: (NSString*)buttonText fillRatio: (CGFloat)fillRatio buttonWidth: (CGFloat)buttonWidth buttonType: (NSString*)buttonType;
++ (void)drawFillableButtonWithButtonText: (NSString*)buttonText fillRatio: (CGFloat)fillRatio buttonWidth: (CGFloat)buttonWidth buttonType: (NSString*)buttonType
 {
     //// General Declarations
     CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
@@ -44,13 +44,14 @@
     NSColor* clear = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 0];
     NSColor* white = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
     NSColor* gray = [NSColor colorWithCalibratedRed: 0.378 green: 0.378 blue: 0.378 alpha: 1];
+    NSColor* removeButtonColor = [NSColor colorWithCalibratedRed: 1 green: 0.162 blue: 0.162 alpha: 1];
 
     //// Variable Declarations
     CGFloat computedFillWidth = fillRatio * buttonWidth * 0.01;
     CGFloat fillWidth = computedFillWidth < 0 ? 0 : (computedFillWidth > buttonWidth ? buttonWidth : computedFillWidth);
     NSColor* buttonTextColor = fillRatio >= 40 ? white : ([buttonType isEqualToString: @"install"] ? buttonColor : gray);
-    NSColor* buttonStrokeColor = [buttonType isEqualToString: @"install"] ? buttonColor : gray;
-    NSColor* buttonFillColor = fillWidth <= 8 ? clear : buttonStrokeColor;
+    NSColor* buttonStrokeColor = [buttonType isEqualToString: @"install"] ? (fillRatio >= 100 ? removeButtonColor : buttonColor) : gray;
+    NSColor* buttonFillColor = fillWidth <= 8 ? clear : (fillRatio >= 100 ? removeButtonColor : buttonStrokeColor);
 
     //// Rectangle Drawing
     NSBezierPath* rectanglePath = NSBezierPath.bezierPath;
