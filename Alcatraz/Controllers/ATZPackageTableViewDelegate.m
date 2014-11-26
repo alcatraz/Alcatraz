@@ -30,6 +30,7 @@
 #import "ATZTemplate.h"
 #import "ATZColorScheme.h"
 #import "ATZDownloader.h"
+#import "NSColor+Alcatraz.h"
 
 @interface ATZPackageTableViewDelegate ()
 
@@ -159,10 +160,24 @@ static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
     } else {
         return nil;
     }
-    if ([package isInstalled]) {
+    if ([package isInstalled])
         typeImageName = [NSString stringWithFormat:@"%@-selected", typeImageName];
-    }
-    return [[Alcatraz sharedPlugin].bundle imageForResource:typeImageName];
+
+    return [self selectionTemplateImageNamed:typeImageName];
+}
+
+- (NSImage *)selectionTemplateImageNamed:(NSString *)imageName {
+    NSImage *template = [[Alcatraz sharedPlugin].bundle imageForResource:imageName];
+    NSSize size = [template size];
+
+    NSImage *copiedImage = [template copy];
+    [copiedImage setTemplate:NO];
+    [copiedImage lockFocus];
+    [[NSColor selectedItemColor] set];
+    NSRectFillUsingOperation(NSMakeRect(0, 0, size.width, size.height), NSCompositeSourceAtop);
+    [copiedImage unlockFocus];
+
+    return copiedImage;
 }
 
 #pragma mark - Image Previews

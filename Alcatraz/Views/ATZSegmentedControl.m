@@ -20,11 +20,12 @@
 // THE SOFTWARE.
 
 #import "ATZSegmentedControl.h"
+#import "NSColor+Alcatraz.h"
 
 @implementation ATZSegmentedControl
 
 - (void)drawRect:(NSRect)dirtyRect {
-    NSColor* selectedBackground = [NSColor colorWithCalibratedHue:0.6 saturation:0.91 brightness:1 alpha:1];
+    NSColor* selectedBackground = [NSColor selectedItemColor];
 
     CGFloat totalWidth = 0;
     for (int i = 0; i < self.segmentCount; i++) {
@@ -32,17 +33,16 @@
         NSMutableDictionary* attributes = [NSMutableDictionary dictionaryWithDictionary:[self defaultAttributes]];
         CGFloat segmentWidth = [self widthForSegment:i withAttributes:attributes];
         NSRect rect = NSMakeRect(totalWidth, 0, segmentWidth, self.bounds.size.height);
-
-        if ([self isSelectedForSegment:i]) {
-            attributes[NSForegroundColorAttributeName] = [NSColor whiteColor];
-        }
         NSSize textSize = [text sizeWithAttributes:attributes];
         if ([self isSelectedForSegment:i]) {
+            attributes[NSForegroundColorAttributeName] = [NSColor whiteColor];
+            attributes[NSShadowAttributeName] = [self shadowWithColor:[NSColor colorWithWhite:0.3 alpha:0.1f]];
+
             NSRect backgroundRect = rect;
             backgroundRect.origin.x = rect.origin.x + (rect.size.width - textSize.width - 10) / 2.f;
             backgroundRect.origin.y = 2;
             backgroundRect.size.width = segmentWidth;
-            backgroundRect.size.height = textSize.height + 2;
+            backgroundRect.size.height = textSize.height + 3;
             NSBezierPath *textViewSurround = [NSBezierPath bezierPathWithRoundedRect:backgroundRect xRadius:8 yRadius:8];
             [selectedBackground setFill];
             [textViewSurround fill];
@@ -56,11 +56,13 @@
 - (NSDictionary*)defaultAttributes {
     NSFont* font = [NSFont fontWithName:@"HelveticaNeue" size:11.f];
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+
     [style setAlignment:NSCenterTextAlignment];
     return @{
-             NSFontAttributeName: font,
-             NSParagraphStyleAttributeName: style
-             };
+        NSFontAttributeName: font,
+        NSParagraphStyleAttributeName: style,
+        NSShadowAttributeName: [self shadowWithColor:[NSColor colorWithWhite:0.9 alpha:1.f]]
+    };
 }
 
 - (CGFloat)widthForSegment:(NSInteger)segment withAttributes:(NSDictionary*)attributes {
@@ -71,6 +73,14 @@
 
 - (CGFloat)widthForSegment:(NSInteger)segment {
     return [self widthForSegment:segment withAttributes:[self defaultAttributes]];
+}
+
+- (NSShadow*)shadowWithColor:(NSColor*)color {
+    NSShadow* shadow = [[NSShadow alloc] init];
+    shadow.shadowOffset = NSMakeSize(0, -1);
+    shadow.shadowColor = color;
+    shadow.shadowBlurRadius = 1.f;
+    return shadow;
 }
 
 @end

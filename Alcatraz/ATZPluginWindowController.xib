@@ -25,10 +25,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="0Fa-9p-0gT" customClass="ATZFilterBarView">
-                        <rect key="frame" x="0.0" y="420" width="545" height="29"/>
+                        <rect key="frame" x="0.0" y="417" width="545" height="32"/>
                         <subviews>
                             <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UNr-70-Qql">
-                                <rect key="frame" x="316" y="7" width="199" height="19"/>
+                                <rect key="frame" x="316" y="9" width="199" height="19"/>
                                 <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="PPN-GQ-f8e">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -39,7 +39,7 @@
                                 </connections>
                             </searchField>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="reu-CB-C0i" customClass="ATZSegmentedControl">
-                                <rect key="frame" x="8" y="6" width="92" height="20"/>
+                                <rect key="frame" x="8" y="8" width="92" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="jvF-qg-y7j"/>
                                 </constraints>
@@ -55,7 +55,7 @@
                                 </connections>
                             </segmentedControl>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pqv-Vn-hv6">
-                                <rect key="frame" x="89" y="9" width="9" height="17"/>
+                                <rect key="frame" x="89" y="11" width="9" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="|" id="8lK-mI-GT4">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -63,7 +63,7 @@
                                 </textFieldCell>
                             </textField>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wxk-Va-YMt" customClass="ATZSegmentedControl">
-                                <rect key="frame" x="106" y="6" width="202" height="20"/>
+                                <rect key="frame" x="106" y="8" width="202" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="gNb-dE-2sJ"/>
                                 </constraints>
@@ -80,7 +80,7 @@
                                 </connections>
                             </segmentedControl>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="YLN-Se-Z4c">
-                                <rect key="frame" x="515" y="6" width="30" height="20"/>
+                                <rect key="frame" x="515" y="7" width="30" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="u6i-O7-Ddv"/>
                                 </constraints>
@@ -104,20 +104,20 @@
                         <constraints>
                             <constraint firstItem="UNr-70-Qql" firstAttribute="leading" secondItem="Wxk-Va-YMt" secondAttribute="trailing" constant="9" id="0V9-EA-P9W"/>
                             <constraint firstAttribute="trailing" secondItem="YLN-Se-Z4c" secondAttribute="trailing" id="12L-1P-AxW"/>
-                            <constraint firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" constant="1" id="2rj-TD-hfT"/>
+                            <constraint firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" constant="2" id="2rj-TD-hfT"/>
                             <constraint firstItem="Pqv-Vn-hv6" firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" constant="-1.5" id="7Ah-Bq-Tnc"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" id="D5D-79-kC3"/>
                             <constraint firstItem="reu-CB-C0i" firstAttribute="leading" secondItem="0Fa-9p-0gT" secondAttribute="leading" constant="9" id="ELF-J2-Y4x"/>
                             <constraint firstAttribute="centerY" secondItem="YLN-Se-Z4c" secondAttribute="centerY" constant="1" id="Odw-oc-LX6"/>
                             <constraint firstItem="Pqv-Vn-hv6" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="-8" id="Xf9-Qu-JlV"/>
-                            <constraint firstAttribute="height" constant="29" id="Yci-xm-ezL"/>
+                            <constraint firstAttribute="height" constant="32" id="Yci-xm-ezL"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="8" id="eMS-g8-tnJ"/>
                             <constraint firstItem="YLN-Se-Z4c" firstAttribute="leading" secondItem="UNr-70-Qql" secondAttribute="trailing" id="knc-hS-vYk"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="centerY" secondItem="UNr-70-Qql" secondAttribute="centerY" id="y7G-CE-QFo"/>
                         </constraints>
                     </customView>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydl-IO-qKb">
-                        <rect key="frame" x="0.0" y="-1" width="545" height="422"/>
+                        <rect key="frame" x="0.0" y="-1" width="545" height="419"/>
                         <clipView key="contentView" id="GNx-Oo-GIg">
                             <rect key="frame" x="1" y="17" width="238" height="117"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
