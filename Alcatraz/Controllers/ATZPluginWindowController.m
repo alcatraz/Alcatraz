@@ -40,11 +40,13 @@
 static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
 static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@)";
-static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] %@ OR description contains[cd] %@) AND (self isKindOfClass: %@)";
+
+#define kShowInstalledOnlyIndex     1
 
 @interface ATZPluginWindowController ()
 @property (nonatomic, assign) Class selectedPackageClass;
 @property (nonatomic, assign) NSView *hoverButtonsContainer;
+@property (nonatomic, assign) BOOL showInstalledOnly;
 @end
 
 @implementation ATZPluginWindowController
@@ -106,6 +108,11 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     [self updatePredicate];
 }
 
+- (IBAction)installedFilterControlPressed:(id)sender {
+    self.showInstalledOnly = [sender selectedSegment] == kShowInstalledOnlyIndex;
+    [self updatePredicate];
+}
+
 - (IBAction)displayScreenshotPressed:(NSButton *)sender {
     ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
     
@@ -145,7 +152,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
     [control setProgress:0 animated:YES];
-    [package removeWithCompletion:^(NSError *failure) {}];
+    [package removeWithCompletion:^(NSError *failure) {
+        [self updatePredicate];
+    }];
 }
 
 - (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZRadialProgressControl *)control {
@@ -174,25 +183,32 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)updatePredicate {
-    // TODO: refactor, use compound predicates.
 
     NSString *searchText = self.searchField.stringValue;
     // filter by type and search field text
-    if (self.selectedPackageClass && searchText.length > 0) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_AND_CLASS_PREDICATE_FORMAT, searchText, searchText, self.selectedPackageClass];
-        
+    
+    NSPredicate *thisFilterPredicate = [NSPredicate predicateWithValue:YES];
+    NSPredicate *thisSearchPredicate = [NSPredicate predicateWithValue:YES];
+    NSPredicate *thisInstalledPredicate = [NSPredicate predicateWithValue:YES];
+
     // filter by type
-    } else if (self.selectedPackageClass) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:CLASS_PREDICATE_FORMAT, self.selectedPackageClass];
+    if (self.selectedPackageClass)
+        thisFilterPredicate = [NSPredicate predicateWithFormat:CLASS_PREDICATE_FORMAT, self.selectedPackageClass];
         
     // filter by search field text
-    } else if (searchText.length > 0) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_PREDICATE_FORMAT, searchText, searchText];
+    if (searchText.length > 0)
+        thisSearchPredicate = [NSPredicate predicateWithFormat:SEARCH_PREDICATE_FORMAT, searchText, searchText];
         
-    // show all
-    } else {
-        self.filterPredicate = [NSPredicate predicateWithValue:YES];
-    }
+    // filter by installed
+    if (self.showInstalledOnly)
+        thisInstalledPredicate = [NSPredicate predicateWithBlock:^BOOL(ATZPackage *thisPackage, NSDictionary *bindings) {
+            return thisPackage.isInstalled;
+        }];
+    
+    self.filterPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[thisFilterPredicate,
+                                                                                thisSearchPredicate,
+                                                                                thisInstalledPredicate]];
+    
 }
 
 - (void)reloadPackages {
