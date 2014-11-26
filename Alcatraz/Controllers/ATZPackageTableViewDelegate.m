@@ -83,7 +83,6 @@ static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
     [view.linkButton setImage:[self tableView:tableView websiteImageForTableColumn:tableColumn row:row]];
     [view.linkButton setTitle:[self tableView:tableView displayWebsiteForTableColumn:tableColumn row:row]];
     [view.typeImageView setImage:[self tableView:tableView packageTypeImageForTableColumn:tableColumn row:row]];
-    [view.previewButton setHidden:![package screenshotPath]];
     [view.installButton setTitle:([package isInstalled] ? @"REMOVE" : @"INSTALL")];
     [view.previewImageView setImageAlignment:NSImageAlignTopLeft];
     if (package.screenshotPath) {

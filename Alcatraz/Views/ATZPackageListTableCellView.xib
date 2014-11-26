@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATZPluginWindowController"/>
@@ -50,7 +50,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="pgg-Yv-C6M"/>
                 </imageView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rjv-46-xct" customClass="ATZFillableButton">
-                    <rect key="frame" x="377" y="109" width="92" height="27"/>
+                    <rect key="frame" x="377" y="105" width="92" height="27"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="qLj-pz-VDm"/>
                         <constraint firstAttribute="width" constant="92" id="xOm-jW-Kas"/>
@@ -63,16 +63,6 @@
                         <action selector="installPressed:" target="-2" id="sv7-UL-YnO"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mef-ce-NYb" customClass="ATZFillableButton">
-                    <rect key="frame" x="377" y="78" width="92" height="27"/>
-                    <buttonCell key="cell" type="smallSquare" title="PREVIEW" bezelStyle="smallSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="SdV-cv-O2l">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" size="13" name="HelveticaNeue-Medium"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="displayScreenshotPressed:" target="-2" id="OJG-gs-W7G"/>
-                    </connections>
-                </button>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="900" translatesAutoresizingMaskIntoConstraints="NO" id="DxI-h9-i7Y">
                     <rect key="frame" x="81" y="9" width="388" height="23"/>
                     <constraints>
@@ -82,11 +72,9 @@
                 </imageView>
             </subviews>
             <constraints>
-                <constraint firstItem="mef-ce-NYb" firstAttribute="centerX" secondItem="Rjv-46-xct" secondAttribute="centerX" id="7HG-xT-b6U"/>
                 <constraint firstItem="QHH-X8-YVE" firstAttribute="leading" secondItem="NyQ-k4-Y5v" secondAttribute="leading" id="9T4-cY-KOk"/>
                 <constraint firstItem="JUQ-rM-J5U" firstAttribute="top" secondItem="gec-rK-zcF" secondAttribute="top" constant="12" id="Gd3-Y9-pG1"/>
                 <constraint firstItem="DxI-h9-i7Y" firstAttribute="top" secondItem="NyQ-k4-Y5v" secondAttribute="bottom" constant="8" id="Iqm-hK-8Eo"/>
-                <constraint firstItem="mef-ce-NYb" firstAttribute="height" secondItem="Rjv-46-xct" secondAttribute="height" id="Kqc-6a-208"/>
                 <constraint firstItem="QHH-X8-YVE" firstAttribute="leading" secondItem="Av5-OP-Joy" secondAttribute="leading" id="LlW-2A-nSI"/>
                 <constraint firstItem="QHH-X8-YVE" firstAttribute="top" secondItem="Av5-OP-Joy" secondAttribute="bottom" constant="9" id="OA2-vf-rop"/>
                 <constraint firstItem="QHH-X8-YVE" firstAttribute="trailing" secondItem="Av5-OP-Joy" secondAttribute="trailing" id="ObQ-ai-MUL"/>
@@ -97,9 +85,7 @@
                 <constraint firstItem="JUQ-rM-J5U" firstAttribute="top" secondItem="Av5-OP-Joy" secondAttribute="top" id="gjs-E3-p2M"/>
                 <constraint firstItem="QHH-X8-YVE" firstAttribute="trailing" secondItem="NyQ-k4-Y5v" secondAttribute="trailing" id="hMX-a2-TUd"/>
                 <constraint firstAttribute="bottom" secondItem="DxI-h9-i7Y" secondAttribute="bottom" constant="9" id="jTY-at-qbx"/>
-                <constraint firstItem="mef-ce-NYb" firstAttribute="width" secondItem="Rjv-46-xct" secondAttribute="width" id="nFf-P3-syl"/>
-                <constraint firstItem="mef-ce-NYb" firstAttribute="top" secondItem="Rjv-46-xct" secondAttribute="bottom" constant="4" id="nhC-Tm-yQF"/>
-                <constraint firstItem="Av5-OP-Joy" firstAttribute="top" secondItem="Rjv-46-xct" secondAttribute="top" id="tNY-uO-R4f"/>
+                <constraint firstItem="Av5-OP-Joy" firstAttribute="top" secondItem="Rjv-46-xct" secondAttribute="top" constant="-4" id="tNY-uO-R4f"/>
                 <constraint firstItem="Rjv-46-xct" firstAttribute="leading" secondItem="Av5-OP-Joy" secondAttribute="trailing" constant="9" id="uyv-rK-VCR"/>
                 <constraint firstAttribute="trailing" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="6" id="w8J-7h-a96"/>
                 <constraint firstItem="DxI-h9-i7Y" firstAttribute="leading" secondItem="NyQ-k4-Y5v" secondAttribute="leading" id="zQp-4H-krX"/>
@@ -108,7 +94,6 @@
                 <outlet property="descriptionField" destination="QHH-X8-YVE" id="2Da-ad-HU7"/>
                 <outlet property="installButton" destination="Rjv-46-xct" id="ENf-ES-fUd"/>
                 <outlet property="linkButton" destination="NyQ-k4-Y5v" id="ZLK-Yv-D3v"/>
-                <outlet property="previewButton" destination="mef-ce-NYb" id="Bw7-1S-Dc3"/>
                 <outlet property="previewImageView" destination="DxI-h9-i7Y" id="57b-Hm-Vce"/>
                 <outlet property="textField" destination="Av5-OP-Joy" id="jG2-Cr-fhk"/>
                 <outlet property="titleField" destination="Av5-OP-Joy" id="x28-D0-lAR"/>

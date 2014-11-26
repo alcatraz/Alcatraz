@@ -27,7 +27,6 @@
 @property (nonatomic, weak) IBOutlet NSTextField* descriptionField;
 @property (nonatomic, weak) IBOutlet NSButton* linkButton;
 @property (nonatomic, weak) IBOutlet NSButton* installButton;
-@property (nonatomic, weak) IBOutlet NSButton* previewButton;
 
 @property (nonatomic, weak) IBOutlet NSImageView* previewImageView;
 @property (nonatomic, weak) IBOutlet NSImageView* typeImageView;
