@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATZPluginWindowController">
@@ -19,7 +19,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="545" height="449"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="545" height="449"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -28,7 +28,7 @@
                         <rect key="frame" x="0.0" y="420" width="545" height="29"/>
                         <subviews>
                             <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UNr-70-Qql">
-                                <rect key="frame" x="316" y="5" width="220" height="19"/>
+                                <rect key="frame" x="316" y="7" width="199" height="19"/>
                                 <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="PPN-GQ-f8e">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -39,7 +39,7 @@
                                 </connections>
                             </searchField>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="reu-CB-C0i" customClass="ATZSegmentedControl">
-                                <rect key="frame" x="8" y="4" width="92" height="20"/>
+                                <rect key="frame" x="8" y="6" width="92" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="jvF-qg-y7j"/>
                                 </constraints>
@@ -55,15 +55,15 @@
                                 </connections>
                             </segmentedControl>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pqv-Vn-hv6">
-                                <rect key="frame" x="89" y="7" width="9" height="17"/>
+                                <rect key="frame" x="89" y="9" width="9" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="|" id="8lK-mI-GT4">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wxk-Va-YMt" customClass="ATZSegmentedControl">
-                                <rect key="frame" x="106" y="4" width="202" height="20"/>
+                                <rect key="frame" x="106" y="6" width="202" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="gNb-dE-2sJ"/>
                                 </constraints>
@@ -79,21 +79,44 @@
                                     <action selector="segmentedControlPressed:" target="-2" id="dQL-wu-Ruf"/>
                                 </connections>
                             </segmentedControl>
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="YLN-Se-Z4c">
+                                <rect key="frame" x="515" y="6" width="30" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="u6i-O7-Ddv"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" arrowPosition="noArrow" id="GAy-JH-6Fr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <menu key="menu" id="gCj-Sg-VLj">
+                                        <items>
+                                            <menuItem image="NSActionTemplate" hidden="YES" id="Mki-6q-Srm"/>
+                                            <menuItem title="Reload Packages" id="FEX-wb-X1U"/>
+                                            <menuItem isSeparatorItem="YES" id="vFc-SV-EtA"/>
+                                            <menuItem title="Load Default Repository" id="bPi-Qr-GWZ">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Load Custom Repository..." id="VFq-69-wpd"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
                         </subviews>
                         <constraints>
                             <constraint firstItem="UNr-70-Qql" firstAttribute="leading" secondItem="Wxk-Va-YMt" secondAttribute="trailing" constant="9" id="0V9-EA-P9W"/>
-                            <constraint firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" id="2rj-TD-hfT"/>
+                            <constraint firstAttribute="trailing" secondItem="YLN-Se-Z4c" secondAttribute="trailing" id="12L-1P-AxW"/>
+                            <constraint firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" constant="1" id="2rj-TD-hfT"/>
                             <constraint firstItem="Pqv-Vn-hv6" firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" constant="-1.5" id="7Ah-Bq-Tnc"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" id="D5D-79-kC3"/>
                             <constraint firstItem="reu-CB-C0i" firstAttribute="leading" secondItem="0Fa-9p-0gT" secondAttribute="leading" constant="9" id="ELF-J2-Y4x"/>
+                            <constraint firstAttribute="centerY" secondItem="YLN-Se-Z4c" secondAttribute="centerY" constant="1" id="Odw-oc-LX6"/>
                             <constraint firstItem="Pqv-Vn-hv6" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="-8" id="Xf9-Qu-JlV"/>
                             <constraint firstAttribute="height" constant="29" id="Yci-xm-ezL"/>
-                            <constraint firstAttribute="trailing" secondItem="UNr-70-Qql" secondAttribute="trailing" constant="9" id="cpC-8b-Dc0"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="8" id="eMS-g8-tnJ"/>
+                            <constraint firstItem="YLN-Se-Z4c" firstAttribute="leading" secondItem="UNr-70-Qql" secondAttribute="trailing" id="knc-hS-vYk"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="centerY" secondItem="UNr-70-Qql" secondAttribute="centerY" id="y7G-CE-QFo"/>
                         </constraints>
                     </customView>
-                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydl-IO-qKb">
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydl-IO-qKb">
                         <rect key="frame" x="0.0" y="-1" width="545" height="422"/>
                         <clipView key="contentView" id="GNx-Oo-GIg">
                             <rect key="frame" x="1" y="17" width="238" height="117"/>
@@ -105,7 +128,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn editable="NO" width="540" minWidth="40" maxWidth="1000" id="JR1-SH-OCh">
+                                        <tableColumn editable="NO" width="542" minWidth="40" maxWidth="1000" id="JR1-SH-OCh">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -119,7 +142,7 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView id="4yy-Rk-8Jn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
+                                                    <rect key="frame" x="1" y="1" width="542" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5uq-kU-F2k">
@@ -169,33 +192,8 @@
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="qAt-DD-YaQ"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="8Xt-Wm-M1g"/>
-                    <toolbarItem implicitItemIdentifier="0C959201-C896-410A-89FB-A292881B3A96" label="Options" paletteLabel="Options" image="NSActionTemplate" id="UZV-tX-IeP">
-                        <nil key="toolTip"/>
-                        <size key="minSize" width="40" height="28"/>
-                        <size key="maxSize" width="40" height="30"/>
-                        <popUpButton key="view" verticalHuggingPriority="750" id="uFY-6m-M64">
-                            <rect key="frame" x="5" y="13" width="40" height="28"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" selectedItem="8J0-dg-lZo" id="oPO-aS-Txq">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="menu"/>
-                                <menu key="menu" title="Options" showsStateColumn="NO" id="aDr-FA-LAl">
-                                    <items>
-                                        <menuItem image="NSActionTemplate" hidden="YES" id="8J0-dg-lZo"/>
-                                        <menuItem title="Reload Packages" id="kUa-Dw-jhw"/>
-                                        <menuItem isSeparatorItem="YES" id="vFc-SV-EtA"/>
-                                        <menuItem title="Load Default Repository" id="bPi-Qr-GWZ">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Load Custom Repository..." id="VFq-69-wpd"/>
-                                    </items>
-                                </menu>
-                            </popUpButtonCell>
-                        </popUpButton>
-                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
-                    <toolbarItem reference="UZV-tX-IeP"/>
                     <toolbarItem reference="8Xt-Wm-M1g"/>
                 </defaultToolbarItems>
             </toolbar>

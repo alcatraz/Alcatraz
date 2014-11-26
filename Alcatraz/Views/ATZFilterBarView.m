@@ -34,7 +34,9 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [[NSColor whiteColor] setFill];
-    NSRectFill(dirtyRect);
+    NSRectFill(self.bounds);
+    [[NSColor colorWithWhite:0.8 alpha:1.f] setFill];
+    NSRectFill(NSMakeRect(0, 1, self.bounds.size.width, 1));
 }
 
 @end
