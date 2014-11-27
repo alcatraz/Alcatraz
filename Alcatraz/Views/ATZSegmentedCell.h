@@ -12,7 +12,8 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     ATZFilterSegmentAll,
     ATZFilterSegmentPlugins,
     ATZFilterSegmentColorSchemes,
-    ATZFilterSegmentTemplates
+    ATZFilterSegmentTemplates,
+    ATZFilterSegmentCodeSnippets
 };
 
 @interface ATZSegmentedCell : NSSegmentedCell

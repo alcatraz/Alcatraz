@@ -13,6 +13,7 @@
 #import "ATZColorScheme.h"
 #import "ATZPlugin.h"
 #import "ATZTemplate.h"
+#import "ATZCodeSnippet.h"
 
 static NSString *const ALL_ITEMS_TITLE = @"All";
 
@@ -55,7 +56,8 @@ static NSString *const ALL_ITEMS_TITLE = @"All";
     if (!segmentIconMapping) {
         segmentIconMapping = @{@(ATZFilterSegmentColorSchemes): COLOR_SCHEME_ICON_NAME,
                                @(ATZFilterSegmentPlugins): PLUGIN_ICON_NAME,
-                               @(ATZFilterSegmentTemplates): TEMPLATE_ICON_NAME};
+                               @(ATZFilterSegmentTemplates): TEMPLATE_ICON_NAME,
+                               @(ATZFilterSegmentCodeSnippets): CODE_SNIPPET_ICON_NAME};
     }
     return segmentIconMapping;
 }

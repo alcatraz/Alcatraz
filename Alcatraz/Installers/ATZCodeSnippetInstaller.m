@@ -1,4 +1,4 @@
-// TemplateInstaller.m
+//  ATZSnippetInstaller.m
 //
 // Copyright (c) 2013 Marin Usalj | supermar.in
 //
@@ -20,13 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
-#import "ATZTemplateInstaller.h"
-#import "ATZTemplate.h"
+#import "ATZCodeSnippetInstaller.h"
+#import "ATZPackage.h"
 #import "ATZGit.h"
 
-@implementation ATZTemplateInstaller
+static NSString *const INSTALLED_CODE_SNIPPETS_RELATIVE_PATH = @"Library/Developer/Xcode/UserData/CodeSnippets";
+static NSString *const DOWNLOADED_CODE_SNIPPETS_RELATIVE_PATH = @"CodeSnippets";
 
+@implementation ATZCodeSnippetInstaller
 
 #pragma mark - Abstract
 
@@ -41,46 +42,50 @@
 }
 
 - (void)installPackage:(ATZPackage *)package completion:(void(^)(NSError *))completion {
-    [self copyTemplatesToXcode:package completion:completion];
+    [self copySnippetsToXcode:package completion:completion];
 }
 
+- (NSString *)pathForInstalledPackage:(ATZPackage *)package {
+    return [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_CODE_SNIPPETS_RELATIVE_PATH];
+}
+
+- (NSString *)downloadRelativePath {
+    return DOWNLOADED_CODE_SNIPPETS_RELATIVE_PATH;
+}
 
 #pragma mark - Private
 
-- (void)copyTemplatesToXcode:(ATZPackage *)template completion:(void (^)(NSError *))completion {
+- (void)copySnippetsToXcode:(ATZPackage *)snippet completion:(void (^)(NSError *))completion {
     NSError *error = nil;
-    [self createTemplateInstallDirectory:template error:&error];
+    [self createSnippetInstallDirectory:snippet error:&error];
     
-    if (error) completion(error);
+    if (error) {
+        completion(error);
+    }
     
-    for (NSString *templatePath in [self templateFilesForClonedTemplate:template]) {
-
-        NSString *templateFileName = templatePath.pathComponents.lastObject;
-        NSString *installPath = [[self pathForInstalledPackage:template] stringByAppendingPathComponent:templateFileName];
-        
-        [[NSFileManager sharedManager] copyItemAtPath:templatePath toPath:installPath error:&error];
+    for (NSString *snippetPath in [self templateFilesForClonedTemplate:snippet]) {
+        [self installCodeSnippetFromPath:snippetPath error:&error];
     }
     
     completion(error);
 }
 
-- (BOOL)createTemplateInstallDirectory:(ATZPackage *)template error:(NSError **)error {
-    [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:template]
+- (void)createSnippetInstallDirectory:(ATZPackage *)snippet error:(NSError **)error {
+    [[NSFileManager sharedManager] createDirectoryAtPath:[self pathForInstalledPackage:snippet]
                              withIntermediateDirectories:YES attributes:nil error:error];
-    return error == nil;
 }
 
-- (NSArray *)templateFilesForClonedTemplate:(ATZPackage *)template {
+- (NSArray *)templateFilesForClonedTemplate:(ATZPackage *)snippet {
     @autoreleasepool {
-        NSString *clonePath = [self pathForDownloadedPackage:template];
+        NSString *clonePath = [self pathForDownloadedPackage:snippet];
         NSMutableArray *foundTemplates = [NSMutableArray new];
-
+        
         @try {
             NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonePath];
             NSString *directoryEntry;
             
             while (directoryEntry = [enumerator nextObject]) {
-                if ([directoryEntry hasSuffix:template.extension])
+                if ([directoryEntry hasSuffix:snippet.extension])
                     [foundTemplates addObject:[clonePath stringByAppendingPathComponent:directoryEntry]];
             }
         }
@@ -89,6 +94,19 @@
         }
         return foundTemplates;
     }
+}
+
+- (void)installCodeSnippetFromPath:(NSString*)snippetPath error:(NSError **)error {
+    NSMutableDictionary *snippetDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:snippetPath];
+    
+    NSString *snippetFileName = snippetPath.pathComponents.lastObject;
+    NSString *installPath = [[self pathForInstalledPackage:nil] stringByAppendingPathComponent:snippetFileName];
+    
+    NSString *uuid = [[NSUUID UUID] UUIDString];
+    
+    [snippetDictionary setValue:uuid forKey:@"IDECodeSnippetIdentifier"];
+    
+    [snippetDictionary writeToFile:installPath atomically:YES];
 }
 
 @end
