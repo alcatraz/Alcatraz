@@ -87,7 +87,8 @@
 }
 
 + (void)fetch:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
-    
+    [[NSFileManager sharedManager] removeItemAtPath:localPath error:NULL];
+
     ATZShell *shell = [ATZShell new];
     [shell executeCommand:GIT withArguments:@[FETCH, ORIGIN] inWorkingDirectory:localPath
                completion:^(NSString *output, NSError *error) {
