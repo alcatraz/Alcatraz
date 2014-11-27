@@ -36,6 +36,7 @@
 #import "ATZSegmentedCell.h"
 
 #import "ATZRadialProgressControl.h"
+#import "ATZAlcatrazPackageList.h"
 
 static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
@@ -65,7 +66,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
             if ([NSUserNotificationCenter class])
                 [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
         }
-        @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
+        @catch(NSException *exception) {
+            NSLog(@"I've heard you like exceptions... %@", exception);
+        }
     }
     return self;
 }
@@ -137,9 +140,8 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
     NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
         [package updateWithProgress:^(NSString *proggressMessage, CGFloat progress){}
-                                completion:^(NSError *failure){}];
+                         completion:^(NSError *failure){}];
     }];
-    [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
     [[NSOperationQueue mainQueue] addOperation:updateOperation];
 }
 
@@ -196,16 +198,11 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)reloadPackages {
-    ATZDownloader *downloader = [ATZDownloader new];
-    [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
-        
-        if (error) {
-            NSLog(@"Error while downloading packages! %@", error);
-        } else {
-            self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
-            [self updatePackages];
-        }
-    }];
+    NSDictionary *packages = [ATZAlcatrazPackageList packages];
+    if (packages) {
+        self.packages = [ATZPackageFactory createPackagesFromDicts:packages];
+        [self updatePackages];
+    }
 }
 
 - (void)updatePackages {

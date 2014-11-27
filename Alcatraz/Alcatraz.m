@@ -24,6 +24,7 @@
 #import "Alcatraz.h"
 #import "ATZPluginWindowController.h"
 #import "ATZAlcatrazPackage.h"
+#import "ATZAlcatrazPackageList.h"
 #import "ATZGit.h"
 
 static Alcatraz *sharedPlugin;
@@ -103,10 +104,11 @@ static Alcatraz *sharedPlugin;
 - (void)updateAlcatraz {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperationWithBlock:^{
-    
         [ATZAlcatrazPackage update];
     }];
+    [queue addOperationWithBlock:^{
+        [ATZAlcatrazPackageList update];
+    }];
 }
-
 
 @end
