@@ -26,14 +26,13 @@
 #import "ATZShell.h"
 #import "ATZGit.h"
 #import "ATZPBXProjParser.h"
+#import "ATZConstants.h"
+#import "ATZUtils.h"
 
-static NSString *const INSTALLED_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 static NSString *const DOWNLOADED_PLUGINS_RELATIVE_PATH = @"Plug-ins";
 
 static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
 static NSString *const PROJECT = @"-project";
-static NSString *const XCODEPROJ = @".xcodeproj";
-static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 @implementation ATZPluginInstaller
 
@@ -62,11 +61,10 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 // This is a temporary support for installs in /tmp.
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    NSString *pluginsInstallPath = [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PLUGINS_RELATIVE_PATH];
     NSString *pluginInstallName = [self installNameFromPbxproj:package] ?: package.name;
 
-    return [[pluginsInstallPath stringByAppendingPathComponent:pluginInstallName]
-                                       stringByAppendingString:package.extension];
+    return [[ATZPluginsInstallPath() stringByAppendingPathComponent:pluginInstallName]
+                                            stringByAppendingString:package.extension];
 }
 
 
@@ -117,7 +115,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 - (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
     NSString *clonedDirectory = [self pathForDownloadedPackage:plugin];
-    NSString *xcodeProjFilename = [plugin.name stringByAppendingString:XCODEPROJ];
+    NSString *xcodeProjFilename = [plugin.name stringByAppendingPathExtension:kATZXcodeProjExtension];
 
     NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];
     NSString *directoryEntry;
@@ -132,8 +130,8 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 - (NSString *)installNameFromPbxproj:(ATZPackage *)package {
     NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
-                               stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
-                             stringByAppendingPathComponent:PROJECT_PBXPROJ];
+                               stringByAppendingPathComponent:package.name] stringByAppendingPathExtension:kATZXcodeProjExtension]
+                             stringByAppendingPathComponent:KATZProjectPbxprojFileName];
 
     return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
 }

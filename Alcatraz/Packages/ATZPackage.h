@@ -41,10 +41,10 @@
 
 - (id)initWithDictionary:(NSDictionary *)dict;
 
-- (void)installWithProgress:(void(^)(NSString *proggressMessage, CGFloat progress))progress
+- (void)installWithProgress:(void(^)(NSString *progressMessage, CGFloat progress))progress
                  completion:(void(^)(NSError *failure))completion;
 
-- (void)updateWithProgress:(void(^)(NSString *proggressMessage, CGFloat progress))progress
+- (void)updateWithProgress:(void(^)(NSString *progressMessage, CGFloat progress))progress
                 completion:(void(^)(NSError *failure))completion;
 
 - (void)removeWithCompletion:(void(^)(NSError *failure))completion;

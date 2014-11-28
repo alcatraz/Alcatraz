@@ -62,6 +62,9 @@
 		89BBB2C118C3EAA200546623 /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BBB29918C3EAA200546623 /* ATZSegmentedCell.m */; };
 		89BBB2C318C3EAA200546623 /* ATZVersionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BBB29D18C3EAA200546623 /* ATZVersionLabel.m */; };
 		89BBB2C618C3EB0C00546623 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BBB2C418C3EAFD00546623 /* QuartzCore.framework */; };
+		CC22B0BC19C13CEB00640934 /* ATZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CC22B0B919C13CEB00640934 /* ATZConstants.m */; };
+		CC22B0BD19C13CEB00640934 /* ATZUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CC22B0BB19C13CEB00640934 /* ATZUtils.m */; };
+		CC22B0C019C13D2D00640934 /* ATZPackageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CC22B0BF19C13D2D00640934 /* ATZPackageUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +173,12 @@
 		89BBB29C18C3EAA200546623 /* ATZVersionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZVersionLabel.h; sourceTree = "<group>"; };
 		89BBB29D18C3EAA200546623 /* ATZVersionLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZVersionLabel.m; sourceTree = "<group>"; };
 		89BBB2C418C3EAFD00546623 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CC22B0B819C13CEB00640934 /* ATZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZConstants.h; sourceTree = "<group>"; };
+		CC22B0B919C13CEB00640934 /* ATZConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZConstants.m; sourceTree = "<group>"; };
+		CC22B0BA19C13CEB00640934 /* ATZUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZUtils.h; sourceTree = "<group>"; };
+		CC22B0BB19C13CEB00640934 /* ATZUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZUtils.m; sourceTree = "<group>"; };
+		CC22B0BE19C13D2D00640934 /* ATZPackageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZPackageUtils.h; sourceTree = "<group>"; };
+		CC22B0BF19C13D2D00640934 /* ATZPackageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZPackageUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,14 +362,20 @@
 		89BBB26518C3EAA200546623 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CC22B0B819C13CEB00640934 /* ATZConstants.h */,
+				CC22B0B919C13CEB00640934 /* ATZConstants.m */,
 				89BBB26618C3EAA200546623 /* ATZDownloader.h */,
 				89BBB26718C3EAA200546623 /* ATZDownloader.m */,
 				89BBB26818C3EAA200546623 /* ATZGit.h */,
 				89BBB26918C3EAA200546623 /* ATZGit.m */,
+				CC22B0BE19C13D2D00640934 /* ATZPackageUtils.h */,
+				CC22B0BF19C13D2D00640934 /* ATZPackageUtils.m */,
 				89BBB26A18C3EAA200546623 /* ATZPBXProjParser.h */,
 				89BBB26B18C3EAA200546623 /* ATZPBXProjParser.m */,
 				89BBB26C18C3EAA200546623 /* ATZShell.h */,
 				89BBB26D18C3EAA200546623 /* ATZShell.m */,
+				CC22B0BA19C13CEB00640934 /* ATZUtils.h */,
+				CC22B0BB19C13CEB00640934 /* ATZUtils.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -588,8 +603,11 @@
 				89BBB2C018C3EAA200546623 /* ATZRadialProgressControl.m in Sources */,
 				89BBB2AD18C3EAA200546623 /* ATZFileTemplateInstaller.m in Sources */,
 				89BBB21B18C3E99E00546623 /* main.m in Sources */,
+				CC22B0C019C13D2D00640934 /* ATZPackageUtils.m in Sources */,
 				89BBB2B518C3EAA200546623 /* ATZColorScheme.m in Sources */,
+				CC22B0BC19C13CEB00640934 /* ATZConstants.m in Sources */,
 				89BBB2BA18C3EAA200546623 /* ATZProjectTemplate.m in Sources */,
+				CC22B0BD19C13CEB00640934 /* ATZUtils.m in Sources */,
 				89BBB2BE18C3EAA200546623 /* ATZPackageTableCellView.m in Sources */,
 				89BBB2BD18C3EAA200546623 /* ATZDetailItemButton.m in Sources */,
 				89BBB2B718C3EAA200546623 /* ATZPackage.m in Sources */,
