@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2014 Marin Usalj | supermar.in
+// ATZPreviewImageButton.m
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,14 +19,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Cocoa/Cocoa.h>
+#import "ATZPreviewImageButton.h"
 
-@interface ATZPackageListTableCellView : NSTableCellView
+@implementation ATZPreviewImageButton
 
-@property (nonatomic, weak) IBOutlet NSTextField* titleField;
-@property (nonatomic, weak) IBOutlet NSTextField* descriptionField;
-@property (nonatomic, weak) IBOutlet NSButton* linkButton;
-@property (nonatomic, weak) IBOutlet NSButton* installButton;
-@property (nonatomic, weak) IBOutlet NSButton* previewButton;
-@property (nonatomic, weak) IBOutlet NSImageView* typeImageView;
+- (void)drawRect:(NSRect)dirtyRect {
+    [self.image drawInRect:NSMakeRect(0, 0, self.image.size.width, self.image.size.height)];
+}
+
+- (NSSize)intrinsicContentSize {
+    return NSMakeSize(self.bounds.size.width, MIN(200, self.image.size.height));
+}
+
 @end

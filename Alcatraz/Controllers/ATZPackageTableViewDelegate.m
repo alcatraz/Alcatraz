@@ -84,13 +84,15 @@ static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
     [view.linkButton setTitle:[self tableView:tableView displayWebsiteForTableColumn:tableColumn row:row]];
     [view.typeImageView setImage:[self tableView:tableView packageTypeImageForTableColumn:tableColumn row:row]];
     [view.installButton setTitle:([package isInstalled] ? @"REMOVE" : @"INSTALL")];
-    [view.previewImageView setImageAlignment:NSImageAlignTopLeft];
+    [view.previewButton setWantsLayer:YES];
+    [view.previewButton.layer setCornerRadius:6.f];
+    [view.previewButton.layer setMasksToBounds:YES];
     if (package.screenshotPath) {
-        [view.previewImageView setImage:[[self class] cachedImageForPackage:package]];
-        if (!view.previewImageView.image) {
-            __block NSImageView* imageView = view.previewImageView;
+        [view.previewButton setImage:[[self class] cachedImageForPackage:package]];
+        if (!view.previewButton.image) {
+            __block NSButton* imageButton = view.previewButton;
             [[self class] fetchAndCacheImageForPackage:package progress:NULL completion:^(NSImage *image) {
-                imageView.image = image;
+                imageButton.image = image;
                 [tableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
             }];
         }
