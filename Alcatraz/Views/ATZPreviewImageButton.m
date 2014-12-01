@@ -21,13 +21,13 @@
 
 #import "ATZPreviewImageButton.h"
 
+CGFloat const ATZPreviewImageHeight = 200.f;
+
 @interface ATZPreviewImageButton ()
 @property (nonatomic, getter=isFullSize) BOOL fullSize;
 @end
 
 @implementation ATZPreviewImageButton
-
-static CGFloat const ATZPreviewImageHeight = 200.f;
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     if (self = [super initWithCoder:coder]) {

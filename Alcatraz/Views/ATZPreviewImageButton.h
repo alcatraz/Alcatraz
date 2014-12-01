@@ -21,6 +21,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+extern CGFloat const ATZPreviewImageHeight;
+
 @interface ATZPreviewImageButton : NSButton
 
 /**

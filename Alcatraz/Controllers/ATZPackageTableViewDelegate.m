@@ -41,7 +41,9 @@
 
 @implementation ATZPackageTableViewDelegate
 
-static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
+static NSString* const packageCellIdentifier = @"ATZPackageListCellIdentifier";
+static CGFloat const ATZPackageCellSummaryOffset = 130.f;
+static CGFloat const ATZPackageCellBaseHeight = 116.f;
 
 - (instancetype)initWithPackages:(NSArray*)packages tableViewOwner:(id)owner {
     if (self = [super init]) {
@@ -108,12 +110,14 @@ static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
-    static ATZPackageListTableCellView* sampleView = nil;
-    sampleView = (ATZPackageListTableCellView*)[self tableView:tableView viewForTableColumn:nil row:row];
-    [sampleView setObjectValue:[self tableView:tableView objectValueForTableColumn:nil row:row]];
-    [sampleView layout];
-
-    CGFloat height = [sampleView fittingSize].height;
+    ATZPackage* package = [self tableView:tableView objectValueForTableColumn:nil row:row];
+    CGFloat height = ATZPackageCellBaseHeight;
+    NSSize summarySize = NSMakeSize(tableView.bounds.size.width - ATZPackageCellSummaryOffset, CGFLOAT_MAX);
+    NSDictionary* textAttributes = @{NSFontAttributeName : [NSFont fontWithName:@"HelveticaNeue" size:13.f]};
+    NSStringDrawingOptions options = (NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading);
+    height += ceilf([package.summary boundingRectWithSize:summarySize options:options attributes:textAttributes].size.height);
+    if (package.screenshotPath)
+        height += ATZPreviewImageHeight;
     return height;
 }
 
