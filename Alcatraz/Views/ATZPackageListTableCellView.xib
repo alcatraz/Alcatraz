@@ -67,21 +67,21 @@
                 </button>
             </subviews>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="QHH-X8-YVE" secondAttribute="trailing" constant="14" id="1VL-LV-DNs"/>
                 <constraint firstAttribute="trailing" secondItem="3dc-Bp-Aad" secondAttribute="trailing" constant="14" id="1za-yx-Kwg"/>
-                <constraint firstItem="QHH-X8-YVE" firstAttribute="leading" secondItem="3dc-Bp-Aad" secondAttribute="leading" id="31D-bQ-Vnu"/>
                 <constraint firstAttribute="bottom" secondItem="3dc-Bp-Aad" secondAttribute="bottom" constant="14" id="5NR-E3-4yl"/>
-                <constraint firstItem="QHH-X8-YVE" firstAttribute="leading" secondItem="NyQ-k4-Y5v" secondAttribute="leading" id="9T4-cY-KOk"/>
+                <constraint firstItem="3dc-Bp-Aad" firstAttribute="leading" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="14" id="F8e-Yy-NSY"/>
                 <constraint firstItem="Av5-OP-Joy" firstAttribute="leading" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="14" id="LU1-EJ-KgX"/>
-                <constraint firstItem="QHH-X8-YVE" firstAttribute="leading" secondItem="Av5-OP-Joy" secondAttribute="leading" id="LlW-2A-nSI"/>
                 <constraint firstItem="QHH-X8-YVE" firstAttribute="top" secondItem="Av5-OP-Joy" secondAttribute="bottom" constant="9" id="OA2-vf-rop"/>
-                <constraint firstItem="QHH-X8-YVE" firstAttribute="trailing" secondItem="Av5-OP-Joy" secondAttribute="trailing" id="ObQ-ai-MUL"/>
                 <constraint firstItem="NyQ-k4-Y5v" firstAttribute="top" secondItem="QHH-X8-YVE" secondAttribute="bottom" constant="9" id="Rd2-aB-q20"/>
                 <constraint firstItem="Rjv-46-xct" firstAttribute="leading" secondItem="gec-rK-zcF" secondAttribute="leading" constant="14" id="RiY-Yl-Wri"/>
+                <constraint firstItem="Rjv-46-xct" firstAttribute="top" secondItem="gec-rK-zcF" secondAttribute="top" constant="14" id="SDy-Da-yRD"/>
+                <constraint firstItem="QHH-X8-YVE" firstAttribute="leading" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="14" id="USG-IJ-SJX"/>
                 <constraint firstItem="Av5-OP-Joy" firstAttribute="top" secondItem="gec-rK-zcF" secondAttribute="top" constant="10" id="dJl-nF-NrE"/>
-                <constraint firstItem="QHH-X8-YVE" firstAttribute="trailing" secondItem="NyQ-k4-Y5v" secondAttribute="trailing" id="hMX-a2-TUd"/>
+                <constraint firstItem="NyQ-k4-Y5v" firstAttribute="leading" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="14" id="fiB-G1-Ewk"/>
                 <constraint firstItem="3dc-Bp-Aad" firstAttribute="top" secondItem="NyQ-k4-Y5v" secondAttribute="bottom" constant="12" id="jqg-7m-sMq"/>
                 <constraint firstAttribute="trailing" secondItem="NyQ-k4-Y5v" secondAttribute="trailing" constant="14" id="ln3-8g-lVA"/>
-                <constraint firstItem="Av5-OP-Joy" firstAttribute="top" secondItem="Rjv-46-xct" secondAttribute="top" constant="-4" id="tNY-uO-R4f"/>
+                <constraint firstAttribute="trailing" secondItem="Av5-OP-Joy" secondAttribute="trailing" constant="14" id="zVy-Tr-XqO"/>
             </constraints>
             <connections>
                 <outlet property="descriptionField" destination="QHH-X8-YVE" id="2Da-ad-HU7"/>
