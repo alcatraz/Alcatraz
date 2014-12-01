@@ -21,12 +21,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ATZPreviewImageButton;
+
 @interface ATZPackageListTableCellView : NSTableCellView
 
 @property (nonatomic, weak) IBOutlet NSTextField* titleField;
 @property (nonatomic, weak) IBOutlet NSTextField* descriptionField;
 @property (nonatomic, weak) IBOutlet NSButton* linkButton;
 @property (nonatomic, weak) IBOutlet NSButton* installButton;
-@property (nonatomic, weak) IBOutlet NSButton* previewButton;
+@property (nonatomic, weak) IBOutlet ATZPreviewImageButton* previewButton;
 @property (nonatomic, weak) IBOutlet NSImageView* typeImageView;
 @end

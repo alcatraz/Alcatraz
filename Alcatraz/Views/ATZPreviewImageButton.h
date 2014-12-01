@@ -23,4 +23,10 @@
 
 @interface ATZPreviewImageButton : NSButton
 
+/**
+ *  Indicate intrinsic content size should be expanded as if there is an image
+ *
+ *  @param isFullSize YES if the size should be expanded
+ */
+- (void)setFullSize:(BOOL)isFullSize;
 @end

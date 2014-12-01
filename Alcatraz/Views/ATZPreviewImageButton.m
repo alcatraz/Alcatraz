@@ -21,14 +21,54 @@
 
 #import "ATZPreviewImageButton.h"
 
+@interface ATZPreviewImageButton ()
+@property (nonatomic, getter=isFullSize) BOOL fullSize;
+@end
+
 @implementation ATZPreviewImageButton
 
+static CGFloat const ATZPreviewImageHeight = 200.f;
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+        [self setWantsLayer:YES];
+        [self.layer setCornerRadius:4.f];
+        [self.layer setMasksToBounds:YES];
+        [self.layer setBorderColor:[NSColor colorWithWhite:0.9 alpha:1.f].CGColor];
+        [self.layer setBorderWidth:1.f];
+    }
+    return self;
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
-    [self.image drawInRect:NSMakeRect(0, 0, self.image.size.width, self.image.size.height)];
+    if (!self.image)
+        return;
+    NSSize imageSize = self.image.size;
+    CGFloat x, y, width, height;
+    if (imageSize.width >= self.bounds.size.width) {
+        width = imageSize.width;
+        height = imageSize.height;
+    } else {
+        height = ATZPreviewImageHeight;
+        width = (imageSize.height/height) * imageSize.width;
+    }
+    x = (self.bounds.size.width - width)/2;
+    y = (ATZPreviewImageHeight - height)/2;
+    NSRect imageRect = NSMakeRect(x, y, width, height);
+    [self.image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeColor
+                  fraction:1.f respectFlipped:YES hints:nil];
 }
 
 - (NSSize)intrinsicContentSize {
-    return NSMakeSize(self.bounds.size.width, MIN(200, self.image.size.height));
+    if (self.image || [self isFullSize])
+        return NSMakeSize(self.bounds.size.width, ATZPreviewImageHeight);
+
+    return NSZeroSize;
+}
+
+- (void)setImage:(NSImage *)image {
+    [image lockFocusFlipped:YES];
+    [super setImage:image];
 }
 
 @end

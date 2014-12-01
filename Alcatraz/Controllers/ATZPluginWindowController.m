@@ -109,8 +109,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 
 - (IBAction)displayScreenshotPressed:(NSButton *)sender {
     ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:sender]];
-    
-    [self displayScreenshot:package.screenshotPath withTitle:package.name];
+    [self displayScreenshotWithPath:package.screenshotPath withTitle:package.name];
 }
 
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender {
@@ -226,29 +225,30 @@ BOOL hasPressedCommandF(NSEvent *event) {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:address]];
 }
 
-- (void)displayScreenshot:(NSString *)screenshotPath withTitle:(NSString *)title {
+- (void)displayScreenshotWithPath:(NSString *)screenshotPath withTitle:(NSString *)title {
     
     [self.previewPanel.animator setAlphaValue:0.f];
     self.previewPanel.title = title;
     [self retrieveImageViewForScreenshot:screenshotPath
-                                progress:^(CGFloat progress) {
-
-    }
+                                progress:^(CGFloat progress) {}
                               completion:^(NSImage *image) {
-        
-        self.previewImageView.image = image;
-        [NSAnimationContext beginGrouping];
-        
-        [self.previewImageView.animator setFrame:(CGRect){ .origin = CGPointMake(0, 0), .size = image.size }];
-        CGRect previewPanelFrame = (CGRect){.origin = self.previewPanel.frame.origin, .size = image.size};
-        [self.previewPanel setFrame:previewPanelFrame display:NO animate:NO];
-        [self.previewPanel.animator center];
-        
-        [NSAnimationContext endGrouping];
-        
-        [self.previewPanel makeKeyAndOrderFront:self];
-        [self.previewPanel.animator setAlphaValue:1.f];
+        [self displayImage:image withTitle:title];
     }];
+}
+
+- (void)displayImage:(NSImage *)image withTitle:(NSString*)title {
+    self.previewImageView.image = image;
+    [NSAnimationContext beginGrouping];
+
+    [self.previewImageView.animator setFrame:(CGRect){ .origin = CGPointMake(0, 0), .size = image.size }];
+    CGRect previewPanelFrame = (CGRect){.origin = self.previewPanel.frame.origin, .size = image.size};
+    [self.previewPanel setFrame:previewPanelFrame display:NO animate:NO];
+    [self.previewPanel.animator center];
+
+    [NSAnimationContext endGrouping];
+
+    [self.previewPanel makeKeyAndOrderFront:self];
+    [self.previewPanel.animator setAlphaValue:1.f];
 }
 
 - (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath progress:(void (^)(CGFloat))downloadProgress completion:(void (^)(NSImage *))completion {
