@@ -25,7 +25,7 @@
 @implementation ATZSegmentedControl
 
 - (void)drawRect:(NSRect)dirtyRect {
-    NSColor* selectedBackground = [NSColor selectedItemColor];
+    NSColor* selectedColor = [NSColor selectedItemColor];
 
     CGFloat totalWidth = 0;
     for (int i = 0; i < self.segmentCount; i++) {
@@ -35,17 +35,20 @@
         NSRect rect = NSMakeRect(totalWidth, 0, segmentWidth, self.bounds.size.height);
         NSSize textSize = [text sizeWithAttributes:attributes];
         if ([self isSelectedForSegment:i]) {
-            attributes[NSForegroundColorAttributeName] = [NSColor whiteColor];
-
-            NSRect backgroundRect = rect;
-            backgroundRect.origin.x = rect.origin.x + (rect.size.width - textSize.width - 10) / 2.f;
-            backgroundRect.origin.y = 3;
-            backgroundRect.size.width = segmentWidth;
-            backgroundRect.size.height = textSize.height + 2;
-            CGFloat cornerRadius = floorf(backgroundRect.size.height/2);
-            NSBezierPath *textViewSurround = [NSBezierPath bezierPathWithRoundedRect:backgroundRect xRadius:cornerRadius yRadius:cornerRadius];
-            [selectedBackground setFill];
-            [textViewSurround fill];
+            if ([self shouldUsePillHighlighting]) {
+                attributes[NSForegroundColorAttributeName] = [NSColor whiteColor];
+                NSRect backgroundRect = rect;
+                backgroundRect.origin.x = rect.origin.x + (rect.size.width - textSize.width - 10) / 2.f;
+                backgroundRect.origin.y = 3;
+                backgroundRect.size.width = segmentWidth;
+                backgroundRect.size.height = textSize.height + 2;
+                CGFloat cornerRadius = floorf(backgroundRect.size.height/2);
+                NSBezierPath *textViewSurround = [NSBezierPath bezierPathWithRoundedRect:backgroundRect xRadius:cornerRadius yRadius:cornerRadius];
+                [selectedColor setFill];
+                [textViewSurround fill];
+            } else {
+                attributes[NSForegroundColorAttributeName] = selectedColor;
+            }
         }
         rect.origin.y = (rect.size.height - textSize.height) / 2.f - 1.f;
         [text drawInRect:rect withAttributes:attributes];
@@ -79,6 +82,11 @@
     NSSize defaultSize = [super intrinsicContentSize];
     defaultSize.height *= 1.2;
     return defaultSize;
+}
+
+- (BOOL)shouldUsePillHighlighting {
+    NSOperatingSystemVersion version = [[NSProcessInfo processInfo] operatingSystemVersion];
+    return version.majorVersion < 11 && version.minorVersion < 10;
 }
 
 @end
