@@ -49,8 +49,8 @@ static CGFloat const ATZPreviewImageHeight = 200.f;
         width = imageSize.width;
         height = imageSize.height;
     } else {
-        height = ATZPreviewImageHeight;
-        width = (imageSize.height/height) * imageSize.width;
+        width = self.bounds.size.width;
+        height = (width/imageSize.width) * imageSize.height;
     }
     x = (self.bounds.size.width - width)/2;
     y = (ATZPreviewImageHeight - height)/2;
