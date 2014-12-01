@@ -47,7 +47,9 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 @property (nonatomic, assign) NSView *hoverButtonsContainer;
 @end
 
-@implementation ATZPluginWindowController
+@implementation ATZPluginWindowController {
+    BOOL _installChecked;
+}
 
 - (id)init {
     @throw [NSException exceptionWithName:@"There's a better initializer" reason:@"Use -initWithNibName:inBundle:" userInfo:nil];
@@ -55,11 +57,13 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
 
 - (id)initWithBundle:(NSBundle *)bundle {
     if (self = [super initWithWindowNibName:@"PluginWindow"]) {
+        _installChecked = NO;
+        
         [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
         
         [self addVersionToWindow];
 
-        _filterPredicate = [NSPredicate predicateWithValue:YES];
+        [self updatePredicate];
 
         @try {
             if ([NSUserNotificationCenter class])
@@ -116,6 +120,11 @@ static NSString *const SEARCH_AND_CLASS_PREDICATE_FORMAT = @"(name contains[cd] 
     ATZPackage *package = [self.packages filteredArrayUsingPredicate:self.filterPredicate][[self.tableView rowForView:sender]];
 
     [self openWebsite:package.website];
+}
+
+- (IBAction)checkInstalled:(id)sender {
+    _installChecked = !_installChecked;
+    [self updatePredicate];
 }
 
 - (void)controlTextDidChange:(NSNotification *)note {
@@ -178,20 +187,30 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
     NSString *searchText = self.searchField.stringValue;
     // filter by type and search field text
+    NSString *installedCondition = [NSString stringWithFormat:@" AND (isInstalled == %d)", _installChecked];
+    NSString *newFormat = nil;
     if (self.selectedPackageClass && searchText.length > 0) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_AND_CLASS_PREDICATE_FORMAT, searchText, searchText, self.selectedPackageClass];
+        newFormat = _installChecked ? [SEARCH_AND_CLASS_PREDICATE_FORMAT stringByAppendingString:installedCondition]: SEARCH_AND_CLASS_PREDICATE_FORMAT;
+        self.filterPredicate = [NSPredicate predicateWithFormat:newFormat, searchText, searchText, self.selectedPackageClass];
         
     // filter by type
     } else if (self.selectedPackageClass) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:CLASS_PREDICATE_FORMAT, self.selectedPackageClass];
+        newFormat = _installChecked ? [CLASS_PREDICATE_FORMAT stringByAppendingString:installedCondition]: CLASS_PREDICATE_FORMAT;
+        self.filterPredicate = [NSPredicate predicateWithFormat:newFormat, self.selectedPackageClass];
         
     // filter by search field text
     } else if (searchText.length > 0) {
-        self.filterPredicate = [NSPredicate predicateWithFormat:SEARCH_PREDICATE_FORMAT, searchText, searchText];
+        newFormat = _installChecked ? [SEARCH_PREDICATE_FORMAT stringByAppendingString:installedCondition]: SEARCH_PREDICATE_FORMAT;
+        self.filterPredicate = [NSPredicate predicateWithFormat:newFormat, searchText, searchText];
         
     // show all
     } else {
-        self.filterPredicate = [NSPredicate predicateWithValue:YES];
+        if (_installChecked) {
+            self.filterPredicate = [NSPredicate predicateWithFormat:@"(isInstalled == %d)", _installChecked];
+        } else {
+            self.filterPredicate = [NSPredicate predicateWithValue:YES];
+        }
+        
     }
 }
 
