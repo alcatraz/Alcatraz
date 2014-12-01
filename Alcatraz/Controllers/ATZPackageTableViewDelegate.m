@@ -85,7 +85,9 @@ static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
     [view.linkButton setTitle:[self tableView:tableView displayWebsiteForTableColumn:tableColumn row:row]];
     [view.typeImageView setImage:[self tableView:tableView packageTypeImageForTableColumn:tableColumn row:row]];
     [view.installButton setTitle:([package isInstalled] ? @"REMOVE" : @"INSTALL")];
-    [view.previewButton setFullSize:package.screenshotPath != nil];
+    BOOL hasImage = package.screenshotPath != nil;
+    [view.previewButton setFullSize:hasImage];
+    [view.previewButton setHidden:!hasImage];
     if (package.screenshotPath) {
         [view.previewButton setImage:[[self class] cachedImageForPackage:package]];
         if (!view.previewButton.image) {
@@ -95,6 +97,8 @@ static NSString* packageCellIdentifier = @"ATZPackageListCellIdentifier";
                 [tableView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndex:row]];
             }];
         }
+    } else {
+        [view.previewButton setImage:nil];
     }
     ATZFillableButton* installButton = (ATZFillableButton*)view.installButton;
     [installButton setButtonBorderStyle:ATZFillableButtonTypeInstall];
