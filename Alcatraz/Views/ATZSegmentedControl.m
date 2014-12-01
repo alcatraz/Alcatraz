@@ -39,21 +39,22 @@
 
             NSRect backgroundRect = rect;
             backgroundRect.origin.x = rect.origin.x + (rect.size.width - textSize.width - 10) / 2.f;
-            backgroundRect.origin.y = 2;
+            backgroundRect.origin.y = 3;
             backgroundRect.size.width = segmentWidth;
-            backgroundRect.size.height = textSize.height + 3;
-            NSBezierPath *textViewSurround = [NSBezierPath bezierPathWithRoundedRect:backgroundRect xRadius:8 yRadius:8];
+            backgroundRect.size.height = textSize.height + 2;
+            CGFloat cornerRadius = floorf(backgroundRect.size.height/2);
+            NSBezierPath *textViewSurround = [NSBezierPath bezierPathWithRoundedRect:backgroundRect xRadius:cornerRadius yRadius:cornerRadius];
             [selectedBackground setFill];
             [textViewSurround fill];
         }
-        rect.origin.y = (rect.size.height - textSize.height) / 2.f;
+        rect.origin.y = (rect.size.height - textSize.height) / 2.f - 1.f;
         [text drawInRect:rect withAttributes:attributes];
         totalWidth += segmentWidth;
     }
 }
 
 - (NSDictionary*)defaultAttributes {
-    NSFont* font = [NSFont fontWithName:@"HelveticaNeue" size:11.f];
+    NSFont* font = [NSFont fontWithName:@"HelveticaNeue" size:12.f];
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
 
     [style setAlignment:NSCenterTextAlignment];
@@ -72,6 +73,12 @@
 
 - (CGFloat)widthForSegment:(NSInteger)segment {
     return [self widthForSegment:segment withAttributes:[self defaultAttributes]];
+}
+
+- (NSSize)intrinsicContentSize {
+    NSSize defaultSize = [super intrinsicContentSize];
+    defaultSize.height *= 1.2;
+    return defaultSize;
 }
 
 @end
