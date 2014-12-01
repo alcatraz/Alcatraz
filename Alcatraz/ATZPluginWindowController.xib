@@ -30,7 +30,7 @@
                         <rect key="frame" x="0.0" y="417" width="545" height="32"/>
                         <subviews>
                             <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UNr-70-Qql">
-                                <rect key="frame" x="317" y="9" width="198" height="19"/>
+                                <rect key="frame" x="325" y="9" width="190" height="19"/>
                                 <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="PPN-GQ-f8e">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -57,7 +57,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wxk-Va-YMt" customClass="ATZSegmentedControl">
-                                <rect key="frame" x="107" y="8" width="202" height="20"/>
+                                <rect key="frame" x="115" y="8" width="202" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="gNb-dE-2sJ"/>
                                 </constraints>
@@ -103,7 +103,7 @@
                             <constraint firstItem="reu-CB-C0i" firstAttribute="leading" secondItem="0Fa-9p-0gT" secondAttribute="leading" constant="16" id="ELF-J2-Y4x"/>
                             <constraint firstAttribute="centerY" secondItem="YLN-Se-Z4c" secondAttribute="centerY" constant="1" id="Odw-oc-LX6"/>
                             <constraint firstAttribute="height" constant="32" id="Yci-xm-ezL"/>
-                            <constraint firstItem="Wxk-Va-YMt" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="2" id="eMS-g8-tnJ"/>
+                            <constraint firstItem="Wxk-Va-YMt" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="10" id="eMS-g8-tnJ"/>
                             <constraint firstItem="YLN-Se-Z4c" firstAttribute="leading" secondItem="UNr-70-Qql" secondAttribute="trailing" id="knc-hS-vYk"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="centerY" secondItem="UNr-70-Qql" secondAttribute="centerY" id="y7G-CE-QFo"/>
                         </constraints>

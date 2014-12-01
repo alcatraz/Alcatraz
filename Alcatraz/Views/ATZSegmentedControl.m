@@ -36,7 +36,6 @@
         NSSize textSize = [text sizeWithAttributes:attributes];
         if ([self isSelectedForSegment:i]) {
             attributes[NSForegroundColorAttributeName] = [NSColor whiteColor];
-            attributes[NSShadowAttributeName] = [self shadowWithColor:[NSColor colorWithWhite:0.3 alpha:0.1f]];
 
             NSRect backgroundRect = rect;
             backgroundRect.origin.x = rect.origin.x + (rect.size.width - textSize.width - 10) / 2.f;
@@ -61,7 +60,7 @@
     return @{
         NSFontAttributeName: font,
         NSParagraphStyleAttributeName: style,
-        NSShadowAttributeName: [self shadowWithColor:[NSColor colorWithWhite:0.9 alpha:1.f]]
+        NSKernAttributeName: @(0.3)
     };
 }
 
@@ -73,14 +72,6 @@
 
 - (CGFloat)widthForSegment:(NSInteger)segment {
     return [self widthForSegment:segment withAttributes:[self defaultAttributes]];
-}
-
-- (NSShadow*)shadowWithColor:(NSColor*)color {
-    NSShadow* shadow = [[NSShadow alloc] init];
-    shadow.shadowOffset = NSMakeSize(0, -1);
-    shadow.shadowColor = color;
-    shadow.shadowBlurRadius = 1.f;
-    return shadow;
 }
 
 @end
