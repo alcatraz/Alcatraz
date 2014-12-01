@@ -13,7 +13,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Av5-OP-Joy">
-                    <rect key="frame" x="118" y="119" width="358" height="20"/>
+                    <rect key="frame" x="114" y="119" width="362" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="xnG-kA-OAV"/>
                     </constraints>
@@ -24,7 +24,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHH-X8-YVE">
-                    <rect key="frame" x="118" y="91" width="358" height="19"/>
+                    <rect key="frame" x="114" y="91" width="362" height="19"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Package description. Should be something awesome I hope." id="2Rp-Mp-s8t">
                         <font key="font" size="13" name="HelveticaNeue"/>
                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -32,7 +32,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="NyQ-k4-Y5v">
-                    <rect key="frame" x="120" y="62" width="354" height="20"/>
+                    <rect key="frame" x="116" y="62" width="358" height="20"/>
                     <buttonCell key="cell" type="smallSquare" title="supermarin/Alcatraz" bezelStyle="smallSquare" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="Sl6-x8-HMS">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="13" name="HelveticaNeue-Light"/>
@@ -42,10 +42,10 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rjv-46-xct" customClass="ATZFillableButton">
-                    <rect key="frame" x="14" y="108" width="92" height="27"/>
+                    <rect key="frame" x="14" y="108" width="88" height="27"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="qLj-pz-VDm"/>
-                        <constraint firstAttribute="width" constant="92" id="xOm-jW-Kas"/>
+                        <constraint firstAttribute="width" constant="88" id="xOm-jW-Kas"/>
                     </constraints>
                     <buttonCell key="cell" type="smallSquare" title="INSTALL" bezelStyle="smallSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="Dpj-gZ-N9g">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -56,7 +56,7 @@
                     </connections>
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="3dc-Bp-Aad" customClass="ATZPreviewImageButton">
-                    <rect key="frame" x="120" y="14" width="354" height="36"/>
+                    <rect key="frame" x="116" y="14" width="358" height="36"/>
                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="1Ph-1c-UNP">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
