@@ -80,7 +80,7 @@ static Alcatraz *sharedPlugin;
 }
 
 - (void)loadWindowAndPutInFront {
-    if (!self.windowController)
+    if (!self.windowController.window)
         self.windowController = [[ATZPluginWindowController alloc] initWithBundle:self.bundle];
 
     [[self.windowController window] makeKeyAndOrderFront:self];
