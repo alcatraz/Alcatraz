@@ -62,8 +62,6 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 - (id)initWithBundle:(NSBundle *)bundle {
     if (self = [super initWithWindowNibName:NSStringFromClass([ATZPluginWindowController class])]) {
         [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
-        if ([self.window respondsToSelector:@selector(setTitleVisibility:)])
-            self.window.titleVisibility = NSWindowTitleHidden;
         [self addVersionToWindow];
 
         @try {
@@ -73,6 +71,12 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
         @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
     return self;
+}
+
+- (void)windowDidLoad {
+    [super windowDidLoad];
+    if ([self.window respondsToSelector:@selector(setTitleVisibility:)])
+        self.window.titleVisibility = NSWindowTitleHidden;
 }
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
