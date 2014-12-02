@@ -18,7 +18,7 @@
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="xnG-kA-OAV"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Package Name" id="Tde-5t-4fb">
-                        <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                        <font key="font" size="14" name="HelveticaNeue-Medium"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
