@@ -24,9 +24,10 @@
 
 @implementation ATZSegmentedControl
 
-- (void)drawRect:(NSRect)dirtyRect {
-    NSColor* selectedColor = [NSColor selectedItemColor];
+static NSInteger const ATZSegmentRoundedMajorVersion = 10;
+static NSInteger const ATZSegmentRoundedMinorVersion = 9;
 
+- (void)drawRect:(NSRect)dirtyRect {
     CGFloat totalWidth = 0;
     for (int i = 0; i < self.segmentCount; i++) {
         NSString* text = [self labelForSegment:i];
@@ -35,20 +36,16 @@
         NSRect rect = NSMakeRect(totalWidth, 0, segmentWidth, self.bounds.size.height);
         NSSize textSize = [text sizeWithAttributes:attributes];
         if ([self isSelectedForSegment:i]) {
-            if ([self shouldUsePillHighlighting]) {
-                attributes[NSForegroundColorAttributeName] = [NSColor whiteColor];
-                NSRect backgroundRect = rect;
-                backgroundRect.origin.x = rect.origin.x + (rect.size.width - textSize.width - 10) / 2.f;
-                backgroundRect.origin.y = 3;
-                backgroundRect.size.width = segmentWidth;
-                backgroundRect.size.height = textSize.height + 2;
-                CGFloat cornerRadius = floorf(backgroundRect.size.height/2);
-                NSBezierPath *textViewSurround = [NSBezierPath bezierPathWithRoundedRect:backgroundRect xRadius:cornerRadius yRadius:cornerRadius];
-                [selectedColor setFill];
-                [textViewSurround fill];
-            } else {
-                attributes[NSForegroundColorAttributeName] = selectedColor;
-            }
+            attributes[NSForegroundColorAttributeName] = [NSColor whiteColor];
+            NSRect backgroundRect = rect;
+            backgroundRect.origin.x = rect.origin.x + (rect.size.width - textSize.width - 10) / 2.f;
+            backgroundRect.origin.y = 3;
+            backgroundRect.size.width = segmentWidth;
+            backgroundRect.size.height = textSize.height + 4;
+            CGFloat cornerRadius = [self shouldUseRoundedPillStyle] ? floorf(backgroundRect.size.height/2) : 4;
+            NSBezierPath *textViewSurround = [NSBezierPath bezierPathWithRoundedRect:backgroundRect xRadius:cornerRadius yRadius:cornerRadius];
+            [[NSColor selectedItemColor] setFill];
+            [textViewSurround fill];
         }
         rect.origin.y = (rect.size.height - textSize.height) / 2.f - 1.f;
         [text drawInRect:rect withAttributes:attributes];
@@ -57,7 +54,7 @@
 }
 
 - (NSDictionary*)defaultAttributes {
-    NSFont* font = [NSFont fontWithName:@"HelveticaNeue" size:12.f];
+    NSFont* font = [NSFont fontWithName:@"HelveticaNeue" size:11.f];
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
 
     [style setAlignment:NSCenterTextAlignment];
@@ -84,9 +81,10 @@
     return defaultSize;
 }
 
-- (BOOL)shouldUsePillHighlighting {
+- (BOOL)shouldUseRoundedPillStyle {
     NSOperatingSystemVersion version = [[NSProcessInfo processInfo] operatingSystemVersion];
-    return version.majorVersion < 11 && version.minorVersion < 10;
+    return version.majorVersion <= ATZSegmentRoundedMajorVersion
+        && version.minorVersion <= ATZSegmentRoundedMinorVersion;
 }
 
 @end

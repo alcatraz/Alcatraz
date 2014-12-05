@@ -67,7 +67,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hsV-nN-jHO">
                                 <rect key="frame" x="499" y="9" width="34" height="18"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Or1-bZ-rS2">
-                                    <font key="font" size="12" name="HelveticaNeue"/>
+                                    <font key="font" size="11" name="HelveticaNeue"/>
                                     <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
