@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATZPluginWindowController">
@@ -22,7 +22,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="545" height="449"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="545" height="449"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -152,7 +152,7 @@
                         <nil key="toolTip"/>
                         <size key="minSize" width="190" height="19"/>
                         <size key="maxSize" width="600" height="22"/>
-                        <searchField key="view" verticalHuggingPriority="750" id="UNr-70-Qql">
+                        <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="UNr-70-Qql">
                             <rect key="frame" x="0.0" y="14" width="500" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="PPN-GQ-f8e">
@@ -167,18 +167,18 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="0E874535-2646-4349-9596-0C449229E817" label="Options" paletteLabel="Options" id="Glg-dB-iSd">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="30" height="20"/>
-                        <size key="maxSize" width="30" height="20"/>
+                        <size key="minSize" width="24" height="20"/>
+                        <size key="maxSize" width="35" height="39"/>
                         <popUpButton key="view" id="YLN-Se-Z4c">
-                            <rect key="frame" x="515" y="7" width="30" height="20"/>
+                            <rect key="frame" x="12" y="14" width="24" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="u6i-O7-Ddv"/>
                             </constraints>
-                            <popUpButtonCell key="cell" type="roundRect" bezelStyle="roundedRect" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="GAy-JH-6Fr">
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="GAy-JH-6Fr">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="cellTitle"/>
-                                <menu key="menu" id="gCj-Sg-VLj">
+                                <font key="font" metaFont="system"/>
+                                <menu key="menu" showsStateColumn="NO" id="gCj-Sg-VLj">
                                     <items>
                                         <menuItem image="NSActionTemplate" hidden="YES" id="Mki-6q-Srm"/>
                                         <menuItem title="Reload Packages" id="FEX-wb-X1U"/>
@@ -205,7 +205,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="139" y="81" width="276" height="378"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="WQe-dv-pdE">
                 <rect key="frame" x="0.0" y="0.0" width="276" height="378"/>
                 <autoresizingMask key="autoresizingMask"/>
