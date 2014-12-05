@@ -25,8 +25,7 @@
 #import "ATZPluginWindowController.h"
 #import "ATZDownloader.h"
 #import "ATZPackageFactory.h"
-
-#import "ATZVersionLabel.h"
+#import "ATZVersion.h"
 
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
@@ -61,9 +60,6 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 
 - (id)initWithBundle:(NSBundle *)bundle {
     if (self = [super initWithWindowNibName:NSStringFromClass([ATZPluginWindowController class])]) {
-        [[self.window toolbar] setSelectedItemIdentifier:ALL_ITEMS_ID];
-        [self addVersionToWindow];
-
         @try {
             if ([NSUserNotificationCenter class])
                 [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
@@ -75,6 +71,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    [self addVersionToWindow];
     if ([self.window respondsToSelector:@selector(setTitleVisibility:)])
         self.window.titleVisibility = NSWindowTitleHidden;
 }
@@ -272,14 +269,7 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)addVersionToWindow {
-    NSView *windowFrameView = [[self.window contentView] superview];
-    NSTextField *label = [[ATZVersionLabel alloc] initWithFrame:(NSRect){
-        .origin.x = self.window.frame.size.width - 46,
-        .origin.y = windowFrameView.bounds.size.height - 26,
-        .size.width = 40,
-        .size.height = 20
-    }];
-    [windowFrameView addSubview:label];
+    self.versionTextField.stringValue = @(ATZ_VERSION);
 }
 
 @end
