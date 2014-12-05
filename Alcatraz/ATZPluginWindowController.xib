@@ -13,6 +13,7 @@
                 <outlet property="previewPanel" destination="4vQ-3a-fNb" id="3Ez-xU-2v3"/>
                 <outlet property="searchField" destination="UNr-70-Qql" id="pQP-eA-7N3"/>
                 <outlet property="tableView" destination="Xmj-hd-CPE" id="AV4-2C-87K"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="2B8-Td-gLY"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
