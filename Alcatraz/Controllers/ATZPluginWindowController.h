@@ -41,6 +41,9 @@
 
 - (IBAction)segmentedControlPressed:(id)sender;
 
-- (void)reloadPackages;
+- (IBAction)updatePackageRepoPath:(id)sender;
+- (IBAction)resetPackageRepoPath:(id)sender;
+
+- (IBAction)reloadPackages:(id)sender;
 
 @end

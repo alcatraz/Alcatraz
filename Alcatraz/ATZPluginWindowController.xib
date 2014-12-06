@@ -23,7 +23,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="545" height="449"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="545" height="449"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -192,12 +192,23 @@
                                 <menu key="menu" showsStateColumn="NO" id="gCj-Sg-VLj">
                                     <items>
                                         <menuItem image="NSActionTemplate" hidden="YES" id="Mki-6q-Srm"/>
-                                        <menuItem title="Reload Packages" id="FEX-wb-X1U"/>
+                                        <menuItem title="Reload Packages" id="FEX-wb-X1U">
+                                            <connections>
+                                                <action selector="reloadPackages:" target="-2" id="CE0-pW-r7C"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vFc-SV-EtA"/>
                                         <menuItem title="Load Default Repository" id="bPi-Qr-GWZ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="resetPackageRepoPath:" target="-2" id="k1i-Nk-qOH"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem title="Load Custom Repository..." id="VFq-69-wpd"/>
+                                        <menuItem title="Load Custom Repository..." id="VFq-69-wpd">
+                                            <connections>
+                                                <action selector="updatePackageRepoPath:" target="-2" id="Cp9-H4-4ZG"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </popUpButtonCell>
@@ -217,7 +228,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="139" y="81" width="276" height="378"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="WQe-dv-pdE">
                 <rect key="frame" x="0.0" y="0.0" width="276" height="378"/>
                 <autoresizingMask key="autoresizingMask"/>

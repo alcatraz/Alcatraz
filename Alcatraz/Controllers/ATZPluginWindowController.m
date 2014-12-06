@@ -131,7 +131,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
         [super keyDown:event];
 }
 
-- (IBAction)reloadPackages {
+- (IBAction)reloadPackages:(id)sender {
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
 
@@ -143,6 +143,14 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
             [self updatePackages];
         }
     }];
+}
+
+- (IBAction)updatePackageRepoPath:(id)sender {
+    // present dialog with text field, update repo path, redownload package list
+}
+
+- (IBAction)resetPackageRepoPath:(id)sender {
+    [ATZDownloader resetPackageRepoPath];
 }
 
 - (void)reloadTableView {

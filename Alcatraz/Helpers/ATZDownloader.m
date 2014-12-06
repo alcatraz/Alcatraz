@@ -84,6 +84,10 @@ static NSString *const COMPLETION = @"completion";
     return path;
 }
 
++ (void)resetPackageRepoPath {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:ATZ_REPO_KEY];
+}
+
 + (void)setPackagesRepoPath:(NSString*)path {
     [[NSUserDefaults standardUserDefaults] setObject:path forKey:ATZ_REPO_KEY];
 }
