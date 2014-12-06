@@ -23,10 +23,6 @@
 
 #import "ATZDownloader.h"
 
-static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/supermarin/alcatraz-packages/master/packages.json";
-static NSString *const PROGRESS = @"progress";
-static NSString *const COMPLETION = @"completion";
-
 @interface ATZDownloader()
 @property (strong, nonatomic) NSMutableDictionary *callbacks;
 @property (strong, nonatomic) NSURLSession *urlSession;
@@ -34,6 +30,11 @@ static NSString *const COMPLETION = @"completion";
 
 
 @implementation ATZDownloader
+
+static NSString *const ATZ_DEFAULT_REPO_PATH = @"https://raw.github.com/supermarin/alcatraz-packages/master/packages.json";
+static NSString *const ATZ_REPO_KEY = @"ATZRepoPath";
+static NSString *const PROGRESS = @"progress";
+static NSString *const COMPLETION = @"completion";
 
 - (id)init {
     self = [super init];
@@ -45,7 +46,7 @@ static NSString *const COMPLETION = @"completion";
 }
 
 - (void)downloadPackageListWithCompletion:(ATZJSONDownloadCompletion)completion {
-    [self downloadFileFromPath:PLUGINS_REPO_PATH
+    [self downloadFileFromPath:[ATZDownloader packageRepoPath]
                       progress:^(CGFloat progress) {}
                     completion:^(NSData *data, NSError *error) {
                         
@@ -71,6 +72,20 @@ static NSString *const COMPLETION = @"completion";
     self.callbacks[task] = callbacks;
     
     [task resume];
+}
+
+#pragma mark - Package Repo
+
++ (NSString*)packageRepoPath {
+    NSString* path = [[NSUserDefaults standardUserDefaults] valueForKey:ATZ_REPO_KEY];
+    if (!path)
+        path = ATZ_DEFAULT_REPO_PATH;
+
+    return path;
+}
+
++ (void)setPackagesRepoPath:(NSString*)path {
+    [[NSUserDefaults standardUserDefaults] setObject:path forKey:ATZ_REPO_KEY];
 }
 
 #pragma mark - NSURLSessionDelegate

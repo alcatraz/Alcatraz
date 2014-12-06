@@ -29,6 +29,8 @@ typedef void(^ATZDownloadProgress)(CGFloat progress);
 
 @interface ATZDownloader : NSObject<NSURLSessionDownloadDelegate, NSURLSessionTaskDelegate>
 
++ (void)setPackagesRepoPath:(NSString*)path;
+
 - (void)downloadPackageListWithCompletion:(ATZJSONDownloadCompletion)completion;
 - (void)downloadFileFromPath:(NSString *)remotePath
                     progress:(ATZDownloadProgress)progress
