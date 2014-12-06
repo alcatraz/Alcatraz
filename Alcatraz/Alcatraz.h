@@ -30,4 +30,6 @@
 
 + (Alcatraz *)sharedPlugin;
 
++ (NSString *)localizedStringForKey:(NSString *)key;
+
 @end

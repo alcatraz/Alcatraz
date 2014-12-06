@@ -24,6 +24,7 @@
 
 #import "ATZPluginWindowController.h"
 #import "ATZDownloader.h"
+#import "Alcatraz.h"
 #import "ATZPackageFactory.h"
 #import "ATZVersion.h"
 
@@ -147,10 +148,23 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 
 - (IBAction)updatePackageRepoPath:(id)sender {
     // present dialog with text field, update repo path, redownload package list
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = [Alcatraz localizedStringForKey:@"change-path.message"];
+    [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.save"]];
+    [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.cancel"]];
+    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 500, 24)];
+    input.stringValue = [ATZDownloader packageRepoPath];
+    alert.accessoryView = input;
+
+    if ([alert runModal] == NSAlertFirstButtonReturn && ![input.stringValue isEqualToString:[ATZDownloader packageRepoPath]]) {
+        [ATZDownloader setPackagesRepoPath:input.stringValue];
+        [self reloadPackages:nil];
+    }
 }
 
 - (IBAction)resetPackageRepoPath:(id)sender {
     [ATZDownloader resetPackageRepoPath];
+    [self reloadPackages:nil];
 }
 
 - (void)reloadTableView {

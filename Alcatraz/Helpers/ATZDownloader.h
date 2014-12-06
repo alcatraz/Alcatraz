@@ -29,6 +29,7 @@ typedef void(^ATZDownloadProgress)(CGFloat progress);
 
 @interface ATZDownloader : NSObject<NSURLSessionDownloadDelegate, NSURLSessionTaskDelegate>
 
++ (NSString*)packageRepoPath;
 + (void)setPackagesRepoPath:(NSString*)path;
 + (void)resetPackageRepoPath;
 
