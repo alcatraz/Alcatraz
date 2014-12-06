@@ -65,7 +65,7 @@
                                 </connections>
                             </segmentedControl>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hsV-nN-jHO">
-                                <rect key="frame" x="499" y="9" width="34" height="18"/>
+                                <rect key="frame" x="502" y="11" width="31" height="15"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Or1-bZ-rS2">
                                     <font key="font" size="11" name="HelveticaNeue"/>
                                     <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -176,19 +176,19 @@
                             </connections>
                         </searchField>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="0E874535-2646-4349-9596-0C449229E817" label="Options" paletteLabel="Options" id="Glg-dB-iSd">
+                    <toolbarItem implicitItemIdentifier="0E874535-2646-4349-9596-0C449229E817" label="Options" paletteLabel="Options" image="NSActionTemplate" id="Glg-dB-iSd">
                         <nil key="toolTip"/>
                         <size key="minSize" width="24" height="20"/>
                         <size key="maxSize" width="35" height="39"/>
                         <popUpButton key="view" id="YLN-Se-Z4c">
-                            <rect key="frame" x="12" y="14" width="24" height="28"/>
+                            <rect key="frame" x="12" y="14" width="30" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="u6i-O7-Ddv"/>
                             </constraints>
-                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="noArrow" altersStateOfSelectedItem="NO" id="GAy-JH-6Fr">
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" imagePosition="below" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxY" altersStateOfSelectedItem="NO" id="GAy-JH-6Fr">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="menu"/>
                                 <menu key="menu" showsStateColumn="NO" id="gCj-Sg-VLj">
                                     <items>
                                         <menuItem image="NSActionTemplate" hidden="YES" id="Mki-6q-Srm"/>
@@ -207,6 +207,7 @@
                 <defaultToolbarItems>
                     <toolbarItem reference="8Xt-Wm-M1g"/>
                     <toolbarItem reference="Xrf-3e-xgb"/>
+                    <toolbarItem reference="8Xt-Wm-M1g"/>
                     <toolbarItem reference="Glg-dB-iSd"/>
                 </defaultToolbarItems>
             </toolbar>
