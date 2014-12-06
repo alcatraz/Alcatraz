@@ -1,6 +1,6 @@
 // Package.h
 //
-// Copyright (c) 2013 Marin Usalj | supermar.in
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,12 @@
 @class ATZInstaller;
 
 
+typedef NS_ENUM(NSUInteger, ATZPackageWebsiteType) {
+    ATZPackageWebsiteTypeGithub,
+    ATZPackageWebsiteTypeBitbucket,
+    ATZPackageWebsiteTypeOtherGit,
+};
+
 @interface ATZPackage : NSObject
 
 @property (strong, nonatomic) NSString *name;
@@ -38,6 +44,7 @@
 @property (nonatomic, readonly) NSString *extension;
 @property (nonatomic, readonly) BOOL isInstalled;
 @property (nonatomic, assign)   BOOL requiresRestart;
+@property (nonatomic, readonly) ATZPackageWebsiteType websiteType;
 
 - (id)initWithDictionary:(NSDictionary *)dict;
 

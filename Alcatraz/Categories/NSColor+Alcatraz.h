@@ -1,6 +1,6 @@
-// NSImage+Alcatraz.m
+// NSColor+Alcatraz.h
 //
-// Copyright (c) 2013 Dave Schukin
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@
 
 @interface NSColor (Alcatraz)
 
-+ (instancetype)alcatrazBlueColor;
-+ (instancetype)alcatrazProgressGrayColor;
++ (NSColor*)selectedItemColor;
 
 @end

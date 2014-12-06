@@ -23,10 +23,6 @@
 
 #import "ATZDownloader.h"
 
-static NSString *const PLUGINS_REPO_PATH = @"https://raw.github.com/supermarin/alcatraz-packages/master/packages.json";
-static NSString *const PROGRESS = @"progress";
-static NSString *const COMPLETION = @"completion";
-
 @interface ATZDownloader()
 @property (strong, nonatomic) NSMutableDictionary *callbacks;
 @property (strong, nonatomic) NSURLSession *urlSession;
@@ -34,6 +30,11 @@ static NSString *const COMPLETION = @"completion";
 
 
 @implementation ATZDownloader
+
+static NSString *const ATZ_DEFAULT_REPO_PATH = @"https://raw.github.com/supermarin/alcatraz-packages/master/packages.json";
+static NSString *const ATZ_REPO_KEY = @"ATZRepoPath";
+static NSString *const PROGRESS = @"progress";
+static NSString *const COMPLETION = @"completion";
 
 - (id)init {
     self = [super init];
@@ -45,7 +46,7 @@ static NSString *const COMPLETION = @"completion";
 }
 
 - (void)downloadPackageListWithCompletion:(ATZJSONDownloadCompletion)completion {
-    [self downloadFileFromPath:PLUGINS_REPO_PATH
+    [self downloadFileFromPath:[ATZDownloader packageRepoPath]
                       progress:^(CGFloat progress) {}
                     completion:^(NSData *data, NSError *error) {
                         
@@ -58,16 +59,37 @@ static NSString *const COMPLETION = @"completion";
 
 - (void)downloadFileFromPath:(NSString *)remotePath progress:(ATZDownloadProgress)progress
                                                   completion:(ATZDataDownloadCompletion)completion {
-    
+
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:remotePath]];
     NSURLSessionTask *task = [[self urlSession] downloadTaskWithRequest:request];
-    
-    self.callbacks[task] = @{
-        PROGRESS:   [progress copy],
-        COMPLETION: [completion copy]
-    };
+
+    NSMutableDictionary* callbacks = [[NSMutableDictionary alloc] initWithCapacity:2];
+    if (completion)
+        callbacks[COMPLETION] = completion;
+    if (progress)
+        callbacks[PROGRESS] = progress;
+
+    self.callbacks[task] = callbacks;
     
     [task resume];
+}
+
+#pragma mark - Package Repo
+
++ (NSString*)packageRepoPath {
+    NSString* path = [[NSUserDefaults standardUserDefaults] valueForKey:ATZ_REPO_KEY];
+    if (!path)
+        path = ATZ_DEFAULT_REPO_PATH;
+
+    return path;
+}
+
++ (void)resetPackageRepoPath {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:ATZ_REPO_KEY];
+}
+
++ (void)setPackagesRepoPath:(NSString*)path {
+    [[NSUserDefaults standardUserDefaults] setObject:path forKey:ATZ_REPO_KEY];
 }
 
 #pragma mark - NSURLSessionDelegate
@@ -76,7 +98,8 @@ static NSString *const COMPLETION = @"completion";
                               didFinishDownloadingToURL:(NSURL *)location {
 
     ATZDataDownloadCompletion completionBlock = self.callbacks[downloadTask][COMPLETION];
-    completionBlock([NSData dataWithContentsOfURL:location], nil);
+    if (completionBlock)
+        completionBlock([NSData dataWithContentsOfURL:location], nil);
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
@@ -87,7 +110,8 @@ static NSString *const COMPLETION = @"completion";
     CGFloat progress = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
 
     ATZDownloadProgress progressBlock =  self.callbacks[downloadTask][PROGRESS];
-    progressBlock(progress);
+    if (progressBlock)
+        progressBlock(progress);
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes {}

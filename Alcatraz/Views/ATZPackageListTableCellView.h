@@ -1,6 +1,5 @@
-// ATZTitleButton.h
 //
-// Copyright (c) 2013 Marin Usalj | supermar.in
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +19,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 
-@interface ATZDetailItemButton : NSButton
+@class ATZPreviewImageButton;
 
+@interface ATZPackageListTableCellView : NSTableCellView
+
+@property (nonatomic, weak) IBOutlet NSTextField* titleField;
+@property (nonatomic, weak) IBOutlet NSTextField* descriptionField;
+@property (nonatomic, weak) IBOutlet NSButton* linkButton;
+@property (nonatomic, weak) IBOutlet NSButton* installButton;
+@property (nonatomic, weak) IBOutlet ATZPreviewImageButton* previewButton;
+@property (nonatomic, weak) IBOutlet NSImageView* typeImageView;
 @end

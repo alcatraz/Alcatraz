@@ -1,7 +1,7 @@
 //
-// ATZVersionLabel.m
+// ATZStyleKit.h
 //
-// Copyright (c) 2013 Marin Usalj | supermar.in
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,34 +21,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "ATZVersionLabel.h"
-#import "ATZVersion.h"
+#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
-@implementation ATZVersionLabel
 
-- (id)initWithFrame:(NSRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) [self setStyle];
-    return self;
-}
+@interface ATZStyleKit : NSObject
 
-- (void)setStyle {
-    self.alignment         = NSRightTextAlignment;
-    self.autoresizingMask  = NSViewMinXMargin | NSViewMinYMargin | NSViewNotSizable;
-    self.backgroundColor   = [NSColor clearColor];
-    self.layer.borderColor = [NSColor clearColor].CGColor;
-    self.textColor         = [NSColor colorWithDeviceWhite:0.75 alpha:1.f];
-    self.layer.shadowColor = [NSColor blackColor].CGColor;
-    self.layer.borderWidth = 0.f;
-    self.stringValue       = [NSString stringWithFormat:@"v%s", ATZ_VERSION];
-    self.alignment         = NSRightTextAlignment;
-    self.layer.shadowOpacity = 0.3f;
-
-    [self setFont:[NSFont fontWithName:@"Lucida Grande" size:11.f]];
-    [self setBezeled:NO];
-    [self setDrawsBackground:NO];
-    [self setEditable:NO];
-    [self setSelectable:NO];
-}
+// Drawing Methods
++ (void)drawFillableButtonWithButtonText: (NSString*)buttonText fillRatio: (CGFloat)fillRatio buttonWidth: (CGFloat)buttonWidth buttonType: (NSString*)buttonType;
 
 @end

@@ -1,7 +1,7 @@
 //
-// ATZVersionLabel.h
+// ATZPackageTableViewDelegate.h
 //
-// Copyright (c) 2013 Marin Usalj | supermar.in
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,8 +21,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 
-@interface ATZVersionLabel : NSTextField
+@interface ATZPackageTableViewDelegate : NSObject <NSTableViewDelegate, NSTableViewDataSource>
 
+- (instancetype)initWithPackages:(NSArray*)packages tableViewOwner:(id)owner;
+
+- (void)configureTableView:(NSTableView*)tableView;
+- (void)filterUsingPredicate:(NSPredicate*)predicate;
+
+@property (nonatomic, strong, readonly) NSArray* packages;
 @end

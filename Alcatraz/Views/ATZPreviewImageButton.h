@@ -1,6 +1,5 @@
-// NSImage+Alcatraz.m
 //
-// Copyright (c) 2013 Dave Schukin
+// ATZPreviewImageButton.h
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +21,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class ATZPackage;
+extern CGFloat const ATZPreviewImageHeight;
 
-@interface NSImage (Alcatraz)
+@interface ATZPreviewImageButton : NSButton
 
-+ (NSImage *)imageForProgressIndicatorWithCompletionPercentage:(CGFloat)progress package:(ATZPackage *)package size:(CGSize)size color:(NSColor *)color;
-
-+ (void)drawImage:(NSImage *)icon withColor:(NSColor *)color inFrame:(NSRect)frame flipVertically:(BOOL)shouldFlip;
+/**
+ *  Indicate intrinsic content size should be expanded as if there is an image
+ *
+ *  @param isFullSize YES if the size should be expanded
+ */
+- (void)setFullSize:(BOOL)isFullSize;
 @end

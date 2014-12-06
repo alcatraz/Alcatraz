@@ -1,6 +1,6 @@
-// NSImage+Alcatraz.m
+// NSColor+Alcatraz.m
 //
-// Copyright (c) 2013 Dave Schukin
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,14 +24,8 @@
 
 @implementation NSColor (Alcatraz)
 
-+ (instancetype)alcatrazBlueColor
-{
-    return [NSColor colorWithDeviceRed:0.139 green:0.449 blue:0.867 alpha:1.000];
-}
-
-+ (instancetype)alcatrazProgressGrayColor
-{
-    return [NSColor colorWithDeviceRed:0.5 green:0.5 blue:0.5 alpha:0.9];
++ (NSColor *)selectedItemColor {
+    return [NSColor colorWithCalibratedHue:0.6 saturation:0.91 brightness:1 alpha:1];
 }
 
 @end
