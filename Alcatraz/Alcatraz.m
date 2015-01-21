@@ -45,6 +45,10 @@ static Alcatraz *sharedPlugin;
     return sharedPlugin;
 }
 
++ (NSString *)localizedStringForKey:(NSString *)key {
+    return [[self sharedPlugin].bundle localizedStringForKey:key value:nil table:nil];
+}
+
 - (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
         self.bundle = plugin;
@@ -80,11 +84,11 @@ static Alcatraz *sharedPlugin;
 }
 
 - (void)loadWindowAndPutInFront {
-    if (!self.windowController)
+    if (!self.windowController.window)
         self.windowController = [[ATZPluginWindowController alloc] initWithBundle:self.bundle];
 
     [[self.windowController window] makeKeyAndOrderFront:self];
-    [self.windowController reloadPackages];
+    [self.windowController reloadPackages:nil];
 }
 
 - (BOOL)hasNSURLSessionAvailable {
@@ -92,11 +96,8 @@ static Alcatraz *sharedPlugin;
 }
 
 - (void)presentAlertWithMessageKey:(NSString *)messageKey {
-    NSAlert *alert = [NSAlert alertWithMessageText:[self.bundle localizedStringForKey:messageKey value:nil table:nil]
-                                     defaultButton:nil
-                                   alternateButton:nil
-                                       otherButton:nil
-                         informativeTextWithFormat:@""];
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = [[self class] localizedStringForKey:messageKey];
     [alert runModal];
 }
 

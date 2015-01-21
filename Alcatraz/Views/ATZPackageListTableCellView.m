@@ -1,6 +1,5 @@
-// NSImage+Alcatraz.m
 //
-// Copyright (c) 2013 Dave Schukin
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Cocoa/Cocoa.h>
+#import "ATZPackageListTableCellView.h"
 
-extern const CGFloat ATZRadialProgressControl_FakeInstallProgress;
-extern const CGFloat ATZRadialProgressControl_FakeRemoveProgress;
-
-/**
- TODO: This class should have an 'image' property, which can be set
-       to be rendered whenever progress is 1 or 0.
- */
-@interface ATZRadialProgressControl : NSButton
-
-@property (nonatomic, assign) CGFloat progress;
-
-- (void)setProgress:(CGFloat)progress animated:(BOOL)animated;
+@implementation ATZPackageListTableCellView
 
 @end

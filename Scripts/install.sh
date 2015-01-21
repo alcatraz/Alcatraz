@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOWNLOAD_URI=https://github.com/supermarin/Alcatraz/releases/download/1.0.8/Alcatraz.tar.gz
+DOWNLOAD_URI=https://github.com/supermarin/Alcatraz/releases/download/1.0.9/Alcatraz.tar.gz
 PLUGINS_DIR="${HOME}/Library/Application Support/Developer/Shared/Xcode/Plug-ins"
 
 mkdir -p "${PLUGINS_DIR}"

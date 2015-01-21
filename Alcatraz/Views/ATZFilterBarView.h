@@ -1,6 +1,5 @@
-// Downloader.h
 //
-// Copyright (c) 2013 Marin Usalj | supermar.in
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,23 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import <Cocoa/Cocoa.h>
 
-#import <Foundation/Foundation.h>
-
-typedef void(^ATZJSONDownloadCompletion)(NSDictionary *json, NSError *error);
-typedef void(^ATZDataDownloadCompletion)(NSData *data, NSError *error);
-typedef void(^ATZDownloadProgress)(CGFloat progress);
-
-@interface ATZDownloader : NSObject<NSURLSessionDownloadDelegate, NSURLSessionTaskDelegate>
-
-+ (NSString*)packageRepoPath;
-+ (void)setPackagesRepoPath:(NSString*)path;
-+ (void)resetPackageRepoPath;
-
-- (void)downloadPackageListWithCompletion:(ATZJSONDownloadCompletion)completion;
-- (void)downloadFileFromPath:(NSString *)remotePath
-                    progress:(ATZDownloadProgress)progress
-                  completion:(ATZDataDownloadCompletion)completion;
-
+@interface ATZFilterBarView : NSView
 
 @end

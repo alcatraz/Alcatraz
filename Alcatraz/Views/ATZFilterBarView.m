@@ -1,6 +1,5 @@
-// PluginWindowController.m
-// 
-// Copyright (c) 2013 Marin Usalj | supermar.in
+//
+// Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -8,10 +7,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,14 +19,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "ATZProgressIndicator.h"
+#import "ATZFilterBarView.h"
 
-@implementation ATZProgressIndicator
+@implementation ATZFilterBarView
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) [self setControlTint:NSGraphiteControlTint];
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setWantsLayer:YES];
+        self.layer.backgroundColor = [NSColor whiteColor].CGColor;
+    }
     return self;
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+    [[NSColor whiteColor] setFill];
+    NSRectFill(self.bounds);
+    [[NSColor colorWithWhite:0.8 alpha:1.f] setFill];
+    NSRectFill(NSMakeRect(0, 1, self.bounds.size.width, 1));
 }
 
 @end
