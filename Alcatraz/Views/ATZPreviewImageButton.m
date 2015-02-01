@@ -55,7 +55,7 @@ CGFloat const ATZPreviewImageHeight = 200.f;
     x = (self.bounds.size.width - width)/2;
     y = (ATZPreviewImageHeight - height)/2;
     NSRect imageRect = NSMakeRect(x, y, width, height);
-    [self.image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeColor
+    [self.image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeDestinationAtop
                   fraction:1.f respectFlipped:YES hints:nil];
 }
 
