@@ -107,12 +107,36 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
         completion([NSError errorWithDomain:exception.reason code:666 userInfo:nil]);
         return;
     }
-
+    
+    //modify info.plist to support newest xcode that alcatraz supported
+    [self updateInfoPlistForProj:plugin.name path:xcodeProjPath];
+    
     ATZShell *shell = [ATZShell new];
-    [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
-        NSLog(@"Xcodebuild output: %@", output);
-        completion(error);
+    [shell executeCommand:XCODE_BUILD withArguments:@[@"clean", PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
+        NSLog(@"Xcodebuild clean output: %@", output);
+        if (error) {
+            completion(error);
+        } else {
+            [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
+                NSLog(@"Xcodebuild output: %@", output);
+                completion(error);
+            }];
+        }
     }];
+}
+
+- (void)updateInfoPlistForProj:(NSString *)projName path:(NSString *)path {
+    
+    NSString *infoPath = [[[path stringByDeletingLastPathComponent] stringByAppendingPathComponent:projName] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-Info.plist", projName]];
+    
+    NSLog(@"path is %@", infoPath);
+    if ([[NSFileManager sharedManager] fileExistsAtPath:infoPath isDirectory:NULL]) {
+        NSDictionary *projInfo = [NSDictionary dictionaryWithContentsOfFile:infoPath];
+        NSDictionary* atzInfo = [[NSBundle bundleWithIdentifier:@"com.mneorr.Alcatraz"] infoDictionary];
+        NSArray* uuids = [atzInfo objectForKey:@"DVTPlugInCompatibilityUUIDs"];
+        [projInfo setValue:uuids forKey:@"DVTPlugInCompatibilityUUIDs"];
+        [projInfo writeToFile:infoPath atomically:YES];
+    }
 }
 
 - (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
