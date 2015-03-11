@@ -1,3 +1,4 @@
 _site
 build
 *.xcodeproj
+releases
