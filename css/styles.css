@@ -14,12 +14,15 @@ h1 {
 
 h2 {
     font-size: 2.5em;
-    margin-bottom: 0.2em;
+    margin-top: 1em;
+    margin-bottom: 2em;
     font-weight: normal;
-    font-family: "Helvetica Neue", Helvetica, sans-serif
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    clear: both;
 }
 
-h2, h3 {
+h3 {
+    padding-top: 2.5em;
 }
 
 label {
@@ -28,10 +31,6 @@ label {
 
 section {
     padding: 20px;
-}
-
-p {
-  margin-top: 3em;
 }
 
 footer {
