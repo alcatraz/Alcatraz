@@ -26,6 +26,7 @@ test:
 # Merge changes into deploy branch
 push_deploy_branch:
 	git fetch origin
+	git push origin master
 ifeq ($(shell git diff origin/master..master),)
 	git checkout deploy
 	git reset --hard origin/master
@@ -53,6 +54,7 @@ github_release:
 # Commit & tag the version from ATZVersion.h
 version: update_install_url
 	- git tag $(VERSION)
+	- git commit -am "updated install script for version $(VERSION)"
 
 update_install_url:
 	sed -i '' -e 's/[.0-9]\{3,5\}/${VERSION}/' Scripts/install.sh
