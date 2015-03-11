@@ -12,11 +12,14 @@ h1 {
   margin: 0;
 }
 
-h3 {
-  font-size: 2.5em;
-  margin-bottom: 0.2em;
-  font-weight: normal;
-  font-family: "Helvetica Neue", Helvetica, sans-serif
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 0.2em;
+    font-weight: normal;
+    font-family: "Helvetica Neue", Helvetica, sans-serif
+}
+
+h2, h3 {
 }
 
 label {
@@ -165,7 +168,7 @@ header > section, .content > section {
 }
 
 @media (max-width: 1100px) {
-  h3 {
+  h2 {
     margin: 0;
     font-size: 2em;
   }
