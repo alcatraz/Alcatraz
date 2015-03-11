@@ -32,7 +32,7 @@ Alcatraz no longer looks like a stranger in Yosemite, contains inline images pre
 You can now load a custom `packages.json` from a private source while developing or using private plugins.
 
 ### Binary distribution
-The plan is to move away from building plugin source code on your machines, and instead distribute already built plugins. This will allow you to use CocoaPods, Carthage, Swift, and other hipster features without the clients knowing about it, and also allow us to simplify the installer logic, and eventually move to Swift. One other important feature is that it'll allow users to distribute commercial or other closed source plugins.
+The plan is to move away from building plugin source code on your machines, and instead distribute already built plugins. This will allow you to use CocoaPods, Carthage, Swift, and other hipster features without the clients knowing about it. It will also allow us to simplify the installer logic, and eventually move to Swift. One other important feature is that it'll allow users to distribute commercial or other closed source plugins.
 
 ### Plugin stats
 We've partnered with [Keen.io](https://keen.io) and received sponsorship for opening up the usage data. We plan to open up the data access to everyone, so you can track your plugin usage in real time.
