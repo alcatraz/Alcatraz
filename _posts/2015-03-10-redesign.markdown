@@ -11,46 +11,31 @@ author-handle: \@supermarin
 
 ## Redesign
 
-It's been awhile since you heard from us the last time.
-We've been busy at our jobs; Delisa moved on to Hello and shipped the amazing
-[Sense](https://hello.is) sleep tracker.
-I've moved to [Lyft](https://www.lyft.com) and didn't ship anything really.
-Jurre is living #startuplife and merging in all your plugins. I don't know what
-would we do without him!
+It's been awhile since you last heard from us.
+We've been busy at our jobs; Delisa moved on to Hello and shipped the amazing [Sense](https://hello.is) sleep tracker.
+I've moved to [Lyft](https://www.lyft.com) and have been working hard to get you where you are going.
+Jurre is living #startuplife and merging in all your plugins. I don't know what we would do without him!
 
-This doesn't mean we've abandoned Alcatraz, we can just dedicate less time into it.
+This doesn't mean we've abandoned Alcatraz, we just can’t dedicate as much time to it.
 
 ### Relaunch
-As planned, we wanted to launch 2.0 with all the shiny features. In reality, we
-can only do so much and have decided to release the UI part separately.
-As of today, you can download the beautiful, redesigned version for OSX Yosemite
-using the installation script on our [homepage](/).
+As planned, we wanted to launch 2.0 with all the shiny features. In reality, we can only do so much and have decided to release the UI part separately. You can download the beautiful, redesigned version for OS X Yosemite using the installation script on our [homepage](http://alcatraz.io) today.
 
 <center>
     <img src=/images/screenshot@2x.png width=687>
 </center>
 
-The UI work done was a [mutual effort](https://github.com/supermarin/Alcatraz/pull/154)
-by [many people](https://github.com/supermarin/Alcatraz/pull/205)
-including @orta, @tonyarnold, @kattrali, and more.
-Alcatraz doesn't look like a stranger in Yosemite anymore,
-contains inline images previews, big install/remove buttons,
-github attributions, and it's way more pleasant to use.
+The UI work was a [collaborative effort](https://github.com/supermarin/Alcatraz/pull/154) by [many people](https://github.com/supermarin/Alcatraz/pull/205) including @orta, @tonyarnold, @kattrali, and more.
+Alcatraz no longer looks like a stranger in Yosemite, contains inline images previews, big install/remove buttons, github attributions, and it's way more pleasant to use.
 
 ### Custom plugin list
-You can now load a custom `packages.json` from a private source while developing
-or using private plugins.
+You can now load a custom `packages.json` from a private source while developing or using private plugins.
 
 ### Binary distribution
-The plan is to move away from building source on your machines, and distribute
-already built plugins. This will allow us to support CocoaPods, Carthage, Swift,
-and other hipster features without the clients knowing about it.
-It'll allow us to simplify the installer logic, and eventually move to Swift.
-One other important feature is that it'll allow users to distribute commercial
-plugins, or anything closed-source.
+The plan is to move away from building plugin source code on your machines, and instead distribute already built plugins. This will allow you to use CocoaPods, Carthage, Swift, and other hipster features without the clients knowing about it, and also allow us to simplify the installer logic, and eventually move to Swift. One other important feature is that it'll allow users to distribute commercial or other closed source plugins.
 
 ### Plugin stats
-We've partnered with [Keen.io](https://keen.io) and got sponsorship for opening 
-up the usage data. We plan to open up the data access to everyone,
-so you can track your plugin usage in real time.
+We've partnered with [Keen.io](https://keen.io) and received sponsorship for opening up the usage data. We plan to open up the data access to everyone, so you can track your plugin usage in real time.
+
+Thank you everyone for your contributions! Let’s keep building.
 
