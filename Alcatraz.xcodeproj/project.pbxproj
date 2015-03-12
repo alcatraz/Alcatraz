@@ -10,6 +10,8 @@
 		079C9E03183D8BB8009F5A17 /* link_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 079C9E02183D8BB8009F5A17 /* link_icon.png */; };
 		079C9E05183D8BBD009F5A17 /* link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 079C9E04183D8BBD009F5A17 /* link_icon@2x.png */; };
 		0C7AF650186B4E890064EE7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AF64F186B4E890064EE7B /* QuartzCore.framework */; };
+		1AC28A9E1AB1F22B00E736FC /* ATZAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC28A9D1AB1F22B00E736FC /* ATZAnalytics.m */; };
+		1AC28AA51AB1F24E00E736FC /* libKeenClient-Cocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC28AA41AB1F24E00E736FC /* libKeenClient-Cocoa.a */; };
 		32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC2173A46A900513A7C /* eye_icon.png */; };
 		32D86505173A4555009C724B /* eye_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86503173A4555009C724B /* eye_icon@2x.png */; };
 		64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4918136FF30025C0B1 /* toolbar_colors.png */; };
@@ -81,6 +83,12 @@
 		079C9E02183D8BB8009F5A17 /* link_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link_icon.png; sourceTree = "<group>"; };
 		079C9E04183D8BBD009F5A17 /* link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link_icon@2x.png"; sourceTree = "<group>"; };
 		0C7AF64F186B4E890064EE7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1AC28A9C1AB1F22B00E736FC /* ATZAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZAnalytics.h; sourceTree = "<group>"; };
+		1AC28A9D1AB1F22B00E736FC /* ATZAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZAnalytics.m; sourceTree = "<group>"; };
+		1AC28AA11AB1F24E00E736FC /* KeenClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeenClient.h; sourceTree = "<group>"; };
+		1AC28AA21AB1F24E00E736FC /* KeenProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeenProperties.h; sourceTree = "<group>"; };
+		1AC28AA31AB1F24E00E736FC /* KIOEventStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIOEventStore.h; sourceTree = "<group>"; };
+		1AC28AA41AB1F24E00E736FC /* libKeenClient-Cocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libKeenClient-Cocoa.a"; sourceTree = "<group>"; };
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
 		6449530218CE826C009494BD /* ATZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZVersion.h; sourceTree = "<group>"; };
@@ -187,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64EDC501188CB55A00D45F1D /* Cocoa.framework in Frameworks */,
+				1AC28AA51AB1F24E00E736FC /* libKeenClient-Cocoa.a in Frameworks */,
 				0C7AF650186B4E890064EE7B /* QuartzCore.framework in Frameworks */,
 				890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */,
 				890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */,
@@ -196,6 +205,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1AC28A9B1AB1F22B00E736FC /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				1AC28A9C1AB1F22B00E736FC /* ATZAnalytics.h */,
+				1AC28A9D1AB1F22B00E736FC /* ATZAnalytics.m */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		1AC28A9F1AB1F24E00E736FC /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				1AC28AA01AB1F24E00E736FC /* KeenClient-Cocoa */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		1AC28AA01AB1F24E00E736FC /* KeenClient-Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				1AC28AA11AB1F24E00E736FC /* KeenClient.h */,
+				1AC28AA21AB1F24E00E736FC /* KeenProperties.h */,
+				1AC28AA31AB1F24E00E736FC /* KIOEventStore.h */,
+				1AC28AA41AB1F24E00E736FC /* libKeenClient-Cocoa.a */,
+			);
+			path = "KeenClient-Cocoa";
+			sourceTree = "<group>";
+		};
 		64C28A4818136FF30025C0B1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +272,7 @@
 			children = (
 				890A4B46171F031300AFE577 /* Alcatraz */,
 				890A4B41171F031300AFE577 /* Frameworks */,
+				1AC28A9F1AB1F24E00E736FC /* Vendor */,
 				890A4B40171F031300AFE577 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -261,6 +299,7 @@
 		890A4B46171F031300AFE577 /* Alcatraz */ = {
 			isa = PBXGroup;
 			children = (
+				1AC28A9B1AB1F22B00E736FC /* Analytics */,
 				64C28A4818136FF30025C0B1 /* Resources */,
 				8917DA111726B63B00F0B2D2 /* Helpers */,
 				8917DA0A1726B57B00F0B2D2 /* Categories */,
@@ -508,6 +547,7 @@
 				89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */,
 				8917D9F31726B4EE00F0B2D2 /* ATZColorScheme.m in Sources */,
 				8917D9F41726B4EE00F0B2D2 /* ATZFileTemplate.m in Sources */,
+				1AC28A9E1AB1F22B00E736FC /* ATZAnalytics.m in Sources */,
 				8917D9F51726B4EE00F0B2D2 /* ATZPackage.m in Sources */,
 				8917D9F61726B4EE00F0B2D2 /* ATZPlugin.m in Sources */,
 				8ADC22341A2AD5B800DB7BCA /* ATZPreviewImageButton.m in Sources */,
@@ -629,7 +669,13 @@
 				GCC_PREFIX_HEADER = "Alcatraz/Alcatraz-Prefix.pch";
 				INFOPLIST_FILE = "Alcatraz/Alcatraz-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/marinusalj/code/oss/Alcatraz/Vendor/KeenClient-Cocoa",
+					"$(PROJECT_DIR)/Vendor/KeenClient-Cocoa",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xcplugin;
@@ -648,7 +694,13 @@
 				GCC_PREFIX_HEADER = "Alcatraz/Alcatraz-Prefix.pch";
 				INFOPLIST_FILE = "Alcatraz/Alcatraz-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/marinusalj/code/oss/Alcatraz/Vendor/KeenClient-Cocoa",
+					"$(PROJECT_DIR)/Vendor/KeenClient-Cocoa",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xcplugin;
