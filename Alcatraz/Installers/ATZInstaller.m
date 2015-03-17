@@ -79,6 +79,7 @@ const CGFloat ATZFakeInstallProgress = 0.66;
 
 - (void)removePackage:(ATZPackage *)package completion:(void (^)(NSError *))completion {
     [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion];
+	[[NSFileManager sharedManager] removeItemAtPath:[self pathForDownloadedPackage:package] completion:completion];
 }
 
 - (BOOL)isPackageInstalled:(ATZPackage *)package {
