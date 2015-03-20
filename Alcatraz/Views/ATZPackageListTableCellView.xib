@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATZPluginWindowController"/>
@@ -58,19 +58,25 @@
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="3dc-Bp-Aad" customClass="ATZPreviewImageButton">
                     <rect key="frame" x="116" y="14" width="358" height="40"/>
                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="1Ph-1c-UNP">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="displayScreenshotPressed:" target="-2" id="Anc-yx-Npg"/>
                     </connections>
                 </button>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AkJ-m7-btw">
+                    <rect key="frame" x="116" y="14" width="358" height="40"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="6cY-Ub-n48"/>
+                </imageView>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="QHH-X8-YVE" secondAttribute="trailing" constant="14" id="1VL-LV-DNs"/>
                 <constraint firstAttribute="trailing" secondItem="3dc-Bp-Aad" secondAttribute="trailing" constant="14" id="1za-yx-Kwg"/>
                 <constraint firstAttribute="bottom" secondItem="3dc-Bp-Aad" secondAttribute="bottom" constant="14" id="5NR-E3-4yl"/>
+                <constraint firstItem="AkJ-m7-btw" firstAttribute="centerX" secondItem="3dc-Bp-Aad" secondAttribute="centerX" id="8FE-iA-qgr"/>
                 <constraint firstItem="3dc-Bp-Aad" firstAttribute="leading" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="14" id="F8e-Yy-NSY"/>
+                <constraint firstItem="AkJ-m7-btw" firstAttribute="width" secondItem="3dc-Bp-Aad" secondAttribute="width" id="KDr-BE-jd3"/>
                 <constraint firstItem="Av5-OP-Joy" firstAttribute="leading" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="14" id="LU1-EJ-KgX"/>
                 <constraint firstItem="QHH-X8-YVE" firstAttribute="top" secondItem="Av5-OP-Joy" secondAttribute="bottom" constant="4" id="OA2-vf-rop"/>
                 <constraint firstItem="NyQ-k4-Y5v" firstAttribute="top" secondItem="QHH-X8-YVE" secondAttribute="bottom" constant="9" id="Rd2-aB-q20"/>
@@ -78,9 +84,11 @@
                 <constraint firstItem="Rjv-46-xct" firstAttribute="top" secondItem="gec-rK-zcF" secondAttribute="top" constant="14" id="SDy-Da-yRD"/>
                 <constraint firstItem="QHH-X8-YVE" firstAttribute="leading" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="14" id="USG-IJ-SJX"/>
                 <constraint firstItem="Av5-OP-Joy" firstAttribute="top" secondItem="gec-rK-zcF" secondAttribute="top" constant="10" id="dJl-nF-NrE"/>
+                <constraint firstItem="AkJ-m7-btw" firstAttribute="height" secondItem="3dc-Bp-Aad" secondAttribute="height" id="ewV-0B-ibk"/>
                 <constraint firstItem="NyQ-k4-Y5v" firstAttribute="leading" secondItem="Rjv-46-xct" secondAttribute="trailing" constant="14" id="fiB-G1-Ewk"/>
                 <constraint firstItem="3dc-Bp-Aad" firstAttribute="top" secondItem="NyQ-k4-Y5v" secondAttribute="bottom" constant="12" id="jqg-7m-sMq"/>
                 <constraint firstAttribute="trailing" secondItem="NyQ-k4-Y5v" secondAttribute="trailing" constant="14" id="ln3-8g-lVA"/>
+                <constraint firstItem="AkJ-m7-btw" firstAttribute="centerY" secondItem="3dc-Bp-Aad" secondAttribute="centerY" id="yj8-FO-CoW"/>
                 <constraint firstAttribute="trailing" secondItem="Av5-OP-Joy" secondAttribute="trailing" constant="14" id="zVy-Tr-XqO"/>
             </constraints>
             <connections>
@@ -88,6 +96,7 @@
                 <outlet property="installButton" destination="Rjv-46-xct" id="ENf-ES-fUd"/>
                 <outlet property="linkButton" destination="NyQ-k4-Y5v" id="ZLK-Yv-D3v"/>
                 <outlet property="previewButton" destination="3dc-Bp-Aad" id="3dW-iv-CjX"/>
+                <outlet property="screenshotImageView" destination="AkJ-m7-btw" id="JYV-Tm-dm4"/>
                 <outlet property="textField" destination="Av5-OP-Joy" id="jG2-Cr-fhk"/>
                 <outlet property="titleField" destination="Av5-OP-Joy" id="x28-D0-lAR"/>
             </connections>
