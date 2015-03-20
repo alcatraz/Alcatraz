@@ -32,6 +32,6 @@
 
 @property (nonatomic, strong, readonly) NSArray* packages;
 
-- (void)loadImagesForRowsInRange:(NSRange)range inTableView:(NSTableView *)tableView;
+- (void)loadImagesForVisibleRowsInTableView:(NSTableView *)tableView;
 
 @end

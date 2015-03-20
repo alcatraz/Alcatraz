@@ -51,6 +51,8 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 @interface ATZPluginWindowController ()
 @property (nonatomic, assign) NSView *hoverButtonsContainer;
 @property (nonatomic, strong) ATZPackageTableViewDelegate* tableViewDelegate;
+@property (nonatomic, strong) NSTimer *loadImagesTimer;
+
 @end
 
 @implementation ATZPluginWindowController
@@ -79,8 +81,10 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     [self addVersionToWindow];
 
 	typeof(self) __weak wSelf = self;
-	[[NSNotificationCenter defaultCenter] addObserverForName:NSScrollViewDidEndLiveScrollNotification object:self.tableView.enclosingScrollView queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-		[wSelf loadImagesInVisibleRows];
+	[[NSNotificationCenter defaultCenter] addObserverForName:NSScrollViewDidLiveScrollNotification object:self.tableView.enclosingScrollView queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+		[wSelf.loadImagesTimer invalidate];
+		wSelf.loadImagesTimer = [NSTimer timerWithTimeInterval:0.2 target:wSelf selector:@selector(loadImagesInVisibleRows) userInfo:nil repeats:NO];
+		[[NSRunLoop mainRunLoop] addTimer:self.loadImagesTimer forMode:NSRunLoopCommonModes];
 	}];
 
 	if ([self.window respondsToSelector:@selector(setTitleVisibility:)]) {
@@ -310,8 +314,7 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)loadImagesInVisibleRows {
-	NSRange visibleRows = [self.tableView rowsInRect:self.tableView.visibleRect];
-	[self.tableViewDelegate loadImagesForRowsInRange:visibleRows inTableView:self.tableView];
+	[self.tableViewDelegate loadImagesForVisibleRowsInTableView:self.tableView];
 }
 
 @end

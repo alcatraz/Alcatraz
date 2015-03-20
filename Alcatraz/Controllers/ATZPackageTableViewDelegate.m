@@ -92,7 +92,9 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     [view.previewButton setFullSize:hasImage];
     [view.previewButton setHidden:!hasImage];
 	view.screenshotPath = package.screenshotPath;
-	view.previewButton.image = nil;
+	if (package.screenshotPath) {
+		[view.previewButton setImage:[ATZScreenshotsStorage cachedImageForPackage:package]];
+	}
     ATZFillableButton* installButton = (ATZFillableButton*)view.installButton;
     [installButton setButtonBorderStyle:ATZFillableButtonTypeInstall];
     [installButton setFillRatio:([package isInstalled] ? 100 : 0) animated:NO];
@@ -179,7 +181,8 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     return copiedImage;
 }
 
-- (void)loadImagesForRowsInRange:(NSRange)range inTableView:(NSTableView *)tableView {
+- (void)loadImagesForVisibleRowsInTableView:(NSTableView *)tableView {
+	NSRange range = [tableView rowsInRect:tableView.visibleRect];
 	for (NSInteger row = range.location; row < range.location + range.length; ++row) {
 		ATZPackageListTableCellView *view = [tableView viewAtColumn:0 row:row makeIfNecessary:NO];
 		ATZPackage *package = self.filteredPackages[row];
