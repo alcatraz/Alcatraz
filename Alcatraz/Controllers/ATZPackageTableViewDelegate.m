@@ -32,6 +32,7 @@
 #import "ATZColorScheme.h"
 #import "ATZDownloader.h"
 #import "NSColor+Alcatraz.h"
+#import "ATZScreenshotsStorage.h"
 
 @interface ATZPackageTableViewDelegate ()
 
@@ -90,18 +91,8 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     BOOL hasImage = package.screenshotPath != nil;
     [view.previewButton setFullSize:hasImage];
     [view.previewButton setHidden:!hasImage];
-    if (package.screenshotPath) {
-        [view.previewButton setImage:[[self class] cachedImageForPackage:package]];
-        if (!view.previewButton.image) {
-            __block NSButton* imageButton = view.previewButton;
-            [[self class] fetchAndCacheImageForPackage:package progress:NULL completion:^(NSImage *image) {
-                imageButton.image = image;
-                [tableView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndex:row]];
-            }];
-        }
-    } else {
-        [view.previewButton setImage:nil];
-    }
+	view.screenshotPath = package.screenshotPath;
+	view.previewButton.image = nil;
     ATZFillableButton* installButton = (ATZFillableButton*)view.installButton;
     [installButton setButtonBorderStyle:ATZFillableButtonTypeInstall];
     [installButton setFillRatio:([package isInstalled] ? 100 : 0) animated:NO];
@@ -188,41 +179,27 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     return copiedImage;
 }
 
-#pragma mark - Image Previews
+- (void)loadImagesForRowsInRange:(NSRange)range inTableView:(NSTableView *)tableView {
+	for (NSInteger row = range.location; row < range.location + range.length; ++row) {
+		ATZPackageListTableCellView *view = [tableView viewAtColumn:0 row:row makeIfNecessary:NO];
+		ATZPackage *package = self.filteredPackages[row];
 
-+ (NSCache *)imageCache {
-    static NSCache* cache = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        cache = [[NSCache alloc] init];
-    });
-    return cache;
+		if (package.screenshotPath) {
+			[view.previewButton setImage:[ATZScreenshotsStorage cachedImageForPackage:package]];
+			if (!view.previewButton.image) {
+				__block NSButton* imageButton = view.previewButton;
+				[ATZScreenshotsStorage fetchAndCacheImageForPackage:package progress:NULL completion:^(ATZPackage *pkg, NSImage *image) {
+					if ([view.titleField.stringValue isEqualToString:pkg.name]) {
+						imageButton.image = image;
+						[tableView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndex:row]];
+					}
+				}];
+			}
+		} else {
+			[view.previewButton setImage:nil];
+		}
+	}
 }
 
-+ (NSImage *)cachedImageForPackage:(ATZPackage*)package {
-    return [[self imageCache] objectForKey:package.name];
-}
-
-+ (void)cacheImage:(NSImage *)image forPackage:(ATZPackage *)package {
-    [[self imageCache] setObject:image forKey:package.name];
-}
-
-+ (void)fetchAndCacheImageForPackage:(ATZPackage*)package progress:(void(^)(CGFloat))progress completion:(void(^)(NSImage *))completion {
-    ATZDownloader *downloader = [ATZDownloader new];
-    [downloader downloadFileFromPath:package.screenshotPath
-                            progress:progress
-                          completion:^(NSData *responseData, NSError *error) {
-                              if (error)
-                                  return;
-
-                              NSImage *image = [[NSImage alloc] initWithData:responseData];
-                              if (!image)
-                                  return;
-                              
-                              [self cacheImage:image forPackage:package];
-                              if (completion)
-                                  completion(image);
-                          }];
-}
 
 @end

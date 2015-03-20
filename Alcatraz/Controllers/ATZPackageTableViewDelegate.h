@@ -31,4 +31,7 @@
 - (void)filterUsingPredicate:(NSPredicate*)predicate;
 
 @property (nonatomic, strong, readonly) NSArray* packages;
+
+- (void)loadImagesForRowsInRange:(NSRange)range inTableView:(NSTableView *)tableView;
+
 @end
