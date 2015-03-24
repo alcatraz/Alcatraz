@@ -1,5 +1,5 @@
 // PluginWindowController.m
-// 
+//
 // Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -8,10 +8,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -51,9 +51,15 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 @interface ATZPluginWindowController ()
 @property (nonatomic, assign) NSView *hoverButtonsContainer;
 @property (nonatomic, strong) ATZPackageTableViewDelegate* tableViewDelegate;
+@property (nonatomic, strong) NSTimer *loadImagesTimer;
+
 @end
 
 @implementation ATZPluginWindowController
+
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (id)init {
     @throw [NSException exceptionWithName:@"There's a better initializer" reason:@"Use -initWithNibName:inBundle:" userInfo:nil];
@@ -73,8 +79,17 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 - (void)windowDidLoad {
     [super windowDidLoad];
     [self addVersionToWindow];
-    if ([self.window respondsToSelector:@selector(setTitleVisibility:)])
+
+	typeof(self) __weak wSelf = self;
+	[[NSNotificationCenter defaultCenter] addObserverForName:NSScrollViewDidLiveScrollNotification object:self.tableView.enclosingScrollView queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+		[wSelf.loadImagesTimer invalidate];
+		wSelf.loadImagesTimer = [NSTimer timerWithTimeInterval:0.2 target:wSelf selector:@selector(loadImagesInVisibleRows) userInfo:nil repeats:NO];
+		[[NSRunLoop mainRunLoop] addTimer:self.loadImagesTimer forMode:NSRunLoopCommonModes];
+	}];
+
+	if ([self.window respondsToSelector:@selector(setTitleVisibility:)]) {
         self.window.titleVisibility = NSWindowTitleHidden;
+	}
 }
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
@@ -89,7 +104,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 
 - (IBAction)installPressed:(ATZFillableButton *)button {
     ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:button]];
-    
+
     if (package.isInstalled)
         [self removePackage:package andUpdateControl:button];
     else
@@ -174,7 +189,6 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     self.tableView.dataSource = self.tableViewDelegate;
     [self.tableViewDelegate configureTableView:self.tableView];
     [self updatePredicate];
-    [self.tableView reloadData];
 }
 
 #pragma mark - Private
@@ -209,7 +223,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 
 - (void)postNotificationForInstalledPackage:(ATZPackage *)package {
     if (![NSUserNotificationCenter class] || !package.isInstalled) return;
-    
+
     NSUserNotification *notification = [NSUserNotification new];
     notification.title = [NSString stringWithFormat:@"%@ installed", package.type];
     NSString *restartText = package.requiresRestart ? @" Please restart Xcode to use it." : @"";
@@ -237,6 +251,11 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
     [self.tableViewDelegate filterUsingPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
     [self.tableView reloadData];
+
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		// wait next run loop, otherwise there are no rows yet
+		[self loadImagesInVisibleRows];
+	});
 }
 
 - (void)updatePackages {
@@ -250,7 +269,7 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)displayScreenshotWithPath:(NSString *)screenshotPath withTitle:(NSString *)title {
-    
+
     [self.previewPanel.animator setAlphaValue:0.f];
     self.previewPanel.title = title;
     [self retrieveImageViewForScreenshot:screenshotPath
@@ -276,22 +295,26 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath progress:(void (^)(CGFloat))downloadProgress completion:(void (^)(NSImage *))completion {
-    
+
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadFileFromPath:screenshotPath
                             progress:^(CGFloat progress) {
                                 downloadProgress(progress);
                             }
                           completion:^(NSData *responseData, NSError *error) {
-                              
+
                               NSImage *image = [[NSImage alloc] initWithData:responseData];
                               completion(image);
                           }];
-    
+
 }
 
 - (void)addVersionToWindow {
     self.versionTextField.stringValue = @(ATZ_VERSION);
+}
+
+- (void)loadImagesInVisibleRows {
+	[self.tableViewDelegate loadImagesForVisibleRowsInTableView:self.tableView];
 }
 
 @end

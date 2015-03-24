@@ -31,4 +31,6 @@
 @property (nonatomic, weak) IBOutlet NSButton* installButton;
 @property (nonatomic, weak) IBOutlet ATZPreviewImageButton* previewButton;
 @property (nonatomic, weak) IBOutlet NSImageView* typeImageView;
+@property (nonatomic, copy) NSString *screenshotPath;
+
 @end
