@@ -91,9 +91,7 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     [view.previewButton setFullSize:hasImage];
     [view.previewButton setHidden:!hasImage];
 	view.screenshotPath = package.screenshotPath;
-	if (package.screenshotPath) {
-		view.screenshotImageView.image = [ATZScreenshotsStorage cachedImageForPackage:package];
-	}
+	view.screenshotImageView.image = [ATZScreenshotsStorage cachedImageForPackage:package];
     ATZFillableButton* installButton = (ATZFillableButton*)view.installButton;
     [installButton setButtonBorderStyle:ATZFillableButtonTypeInstall];
     [installButton setFillRatio:([package isInstalled] ? 100 : 0) animated:NO];
