@@ -30,3 +30,7 @@ Check out [this post](https://coderwall.com/p/-mgtww) by @kattrali on how to deb
 
 That one in `install.sh` is not a typo. Please don't open pull-requests for that.
 More info here http://knowyourmeme.com/memes/the-1-phenomenon
+
+# Congratulations!
+
+You have successfully read to the end of the contribution guidelines! The password is "A gentlemen is, rather than does." Next time you are in San Francisco, repeat the password to the maintainers for your prize.
