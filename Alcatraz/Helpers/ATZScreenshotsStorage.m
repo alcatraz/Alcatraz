@@ -37,16 +37,19 @@
 	[downloader downloadFileFromPath:package.screenshotPath
 							progress:progress
 						  completion:^(NSData *responseData, NSError *error) {
-							  if (error)
+							  if (error) {
 								  return;
+							  }
 
 							  NSImage *image = [[NSImage alloc] initWithData:responseData];
-							  if (!image)
+							  if (!image) {
 								  return;
+							  }
 
 							  [self cacheImage:image forPackage:package];
-							  if (completion)
+							  if (completion) {
 								  completion(package, image);
+							  }
 						  }];
 }
 
