@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 @implementation ATZPluginWindowController
 
 - (void)dealloc {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (id)init {
@@ -80,16 +80,16 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     [super windowDidLoad];
     [self addVersionToWindow];
 
-	typeof(self) __weak wSelf = self;
-	[[NSNotificationCenter defaultCenter] addObserverForName:NSScrollViewDidLiveScrollNotification object:self.tableView.enclosingScrollView queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-		[wSelf.loadImagesTimer invalidate];
-		wSelf.loadImagesTimer = [NSTimer timerWithTimeInterval:0.2 target:wSelf selector:@selector(loadImagesInVisibleRows) userInfo:nil repeats:NO];
-		[[NSRunLoop mainRunLoop] addTimer:self.loadImagesTimer forMode:NSRunLoopCommonModes];
-	}];
+    typeof(self) __weak wSelf = self;
+    [[NSNotificationCenter defaultCenter] addObserverForName:NSScrollViewDidLiveScrollNotification object:self.tableView.enclosingScrollView queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        [wSelf.loadImagesTimer invalidate];
+        wSelf.loadImagesTimer = [NSTimer timerWithTimeInterval:0.2 target:wSelf selector:@selector(loadImagesInVisibleRows) userInfo:nil repeats:NO];
+        [[NSRunLoop mainRunLoop] addTimer:self.loadImagesTimer forMode:NSRunLoopCommonModes];
+    }];
 
-	if ([self.window respondsToSelector:@selector(setTitleVisibility:)]) {
+    if ([self.window respondsToSelector:@selector(setTitleVisibility:)]) {
         self.window.titleVisibility = NSWindowTitleHidden;
-	}
+    }
 }
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
@@ -252,10 +252,10 @@ BOOL hasPressedCommandF(NSEvent *event) {
     [self.tableViewDelegate filterUsingPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
     [self.tableView reloadData];
 
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		// wait next run loop, otherwise there are no rows yet
-		[self loadImagesInVisibleRows];
-	});
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // wait next run loop, otherwise there are no rows yet
+        [self loadImagesInVisibleRows];
+    });
 }
 
 - (void)updatePackages {
@@ -314,7 +314,7 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)loadImagesInVisibleRows {
-	[self.tableViewDelegate loadImagesForVisibleRowsInTableView:self.tableView];
+    [self.tableViewDelegate loadImagesForVisibleRowsInTableView:self.tableView];
 }
 
 @end

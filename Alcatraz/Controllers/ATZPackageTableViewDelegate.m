@@ -147,21 +147,21 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
 }
 
 - (void)loadImagesForVisibleRowsInTableView:(NSTableView *)tableView {
-	NSRange range = [tableView rowsInRect:tableView.visibleRect];
-	for (NSInteger row = range.location; row < range.location + range.length; ++row) {
-		ATZPackageListTableCellView *view = [tableView viewAtColumn:0 row:row makeIfNecessary:NO];
-		ATZPackage *package = self.filteredPackages[row];
+    NSRange range = [tableView rowsInRect:tableView.visibleRect];
+    for (NSInteger row = range.location; row < range.location + range.length; ++row) {
+        ATZPackageListTableCellView *view = [tableView viewAtColumn:0 row:row makeIfNecessary:NO];
+        ATZPackage *package = self.filteredPackages[row];
 
-		if (package.screenshotPath && !view.screenshotImageView.image) {
-			NSImageView __weak *imageView = view.screenshotImageView;
-			[ATZScreenshotsStorage fetchAndCacheImageForPackage:package progress:NULL completion:^(ATZPackage *pkg, NSImage *image) {
-				if ([view.titleField.stringValue isEqualToString:pkg.name]) {
-					imageView.image = image;
-					[tableView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndex:row]];
-				}
-			}];
-		}
-	}
+        if (package.screenshotPath && !view.screenshotImageView.image) {
+            NSImageView __weak *imageView = view.screenshotImageView;
+            [ATZScreenshotsStorage fetchAndCacheImageForPackage:package progress:NULL completion:^(ATZPackage *pkg, NSImage *image) {
+                if ([view.titleField.stringValue isEqualToString:pkg.name]) {
+                    imageView.image = image;
+                    [tableView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndex:row]];
+                }
+            }];
+        }
+    }
 }
 
 
