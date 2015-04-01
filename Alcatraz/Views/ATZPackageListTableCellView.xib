@@ -73,8 +73,8 @@
                         </imageView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="centerX" secondItem="AkJ-m7-btw" secondAttribute="centerX" constant="-20" id="SeT-z9-ywf"/>
-                        <constraint firstAttribute="centerY" secondItem="AkJ-m7-btw" secondAttribute="centerY" constant="-20" id="WkB-ze-aOc"/>
+                        <constraint firstAttribute="centerX" secondItem="AkJ-m7-btw" secondAttribute="centerX" id="SeT-z9-ywf"/>
+                        <constraint firstAttribute="centerY" secondItem="AkJ-m7-btw" secondAttribute="centerY" id="WkB-ze-aOc"/>
                         <constraint firstItem="AkJ-m7-btw" firstAttribute="width" secondItem="eHh-1S-LCW" secondAttribute="width" id="fM1-wu-0cf"/>
                     </constraints>
                 </customView>
