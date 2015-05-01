@@ -52,7 +52,9 @@ static Alcatraz *sharedPlugin;
 - (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
         self.bundle = plugin;
-        [self createMenuItem];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self createMenuItem];
+        });
         [self updateAlcatraz];
     }
     return self;
