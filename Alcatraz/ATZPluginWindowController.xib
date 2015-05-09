@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATZPluginWindowController">
             <connections>
+                <outlet property="forceHttpsForGitMenuItem" destination="pfq-fO-C8c" id="6Kf-k6-Ieh"/>
                 <outlet property="installationStateSegmentedControl" destination="reu-CB-C0i" id="Dsc-6U-bwl"/>
                 <outlet property="packageTypeSegmentedControl" destination="Wxk-Va-YMt" id="Kp4-mR-1VM"/>
                 <outlet property="previewImageView" destination="47h-q5-ax2" id="hgU-Rw-Txf"/>
@@ -90,9 +91,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="Xmj-hd-CPE">
+                                    <rect key="frame" x="0.0" y="0.0" width="545" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn editable="NO" width="542" minWidth="40" maxWidth="1000" id="JR1-SH-OCh">
@@ -207,6 +209,17 @@
                                         <menuItem title="Load Custom Repository..." id="VFq-69-wpd">
                                             <connections>
                                                 <action selector="updatePackageRepoPath:" target="-2" id="Cp9-H4-4ZG"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Set HTTP Proxy for git" id="imq-85-s9N">
+                                            <connections>
+                                                <action selector="updateSetHttpProxyForGit:" target="-2" id="AvR-CQ-3zS"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Force HTTPS for git" state="on" id="pfq-fO-C8c">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                            <connections>
+                                                <action selector="updateForceHttpsForGit:" target="-2" id="Mgy-fw-b9Y"/>
                                             </connections>
                                         </menuItem>
                                     </items>
