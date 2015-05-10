@@ -77,7 +77,7 @@ static NSString *const ATZ_DEFAULT_REPO_PATH = @"https://raw.github.com/supermar
     BOOL forceHttps = [[NSUserDefaults standardUserDefaults] boolForKey:ATZ_FORCE_HTTPS_KEY];
 
     if (!forceHttps) {
-        forceHttps = YES;
+        forceHttps = NO;
     }
 
     return forceHttps;
