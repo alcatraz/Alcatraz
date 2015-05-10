@@ -14,6 +14,5 @@ Command Line Tools are available for installation in the Downloads section of Pr
 "change-path.message" = "Enter a new package repo URL path:";
 "change-path.title" = "Change Package Repo Path";
 "change-http-proxy.message" = "Enter a HTTP proxy to use:";
-"change-http-proxy.title" = "Change HTTP Proxy";
 "actions.cancel" = "Cancel";
 "actions.save" = "Save";

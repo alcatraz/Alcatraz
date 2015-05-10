@@ -65,7 +65,6 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 - (id)initWithBundle:(NSBundle *)bundle {
     if (self = [super initWithWindowNibName:NSStringFromClass([ATZPluginWindowController class])]) {
         @try {
-            _forceHttpsForGitMenuItem.state = [ATZConfig forceHttps];
             if ([NSUserNotificationCenter class]) {
                 [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
             }
@@ -79,6 +78,7 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 - (void)windowDidLoad {
     [super windowDidLoad];
     [self addVersionToWindow];
+    [self loadForceHttpsForGitState];
     if ([self.window respondsToSelector:@selector(setTitleVisibility:)]) {
         self.window.titleVisibility = NSWindowTitleHidden;
     }
@@ -156,7 +156,6 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 
 - (IBAction)updateForceHttpsForGit:(NSMenuItem *)sender {
     sender.state = !sender.state;
-    NSLog(@"Force https: %@", sender.state ? @"YES" : @"NO");
     [ATZConfig setForceHttps:sender.state];
 }
 
@@ -328,6 +327,10 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
 - (void)addVersionToWindow {
     self.versionTextField.stringValue = @(ATZ_VERSION);
+}
+
+- (void)loadForceHttpsForGitState {
+    _forceHttpsForGitMenuItem.state = [ATZConfig forceHttps];
 }
 
 @end
