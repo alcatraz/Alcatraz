@@ -188,7 +188,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="u6i-O7-Ddv"/>
                             </constraints>
-                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" imagePosition="below" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxY" altersStateOfSelectedItem="NO" selectedItem="hKt-1w-8NR" id="GAy-JH-6Fr">
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" imagePosition="below" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxY" altersStateOfSelectedItem="NO" selectedItem="pfq-fO-C8c" id="GAy-JH-6Fr">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
                                 <menu key="menu" id="gCj-Sg-VLj">
@@ -217,7 +217,7 @@
                                                 <action selector="updateSetHttpProxyForGit:" target="-2" id="AvR-CQ-3zS"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Force HTTPS for git" state="on" id="pfq-fO-C8c">
+                                        <menuItem title="Force HTTPS for git" id="pfq-fO-C8c">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
                                             <connections>
                                                 <action selector="updateForceHttpsForGit:" target="-2" id="Mgy-fw-b9Y"/>
