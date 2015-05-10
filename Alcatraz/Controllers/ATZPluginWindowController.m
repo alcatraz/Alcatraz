@@ -169,7 +169,7 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 }
 
 - (IBAction)updateSetHttpProxyForGit:(id)sender {
-    NSAlert *alert = [self createAlert:@"http-proxy.message"];
+    NSAlert *alert = [self createAlert:@"change-http-proxy.message"];
     NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 500, 24)];
     input.stringValue = [ATZConfig httpProxy];
     alert.accessoryView = input;

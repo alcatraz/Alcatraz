@@ -188,10 +188,10 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="u6i-O7-Ddv"/>
                             </constraints>
-                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" imagePosition="below" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxY" altersStateOfSelectedItem="NO" id="GAy-JH-6Fr">
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" imagePosition="below" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxY" altersStateOfSelectedItem="NO" selectedItem="hKt-1w-8NR" id="GAy-JH-6Fr">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
-                                <menu key="menu" showsStateColumn="NO" id="gCj-Sg-VLj">
+                                <menu key="menu" id="gCj-Sg-VLj">
                                     <items>
                                         <menuItem image="NSActionTemplate" hidden="YES" id="Mki-6q-Srm"/>
                                         <menuItem title="Reload Packages" id="FEX-wb-X1U">
@@ -211,6 +211,7 @@
                                                 <action selector="updatePackageRepoPath:" target="-2" id="Cp9-H4-4ZG"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="hKt-1w-8NR"/>
                                         <menuItem title="Set HTTP Proxy for git" id="imq-85-s9N">
                                             <connections>
                                                 <action selector="updateSetHttpProxyForGit:" target="-2" id="AvR-CQ-3zS"/>
