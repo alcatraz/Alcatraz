@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
@@ -212,15 +211,15 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="hKt-1w-8NR"/>
-                                        <menuItem title="Set HTTP Proxy for git" id="imq-85-s9N">
+                                        <menuItem title="Set HTTP Proxy" id="imq-85-s9N">
                                             <connections>
-                                                <action selector="updateSetHttpProxyForGit:" target="-2" id="AvR-CQ-3zS"/>
+                                                <action selector="updateSetHttpProxy:" target="-2" id="qSA-Wr-sfm"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Force HTTPS for git" id="pfq-fO-C8c">
+                                        <menuItem title="Force HTTPS for GitHub" id="pfq-fO-C8c">
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
                                             <connections>
-                                                <action selector="updateForceHttpsForGit:" target="-2" id="Mgy-fw-b9Y"/>
+                                                <action selector="updateForceHttpsForGitHub:" target="-2" id="Nsf-VU-IIy"/>
                                             </connections>
                                         </menuItem>
                                     </items>
