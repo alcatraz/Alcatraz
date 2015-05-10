@@ -49,10 +49,10 @@ static NSString *const HARD = @"--hard";
 
 + (void)cloneRepository:(NSString *)remotePath toLocalPath:(NSString *)localPath
              completion:(void (^)(NSString *output, NSError *))completion {
-    NSLog(@"Cloning Repo: %@", localPath);
     if ([ATZConfig forceHttps]) {
-        remotePath = [self forceHttpsForGithub:remotePath];
+        remotePath = [self forceHttpsForGitHub:remotePath];
     }
+    NSLog(@"Cloning Repo: %@", localPath);
     [self clone:remotePath to:localPath completion:completion];
 }
 
@@ -73,7 +73,7 @@ static NSString *const HARD = @"--hard";
     return areAvailable;
 }
 
-+ (NSString *)forceHttpsForGithub:(NSString *)remotePath {
++ (NSString *)forceHttpsForGitHub:(NSString *)remotePath {
     if ([remotePath containsString:GITHUB_GIT_ADRESS]) {
         return [remotePath stringByReplacingOccurrencesOfString:GITHUB_GIT_ADRESS
                                                      withString:GITHUB_HTTPS_ADRESS];

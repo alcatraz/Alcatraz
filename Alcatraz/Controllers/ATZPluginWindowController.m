@@ -51,7 +51,7 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 };
 
 @interface ATZPluginWindowController ()
-@property (nonatomic, weak) IBOutlet NSMenuItem *forceHttpsForGitMenuItem;
+@property (nonatomic, weak) IBOutlet NSMenuItem *forceHttpsForGitHubMenuItem;
 @property (nonatomic, assign) NSView *hoverButtonsContainer;
 @property (nonatomic, strong) ATZPackageTableViewDelegate *tableViewDelegate;
 @end
@@ -78,7 +78,7 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 - (void)windowDidLoad {
     [super windowDidLoad];
     [self addVersionToWindow];
-    [self loadForceHttpsForGitState];
+    [self loadForceHttpsForGitHubState];
     if ([self.window respondsToSelector:@selector(setTitleVisibility:)]) {
         self.window.titleVisibility = NSWindowTitleHidden;
     }
@@ -154,7 +154,7 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
      }];
 }
 
-- (IBAction)updateForceHttpsForGit:(NSMenuItem *)sender {
+- (IBAction)updateForceHttpsForGitHub:(NSMenuItem *)sender {
     sender.state = !sender.state;
     [ATZConfig setForceHttps:sender.state];
 }
@@ -167,7 +167,7 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
     return alert;
 }
 
-- (IBAction)updateSetHttpProxyForGit:(id)sender {
+- (IBAction)updateSetHttpProxy:(id)sender {
     NSAlert *alert = [self createAlert:@"change-http-proxy.message"];
     NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 500, 24)];
     input.stringValue = [ATZConfig httpProxy];
@@ -329,8 +329,8 @@ BOOL hasPressedCommandF(NSEvent *event) {
     self.versionTextField.stringValue = @(ATZ_VERSION);
 }
 
-- (void)loadForceHttpsForGitState {
-    _forceHttpsForGitMenuItem.state = [ATZConfig forceHttps];
+- (void)loadForceHttpsForGitHubState {
+    _forceHttpsForGitHubMenuItem.state = [ATZConfig forceHttps];
 }
 
 @end
