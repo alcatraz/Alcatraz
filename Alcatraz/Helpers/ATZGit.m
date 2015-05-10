@@ -51,7 +51,7 @@ static NSString *const HARD = @"--hard";
              completion:(void (^)(NSString *output, NSError *))completion {
     NSLog(@"Cloning Repo: %@", localPath);
     if ([ATZConfig forceHttps]) {
-        remotePath = [self convertRemotePathToHttps:remotePath];
+        remotePath = [self forceHttpsForGithub:remotePath];
     }
     [self clone:remotePath to:localPath completion:completion];
 }
@@ -73,7 +73,7 @@ static NSString *const HARD = @"--hard";
     return areAvailable;
 }
 
-+ (NSString *)convertRemotePathToHttps:(NSString *)remotePath {
++ (NSString *)forceHttpsForGithub:(NSString *)remotePath {
     if ([remotePath containsString:GITHUB_GIT_ADRESS]) {
         return [remotePath stringByReplacingOccurrencesOfString:GITHUB_GIT_ADRESS
                                                      withString:GITHUB_HTTPS_ADRESS];
@@ -81,17 +81,11 @@ static NSString *const HARD = @"--hard";
     return remotePath;
 }
 
-+ (NSArray *)addProxyToArguments:(NSArray *)arguments {
-    NSArray *proxy = @[[NSString stringWithFormat:@"-c http.proxy=%@", [ATZConfig httpProxy]]];
-
-    return [arguments arrayByAddingObjectsFromArray:proxy];
-}
-
 #pragma mark - Private
 
 + (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
     ATZShell *shell = [ATZShell new];
-    NSArray *cloneArguments = [self addProxyToArguments:@[CLONE, remotePath, localPath, IGNORE_PUSH_CONFIG]];
+    NSArray *cloneArguments = @[CLONE, remotePath, localPath, IGNORE_PUSH_CONFIG];
 
     [shell executeCommand:GIT withArguments:cloneArguments completion:^(NSString *output, NSError *error) {
          NSLog(@"Git Clone output: %@", output);
