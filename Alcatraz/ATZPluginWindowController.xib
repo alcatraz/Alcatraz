@@ -24,7 +24,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="545" height="449"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="545" height="449"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -213,12 +213,13 @@
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="hKt-1w-8NR"/>
                                         <menuItem title="Set HTTP Proxy" id="imq-85-s9N">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="updateSetHttpProxy:" target="-2" id="qSA-Wr-sfm"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Force HTTPS for GitHub" id="pfq-fO-C8c">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="updateForceHttpsForGitHub:" target="-2" id="Nsf-VU-IIy"/>
                                             </connections>
@@ -242,7 +243,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="139" y="81" width="276" height="378"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <view key="contentView" id="WQe-dv-pdE">
                 <rect key="frame" x="0.0" y="0.0" width="276" height="378"/>
                 <autoresizingMask key="autoresizingMask"/>
