@@ -2,15 +2,103 @@
 
 ## [Unreleased](https://github.com/supermarin/Alcatraz/tree/HEAD)
 
-[Full Changelog](https://github.com/supermarin/Alcatraz/compare/1.1...HEAD)
+[Full Changelog](https://github.com/supermarin/Alcatraz/compare/1.1.4...HEAD)
 
 **Closed issues:**
 
-- Rankings [\#229](https://github.com/supermarin/Alcatraz/issues/229)
+- How to update script? [\#235](https://github.com/supermarin/Alcatraz/issues/235)
+
+## [1.1.4](https://github.com/supermarin/Alcatraz/tree/1.1.4) (2015-05-20)
+
+[Full Changelog](https://github.com/supermarin/Alcatraz/compare/1.1.3...1.1.4)
+
+**Closed issues:**
+
+- Alcatraz doesn't work in Xcode 6.3.1 [\#269](https://github.com/supermarin/Alcatraz/issues/269)
+
+- Does not alcatraz provide the latest version? [\#252](https://github.com/supermarin/Alcatraz/issues/252)
+
+- Some plugins not working [\#247](https://github.com/supermarin/Alcatraz/issues/247)
+
+- Unable to install plugins with Alcatraz on Xcode 6.2 [\#245](https://github.com/supermarin/Alcatraz/issues/245)
+
+- Filtering can mess up screenshots [\#239](https://github.com/supermarin/Alcatraz/issues/239)
+
+## [1.1.3](https://github.com/supermarin/Alcatraz/tree/1.1.3) (2015-05-19)
+
+[Full Changelog](https://github.com/supermarin/Alcatraz/compare/1.1.2...1.1.3)
+
+**Closed issues:**
+
+- Alcatraz doesn't work with Xcode 6.3.2 [\#273](https://github.com/supermarin/Alcatraz/issues/273)
+
+- Export plugin configuration [\#268](https://github.com/supermarin/Alcatraz/issues/268)
+
+- How do I know when there is a new plugin? [\#267](https://github.com/supermarin/Alcatraz/issues/267)
+
+- Xcode toolbar is gone crazy after the update [\#266](https://github.com/supermarin/Alcatraz/issues/266)
+
+- Without network some packages cannot be used [\#265](https://github.com/supermarin/Alcatraz/issues/265)
+
+- Support for Xcode 6.4 beta? [\#264](https://github.com/supermarin/Alcatraz/issues/264)
+
+- cannot support xcode6.3? [\#263](https://github.com/supermarin/Alcatraz/issues/263)
+
+- Unable to install templates \(Xcode 6.3\) [\#259](https://github.com/supermarin/Alcatraz/issues/259)
+
+- Xcode 6.3 support ? [\#258](https://github.com/supermarin/Alcatraz/issues/258)
+
+- Xcode 6.3 support ?  [\#257](https://github.com/supermarin/Alcatraz/issues/257)
+
+- how do you update alcatraz without reinstalling? [\#256](https://github.com/supermarin/Alcatraz/issues/256)
+
+- Installation fails for Xcode 6.3 GM [\#255](https://github.com/supermarin/Alcatraz/issues/255)
 
 **Merged pull requests:**
 
-- Fixes two typos in the install script [\#228](https://github.com/supermarin/Alcatraz/pull/228) ([esetnik](https://github.com/esetnik))
+- Support Xcode 6.3.2 + 6.4 [\#274](https://github.com/supermarin/Alcatraz/pull/274) ([jurre](https://github.com/jurre))
+
+- Xcode 6.4 [\#270](https://github.com/supermarin/Alcatraz/pull/270) ([neonichu](https://github.com/neonichu))
+
+## [1.1.2](https://github.com/supermarin/Alcatraz/tree/1.1.2) (2015-04-09)
+
+[Full Changelog](https://github.com/supermarin/Alcatraz/compare/1.1.1...1.1.2)
+
+**Closed issues:**
+
+- Does not work with Xcode 6.3  [\#254](https://github.com/supermarin/Alcatraz/issues/254)
+
+- Crashes every time I open [\#249](https://github.com/supermarin/Alcatraz/issues/249)
+
+**Merged pull requests:**
+
+- Add UDID for Xcode 6.3 [\#253](https://github.com/supermarin/Alcatraz/pull/253) ([davelyon](https://github.com/davelyon))
+
+- Update copyright date [\#251](https://github.com/supermarin/Alcatraz/pull/251) ([streeter](https://github.com/streeter))
+
+- change raw.github.com to raw.githubusercontent.com [\#248](https://github.com/supermarin/Alcatraz/pull/248) ([gruiz17](https://github.com/gruiz17))
+
+## [1.1.1](https://github.com/supermarin/Alcatraz/tree/1.1.1) (2015-03-30)
+
+[Full Changelog](https://github.com/supermarin/Alcatraz/compare/1.1...1.1.1)
+
+**Closed issues:**
+
+- Provide an API for Plugin settings [\#241](https://github.com/supermarin/Alcatraz/issues/241)
+
+- Screenshots mix up [\#240](https://github.com/supermarin/Alcatraz/issues/240)
+
+- Synchronizing installed plugins across multiple macs [\#232](https://github.com/supermarin/Alcatraz/issues/232)
+
+- Rankings [\#229](https://github.com/supermarin/Alcatraz/issues/229)
+
+- xib file missing by installing from Alcatraz [\#196](https://github.com/supermarin/Alcatraz/issues/196)
+
+**Merged pull requests:**
+
+- Fix typo!!1 [\#244](https://github.com/supermarin/Alcatraz/pull/244) ([stephencelis](https://github.com/stephencelis))
+
+- Clear cached downloads in order to support nibs [\#237](https://github.com/supermarin/Alcatraz/pull/237) ([orta](https://github.com/orta))
 
 ## [1.1](https://github.com/supermarin/Alcatraz/tree/1.1) (2015-03-11)
 
@@ -80,29 +168,11 @@
 
 - Added support of Xcode 6.2 [\#219](https://github.com/supermarin/Alcatraz/pull/219) ([dev4dev](https://github.com/dev4dev))
 
-- Added support of Xcode 6.2 [\#217](https://github.com/supermarin/Alcatraz/pull/217) ([dev4dev](https://github.com/dev4dev))
-
 - Added UUID of new xcode beta 6.3 [\#212](https://github.com/supermarin/Alcatraz/pull/212) ([Reflejo](https://github.com/Reflejo))
 
 - Small fix to the search field predicate to include 'summary' field [\#211](https://github.com/supermarin/Alcatraz/pull/211) ([dallasjohnson](https://github.com/dallasjohnson))
 
-- auto add support to newest Xcode [\#209](https://github.com/supermarin/Alcatraz/pull/209) ([nealsun](https://github.com/nealsun))
-
 - Update UI style, add package reloading and URL customization [\#205](https://github.com/supermarin/Alcatraz/pull/205) ([kattrali](https://github.com/kattrali))
-
-- filter installed package by  a checkbox [\#190](https://github.com/supermarin/Alcatraz/pull/190) ([nealsun](https://github.com/nealsun))
-
-- Refactor VC. Autoupdate packages on Xcode startup. [\#187](https://github.com/supermarin/Alcatraz/pull/187) ([ExtremeMan](https://github.com/ExtremeMan))
-
-- OSX 10.10 compatibility [\#180](https://github.com/supermarin/Alcatraz/pull/180) ([x1024](https://github.com/x1024))
-
-- Add filter control to show only installed packages [\#159](https://github.com/supermarin/Alcatraz/pull/159) ([DAKarp](https://github.com/DAKarp))
-
-- Commandline tool [\#118](https://github.com/supermarin/Alcatraz/pull/118) ([neonichu](https://github.com/neonichu))
-
-- Specify DSTROOT and INSTALL\_PATH for xcodebuild explicitly [\#114](https://github.com/supermarin/Alcatraz/pull/114) ([nickynick](https://github.com/nickynick))
-
-- Update package installation checkbox properly \(-ish\) [\#113](https://github.com/supermarin/Alcatraz/pull/113) ([nickynick](https://github.com/nickynick))
 
 ## [1.0.9](https://github.com/supermarin/Alcatraz/tree/1.0.9) (2014-11-26)
 
@@ -121,14 +191,6 @@
 - Installed Plugins Export Feature [\#178](https://github.com/supermarin/Alcatraz/issues/178)
 
 **Merged pull requests:**
-
-- fixing exclamation point [\#200](https://github.com/supermarin/Alcatraz/pull/200) ([gabrielfalcao](https://github.com/gabrielfalcao))
-
-- Fix typo! [\#191](https://github.com/supermarin/Alcatraz/pull/191) ([lipka](https://github.com/lipka))
-
-- Added Xcode 6 GM Compatibility UUID. [\#189](https://github.com/supermarin/Alcatraz/pull/189) ([neonichu](https://github.com/neonichu))
-
-- Installed only filter, opening installed plugin folder [\#188](https://github.com/supermarin/Alcatraz/pull/188) ([zats](https://github.com/zats))
 
 - Added draft for "Writing plugins" post. [\#173](https://github.com/supermarin/Alcatraz/pull/173) ([neonichu](https://github.com/neonichu))
 
@@ -176,8 +238,6 @@
 
 - Source files for images [\#108](https://github.com/supermarin/Alcatraz/issues/108)
 
-- Preview button needs an indicator [\#81](https://github.com/supermarin/Alcatraz/issues/81)
-
 **Merged pull requests:**
 
 - Supermarin ALL the things! [\#164](https://github.com/supermarin/Alcatraz/pull/164) ([neonichu](https://github.com/neonichu))
@@ -210,8 +270,6 @@
 
 - installing plugin that uses pods itself [\#157](https://github.com/supermarin/Alcatraz/issues/157)
 
-- No way to manage plugins without internet [\#156](https://github.com/supermarin/Alcatraz/issues/156)
-
 - Installing KFCocoaPodsPlugin [\#151](https://github.com/supermarin/Alcatraz/issues/151)
 
 - Memory leak? [\#148](https://github.com/supermarin/Alcatraz/issues/148)
@@ -222,19 +280,11 @@
 
 **Merged pull requests:**
 
-- Added support for Xcode workspaces when building plugins [\#158](https://github.com/supermarin/Alcatraz/pull/158) ([fortinmike](https://github.com/fortinmike))
-
 - Setting retina build status image for travis ci [\#155](https://github.com/supermarin/Alcatraz/pull/155) ([haaakon](https://github.com/haaakon))
-
-- Solved a typographic error in install.sh [\#149](https://github.com/supermarin/Alcatraz/pull/149) ([alexito4](https://github.com/alexito4))
-
-- Fix spelling of installation message. [\#146](https://github.com/supermarin/Alcatraz/pull/146) ([tobli](https://github.com/tobli))
 
 - Insert menu item before "Bring All to Front" [\#145](https://github.com/supermarin/Alcatraz/pull/145) ([stephencelis](https://github.com/stephencelis))
 
 - Added shebang line and fixed typo in success message [\#144](https://github.com/supermarin/Alcatraz/pull/144) ([fntlnz](https://github.com/fntlnz))
-
-- Implemented check and rewrite of missing DVTPlugInCompatibilityUUIDs. [\#120](https://github.com/supermarin/Alcatraz/pull/120) ([mralexgray](https://github.com/mralexgray))
 
 ## [1.0.4](https://github.com/supermarin/Alcatraz/tree/1.0.4) (2014-03-11)
 
@@ -298,8 +348,6 @@
 
 - PluginWindow.xib crashes Xcode 5.0.2, prevents build [\#107](https://github.com/supermarin/Alcatraz/issues/107)
 
-- Website [\#104](https://github.com/supermarin/Alcatraz/issues/104)
-
 - Travis builds broken [\#93](https://github.com/supermarin/Alcatraz/issues/93)
 
 - Design details: [\#91](https://github.com/supermarin/Alcatraz/issues/91)
@@ -342,13 +390,9 @@
 
 - Alcatraz will cause opendiff crash [\#50](https://github.com/supermarin/Alcatraz/issues/50)
 
-- Packages release date and ordering by release date [\#36](https://github.com/supermarin/Alcatraz/issues/36)
-
 - Cannot install on OS X Lion [\#6](https://github.com/supermarin/Alcatraz/issues/6)
 
 - Redesign [\#77](https://github.com/supermarin/Alcatraz/issues/77)
-
-- Alcatraz 1.0 [\#72](https://github.com/supermarin/Alcatraz/issues/72)
 
 - cannot install XcodeColors [\#68](https://github.com/supermarin/Alcatraz/issues/68)
 
@@ -364,19 +408,11 @@
 
 - Add radial progress control [\#106](https://github.com/supermarin/Alcatraz/pull/106) ([kattrali](https://github.com/kattrali))
 
-- Redesign [\#105](https://github.com/supermarin/Alcatraz/pull/105) ([supermarin](https://github.com/supermarin))
-
 - waffle.io Badge [\#103](https://github.com/supermarin/Alcatraz/pull/103) ([waffleio](https://github.com/waffleio))
 
 - Fix issue where cells where incorrectly hiding preview button [\#102](https://github.com/supermarin/Alcatraz/pull/102) ([jurre](https://github.com/jurre))
 
-- Radial progress control [\#101](https://github.com/supermarin/Alcatraz/pull/101) ([schukin](https://github.com/schukin))
-
 - add xcpretty [\#100](https://github.com/supermarin/Alcatraz/pull/100) ([jurre](https://github.com/jurre))
-
-- fix PluginWindow.xib [\#99](https://github.com/supermarin/Alcatraz/pull/99) ([DenHeadless](https://github.com/DenHeadless))
-
-- Update PluginWindow.xib [\#98](https://github.com/supermarin/Alcatraz/pull/98) ([codeinthesky](https://github.com/codeinthesky))
 
 - Xcodefy [\#97](https://github.com/supermarin/Alcatraz/pull/97) ([jurre](https://github.com/jurre))
 
@@ -384,25 +420,17 @@
 
 - Tab selection [\#95](https://github.com/supermarin/Alcatraz/pull/95) ([jurre](https://github.com/jurre))
 
-- specify workspace and target for travis [\#94](https://github.com/supermarin/Alcatraz/pull/94) ([jurre](https://github.com/jurre))
-
 - xcode 5.1 support [\#92](https://github.com/supermarin/Alcatraz/pull/92) ([orta](https://github.com/orta))
 
 - fix detail button opacity animations  [\#90](https://github.com/supermarin/Alcatraz/pull/90) ([jurre](https://github.com/jurre))
 
 - Add icon checkboxes [\#89](https://github.com/supermarin/Alcatraz/pull/89) ([jurre](https://github.com/jurre))
 
-- Debug run scheme [\#88](https://github.com/supermarin/Alcatraz/pull/88) ([guillaume-algis](https://github.com/guillaume-algis))
-
 - Delete Alcatraz.xccheckout. Related to PR \#82. [\#87](https://github.com/supermarin/Alcatraz/pull/87) ([guillaume-algis](https://github.com/guillaume-algis))
-
-- Better explanation of the second method to install [\#84](https://github.com/supermarin/Alcatraz/pull/84) ([Lascorbe](https://github.com/Lascorbe))
 
 - Update .gitignore with new Xcode5 files [\#82](https://github.com/supermarin/Alcatraz/pull/82) ([guillaume-algis](https://github.com/guillaume-algis))
 
 - Fix crash when clicking the preview icon. - Related to issue \#79 [\#80](https://github.com/supermarin/Alcatraz/pull/80) ([guillaume-algis](https://github.com/guillaume-algis))
-
-- Xcode 5 [\#74](https://github.com/supermarin/Alcatraz/pull/74) ([JockMacMad](https://github.com/JockMacMad))
 
 - Adding Xcode 5 GM compatibility UUID, recommended XC5 project settings. [\#70](https://github.com/supermarin/Alcatraz/pull/70) ([kreeger](https://github.com/kreeger))
 
@@ -417,8 +445,6 @@
 - cmd-f focus on searchbox [\#51](https://github.com/supermarin/Alcatraz/pull/51) ([jurre](https://github.com/jurre))
 
 - Replace Rake with Make [\#49](https://github.com/supermarin/Alcatraz/pull/49) ([kattrali](https://github.com/kattrali))
-
-- Remove generated Podfile.lock from repository [\#48](https://github.com/supermarin/Alcatraz/pull/48) ([ryanmaxwell](https://github.com/ryanmaxwell))
 
 ## [0.6](https://github.com/supermarin/Alcatraz/tree/0.6) (2013-05-17)
 
@@ -435,10 +461,6 @@
 **Merged pull requests:**
 
 - Show version of Alcatraz in title bar [\#47](https://github.com/supermarin/Alcatraz/pull/47) ([kattrali](https://github.com/kattrali))
-
-- typedef ALL the blocks [\#46](https://github.com/supermarin/Alcatraz/pull/46) ([jurre](https://github.com/jurre))
-
-- Display a notification when successfully installing a package [\#45](https://github.com/supermarin/Alcatraz/pull/45) ([jurre](https://github.com/jurre))
 
 - Show 'all packages' tab as selected when first starting alcatraz [\#44](https://github.com/supermarin/Alcatraz/pull/44) ([jurre](https://github.com/jurre))
 
@@ -461,8 +483,6 @@
 - Display the name of the package as the panel title [\#39](https://github.com/supermarin/Alcatraz/pull/39) ([jurre](https://github.com/jurre))
 
 - Added revisions support on packages. Moved Alcatraz to `deploy` branch [\#38](https://github.com/supermarin/Alcatraz/pull/38) ([supermarin](https://github.com/supermarin))
-
-- Display project URL in statusLabel on titleButton hover [\#34](https://github.com/supermarin/Alcatraz/pull/34) ([jurre](https://github.com/jurre))
 
 ## [0.4.1](https://github.com/supermarin/Alcatraz/tree/0.4.1) (2013-05-07)
 
@@ -500,8 +520,6 @@
 
 - Automatically load Xcode plugins after installation [\#28](https://github.com/supermarin/Alcatraz/pull/28) ([0xced](https://github.com/0xced))
 
-- Autosave functionality for PluginWindow.xib [\#25](https://github.com/supermarin/Alcatraz/pull/25) ([phranck](https://github.com/phranck))
-
 ## [0.2](https://github.com/supermarin/Alcatraz/tree/0.2) (2013-04-29)
 
 [Full Changelog](https://github.com/supermarin/Alcatraz/compare/0.1...0.2)
@@ -538,25 +556,13 @@
 
 - Fixed IB warning [\#24](https://github.com/supermarin/Alcatraz/pull/24) ([supermarin](https://github.com/supermarin))
 
-- Some UI tweaks [\#22](https://github.com/supermarin/Alcatraz/pull/22) ([phranck](https://github.com/phranck))
-
 - sort descriptor added [\#16](https://github.com/supermarin/Alcatraz/pull/16) ([phranck](https://github.com/phranck))
-
-- Show button to project page in package list [\#14](https://github.com/supermarin/Alcatraz/pull/14) ([jurre](https://github.com/jurre))
-
-- Added sortdescriptor [\#13](https://github.com/supermarin/Alcatraz/pull/13) ([phranck](https://github.com/phranck))
-
-- Mac os X 10.7 [\#12](https://github.com/supermarin/Alcatraz/pull/12) ([acoomans](https://github.com/acoomans))
 
 - Remove annoying Garbage Collection warning [\#10](https://github.com/supermarin/Alcatraz/pull/10) ([shpakovski](https://github.com/shpakovski))
 
 - Escape Xcode Plug-ins path [\#5](https://github.com/supermarin/Alcatraz/pull/5) ([michaelhood](https://github.com/michaelhood))
 
 - Fix misleading lead-in. [\#4](https://github.com/supermarin/Alcatraz/pull/4) ([jverkoey](https://github.com/jverkoey))
-
-- new property cloneName for ATZPackage [\#2](https://github.com/supermarin/Alcatraz/pull/2) ([phranck](https://github.com/phranck))
-
-- Updated README [\#1](https://github.com/supermarin/Alcatraz/pull/1) ([chrisgo](https://github.com/chrisgo))
 
 ## [0.1](https://github.com/supermarin/Alcatraz/tree/0.1) (2013-04-23)
 
