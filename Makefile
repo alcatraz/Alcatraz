@@ -10,7 +10,7 @@ default: test
 
 ci: clean ci_test
 
-shipit: version build github_release push_deploy_branch
+shipit: update_install_url tag push_master_and_tags build github_release push_deploy_branch
 
 clean:
 	$(XCODEBUILD) clean | xcpretty -c
@@ -44,18 +44,19 @@ build: clean
 	tar -czf releases/${VERSION}/${ARCHIVE} ${BUNDLE_NAME}
 	rm -rf ${BUNDLE_NAME}
 
+push_master_and_tags:
+	git push origin master
+	git push --tags
+
 # Create a Github release
 github_release:
-	git push -u origin master
-	git push --tags
 	gh release create -m "Release ${VERSION}" ${VERSION}
 
 # Commit & tag the version from ATZVersion.h
-version: update_install_url
-	- git tag $(VERSION)
-	- git commit -am "updated install script for version $(VERSION)"
-	- git push origin master
+tag:
+	git tag $(VERSION)
 
 update_install_url:
 	sed -i '' -e 's/[.0-9]\{3,5\}/${VERSION}/' Scripts/install.sh
+	git commit -am "updated install script for version $(VERSION)"
 

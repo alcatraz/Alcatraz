@@ -40,7 +40,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 #pragma mark - Abstract
 
 - (void)downloadPackage:(ATZPackage *)package completion:(void(^)(NSString *, NSError *))completion {
-
+    [[NSFileManager sharedManager] removeItemAtPath:[self pathForDownloadedPackage:package] error:NULL];
     [ATZGit cloneRepository:package.remotePath toLocalPath:[self pathForDownloadedPackage:package]
                  completion:completion];
 }
