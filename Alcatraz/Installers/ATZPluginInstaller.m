@@ -109,7 +109,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     }
 
     ATZShell *shell = [ATZShell new];
-    [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
+    [shell executeCommand:XCODE_BUILD withArguments:@[@"clean", @"build", PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
         completion(error);
     }];
