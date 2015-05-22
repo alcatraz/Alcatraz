@@ -1,3 +1,6 @@
+## 1.1.5
+- Fix plugins with nibs by cleaning before building
+
 ## 1.0.6
 
 - Fix summary field naming conflict
