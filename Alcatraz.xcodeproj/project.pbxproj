@@ -12,6 +12,7 @@
 		0C7AF650186B4E890064EE7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AF64F186B4E890064EE7B /* QuartzCore.framework */; };
 		32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC2173A46A900513A7C /* eye_icon.png */; };
 		32D86505173A4555009C724B /* eye_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86503173A4555009C724B /* eye_icon@2x.png */; };
+		636C388F1ABCB1B7004DECCF /* ATZScreenshotsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 636C388E1ABCB1B7004DECCF /* ATZScreenshotsStorage.m */; };
 		64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4918136FF30025C0B1 /* toolbar_colors.png */; };
 		64C28A5618136FF30025C0B1 /* toolbar_colors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */; };
 		64C28A5918136FF30025C0B1 /* toolbar_plugins.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4D18136FF30025C0B1 /* toolbar_plugins.png */; };
@@ -83,6 +84,8 @@
 		0C7AF64F186B4E890064EE7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
+		636C388D1ABCB1B7004DECCF /* ATZScreenshotsStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZScreenshotsStorage.h; sourceTree = "<group>"; };
+		636C388E1ABCB1B7004DECCF /* ATZScreenshotsStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZScreenshotsStorage.m; sourceTree = "<group>"; };
 		6449530218CE826C009494BD /* ATZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZVersion.h; sourceTree = "<group>"; };
 		64C28A4918136FF30025C0B1 /* toolbar_colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_colors.png; sourceTree = "<group>"; };
 		64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_colors@2x.png"; sourceTree = "<group>"; };
@@ -353,6 +356,8 @@
 				8917DA171726B63B00F0B2D2 /* ATZShell.m */,
 				89B4F2BC172FF5AC001FD2E3 /* ATZPBXProjParser.h */,
 				89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */,
+				636C388D1ABCB1B7004DECCF /* ATZScreenshotsStorage.h */,
+				636C388E1ABCB1B7004DECCF /* ATZScreenshotsStorage.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 				8917D9F31726B4EE00F0B2D2 /* ATZColorScheme.m in Sources */,
 				8917D9F41726B4EE00F0B2D2 /* ATZFileTemplate.m in Sources */,
 				8917D9F51726B4EE00F0B2D2 /* ATZPackage.m in Sources */,
+				636C388F1ABCB1B7004DECCF /* ATZScreenshotsStorage.m in Sources */,
 				8917D9F61726B4EE00F0B2D2 /* ATZPlugin.m in Sources */,
 				8ADC22341A2AD5B800DB7BCA /* ATZPreviewImageButton.m in Sources */,
 				8917D9F71726B4EE00F0B2D2 /* ATZProjectTemplate.m in Sources */,

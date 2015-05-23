@@ -40,35 +40,11 @@ CGFloat const ATZPreviewImageHeight = 200.f;
     return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect {
-    if (!self.image)
-        return;
-    NSSize imageSize = self.image.size;
-    CGFloat x, y, width, height;
-    if (imageSize.width >= self.bounds.size.width) {
-        width = imageSize.width;
-        height = imageSize.height;
-    } else {
-        width = self.bounds.size.width;
-        height = (width/imageSize.width) * imageSize.height;
-    }
-    x = (self.bounds.size.width - width)/2;
-    y = (ATZPreviewImageHeight - height)/2;
-    NSRect imageRect = NSMakeRect(x, y, width, height);
-    [self.image drawInRect:imageRect fromRect:NSZeroRect operation:NSCompositeDestinationAtop
-                  fraction:1.f respectFlipped:YES hints:nil];
-}
-
 - (NSSize)intrinsicContentSize {
     if (self.image || [self isFullSize])
         return NSMakeSize(self.bounds.size.width, ATZPreviewImageHeight);
 
     return NSZeroSize;
-}
-
-- (void)setImage:(NSImage *)image {
-    [image lockFocusFlipped:YES];
-    [super setImage:image];
 }
 
 @end
