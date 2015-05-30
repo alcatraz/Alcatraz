@@ -23,12 +23,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ATZPackage;
+
 @interface ATZPackageTableViewDelegate : NSObject <NSTableViewDelegate, NSTableViewDataSource>
 
 - (instancetype)initWithPackages:(NSArray*)packages tableViewOwner:(id)owner;
 
 - (void)configureTableView:(NSTableView*)tableView;
 - (void)filterUsingPredicate:(NSPredicate*)predicate;
+
+- (void)fetchAndCacheImageForPackage:(ATZPackage*)package progress:(void(^)(CGFloat))progress completion:(void(^)(NSImage *))completion;
 
 @property (nonatomic, strong, readonly) NSArray* packages;
 @end
