@@ -41,15 +41,16 @@
 
     //// Color Declarations
     NSColor* buttonColor = [NSColor colorWithCalibratedRed: 0.311 green: 0.699 blue: 0.37 alpha: 1];
-    NSColor* clear = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 0];
-    NSColor* white = [NSColor colorWithCalibratedRed: 1 green: 1 blue: 1 alpha: 1];
+    NSColor* clear = [NSColor clearColor];
+    NSColor* white = [NSColor whiteColor];
     NSColor* gray = [NSColor colorWithCalibratedRed: 0.378 green: 0.378 blue: 0.378 alpha: 1];
     NSColor* removeButtonColor = [NSColor colorWithCalibratedRed: 0.845 green: 0.236 blue: 0.362 alpha: 1];
 
     //// Variable Declarations
     CGFloat computedFillWidth = fillRatio * buttonWidth * 0.01;
     CGFloat fillWidth = computedFillWidth < 0 ? 0 : (computedFillWidth > buttonWidth ? buttonWidth : computedFillWidth);
-    NSColor* buttonTextColor = fillRatio >= 40 ? white : ([buttonType isEqualToString: @"install"] ? buttonColor : gray);
+    NSColor* buttonTextPrimaryColor = [buttonType isEqualToString: @"install"] ? buttonColor : gray;
+    NSColor* buttonTextSecondaryColor = white;
     NSColor* buttonStrokeColor = [buttonType isEqualToString: @"install"] ? (fillRatio >= 100 ? removeButtonColor : buttonColor) : gray;
     NSColor* buttonFillColor = fillWidth <= 8 ? clear : (fillRatio >= 100 ? removeButtonColor : buttonStrokeColor);
 
@@ -72,13 +73,44 @@
 
 
     //// Text Drawing
+    CGFloat textInset = 4;
     NSRect textRect = NSMakeRect(1, -2, buttonWidth, 20);
+    textRect = NSOffsetRect(textRect, 0, 4);
+
+    // Drawing the right part of the text with the primary color (eg. green)
+    NSRect primaryColorClippingRect = textRect;
+    primaryColorClippingRect.origin.x += fillWidth - textInset;
+    primaryColorClippingRect.size.width -= fillWidth - textInset;
+    [self drawText:buttonText withColor:buttonTextPrimaryColor centeredInRect:textRect clippedToRect:primaryColorClippingRect];
+
+    // Drawing the left part of the text with the secondary color (eg. white)
+    NSRect secondaryColorClippingRect = textRect;
+    secondaryColorClippingRect.size.width = fillWidth - textInset;
+    [self drawText:buttonText withColor:buttonTextSecondaryColor centeredInRect:textRect clippedToRect:secondaryColorClippingRect];
+}
+
++ (void)drawText:(NSString*)text withColor:(NSColor *)color centeredInRect:(NSRect)rect clippedToRect:(NSRect)clippingRect
+{
+    CGContextRef context = (CGContextRef)NSGraphicsContext.currentContext.graphicsPort;
+
+    [NSGraphicsContext saveGraphicsState];
+
+    CGPathRef clippingPath = CGPathCreateWithRect(clippingRect, NULL);
+    CGContextAddPath(context, clippingPath);
+    CGContextClip(context);
+
     NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
     textStyle.alignment = NSCenterTextAlignment;
 
-    NSDictionary* textFontAttributes = @{NSFontAttributeName: [NSFont fontWithName: @"HelveticaNeue-Light" size: 12], NSForegroundColorAttributeName: buttonTextColor, NSParagraphStyleAttributeName: textStyle};
+    NSDictionary* textFontAttributes = @{
+        NSFontAttributeName:[NSFont fontWithName:@"HelveticaNeue-Light" size:12],
+        NSForegroundColorAttributeName:color,
+        NSParagraphStyleAttributeName: textStyle
+    };
 
-    [buttonText drawInRect: NSOffsetRect(textRect, 0, 4) withAttributes: textFontAttributes];
+    [text drawInRect:rect withAttributes:textFontAttributes];
+
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 @end
