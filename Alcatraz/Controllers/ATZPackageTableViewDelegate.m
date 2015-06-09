@@ -90,18 +90,20 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     BOOL hasImage = package.screenshotPath != nil;
     [view.previewButton setFullSize:hasImage];
     [view.previewButton setHidden:!hasImage];
+    
     if (package.screenshotPath) {
-        [view.previewButton setImage:[[self class] cachedImageForPackage:package]];
+        [view.previewButton setImage:[self cachedImageForPackage:package]];
         if (!view.previewButton.image) {
-            __block NSButton* imageButton = view.previewButton;
-            [[self class] fetchAndCacheImageForPackage:package progress:NULL completion:^(NSImage *image) {
-                imageButton.image = image;
-                [tableView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndex:row]];
+            __weak typeof(tableView) weakTableView = tableView;
+            [self fetchAndCacheImageForPackage:package progress:NULL completion:^(NSImage *image) {
+                [weakTableView reloadDataForRowIndexes:[NSIndexSet indexSetWithIndex:row] columnIndexes:[NSIndexSet indexSetWithIndex:0]];
+                [weakTableView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndex:row]];
             }];
         }
     } else {
         [view.previewButton setImage:nil];
     }
+    
     ATZFillableButton* installButton = (ATZFillableButton*)view.installButton;
     [installButton setButtonBorderStyle:ATZFillableButtonTypeInstall];
     [installButton setFillRatio:([package isInstalled] ? 100 : 0) animated:NO];
@@ -190,7 +192,7 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
 
 #pragma mark - Image Previews
 
-+ (NSCache *)imageCache {
+- (NSCache *)imageCache {
     static NSCache* cache = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -199,15 +201,25 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     return cache;
 }
 
-+ (NSImage *)cachedImageForPackage:(ATZPackage*)package {
+- (NSImage *)cachedImageForPackage:(ATZPackage *)package {
     return [[self imageCache] objectForKey:package.name];
 }
 
-+ (void)cacheImage:(NSImage *)image forPackage:(ATZPackage *)package {
+- (void)cacheImage:(NSImage *)image forPackage:(ATZPackage *)package {
     [[self imageCache] setObject:image forKey:package.name];
 }
 
-+ (void)fetchAndCacheImageForPackage:(ATZPackage*)package progress:(void(^)(CGFloat))progress completion:(void(^)(NSImage *))completion {
+- (void)fetchAndCacheImageForPackage:(ATZPackage*)package progress:(void(^)(CGFloat))progress completion:(void(^)(NSImage *))completion {
+    
+    NSImage *image = [self cachedImageForPackage:package];
+    
+    if(image) {
+        if(completion) {
+            completion(image);
+        }
+        return;
+    }
+    
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadFileFromPath:package.screenshotPath
                             progress:progress

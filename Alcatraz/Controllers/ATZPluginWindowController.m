@@ -112,7 +112,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 
 - (IBAction)displayScreenshotPressed:(NSButton *)sender {
     ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:sender]];
-    [self displayScreenshotWithPath:package.screenshotPath withTitle:package.name];
+    [self displayScreenshotForPackage:package];
 }
 
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender {
@@ -249,14 +249,13 @@ BOOL hasPressedCommandF(NSEvent *event) {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:address]];
 }
 
-- (void)displayScreenshotWithPath:(NSString *)screenshotPath withTitle:(NSString *)title {
+- (void)displayScreenshotForPackage:(ATZPackage *)package {
     
     [self.previewPanel.animator setAlphaValue:0.f];
-    self.previewPanel.title = title;
-    [self retrieveImageViewForScreenshot:screenshotPath
-                                progress:^(CGFloat progress) {}
-                              completion:^(NSImage *image) {
-        [self displayImage:image withTitle:title];
+    self.previewPanel.title = package.name;
+    
+    [self.tableViewDelegate fetchAndCacheImageForPackage:package progress:NULL completion:^(NSImage *image) {
+        [self displayImage:image withTitle:package.name];
     }];
 }
 
@@ -273,21 +272,6 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
     [self.previewPanel makeKeyAndOrderFront:self];
     [self.previewPanel.animator setAlphaValue:1.f];
-}
-
-- (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath progress:(void (^)(CGFloat))downloadProgress completion:(void (^)(NSImage *))completion {
-    
-    ATZDownloader *downloader = [ATZDownloader new];
-    [downloader downloadFileFromPath:screenshotPath
-                            progress:^(CGFloat progress) {
-                                downloadProgress(progress);
-                            }
-                          completion:^(NSData *responseData, NSError *error) {
-                              
-                              NSImage *image = [[NSImage alloc] initWithData:responseData];
-                              completion(image);
-                          }];
-    
 }
 
 - (void)addVersionToWindow {
