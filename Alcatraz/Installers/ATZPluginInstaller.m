@@ -32,13 +32,12 @@ static NSString *const DOWNLOADED_PLUGINS_RELATIVE_PATH = @"Plug-ins";
 
 static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
 static NSString *const PROJECT = @"-project";
-static NSString *const WORKSPACE = @"-workspace";
-static NSString *const SCHEME = @"-scheme";
 static NSString *const CLEAN = @"clean";
 static NSString *const BUILD = @"build";
 static NSString *const XCODEPROJ = @".xcodeproj";
-static NSString *const XCWORKSPACE = @".xcworkspace";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
+static NSString *const ALCATRAZ_SH = @"alcatraz.sh";
+
 
 @implementation ATZPluginInstaller
 
@@ -105,39 +104,40 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
 
-    NSDictionary *buildRules = @ {
-        XCWORKSPACE : @[CLEAN, BUILD, SCHEME, plugin.name, WORKSPACE],
-        XCODEPROJ : @[CLEAN, BUILD, PROJECT]
-    };
-
-    // try to build xcworkspace if there is one, otherwise try xcodeproj
-    for (NSString *rule in buildRules) {
-        NSString *xcodeProjPath = [self findProjectPathForPlugin:plugin ofType:rule];
-        if (xcodeProjPath != nil) {
-            ATZShell *shell = [ATZShell new];
-            NSArray *args = [buildRules[rule] arrayByAddingObject:xcodeProjPath];
-            [shell executeCommand:XCODE_BUILD withArguments:args
-                       completion:^(NSString *output, NSError *error) {
-                           NSLog(@"Xcodebuild output: %@", output);
-                           completion(error);
-                       }];
-            return;
-        }
+    // try to build with alcatraz.sh if there is one
+    NSString *resourcePath = [self findBuildResource:ALCATRAZ_SH forPlugin:plugin];
+    if (resourcePath != nil) {
+        ATZShell *shell = [ATZShell new];
+        [shell executeCommand:resourcePath withArguments:@[]
+                   completion:^(NSString *output, NSError *error) {
+                       NSLog(@"build output: %@", output);
+                       completion(error);
+                   }];
+    } else { // otherwise try xcodeproj
+        NSString *xcodeProj = [plugin.name stringByAppendingString:XCODEPROJ];
+        resourcePath = [self findBuildResource:xcodeProj forPlugin:plugin];
+        ATZShell *shell = [ATZShell new];
+        NSArray *args = @[CLEAN, BUILD, PROJECT, resourcePath];
+        [shell executeCommand:XCODE_BUILD withArguments:args
+                   completion:^(NSString *output, NSError *error) {
+                       NSLog(@"build output: %@", output);
+                       completion(error);
+                   }];
     }
 
-    NSString *reason = [NSString stringWithFormat:@"neither %@ nor %@ found in plugin repository", XCWORKSPACE, XCODEPROJ];
+    NSString *reason = [NSString stringWithFormat:@"neither %@ nor plugin.%@ found in plugin repository", ALCATRAZ_SH, XCODEPROJ];
     completion([NSError errorWithDomain:reason code:666 userInfo:nil]);
 }
 
-- (NSString *)findProjectPathForPlugin:(ATZPlugin *)plugin ofType:(NSString *)type {
+
+- (NSString *)findBuildResource:(NSString *)resource forPlugin:(ATZPlugin *)plugin {
     NSString *clonedDirectory = [self pathForDownloadedPackage:plugin];
-    NSString *projFilename = [plugin.name stringByAppendingString:type];
 
     NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];
     NSString *directoryEntry;
 
     while (directoryEntry = [enumerator nextObject]) {
-        if ([directoryEntry.pathComponents.lastObject isEqualToString:projFilename]) {
+        if ([directoryEntry.pathComponents.lastObject isEqualToString:resource]) {
             return [clonedDirectory stringByAppendingPathComponent:directoryEntry];
         }
     }
