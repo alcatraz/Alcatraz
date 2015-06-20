@@ -38,6 +38,8 @@ static NSString *const BUILD = @"build";
 static NSString *const XCODEPROJ = @".xcodeproj";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
+static NSString *const NON_APPLE_PLUGINS_KEY_FORMAT = @"DVTPlugInManagerNonApplePlugIns-Xcode-%@";
+
 @implementation ATZPluginInstaller
 
 #pragma mark - Abstract
@@ -82,6 +84,19 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     }
 
     return path;
+}
+
+- (BOOL)isPackageBlacklisted:(ATZPackage *)package {
+    if (![self isPackageInstalled:package]) {
+        return NO;
+    }
+
+    NSString *xcodeVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *pluginManagerKey = [NSString stringWithFormat:NON_APPLE_PLUGINS_KEY_FORMAT, xcodeVersion];
+    NSDictionary *nonApplePlugins = [[NSUserDefaults standardUserDefaults] dictionaryForKey:pluginManagerKey];
+    NSArray *skippedPluginsIdentifiers = [nonApplePlugins[@"skipped"] allKeys];
+
+    NSBundle *pluginBundle = [NSBundle bundleWithPath:[self pathForInstalledPackage:package]];
 }
 
 #pragma mark - Hooks

@@ -73,8 +73,11 @@
     else return self.remotePath;
 }
 
-
 #pragma mark - Abstract
+
+- (BOOL)isBlacklisted {
+    return [[self installer] isPackageBlacklisted:self];
+}
 
 - (BOOL)isInstalled {
     return [[self installer] isPackageInstalled:self];

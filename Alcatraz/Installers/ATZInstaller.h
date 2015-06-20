@@ -43,6 +43,7 @@ static NSString *const UPDATING_FORMAT = @"Updating %@...";
            completion:(void(^)(NSError *error))completion;
 
 
+- (BOOL)isPackageBlacklisted:(ATZPackage *)package;
 - (BOOL)isPackageInstalled:(ATZPackage *)package;
 - (NSString *)pathForDownloadedPackage:(ATZPackage *)package;
 

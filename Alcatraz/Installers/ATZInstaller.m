@@ -81,6 +81,10 @@ const CGFloat ATZFakeInstallProgress = 0.66;
     [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion];
 }
 
+- (BOOL)isPackageBlacklisted:(ATZPackage *)package {
+    return NO;
+}
+
 - (BOOL)isPackageInstalled:(ATZPackage *)package {
     return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package]];
 }
