@@ -183,7 +183,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     if (!package.isInstalled) return;
 
     NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
-        [package updateWithProgress:^(NSString *proggressMessage, CGFloat progress){}
+        [package updateWithProgress:^(NSString *progressMessage, CGFloat progress){}
                                 completion:^(NSError *failure){}];
     }];
     [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
