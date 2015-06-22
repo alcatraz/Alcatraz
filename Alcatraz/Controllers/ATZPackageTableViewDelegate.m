@@ -85,7 +85,6 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     [view.descriptionField setStringValue:package.summary];
     [view.linkButton setImage:[self tableView:tableView websiteImageForTableColumn:tableColumn row:row]];
     [view.linkButton setTitle:[self tableView:tableView displayWebsiteForTableColumn:tableColumn row:row]];
-    [view.installButton setTitle:([package isInstalled] ? @"REMOVE" : @"INSTALL")];
     BOOL hasImage = package.screenshotPath != nil;
     [view.previewButton setFullSize:hasImage];
     [view.previewButton setHidden:!hasImage];
@@ -104,8 +103,16 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     }
     
     ATZFillableButton* installButton = (ATZFillableButton*)view.installButton;
-    [installButton setButtonBorderStyle:ATZFillableButtonTypeInstall];
-    [installButton setFillRatio:([package isInstalled] ? 100 : 0) animated:NO];
+    if ([package isInstalled]) {
+        [installButton setTitle:@"REMOVE"];
+        [installButton setButtonStyle:ATZFillableButtonStyleRemove];
+        [installButton setFillRatio:1];
+    }
+    else {
+        [installButton setTitle:@"INSTALL"];
+        [installButton setButtonStyle:ATZFillableButtonStyleInstall];
+        [installButton setFillRatio:0];
+    }
 
     return view;
 }

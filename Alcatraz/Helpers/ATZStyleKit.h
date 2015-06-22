@@ -28,6 +28,6 @@
 @interface ATZStyleKit : NSObject
 
 // Drawing Methods
-+ (void)drawFillableButtonWithButtonText: (NSString*)buttonText fillRatio: (CGFloat)fillRatio buttonWidth: (CGFloat)buttonWidth buttonType: (NSString*)buttonType;
++ (void)drawFillableButtonWithText:(NSString*)text fillColor:(NSColor *)fillColor backgroundColor:(NSColor *)backgroundColor fillRatio:(float)fillRatio size:(CGSize)size;
 
 @end
