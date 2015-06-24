@@ -22,9 +22,25 @@
 // THE SOFTWARE.
 
 #import "ATZStyleKit.h"
-
+#import "ATZPackage.h"
+#import "ATZFillableButton.h"
 
 @implementation ATZStyleKit
+
+#pragma mark ATZFillableButton styling
+
++ (void)updateButton:(ATZFillableButton *)fillableButton forPackageState:(ATZPackage *)package animated:(BOOL)animated {
+    if ([package isInstalled]) {
+        [fillableButton setTitle:@"REMOVE"];
+        [fillableButton setButtonStyle:ATZFillableButtonStyleRemove];
+        [fillableButton setFillRatio:1 animated:animated];
+    }
+    else {
+        [fillableButton setTitle:@"INSTALL"];
+        [fillableButton setButtonStyle:ATZFillableButtonStyleInstall];
+        [fillableButton setFillRatio:0 animated:animated];
+    }
+}
 
 #pragma mark Drawing Methods
 

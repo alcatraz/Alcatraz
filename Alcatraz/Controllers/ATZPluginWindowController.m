@@ -26,6 +26,7 @@
 #import "ATZDownloader.h"
 #import "Alcatraz.h"
 #import "ATZPackageFactory.h"
+#import "ATZStyleKit.h"
 
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
@@ -189,21 +190,20 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 }
 
 - (void)removePackage:(ATZPackage *)package andUpdateControl:(ATZFillableButton *)button {
-    [button setButtonStyle:ATZFillableButtonStyleInstall];
-    [button setFillRatio:0 animated:YES];
-    button.title = @"INSTALL";
-    [package removeWithCompletion:NULL];
+    [package removeWithCompletion:^(NSError *failure) {
+        [ATZStyleKit updateButton:button forPackageState:package animated:YES];
+    }];
 }
 
-- (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZFillableButton *)control {
+- (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZFillableButton *)button {
     [package installWithProgress:^(NSString *progressMessage, CGFloat progress) {
-        control.title = @"INSTALLING";
-        [control setFillRatio:progress animated:YES];
+        button.title = @"INSTALLING";
+        [button setFillRatio:progress animated:YES];
     } completion:^(NSError *failure) {
-        [control setButtonStyle:(package.isInstalled ? ATZFillableButtonStyleRemove : ATZFillableButtonStyleInstall)];
-        control.title = package.isInstalled ? @"REMOVE" : @"INSTALL";
-        [control setFillRatio:(package.isInstalled ? 1 : 0) animated:YES];
-        if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
+        [ATZStyleKit updateButton:button forPackageState:package animated:YES];
+        if (package.requiresRestart) {
+            [self postNotificationForInstalledPackage:package];
+        }
     }];
 }
 
