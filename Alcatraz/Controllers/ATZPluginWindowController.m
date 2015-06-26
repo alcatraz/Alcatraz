@@ -1,5 +1,5 @@
 // PluginWindowController.m
-// 
+//
 // Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -8,10 +8,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -40,6 +40,7 @@
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
 static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR summary contains[cd] %@)";
 static NSString *const INSTALLED_PREDICATE_FORMAT = @"(installed == YES)";
+static NSString *const BLACKLISTED_PREDICATE_FORMAT = @"(blacklisted == YES)";
 
 typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     ATZFilterSegmentPlugins = 0,
@@ -88,7 +89,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 
 - (IBAction)installPressed:(ATZFillableButton *)button {
     ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:button]];
-    
+
     if (package.isInstalled) {
         if ([package isKindOfClass:[ATZPlugin class]] && [(ATZPlugin *)package isBlacklisted]) {
             [self whitelistPackage:(ATZPlugin *)package andUpdateControl:button];
@@ -106,9 +107,9 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 - (NSDictionary *)segmentClassMapping {
     static NSDictionary *segmentClassMapping;
     if (!segmentClassMapping) {
-       segmentClassMapping = @{@(ATZFilterSegmentColorSchemes): [ATZColorScheme class],
-            @(ATZFilterSegmentPlugins): [ATZPlugin class],
-            @(ATZFilterSegmentTemplates): [ATZTemplate class]};
+        segmentClassMapping = @{@(ATZFilterSegmentColorSchemes): [ATZColorScheme class],
+                                @(ATZFilterSegmentPlugins): [ATZPlugin class],
+                                @(ATZFilterSegmentTemplates): [ATZTemplate class]};
     }
     return segmentClassMapping;
 }
@@ -175,8 +176,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 }
 
 - (void)reloadTableView {
-    self.tableViewDelegate = [[ATZPackageTableViewDelegate alloc] initWithPackages:self.packages
-                                                                    tableViewOwner:self];
+    self.tableViewDelegate = [[ATZPackageTableViewDelegate alloc] initWithPackages:self.packages tableViewOwner:self];
     self.tableView.delegate = self.tableViewDelegate;
     self.tableView.dataSource = self.tableViewDelegate;
     [self.tableViewDelegate configureTableView:self.tableView];
@@ -191,7 +191,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 
     NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
         [package updateWithProgress:^(NSString *progressMessage, CGFloat progress){}
-                                completion:^(NSError *failure){}];
+                         completion:^(NSError *failure){}];
     }];
     [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
     [[NSOperationQueue mainQueue] addOperation:updateOperation];
@@ -218,13 +218,16 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 - (void)whitelistPackage:(ATZPlugin *)package andUpdateControl:(ATZFillableButton *)button {
     [package whitelistWithCompletion:^(NSError *failure) {
         [ATZStyleKit updateButton:button forPackageState:package animated:YES];
+        [self updateInstallationStateSegmentedControl];
         if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
     }];
 }
 
 - (void)postNotificationForInstalledPackage:(ATZPackage *)package {
-    if (![NSUserNotificationCenter class] || !package.isInstalled) return;
-    
+    if (![NSUserNotificationCenter class] || !package.isInstalled) {
+        return;
+    }
+
     NSUserNotification *notification = [NSUserNotification new];
     notification.title = [NSString stringWithFormat:@"%@ installed", package.type];
     NSString *restartText = package.requiresRestart ? @" Please restart Xcode to use it." : @"";
@@ -237,27 +240,11 @@ BOOL hasPressedCommandF(NSEvent *event) {
     return ([event modifierFlags] & NSCommandKeyMask) && [[event characters] characterAtIndex:0] == 'f';
 }
 
-- (void)updatePredicate {
-    NSString *searchText = self.searchField.stringValue;
-    NSMutableArray* predicates = [[NSMutableArray alloc] initWithCapacity:3];
-    Class selectedPackageClass = [self segmentClassMapping][@([self.packageTypeSegmentedControl selectedSegment])];
-    if (selectedPackageClass)
-        [predicates addObject:[NSPredicate predicateWithFormat:CLASS_PREDICATE_FORMAT, selectedPackageClass]];
-
-    if (searchText.length > 0)
-        [predicates addObject:[NSPredicate predicateWithFormat:SEARCH_PREDICATE_FORMAT, searchText, searchText]];
-
-    if ([self.installationStateSegmentedControl selectedSegment] != 0)
-        [predicates addObject:[NSPredicate predicateWithFormat:INSTALLED_PREDICATE_FORMAT]];
-
-    [self.tableViewDelegate filterUsingPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
-    [self.tableView reloadData];
-}
-
 - (void)updatePackages {
     for (ATZPackage *package in self.packages) {
         [self enqueuePackageUpdate:package];
     }
+    [self updateInstallationStateSegmentedControl];
 }
 
 - (void)openWebsite:(NSString *)address {
@@ -265,10 +252,10 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)displayScreenshotForPackage:(ATZPackage *)package {
-    
+
     [self.previewPanel.animator setAlphaValue:0.f];
     self.previewPanel.title = package.name;
-    
+
     [self.tableViewDelegate fetchAndCacheImageForPackage:package progress:NULL completion:^(NSImage *image) {
         [self displayImage:image withTitle:package.name];
     }];
@@ -291,6 +278,47 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
 - (void)addVersionToWindow {
     self.versionTextField.stringValue = [[[Alcatraz sharedPlugin] bundle] infoDictionary][@"CFBundleShortVersionString"];
+}
+
+#pragma mark - Packages filtering
+
+- (void)updateInstallationStateSegmentedControl {
+    NSPredicate *blacklistedPredicate = [NSPredicate predicateWithFormat:BLACKLISTED_PREDICATE_FORMAT];
+    NSUInteger blacklistedPackagesCount = [self.packages filteredArrayUsingPredicate:blacklistedPredicate].count;
+
+    if (blacklistedPackagesCount > 0) {
+        [self.installationStateSegmentedControl setSegmentCount:3];
+        NSString *label = [NSString stringWithFormat:@"Blocked (%lu)", blacklistedPackagesCount];
+        [self.installationStateSegmentedControl setLabel:label forSegment:2];
+    }
+    else {
+        [self.installationStateSegmentedControl setSegmentCount:2];
+        [self.installationStateSegmentedControl setSelectedSegment:0];
+        [self updatePredicate];
+    }
+}
+
+- (void)updatePredicate {
+    NSString *searchText = self.searchField.stringValue;
+    NSMutableArray* predicates = [[NSMutableArray alloc] initWithCapacity:3];
+    Class selectedPackageClass = [self segmentClassMapping][@([self.packageTypeSegmentedControl selectedSegment])];
+    if (selectedPackageClass) {
+        [predicates addObject:[NSPredicate predicateWithFormat:CLASS_PREDICATE_FORMAT, selectedPackageClass]];
+    }
+
+    if (searchText.length > 0) {
+        [predicates addObject:[NSPredicate predicateWithFormat:SEARCH_PREDICATE_FORMAT, searchText, searchText]];
+    }
+
+    if ([self.installationStateSegmentedControl selectedSegment] == 1) {
+        [predicates addObject:[NSPredicate predicateWithFormat:INSTALLED_PREDICATE_FORMAT]];
+    }
+    else if ([self.installationStateSegmentedControl selectedSegment] == 2) {
+        [predicates addObject:[NSPredicate predicateWithFormat:BLACKLISTED_PREDICATE_FORMAT]];
+    }
+
+    [self.tableViewDelegate filterUsingPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
+    [self.tableView reloadData];
 }
 
 @end
