@@ -22,6 +22,7 @@
 
 
 #import "ATZDownloader.h"
+#import "ATZConfig.h"
 
 @interface ATZDownloader()
 @property (strong, nonatomic) NSMutableDictionary *callbacks;
@@ -46,29 +47,29 @@ static NSString *const COMPLETION = @"completion";
 }
 
 - (void)downloadPackageListWithCompletion:(ATZJSONDownloadCompletion)completion {
-    [self downloadFileFromPath:[ATZDownloader packageRepoPath]
+    [self downloadFileFromPath:[ATZConfig packageRepoPath]
                       progress:^(CGFloat progress) {}
                     completion:^(NSData *data, NSError *error) {
                         
-        if (error) { completion(nil, error); return; }
-
-        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        completion(JSON[@"packages"], error);
-    }];
+                        if (error) { completion(nil, error); return; }
+                        
+                        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                        completion(JSON[@"packages"], error);
+                    }];
 }
 
 - (void)downloadFileFromPath:(NSString *)remotePath progress:(ATZDownloadProgress)progress
-                                                  completion:(ATZDataDownloadCompletion)completion {
-
+                  completion:(ATZDataDownloadCompletion)completion {
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:remotePath]];
     NSURLSessionTask *task = [[self urlSession] downloadTaskWithRequest:request];
-
+    
     NSMutableDictionary* callbacks = [[NSMutableDictionary alloc] initWithCapacity:2];
     if (completion)
         callbacks[COMPLETION] = completion;
     if (progress)
         callbacks[PROGRESS] = progress;
-
+    
     self.callbacks[task] = callbacks;
     
     [task resume];
@@ -80,7 +81,7 @@ static NSString *const COMPLETION = @"completion";
     NSString* path = [[NSUserDefaults standardUserDefaults] valueForKey:ATZ_REPO_KEY];
     if (!path)
         path = ATZ_DEFAULT_REPO_PATH;
-
+    
     return path;
 }
 
@@ -95,20 +96,20 @@ static NSString *const COMPLETION = @"completion";
 #pragma mark - NSURLSessionDelegate
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
-                              didFinishDownloadingToURL:(NSURL *)location {
-
+didFinishDownloadingToURL:(NSURL *)location {
+    
     ATZDataDownloadCompletion completionBlock = self.callbacks[downloadTask][COMPLETION];
     if (completionBlock)
         completionBlock([NSData dataWithContentsOfURL:location], nil);
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
-                                           didWriteData:(int64_t)bytesWritten
-                                      totalBytesWritten:(int64_t)totalBytesWritten
-                              totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
-
+      didWriteData:(int64_t)bytesWritten
+ totalBytesWritten:(int64_t)totalBytesWritten
+totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
+    
     CGFloat progress = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
-
+    
     ATZDownloadProgress progressBlock =  self.callbacks[downloadTask][PROGRESS];
     if (progressBlock)
         progressBlock(progress);
