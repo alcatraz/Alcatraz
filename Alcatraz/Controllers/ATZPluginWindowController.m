@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 #import <Cocoa/Cocoa.h>
+#import "ATZConfig.h"
 
 #import "ATZPluginWindowController.h"
 #import "ATZDownloader.h"
@@ -146,24 +147,47 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     }];
 }
 
-- (IBAction)updatePackageRepoPath:(id)sender {
-    // present dialog with text field, update repo path, redownload package list
+- (IBAction)updateForceHttpsForGitHub:(NSMenuItem *)sender {
+    sender.state = !sender.state;
+    [ATZConfig setForceHttps:sender.state];
+}
+
+- (NSAlert *)createAlert:(NSString *)messageText {
     NSAlert *alert = [NSAlert new];
-    alert.messageText = [Alcatraz localizedStringForKey:@"change-path.message"];
+    alert.messageText = [Alcatraz localizedStringForKey:messageText];
     [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.save"]];
     [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.cancel"]];
+    return alert;
+}
+
+- (IBAction)updateSetHttpProxy:(id)sender {
+    NSAlert *alert = [self createAlert:@"change-http-proxy.message"];
     NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 500, 24)];
-    input.stringValue = [ATZDownloader packageRepoPath];
+    input.stringValue = [ATZConfig httpProxy];
+    alert.accessoryView = input;
+    
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        NSLog(@"Proxy set to: %@", input.stringValue);
+        [ATZConfig setHttpProxy:input.stringValue];
+    }
+}
+
+
+- (IBAction)updatePackageRepoPath:(id)sender {
+    // present dialog with text field, update repo path, redownload package list
+    NSAlert *alert = [self createAlert:@"change-path.message"];
+    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 500, 24)];
+    input.stringValue = [ATZConfig packageRepoPath];
     alert.accessoryView = input;
 
-    if ([alert runModal] == NSAlertFirstButtonReturn && ![input.stringValue isEqualToString:[ATZDownloader packageRepoPath]]) {
-        [ATZDownloader setPackagesRepoPath:input.stringValue];
+    if ([alert runModal] == NSAlertFirstButtonReturn && ![input.stringValue isEqualToString:[ATZConfig packageRepoPath]]) {
+        [ATZConfig setPackagesRepoPath:input.stringValue];
         [self reloadPackages:nil];
     }
 }
 
 - (IBAction)resetPackageRepoPath:(id)sender {
-    [ATZDownloader resetPackageRepoPath];
+    [ATZConfig resetPackageRepoPath];
     [self reloadPackages:nil];
 }
 

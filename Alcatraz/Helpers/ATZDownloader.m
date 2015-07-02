@@ -22,6 +22,7 @@
 
 
 #import "ATZDownloader.h"
+#import "ATZConfig.h"
 
 @interface ATZDownloader()
 @property (strong, nonatomic) NSMutableDictionary *callbacks;
@@ -46,7 +47,7 @@ static NSString *const COMPLETION = @"completion";
 }
 
 - (void)downloadPackageListWithCompletion:(ATZJSONDownloadCompletion)completion {
-    [self downloadFileFromPath:[ATZDownloader packageRepoPath]
+    [self downloadFileFromPath:[ATZConfig packageRepoPath]
                       progress:^(CGFloat progress) {}
                     completion:^(NSData *data, NSError *error) {
                         
