@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ATZPluginWindowController">
@@ -23,7 +23,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="545" height="449"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="545" height="449"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -32,15 +32,12 @@
                         <rect key="frame" x="0.0" y="417" width="545" height="32"/>
                         <subviews>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="reu-CB-C0i" customClass="ATZSegmentedControl">
-                                <rect key="frame" x="15" y="8" width="92" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="jvF-qg-y7j"/>
-                                </constraints>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="5Tl-2Y-k8p">
-                                    <font key="font" size="11" name="HelveticaNeue"/>
+                                <rect key="frame" x="16" y="4" width="111" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="separated" trackingMode="selectOne" id="5Tl-2Y-k8p">
+                                    <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment label="All" width="37" selected="YES"/>
-                                        <segment label="Installed" width="38" tag="1"/>
+                                        <segment label="All" selected="YES"/>
+                                        <segment label="Installed" tag="1"/>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
@@ -48,12 +45,9 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wxk-Va-YMt" customClass="ATZSegmentedControl">
-                                <rect key="frame" x="115" y="8" width="202" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="gNb-dE-2sJ"/>
-                                </constraints>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="roundRect" trackingMode="selectOne" id="TlD-Cy-glk">
-                                    <font key="font" size="11" name="HelveticaNeue"/>
+                                <rect key="frame" x="143" y="4" width="259" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="separated" trackingMode="selectOne" id="TlD-Cy-glk">
+                                    <font key="font" metaFont="system"/>
                                     <segments>
                                         <segment label="Plugins" selected="YES"/>
                                         <segment label="Color Themes" tag="1"/>
@@ -74,13 +68,13 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" constant="2" id="2rj-TD-hfT"/>
+                            <constraint firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" id="2rj-TD-hfT"/>
                             <constraint firstAttribute="centerY" secondItem="hsV-nN-jHO" secondAttribute="centerY" constant="2" id="4if-cW-Xnv"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" id="D5D-79-kC3"/>
                             <constraint firstItem="reu-CB-C0i" firstAttribute="leading" secondItem="0Fa-9p-0gT" secondAttribute="leading" constant="16" id="ELF-J2-Y4x"/>
                             <constraint firstAttribute="trailing" secondItem="hsV-nN-jHO" secondAttribute="trailing" constant="14" id="J89-aJ-Yya"/>
                             <constraint firstAttribute="height" constant="32" id="Yci-xm-ezL"/>
-                            <constraint firstItem="Wxk-Va-YMt" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="10" id="eMS-g8-tnJ"/>
+                            <constraint firstItem="Wxk-Va-YMt" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="16" id="eMS-g8-tnJ"/>
                         </constraints>
                     </customView>
                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydl-IO-qKb">
@@ -90,9 +84,10 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="Xmj-hd-CPE">
+                                    <rect key="frame" x="0.0" y="0.0" width="545" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn editable="NO" width="542" minWidth="40" maxWidth="1000" id="JR1-SH-OCh">
@@ -228,7 +223,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" HUD="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="139" y="81" width="276" height="378"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="WQe-dv-pdE">
                 <rect key="frame" x="0.0" y="0.0" width="276" height="378"/>
                 <autoresizingMask key="autoresizingMask"/>
