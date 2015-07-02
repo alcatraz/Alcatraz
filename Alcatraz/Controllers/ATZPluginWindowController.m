@@ -1,5 +1,5 @@
 // PluginWindowController.m
-//
+// 
 // Copyright (c) 2014 Marin Usalj | supermar.in
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -8,10 +8,10 @@
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-//
+// 
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-//
+// 
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -36,24 +36,21 @@
 
 #import "ATZFillableButton.h"
 #import "ATZPackageTableViewDelegate.h"
-#import "ATZGit.h"
-#import "ATZConfig.h"
 
 static NSString *const ALL_ITEMS_ID = @"AllItemsToolbarItem";
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
 static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR summary contains[cd] %@)";
 static NSString *const INSTALLED_PREDICATE_FORMAT = @"(installed == YES)";
 
-typedef NS_ENUM (NSInteger, ATZFilterSegment) {
+typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     ATZFilterSegmentPlugins = 0,
     ATZFilterSegmentColorSchemes = 1,
     ATZFilterSegmentTemplates = 2,
 };
 
 @interface ATZPluginWindowController ()
-@property (nonatomic, weak) IBOutlet NSMenuItem *forceHttpsForGitHubMenuItem;
 @property (nonatomic, assign) NSView *hoverButtonsContainer;
-@property (nonatomic, strong) ATZPackageTableViewDelegate *tableViewDelegate;
+@property (nonatomic, strong) ATZPackageTableViewDelegate* tableViewDelegate;
 @end
 
 @implementation ATZPluginWindowController
@@ -65,12 +62,10 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 - (id)initWithBundle:(NSBundle *)bundle {
     if (self = [super initWithWindowNibName:NSStringFromClass([ATZPluginWindowController class])]) {
         @try {
-            if ([NSUserNotificationCenter class]) {
+            if ([NSUserNotificationCenter class])
                 [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
-            }
-        }@catch (NSException *exception) {
-            NSLog(@"I've heard you like exceptions... %@", exception);
         }
+        @catch(NSException *exception) { NSLog(@"I've heard you like exceptions... %@", exception); }
     }
     return self;
 }
@@ -78,10 +73,8 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 - (void)windowDidLoad {
     [super windowDidLoad];
     [self addVersionToWindow];
-    [self loadForceHttpsForGitHubState];
-    if ([self.window respondsToSelector:@selector(setTitleVisibility:)]) {
+    if ([self.window respondsToSelector:@selector(setTitleVisibility:)])
         self.window.titleVisibility = NSWindowTitleHidden;
-    }
 }
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
@@ -96,31 +89,30 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 
 - (IBAction)installPressed:(ATZFillableButton *)button {
     ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:button]];
-
-    if (package.isInstalled) {
+    
+    if (package.isInstalled)
         [self removePackage:package andUpdateControl:button];
-    } else {
+    else
         [self installPackage:package andUpdateControl:button];
-    }
 }
 
 - (NSDictionary *)segmentClassMapping {
     static NSDictionary *segmentClassMapping;
     if (!segmentClassMapping) {
-        segmentClassMapping = @{@(ATZFilterSegmentColorSchemes): [ATZColorScheme class],
-                                @(ATZFilterSegmentPlugins): [ATZPlugin class],
-                                @(ATZFilterSegmentTemplates): [ATZTemplate class]};
+       segmentClassMapping = @{@(ATZFilterSegmentColorSchemes): [ATZColorScheme class],
+            @(ATZFilterSegmentPlugins): [ATZPlugin class],
+            @(ATZFilterSegmentTemplates): [ATZTemplate class]};
     }
     return segmentClassMapping;
 }
 
-- (IBAction)segmentedControlPressed:(NSSegmentedControl *)sender {
+- (IBAction)segmentedControlPressed:(NSSegmentedControl*)sender {
     [self updatePredicate];
 }
 
 - (IBAction)displayScreenshotPressed:(NSButton *)sender {
     ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:sender]];
-    [self displayScreenshotWithPath:package.screenshotPath withTitle:package.name];
+    [self displayScreenshotForPackage:package];
 }
 
 - (IBAction)openPackageWebsitePressed:(NSButton *)sender {
@@ -134,66 +126,44 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 }
 
 - (void)keyDown:(NSEvent *)event {
-    if (hasPressedCommandF(event)) {
+    if (hasPressedCommandF(event))
         [self.window makeFirstResponder:self.searchField];
-    } else {
+    else
         [super keyDown:event];
-    }
 }
 
 - (IBAction)reloadPackages:(id)sender {
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
-         if (error) {
-             NSLog(@"Error while downloading packages! %@", error);
-         } else {
-             self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
-             [self reloadTableView];
-             [self updatePackages];
-         }
-     }];
-}
 
-- (IBAction)updateForceHttpsForGitHub:(NSMenuItem *)sender {
-    sender.state = !sender.state;
-    [ATZConfig setForceHttps:sender.state];
-}
-
-- (NSAlert *)createAlert:(NSString *)messageText {
-    NSAlert *alert = [NSAlert new];
-    alert.messageText = [Alcatraz localizedStringForKey:messageText];
-    [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.save"]];
-    [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.cancel"]];
-    return alert;
-}
-
-- (IBAction)updateSetHttpProxy:(id)sender {
-    NSAlert *alert = [self createAlert:@"change-http-proxy.message"];
-    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 500, 24)];
-    input.stringValue = [ATZConfig httpProxy];
-    alert.accessoryView = input;
-
-    if ([alert runModal] == NSAlertFirstButtonReturn) {
-        NSLog(@"Proxy set to: %@", input.stringValue);
-        [ATZConfig setHttpProxy:input.stringValue];
-    }
+        if (error) {
+            NSLog(@"Error while downloading packages! %@", error);
+        } else {
+            self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
+            [self reloadTableView];
+            [self updatePackages];
+        }
+    }];
 }
 
 - (IBAction)updatePackageRepoPath:(id)sender {
     // present dialog with text field, update repo path, redownload package list
-    NSAlert *alert = [self createAlert:@"change-path.message"];
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = [Alcatraz localizedStringForKey:@"change-path.message"];
+    [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.save"]];
+    [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.cancel"]];
     NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 500, 24)];
-    input.stringValue = [ATZConfig packageRepoPath];
+    input.stringValue = [ATZDownloader packageRepoPath];
     alert.accessoryView = input;
 
-    if ([alert runModal] == NSAlertFirstButtonReturn && ![input.stringValue isEqualToString:[ATZConfig packageRepoPath]]) {
-        [ATZConfig setPackagesRepoPath:input.stringValue];
+    if ([alert runModal] == NSAlertFirstButtonReturn && ![input.stringValue isEqualToString:[ATZDownloader packageRepoPath]]) {
+        [ATZDownloader setPackagesRepoPath:input.stringValue];
         [self reloadPackages:nil];
     }
 }
 
 - (IBAction)resetPackageRepoPath:(id)sender {
-    [ATZConfig resetPackageRepoPath];
+    [ATZDownloader resetPackageRepoPath];
     [self reloadPackages:nil];
 }
 
@@ -210,14 +180,12 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 #pragma mark - Private
 
 - (void)enqueuePackageUpdate:(ATZPackage *)package {
-    if (!package.isInstalled) {
-        return;
-    }
+    if (!package.isInstalled) return;
 
     NSOperation *updateOperation = [NSBlockOperation blockOperationWithBlock:^{
-                                        [package updateWithProgress:^(NSString *proggressMessage, CGFloat progress){}
-                                                         completion:^(NSError *failure){}];
-                                    }];
+        [package updateWithProgress:^(NSString *progressMessage, CGFloat progress){}
+                                completion:^(NSError *failure){}];
+    }];
     [updateOperation addDependency:[[NSOperationQueue mainQueue] operations].lastObject];
     [[NSOperationQueue mainQueue] addOperation:updateOperation];
 }
@@ -230,22 +198,18 @@ typedef NS_ENUM (NSInteger, ATZFilterSegment) {
 
 - (void)installPackage:(ATZPackage *)package andUpdateControl:(ATZFillableButton *)control {
     [package installWithProgress:^(NSString *progressMessage, CGFloat progress) {
-         control.title = @"INSTALLING";
-         [control setFillRatio:progress * 100 animated:YES];
-     } completion:^(NSError *failure) {
-         control.title = package.isInstalled ? @"REMOVE" : @"INSTALL";
-         [control setFillRatio:(package.isInstalled ? 100 : 0) animated:YES];
-         if (package.requiresRestart) {
-             [self postNotificationForInstalledPackage:package];
-         }
-     }];
+        control.title = @"INSTALLING";
+        [control setFillRatio:progress * 100 animated:YES];
+    } completion:^(NSError *failure) {
+        control.title = package.isInstalled ? @"REMOVE" : @"INSTALL";
+        [control setFillRatio:(package.isInstalled ? 100 : 0) animated:YES];
+        if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
+    }];
 }
 
 - (void)postNotificationForInstalledPackage:(ATZPackage *)package {
-    if (![NSUserNotificationCenter class] || !package.isInstalled) {
-        return;
-    }
-
+    if (![NSUserNotificationCenter class] || !package.isInstalled) return;
+    
     NSUserNotification *notification = [NSUserNotification new];
     notification.title = [NSString stringWithFormat:@"%@ installed", package.type];
     NSString *restartText = package.requiresRestart ? @" Please restart Xcode to use it." : @"";
@@ -260,19 +224,16 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
 - (void)updatePredicate {
     NSString *searchText = self.searchField.stringValue;
-    NSMutableArray *predicates = [[NSMutableArray alloc] initWithCapacity:3];
+    NSMutableArray* predicates = [[NSMutableArray alloc] initWithCapacity:3];
     Class selectedPackageClass = [self segmentClassMapping][@([self.packageTypeSegmentedControl selectedSegment])];
-    if (selectedPackageClass) {
+    if (selectedPackageClass)
         [predicates addObject:[NSPredicate predicateWithFormat:CLASS_PREDICATE_FORMAT, selectedPackageClass]];
-    }
 
-    if (searchText.length > 0) {
+    if (searchText.length > 0)
         [predicates addObject:[NSPredicate predicateWithFormat:SEARCH_PREDICATE_FORMAT, searchText, searchText]];
-    }
 
-    if ([self.installationStateSegmentedControl selectedSegment] != 0) {
+    if ([self.installationStateSegmentedControl selectedSegment] != 0)
         [predicates addObject:[NSPredicate predicateWithFormat:INSTALLED_PREDICATE_FORMAT]];
-    }
 
     [self.tableViewDelegate filterUsingPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
     [self.tableView reloadData];
@@ -288,21 +249,21 @@ BOOL hasPressedCommandF(NSEvent *event) {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:address]];
 }
 
-- (void)displayScreenshotWithPath:(NSString *)screenshotPath withTitle:(NSString *)title {
+- (void)displayScreenshotForPackage:(ATZPackage *)package {
+    
     [self.previewPanel.animator setAlphaValue:0.f];
-    self.previewPanel.title = title;
-    [self retrieveImageViewForScreenshot:screenshotPath
-                                progress:^(CGFloat progress) {}
-                              completion:^(NSImage *image) {
-         [self displayImage:image withTitle:title];
-     }];
+    self.previewPanel.title = package.name;
+    
+    [self.tableViewDelegate fetchAndCacheImageForPackage:package progress:NULL completion:^(NSImage *image) {
+        [self displayImage:image withTitle:package.name];
+    }];
 }
 
-- (void)displayImage:(NSImage *)image withTitle:(NSString *)title {
+- (void)displayImage:(NSImage *)image withTitle:(NSString*)title {
     self.previewImageView.image = image;
     [NSAnimationContext beginGrouping];
 
-    [self.previewImageView.animator setFrame:(CGRect){.origin = CGPointMake(0, 0), .size = image.size }];
+    [self.previewImageView.animator setFrame:(CGRect){ .origin = CGPointMake(0, 0), .size = image.size }];
     CGRect previewPanelFrame = (CGRect){.origin = self.previewPanel.frame.origin, .size = image.size};
     [self.previewPanel setFrame:previewPanelFrame display:NO animate:NO];
     [self.previewPanel.animator center];
@@ -313,24 +274,8 @@ BOOL hasPressedCommandF(NSEvent *event) {
     [self.previewPanel.animator setAlphaValue:1.f];
 }
 
-- (void)retrieveImageViewForScreenshot:(NSString *)screenshotPath progress:(void (^)(CGFloat))downloadProgress completion:(void (^)(NSImage *))completion {
-    ATZDownloader *downloader = [ATZDownloader new];
-    [downloader downloadFileFromPath:screenshotPath
-                            progress:^(CGFloat progress) {
-         downloadProgress(progress);
-     }
-                          completion:^(NSData *responseData, NSError *error) {
-         NSImage *image = [[NSImage alloc] initWithData:responseData];
-         completion(image);
-     }];
-}
-
 - (void)addVersionToWindow {
     self.versionTextField.stringValue = @(ATZ_VERSION);
-}
-
-- (void)loadForceHttpsForGitHubState {
-    _forceHttpsForGitHubMenuItem.state = [ATZConfig forceHttps];
 }
 
 @end
