@@ -36,6 +36,8 @@ static NSString *const CLEAN = @"clean";
 static NSString *const BUILD = @"build";
 static NSString *const XCODEPROJ = @".xcodeproj";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
+static NSString *const ALCATRAZ_SH = @"alcatraz.sh";
+
 
 @implementation ATZPluginInstaller
 
@@ -102,35 +104,44 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
 
-    NSString *xcodeProjPath;
-
-    @try { xcodeProjPath = [self findXcodeprojPathForPlugin:plugin]; }
-    @catch (NSException *exception) {
-        completion([NSError errorWithDomain:exception.reason code:666 userInfo:nil]);
-        return;
+    // try to build with alcatraz.sh if there is one
+    NSString *resourcePath = [self findBuildResource:ALCATRAZ_SH forPlugin:plugin];
+    if (resourcePath != nil) {
+        ATZShell *shell = [ATZShell new];
+        [shell executeCommand:resourcePath withArguments:@[]
+                   completion:^(NSString *output, NSError *error) {
+                       NSLog(@"build output: %@", output);
+                       completion(error);
+                   }];
+    } else { // otherwise try xcodeproj
+        NSString *xcodeProj = [plugin.name stringByAppendingString:XCODEPROJ];
+        resourcePath = [self findBuildResource:xcodeProj forPlugin:plugin];
+        ATZShell *shell = [ATZShell new];
+        NSArray *args = @[CLEAN, BUILD, PROJECT, resourcePath];
+        [shell executeCommand:XCODE_BUILD withArguments:args
+                   completion:^(NSString *output, NSError *error) {
+                       NSLog(@"build output: %@", output);
+                       completion(error);
+                   }];
     }
 
-    ATZShell *shell = [ATZShell new];
-    [shell executeCommand:XCODE_BUILD withArguments:@[CLEAN, BUILD, PROJECT, xcodeProjPath]
-               completion:^(NSString *output, NSError *error) {
-        NSLog(@"Xcodebuild output: %@", output);
-        completion(error);
-    }];
+    NSString *reason = [NSString stringWithFormat:@"neither %@ nor plugin.%@ found in plugin repository", ALCATRAZ_SH, XCODEPROJ];
+    completion([NSError errorWithDomain:reason code:666 userInfo:nil]);
 }
 
-- (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
+
+- (NSString *)findBuildResource:(NSString *)resource forPlugin:(ATZPlugin *)plugin {
     NSString *clonedDirectory = [self pathForDownloadedPackage:plugin];
-    NSString *xcodeProjFilename = [plugin.name stringByAppendingString:XCODEPROJ];
 
     NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];
     NSString *directoryEntry;
 
-    while (directoryEntry = [enumerator nextObject])
-        if ([directoryEntry.pathComponents.lastObject isEqualToString:xcodeProjFilename])
+    while (directoryEntry = [enumerator nextObject]) {
+        if ([directoryEntry.pathComponents.lastObject isEqualToString:resource]) {
             return [clonedDirectory stringByAppendingPathComponent:directoryEntry];
-
-    NSLog(@"Wasn't able to find: %@ in %@", xcodeProjFilename, clonedDirectory);
-    @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
+        }
+    }
+    return nil;
 }
 
 - (NSString *)installNameFromPbxproj:(ATZPackage *)package {
