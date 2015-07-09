@@ -85,7 +85,6 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     [view.descriptionField setStringValue:package.summary];
     [view.linkButton setImage:[self tableView:tableView websiteImageForTableColumn:tableColumn row:row]];
     [view.linkButton setTitle:[self tableView:tableView displayWebsiteForTableColumn:tableColumn row:row]];
-    [view.typeImageView setImage:[self tableView:tableView packageTypeImageForTableColumn:tableColumn row:row]];
     [view.installButton setTitle:([package isInstalled] ? @"REMOVE" : @"INSTALL")];
     BOOL hasImage = package.screenshotPath != nil;
     [view.previewButton setFullSize:hasImage];
@@ -156,38 +155,6 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
             break;
     }
     return [[Alcatraz sharedPlugin].bundle imageForResource:websiteImageName];
-}
-
-- (NSImage *)tableView:(NSTableView*)tableView packageTypeImageForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSString* typeImageName = nil;
-    ATZPackage* package = [self tableView:tableView objectValueForTableColumn:tableColumn row:row];
-    if ([package isKindOfClass:[ATZPlugin class]]) {
-        typeImageName = @"740-gear";
-    } else if ([package isKindOfClass:[ATZTemplate class]]) {
-        typeImageName = @"808-documents";
-    } else if ([package isKindOfClass:[ATZColorScheme class]]) {
-        typeImageName = @"837-palette";
-    } else {
-        return nil;
-    }
-    if ([package isInstalled])
-        typeImageName = [NSString stringWithFormat:@"%@-selected", typeImageName];
-
-    return [self selectionTemplateImageNamed:typeImageName];
-}
-
-- (NSImage *)selectionTemplateImageNamed:(NSString *)imageName {
-    NSImage *template = [[Alcatraz sharedPlugin].bundle imageForResource:imageName];
-    NSSize size = [template size];
-
-    NSImage *copiedImage = [template copy];
-    [copiedImage setTemplate:NO];
-    [copiedImage lockFocus];
-    [[NSColor selectedItemColor] set];
-    NSRectFillUsingOperation(NSMakeRect(0, 0, size.width, size.height), NSCompositeSourceAtop);
-    [copiedImage unlockFocus];
-
-    return copiedImage;
 }
 
 #pragma mark - Image Previews
