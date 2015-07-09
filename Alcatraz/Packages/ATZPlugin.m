@@ -41,8 +41,4 @@ static NSString *const XCPLUGIN = @".xcplugin";
     return XCPLUGIN;
 }
 
-- (NSString *)iconName {
-    return PLUGIN_ICON_NAME;
-}
-
 @end

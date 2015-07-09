@@ -23,8 +23,6 @@
 #import <Foundation/Foundation.h>
 #import "ATZPackage.h"
 
-static NSString *const PLUGIN_ICON_NAME = @"toolbar_plugins";
-
 @interface ATZPlugin : ATZPackage
 
 @end

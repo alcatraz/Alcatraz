@@ -43,8 +43,4 @@ static NSString *const XCTEMPLATE = @".xctemplate";
     return XCTEMPLATE;
 }
 
-- (NSString *)iconName {
-    return TEMPLATE_ICON_NAME;
-}
-
 @end

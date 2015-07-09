@@ -24,8 +24,6 @@
 #import <Foundation/Foundation.h>
 #import "ATZPackage.h"
 
-static NSString *const TEMPLATE_ICON_NAME = @"toolbar_templates";
-
 @interface ATZTemplate : ATZPackage
 
 @end

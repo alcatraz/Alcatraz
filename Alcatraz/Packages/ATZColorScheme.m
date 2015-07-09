@@ -45,8 +45,4 @@ static NSString *const DVTCOLORSCHEME = @".dvtcolortheme";
     return DVTCOLORSCHEME;
 }
 
-- (NSString *)iconName {
-    return COLOR_SCHEME_ICON_NAME;
-}
-
 @end

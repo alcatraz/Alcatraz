@@ -12,12 +12,6 @@
 		0C7AF650186B4E890064EE7B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7AF64F186B4E890064EE7B /* QuartzCore.framework */; };
 		32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BDEBC2173A46A900513A7C /* eye_icon.png */; };
 		32D86505173A4555009C724B /* eye_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D86503173A4555009C724B /* eye_icon@2x.png */; };
-		64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4918136FF30025C0B1 /* toolbar_colors.png */; };
-		64C28A5618136FF30025C0B1 /* toolbar_colors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */; };
-		64C28A5918136FF30025C0B1 /* toolbar_plugins.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4D18136FF30025C0B1 /* toolbar_plugins.png */; };
-		64C28A5A18136FF30025C0B1 /* toolbar_plugins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A4E18136FF30025C0B1 /* toolbar_plugins@2x.png */; };
-		64C28A5D18136FF30025C0B1 /* toolbar_templates.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A5118136FF30025C0B1 /* toolbar_templates.png */; };
-		64C28A5E18136FF30025C0B1 /* toolbar_templates@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C28A5218136FF30025C0B1 /* toolbar_templates@2x.png */; };
 		64EDC501188CB55A00D45F1D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64EDC500188CB55A00D45F1D /* Cocoa.framework */; };
 		890A4B43171F031300AFE577 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B42171F031300AFE577 /* AppKit.framework */; };
 		890A4B45171F031300AFE577 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890A4B44171F031300AFE577 /* Foundation.framework */; };
@@ -72,12 +66,6 @@
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
 		6449530218CE826C009494BD /* ATZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZVersion.h; sourceTree = "<group>"; };
-		64C28A4918136FF30025C0B1 /* toolbar_colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_colors.png; sourceTree = "<group>"; };
-		64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_colors@2x.png"; sourceTree = "<group>"; };
-		64C28A4D18136FF30025C0B1 /* toolbar_plugins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_plugins.png; sourceTree = "<group>"; };
-		64C28A4E18136FF30025C0B1 /* toolbar_plugins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_plugins@2x.png"; sourceTree = "<group>"; };
-		64C28A5118136FF30025C0B1 /* toolbar_templates.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_templates.png; sourceTree = "<group>"; };
-		64C28A5218136FF30025C0B1 /* toolbar_templates@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar_templates@2x.png"; sourceTree = "<group>"; };
 		64EDC500188CB55A00D45F1D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alcatraz.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		890A4B42171F031300AFE577 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -184,12 +172,6 @@
 				8A6025AA19C2978900D47F3F /* github_grayscale.png */,
 				8A6025AB19C2978900D47F3F /* github_grayscale@2x.png */,
 				8A6025AC19C2978900D47F3F /* github_grayscale@3x.png */,
-				64C28A4918136FF30025C0B1 /* toolbar_colors.png */,
-				64C28A4A18136FF30025C0B1 /* toolbar_colors@2x.png */,
-				64C28A4D18136FF30025C0B1 /* toolbar_plugins.png */,
-				64C28A4E18136FF30025C0B1 /* toolbar_plugins@2x.png */,
-				64C28A5118136FF30025C0B1 /* toolbar_templates.png */,
-				64C28A5218136FF30025C0B1 /* toolbar_templates@2x.png */,
 			);
 			path = Resources;
 			sourceTree = SOURCE_ROOT;
@@ -428,23 +410,17 @@
 				8A6025BC19C2978900D47F3F /* git_grayscale.png in Resources */,
 				8A6025BF19C2978900D47F3F /* github_grayscale.png in Resources */,
 				8A6025BD19C2978900D47F3F /* git_grayscale@2x.png in Resources */,
-				64C28A5618136FF30025C0B1 /* toolbar_colors@2x.png in Resources */,
 				8A6025BE19C2978900D47F3F /* git_grayscale@3x.png in Resources */,
 				079C9E05183D8BBD009F5A17 /* link_icon@2x.png in Resources */,
-				64C28A5518136FF30025C0B1 /* toolbar_colors.png in Resources */,
-				64C28A5A18136FF30025C0B1 /* toolbar_plugins@2x.png in Resources */,
 				079C9E03183D8BB8009F5A17 /* link_icon.png in Resources */,
 				32D86505173A4555009C724B /* eye_icon@2x.png in Resources */,
 				8A6025C819C29E3100D47F3F /* ATZPackageListTableCellView.xib in Resources */,
 				8A6025C019C2978900D47F3F /* github_grayscale@2x.png in Resources */,
 				8A6025C119C2978900D47F3F /* github_grayscale@3x.png in Resources */,
-				64C28A5D18136FF30025C0B1 /* toolbar_templates.png in Resources */,
 				32BDEBC3173A46A900513A7C /* eye_icon.png in Resources */,
 				8A6025BB19C2978900D47F3F /* bitbucket_grayscale@3x.png in Resources */,
 				8A6025B919C2978900D47F3F /* bitbucket_grayscale.png in Resources */,
 				8A6025BA19C2978900D47F3F /* bitbucket_grayscale@2x.png in Resources */,
-				64C28A5E18136FF30025C0B1 /* toolbar_templates@2x.png in Resources */,
-				64C28A5918136FF30025C0B1 /* toolbar_plugins.png in Resources */,
 				8AD5249F174102F9008B451F /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
