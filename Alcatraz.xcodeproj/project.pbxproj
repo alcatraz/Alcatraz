@@ -59,6 +59,7 @@
 		8AF670C919C2DE8A00E1C168 /* ATZSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */; };
 		F0DF961E1B40416400DF68CC /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */; };
 		F07E55521B551BA800161E61 /* ATZXcodePrefsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E55511B551BA800161E61 /* ATZXcodePrefsManager.m */; };
+		F0C202121B519CCC001867CF /* ATZCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C202111B519CCC001867CF /* ATZCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +149,8 @@
 		F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZSegmentedCell.m; sourceTree = "<group>"; };
 		F07E55501B551BA800161E61 /* ATZXcodePrefsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZXcodePrefsManager.h; sourceTree = "<group>"; };
 		F07E55511B551BA800161E61 /* ATZXcodePrefsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZXcodePrefsManager.m; sourceTree = "<group>"; };
+		F0C202101B519CCC001867CF /* ATZCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZCache.h; sourceTree = "<group>"; };
+		F0C202111B519CCC001867CF /* ATZCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +308,8 @@
 				89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */,
 				F07E55501B551BA800161E61 /* ATZXcodePrefsManager.h */,
 				F07E55511B551BA800161E61 /* ATZXcodePrefsManager.m */,
+				F0C202101B519CCC001867CF /* ATZCache.h */,
+				F0C202111B519CCC001867CF /* ATZCache.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 			files = (
 				890A4B4E171F031300AFE577 /* Alcatraz.m in Sources */,
 				89D40AFC1721CBD600A67BB3 /* ATZPluginWindowController.m in Sources */,
+				F0C202121B519CCC001867CF /* ATZCache.m in Sources */,
 				8917D9F31726B4EE00F0B2D2 /* ATZColorScheme.m in Sources */,
 				8917D9F41726B4EE00F0B2D2 /* ATZFileTemplate.m in Sources */,
 				8917D9F51726B4EE00F0B2D2 /* ATZPackage.m in Sources */,
