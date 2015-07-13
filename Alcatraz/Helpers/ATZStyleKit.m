@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "ATZStyleKit.h"
-#import "ATZPackage.h"
+#import "ATZPlugin.h"
 #import "ATZFillableButton.h"
 
 @implementation ATZStyleKit
@@ -31,9 +31,16 @@
 
 + (void)updateButton:(ATZFillableButton *)fillableButton forPackageState:(ATZPackage *)package animated:(BOOL)animated {
     if ([package isInstalled]) {
-        [fillableButton setTitle:@"REMOVE"];
-        [fillableButton setButtonStyle:ATZFillableButtonStyleRemove];
-        [fillableButton setFillRatio:1 animated:animated];
+        if ([package isBlacklisted]) {
+            [fillableButton setTitle:@"BLOCKED"];
+            [fillableButton setButtonStyle:ATZFillableButtonStyleBlocked];
+            [fillableButton setFillRatio:0 animated:animated];
+        }
+        else {
+            [fillableButton setTitle:@"REMOVE"];
+            [fillableButton setButtonStyle:ATZFillableButtonStyleRemove];
+            [fillableButton setFillRatio:1 animated:animated];
+        }
     }
     else {
         [fillableButton setTitle:@"INSTALL"];
