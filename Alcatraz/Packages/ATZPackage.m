@@ -99,6 +99,10 @@
     [[self installer] removePackage:self completion:completion];
 }
 
+- (void)whitelistWithCompletion:(void(^)(NSError *failure))completion {
+    [self.installer whitelistPackage:self completion:completion];
+}
+
 - (ATZInstaller *)installer {
     @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Each package has a different installer!" userInfo:nil];
 }

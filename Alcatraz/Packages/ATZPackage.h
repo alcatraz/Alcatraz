@@ -56,6 +56,8 @@ typedef NS_ENUM(NSUInteger, ATZPackageWebsiteType) {
 
 - (void)removeWithCompletion:(void(^)(NSError *failure))completion;
 
+- (void)whitelistWithCompletion:(void(^)(NSError *failure))completion;
+
 
 #pragma mark - Abstract
 

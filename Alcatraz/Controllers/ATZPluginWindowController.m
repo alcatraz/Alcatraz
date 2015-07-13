@@ -89,10 +89,18 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 - (IBAction)installPressed:(ATZFillableButton *)button {
     ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:button]];
     
-    if (package.isInstalled)
-        [self removePackage:package andUpdateControl:button];
-    else
+    if (package.isInstalled) {
+        if ([package isKindOfClass:[ATZPlugin class]] && [(ATZPlugin *)package isBlacklisted]) {
+            [self whitelistPackage:(ATZPlugin *)package andUpdateControl:button];
+        }
+        else {
+            [self removePackage:package andUpdateControl:button];
+        }
+    }
+    else {
         [self installPackage:package andUpdateControl:button];
+    }
+
 }
 
 - (NSDictionary *)segmentClassMapping {
@@ -204,6 +212,13 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
         if (package.requiresRestart) {
             [self postNotificationForInstalledPackage:package];
         }
+    }];
+}
+
+- (void)whitelistPackage:(ATZPlugin *)package andUpdateControl:(ATZFillableButton *)button {
+    [package whitelistWithCompletion:^(NSError *failure) {
+        [ATZStyleKit updateButton:button forPackageState:package animated:YES];
+        if (package.requiresRestart) [self postNotificationForInstalledPackage:package];
     }];
 }
 

@@ -44,7 +44,6 @@
     [self copyTemplatesToXcode:package completion:completion];
 }
 
-
 #pragma mark - Private
 
 - (void)copyTemplatesToXcode:(ATZTemplate *)template completion:(void (^)(NSError *))completion {
