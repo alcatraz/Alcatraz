@@ -58,6 +58,7 @@
 		8ADC22341A2AD5B800DB7BCA /* ATZPreviewImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC22331A2AD5B800DB7BCA /* ATZPreviewImageButton.m */; };
 		8AF670C919C2DE8A00E1C168 /* ATZSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */; };
 		F0DF961E1B40416400DF68CC /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */; };
+		F07E55521B551BA800161E61 /* ATZXcodePrefsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E55511B551BA800161E61 /* ATZXcodePrefsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,8 @@
 		8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedControl.m; path = Views/ATZSegmentedControl.m; sourceTree = "<group>"; };
 		F0DF961C1B40416300DF68CC /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZSegmentedCell.h; sourceTree = "<group>"; };
 		F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZSegmentedCell.m; sourceTree = "<group>"; };
+		F07E55501B551BA800161E61 /* ATZXcodePrefsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZXcodePrefsManager.h; sourceTree = "<group>"; };
+		F07E55511B551BA800161E61 /* ATZXcodePrefsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZXcodePrefsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +303,8 @@
 				8917DA171726B63B00F0B2D2 /* ATZShell.m */,
 				89B4F2BC172FF5AC001FD2E3 /* ATZPBXProjParser.h */,
 				89B4F2BD172FF5AC001FD2E3 /* ATZPBXProjParser.m */,
+				F07E55501B551BA800161E61 /* ATZXcodePrefsManager.h */,
+				F07E55511B551BA800161E61 /* ATZXcodePrefsManager.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				8A1732A81A2694BB002033D6 /* NSColor+Alcatraz.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
 				897F7899173FC54C006C43E5 /* ATZAlcatrazPackage.m in Sources */,
+				F07E55521B551BA800161E61 /* ATZXcodePrefsManager.m in Sources */,
 				8A4C621A19C2D6F1003580BD /* ATZFilterBarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

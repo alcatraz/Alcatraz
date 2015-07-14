@@ -22,6 +22,7 @@
 
 #import "ATZPackage.h"
 #import "ATZInstaller.h"
+#import "ATZXcodePrefsManager.h"
 #import "ATZGit.h"
 
 @implementation ATZPackage
@@ -76,7 +77,7 @@
 #pragma mark - Abstract
 
 - (BOOL)isBlacklisted {
-    return [[self installer] isPackageBlacklisted:self];
+    return [[ATZXcodePrefsManager sharedManager] isPackageBlacklisted:self];
 }
 
 - (BOOL)isInstalled {
@@ -100,7 +101,7 @@
 }
 
 - (void)whitelistWithCompletion:(void(^)(NSError *failure))completion {
-    [self.installer whitelistPackage:self completion:completion];
+    [[ATZXcodePrefsManager sharedManager] whitelistPackage:self completion:completion];
 }
 
 - (ATZInstaller *)installer {

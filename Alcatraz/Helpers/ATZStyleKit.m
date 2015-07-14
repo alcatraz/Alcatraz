@@ -25,6 +25,10 @@
 #import "ATZPlugin.h"
 #import "ATZFillableButton.h"
 
+static NSString *const BUTTON_TITLE_INSTALL = @"INSTALL";
+static NSString *const BUTTON_TITLE_REMOVE = @"REMOVE";
+static NSString *const BUTTON_TITLE_BLOCKED = @"BLOCKED";
+
 @implementation ATZStyleKit
 
 #pragma mark ATZFillableButton styling
@@ -32,18 +36,18 @@
 + (void)updateButton:(ATZFillableButton *)fillableButton forPackageState:(ATZPackage *)package animated:(BOOL)animated {
     if ([package isInstalled]) {
         if ([package isBlacklisted]) {
-            [fillableButton setTitle:@"BLOCKED"];
+            [fillableButton setTitle:BUTTON_TITLE_BLOCKED];
             [fillableButton setButtonStyle:ATZFillableButtonStyleBlocked];
             [fillableButton setFillRatio:0 animated:animated];
         }
         else {
-            [fillableButton setTitle:@"REMOVE"];
+            [fillableButton setTitle:BUTTON_TITLE_REMOVE];
             [fillableButton setButtonStyle:ATZFillableButtonStyleRemove];
             [fillableButton setFillRatio:1 animated:animated];
         }
     }
     else {
-        [fillableButton setTitle:@"INSTALL"];
+        [fillableButton setTitle:BUTTON_TITLE_INSTALL];
         [fillableButton setButtonStyle:ATZFillableButtonStyleInstall];
         [fillableButton setFillRatio:0 animated:animated];
     }

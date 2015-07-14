@@ -72,17 +72,15 @@
     switch (buttonStyle) {
         case ATZFillableButtonStyleInstall:
             self.fillColor = installGreen;
-            self.backgroundColor = [NSColor whiteColor];
             break;
         case ATZFillableButtonStyleRemove:
             self.fillColor = removeRed;
-            self.backgroundColor = [NSColor whiteColor];
             break;
         case ATZFillableButtonStyleBlocked:
             self.fillColor = blockedOrange;
-            self.backgroundColor = [NSColor whiteColor];
             break;
     }
+    self.backgroundColor = [NSColor whiteColor];
 }
 
 @end

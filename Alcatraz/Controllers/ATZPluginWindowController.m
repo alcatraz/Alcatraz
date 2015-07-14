@@ -91,7 +91,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     ATZPackage *package = [self.tableViewDelegate tableView:self.tableView objectValueForTableColumn:0 row:[self.tableView rowForView:button]];
 
     if (package.isInstalled) {
-        if ([package isKindOfClass:[ATZPlugin class]] && [(ATZPlugin *)package isBlacklisted]) {
+        if (package.isBlacklisted) {
             [self whitelistPackage:(ATZPlugin *)package andUpdateControl:button];
         }
         else {
@@ -224,9 +224,7 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 }
 
 - (void)postNotificationForInstalledPackage:(ATZPackage *)package {
-    if (![NSUserNotificationCenter class] || !package.isInstalled) {
-        return;
-    }
+    if (![NSUserNotificationCenter class] || !package.isInstalled) return;
 
     NSUserNotification *notification = [NSUserNotification new];
     notification.title = [NSString stringWithFormat:@"%@ installed", package.type];

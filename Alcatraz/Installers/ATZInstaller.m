@@ -81,10 +81,6 @@ const CGFloat ATZFakeInstallProgress = 0.66;
     [[NSFileManager sharedManager] removeItemAtPath:[self pathForInstalledPackage:package] completion:completion];
 }
 
-- (BOOL)isPackageBlacklisted:(ATZPackage *)package {
-    return NO;
-}
-
 - (BOOL)isPackageInstalled:(ATZPackage *)package {
     return [[NSFileManager sharedManager] fileExistsAtPath:[self pathForInstalledPackage:package]];
 }
@@ -116,12 +112,6 @@ const CGFloat ATZFakeInstallProgress = 0.66;
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Abstract Installer doesn't know how to install" userInfo:nil];
 }
-
-- (void)whitelistPackage:(ATZPackage *)package completion:(void(^)(NSError *error))completion {
-    @throw [NSException exceptionWithName:@"Abstract Installer"
-                                   reason:@"Abstract Installer doesn't know how to whitelist" userInfo:nil];
-}
-
 
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
     @throw [NSException exceptionWithName:@"Abstract Installer"
