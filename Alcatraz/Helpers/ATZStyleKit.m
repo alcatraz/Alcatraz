@@ -100,14 +100,12 @@ static NSString *const BUTTON_TITLE_BLOCKED = @"BLOCKED";
     CGContextAddPath(context, clippingPath);
     CGContextClip(context);
 
-    // Text font & style
-    NSFont *font = [NSFont fontWithName:@"HelveticaNeue-Light" size:12];
     NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
     textStyle.alignment = NSCenterTextAlignment;
     textStyle.lineBreakMode = NSLineBreakByClipping;
 
     NSDictionary* textFontAttributes = @{
-        NSFontAttributeName:font,
+        NSFontAttributeName:[NSFont fontWithName:@"HelveticaNeue-Light" size:12],
         NSForegroundColorAttributeName:color,
         NSParagraphStyleAttributeName:textStyle,
     };
