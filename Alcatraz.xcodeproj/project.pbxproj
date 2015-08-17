@@ -57,6 +57,7 @@
 		8AD5249F174102F9008B451F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD524A2174102F9008B451F /* Localizable.strings */; };
 		8ADC22341A2AD5B800DB7BCA /* ATZPreviewImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC22331A2AD5B800DB7BCA /* ATZPreviewImageButton.m */; };
 		8AF670C919C2DE8A00E1C168 /* ATZSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */; };
+		F0DF961E1B40416400DF68CC /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +144,8 @@
 		8ADC22331A2AD5B800DB7BCA /* ATZPreviewImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPreviewImageButton.m; path = Views/ATZPreviewImageButton.m; sourceTree = "<group>"; };
 		8AF670C719C2DE8A00E1C168 /* ATZSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZSegmentedControl.h; path = Views/ATZSegmentedControl.h; sourceTree = "<group>"; };
 		8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedControl.m; path = Views/ATZSegmentedControl.m; sourceTree = "<group>"; };
+		F0DF961C1B40416300DF68CC /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZSegmentedCell.h; sourceTree = "<group>"; };
+		F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZSegmentedCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +332,8 @@
 				8ADC22331A2AD5B800DB7BCA /* ATZPreviewImageButton.m */,
 				8AF670C719C2DE8A00E1C168 /* ATZSegmentedControl.h */,
 				8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */,
+				F0DF961C1B40416300DF68CC /* ATZSegmentedCell.h */,
+				F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 				8917DA191726B63B00F0B2D2 /* ATZGit.m in Sources */,
 				8917DA1A1726B63B00F0B2D2 /* ATZShell.m in Sources */,
 				89B4F2BE172FF5AC001FD2E3 /* ATZPBXProjParser.m in Sources */,
+				F0DF961E1B40416400DF68CC /* ATZSegmentedCell.m in Sources */,
 				8A133EE319C235FD0068FCB9 /* ATZPackageListTableCellView.m in Sources */,
 				8A1732A81A2694BB002033D6 /* NSColor+Alcatraz.m in Sources */,
 				894714E817302F63003CDDA7 /* ATZInstaller.m in Sources */,
