@@ -55,7 +55,7 @@ static Alcatraz *sharedPlugin;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
 
 		   [[NSNotificationCenter defaultCenter] addObserver:self
-										    selector:@selector(applicationDidFinishLaunching:)
+										    selector:@selector(xcodeDidFinishLaunching:)
 										    name:NSApplicationDidFinishLaunchingNotification
 										  object:nil];
         }];
