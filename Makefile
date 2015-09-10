@@ -37,12 +37,11 @@ endif
 
 # Build archive ready for distribution
 build: clean
-	xcodebuild -project Alcatraz.xcodeproj build | tee xcodebuild.log | xcpretty -c
 	rm -rf ${BUNDLE_NAME}
+	xcodebuild -project Alcatraz.xcodeproj build | tee xcodebuild.log | xcpretty -c
 	cp -r ${INSTALL_PATH} ${BUNDLE_NAME}
 	mkdir -p releases/${VERSION}
 	tar -czf releases/${VERSION}/${ARCHIVE} ${BUNDLE_NAME}
-	rm -rf ${BUNDLE_NAME}
 
 push_master_and_tags:
 	git push origin master
