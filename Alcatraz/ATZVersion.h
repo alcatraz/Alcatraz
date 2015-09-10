@@ -24,7 +24,7 @@
 #ifndef Alcatraz_Version_h
 #define Alcatraz_Version_h
 
-#define ATZ_VERSION "1.1.6"
+#define ATZ_VERSION "1.1.7"
 
 #endif
 
