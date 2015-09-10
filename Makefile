@@ -50,7 +50,7 @@ push_master_and_tags:
 
 # Create a Github release
 github_release:
-	gh release create -m "Release ${VERSION}" ${VERSION}
+	hub release create -m "Release ${VERSION}" ${VERSION}
 
 # Commit & tag the version from ATZVersion.h
 tag:
