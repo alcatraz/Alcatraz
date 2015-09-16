@@ -139,7 +139,7 @@ didCompleteWithError:(NSError *)error {
     
     _urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                                 delegate:self
-                                           delegateQueue:[NSOperationQueue mainQueue]];
+                                           delegateQueue:[NSOperationQueue currentQueue]];
     return _urlSession;
 }
 
