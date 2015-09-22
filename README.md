@@ -52,7 +52,7 @@ Open up your terminal and paste this:
 rm -rf ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin
 ```
 
-To remove all packages installed via Alcatraz, run `rm -rf ~/Library/Application\ Support/Alcatraz/`.
+To remove all packages installed via Alcatraz, run `rm -rf ~/Library/Application\ Support/Alcatraz/`
 
 ## Team
 
