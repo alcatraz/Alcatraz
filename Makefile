@@ -1,10 +1,9 @@
 ARCHIVE            = "Alcatraz.tar.gz"
 BUNDLE_NAME        = "Alcatraz.xcplugin"
-VERSION_LOCATION   = "Alcatraz/ATZVersion.h"
 INSTALL_PATH       = ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/${BUNDLE_NAME}/
 TEST_BUILD_ARGS	   = -workspace TestProject/TestProject.xcworkspace -scheme TestProject
 XCODEBUILD         = xcodebuild $(TEST_BUILD_ARGS)
-VERSION            = $(shell grep 'ATZ_VERSION' Alcatraz/ATZVersion.h | cut -d " " -f 3 | tr -d '"')
+VERSION            = $(shell /usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" Alcatraz/Alcatraz-Info.plist)
 
 default: test
 
@@ -56,6 +55,6 @@ tag:
 	git tag $(VERSION)
 
 update_install_url:
-	sed -i '' -e 's/[.0-9]\{3,5\}/${VERSION}/' Scripts/install.sh
+	sed -i '' -Ee 's/[0-9]+(\.[0-9]+){2}/${VERSION}/' Scripts/install.sh
 	git commit -am "updated install script for version $(VERSION)"
 

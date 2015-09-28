@@ -66,7 +66,6 @@
 		0C7AF64F186B4E890064EE7B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32BDEBC2173A46A900513A7C /* eye_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_icon.png; sourceTree = "<group>"; };
 		32D86503173A4555009C724B /* eye_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye_icon@2x.png"; sourceTree = "<group>"; };
-		6449530218CE826C009494BD /* ATZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZVersion.h; sourceTree = "<group>"; };
 		64EDC500188CB55A00D45F1D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		890A4B3F171F031300AFE577 /* Alcatraz.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alcatraz.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		890A4B42171F031300AFE577 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -220,7 +219,6 @@
 				890A4B4C171F031300AFE577 /* Alcatraz.h */,
 				890A4B4D171F031300AFE577 /* Alcatraz.m */,
 				890A4B47171F031300AFE577 /* Supporting Files */,
-				6449530218CE826C009494BD /* ATZVersion.h */,
 			);
 			path = Alcatraz;
 			sourceTree = "<group>";
