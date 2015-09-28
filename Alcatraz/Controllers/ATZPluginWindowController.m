@@ -26,7 +26,6 @@
 #import "ATZDownloader.h"
 #import "Alcatraz.h"
 #import "ATZPackageFactory.h"
-#import "ATZVersion.h"
 
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
@@ -274,7 +273,7 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)addVersionToWindow {
-    self.versionTextField.stringValue = @(ATZ_VERSION);
+    self.versionTextField.stringValue = [[[Alcatraz sharedPlugin] bundle] infoDictionary][@"CFBundleShortVersionString"];
 }
 
 @end
