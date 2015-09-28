@@ -54,6 +54,10 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     return self;
 }
 
+- (void)updatePackages:(NSArray*)packages {
+    _packages = packages;
+}
+
 - (void)configureTableView:(NSTableView *)tableView {
     NSNib* nib = [[NSNib alloc] initWithNibNamed:NSStringFromClass([ATZPackageListTableCellView class]) bundle:[Alcatraz sharedPlugin].bundle];
     [tableView registerNib:nib forIdentifier:packageCellIdentifier];

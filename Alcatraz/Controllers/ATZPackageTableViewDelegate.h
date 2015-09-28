@@ -29,6 +29,8 @@
 
 - (instancetype)initWithPackages:(NSArray*)packages tableViewOwner:(id)owner;
 
+- (void)updatePackages:(NSArray*)packages;
+
 - (void)configureTableView:(NSTableView*)tableView;
 - (void)filterUsingPredicate:(NSPredicate*)predicate;
 

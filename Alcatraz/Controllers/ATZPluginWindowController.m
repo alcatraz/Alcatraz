@@ -188,12 +188,19 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 }
 
 - (void)reloadTableView {
-    self.tableViewDelegate = [[ATZPackageTableViewDelegate alloc] initWithPackages:self.packages tableViewOwner:self];
-    self.tableView.delegate = self.tableViewDelegate;
-    self.tableView.dataSource = self.tableViewDelegate;
-    [self.tableViewDelegate configureTableView:self.tableView];
+    if (!self.tableViewDelegate) {
+        self.tableViewDelegate = [[ATZPackageTableViewDelegate alloc] initWithPackages:self.packages
+                                                                        tableViewOwner:self];
+        self.tableView.delegate = self.tableViewDelegate;
+        self.tableView.dataSource = self.tableViewDelegate;
+
+        [self.tableViewDelegate configureTableView:self.tableView];
+    }
+    else {
+        [self.tableViewDelegate updatePackages:self.packages];
+    }
+    
     [self updatePredicate];
-    [self.tableView reloadData];
 }
 
 #pragma mark - Private
