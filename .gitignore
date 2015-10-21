@@ -23,6 +23,7 @@ xcodebuild.log
 # Shipping
 build/
 releases/
+Alcatraz.xcplugin
 
 #CocoaPods
 Pods
