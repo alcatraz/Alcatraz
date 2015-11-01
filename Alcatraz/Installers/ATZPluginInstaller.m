@@ -65,19 +65,24 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 // This is a temporary support for installs in /tmp.
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
-    NSString *pluginsInstallPath = [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PLUGINS_RELATIVE_PATH];
     NSString *pluginInstallName = [self installNameFromPbxproj:package] ?: [package.name stringByAppendingString:package.extension];
-
-    // Packages can be installed in multiple places:
-    // ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins (where most xcplugins go)
-    // ~/Library/Developer/Xcode/Plug-ins (where ideplugins go)
-    if ([[pluginInstallName pathExtension] isEqualToString:@"ideplugin"]) {
-        pluginsInstallPath = [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_IDEPLUGINS_RELATIVE_PATH];
-    }
+    NSString *pluginsInstallPath = [self pathForPluginsWithExtension:[pluginInstallName pathExtension]];
 
     return [pluginsInstallPath stringByAppendingPathComponent:pluginInstallName];
 }
 
+- (NSString *)pathForPluginsWithExtension:(NSString *)extension
+{
+    NSString *path;
+
+    if ([extension isEqualToString:@"ideplugin"]) {
+        path = [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_IDEPLUGINS_RELATIVE_PATH];
+    } else {
+        path = [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PLUGINS_RELATIVE_PATH];
+    }
+
+    return path;
+}
 
 #pragma mark - Hooks
 // Note: this is an early alpha implementation. It needs some love
