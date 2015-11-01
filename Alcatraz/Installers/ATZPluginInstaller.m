@@ -28,6 +28,7 @@
 #import "ATZPBXProjParser.h"
 
 static NSString *const INSTALLED_PLUGINS_RELATIVE_PATH = @"Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+static NSString *const INSTALLED_IDEPLUGINS_RELATIVE_PATH = @"Library/Developer/Xcode/Plug-ins";
 static NSString *const DOWNLOADED_PLUGINS_RELATIVE_PATH = @"Plug-ins";
 
 static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
@@ -65,10 +66,16 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 // This is a temporary support for installs in /tmp.
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
     NSString *pluginsInstallPath = [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_PLUGINS_RELATIVE_PATH];
-    NSString *pluginInstallName = [self installNameFromPbxproj:package] ?: package.name;
+    NSString *pluginInstallName = [self installNameFromPbxproj:package] ?: [package.name stringByAppendingString:package.extension];
 
-    return [[pluginsInstallPath stringByAppendingPathComponent:pluginInstallName]
-                                       stringByAppendingString:package.extension];
+    // Packages can be installed in multiple places:
+    // ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins (where most xcplugins go)
+    // ~/Library/Developer/Xcode/Plug-ins (where ideplugins go)
+    if ([[pluginInstallName pathExtension] isEqualToString:@"ideplugin"]) {
+        pluginsInstallPath = [NSHomeDirectory() stringByAppendingPathComponent:INSTALLED_IDEPLUGINS_RELATIVE_PATH];
+    }
+
+    return [pluginsInstallPath stringByAppendingPathComponent:pluginInstallName];
 }
 
 
