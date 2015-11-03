@@ -54,10 +54,10 @@ static Alcatraz *sharedPlugin;
         self.bundle = plugin;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
 
-		   [[NSNotificationCenter defaultCenter] addObserver:self
-										    selector:@selector(xcodeDidFinishLaunching:)
-										    name:NSApplicationDidFinishLaunchingNotification
-										  object:nil];
+                [[NSNotificationCenter defaultCenter] addObserver:self
+                                                         selector:@selector(xcodeDidFinishLaunching:)
+                                                             name:NSApplicationDidFinishLaunchingNotification
+    object:nil];
         }];
         [self updateAlcatraz];
     }
