@@ -68,8 +68,8 @@ static Alcatraz *sharedPlugin;
     [self createMenuItem];
 	
     [[NSNotificationCenter defaultCenter] removeObserver:self
-										  name:NSApplicationDidFinishLaunchingNotification
-										object:nil];
+                                                    name:NSApplicationDidFinishLaunchingNotification
+                                                  object:nil];
 }
 
 #pragma mark - Private
