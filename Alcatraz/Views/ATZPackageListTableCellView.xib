@@ -33,7 +33,7 @@
                 </textField>
                 <button verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="NyQ-k4-Y5v">
                     <rect key="frame" x="116" y="66" width="358" height="20"/>
-                    <buttonCell key="cell" type="smallSquare" title="supermarin/Alcatraz" bezelStyle="smallSquare" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="Sl6-x8-HMS">
+                    <buttonCell key="cell" type="smallSquare" title="alcatraz/Alcatraz" bezelStyle="smallSquare" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="Sl6-x8-HMS">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="13" name="HelveticaNeue-Light"/>
                     </buttonCell>

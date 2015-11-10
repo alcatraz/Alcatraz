@@ -31,7 +31,7 @@
 
 @implementation ATZDownloader
 
-static NSString *const ATZ_DEFAULT_REPO_PATH = @"https://raw.github.com/supermarin/alcatraz-packages/master/packages.json";
+static NSString *const ATZ_DEFAULT_REPO_PATH = @"https://raw.github.com/alcatraz/alcatraz-packages/master/packages.json";
 static NSString *const ATZ_REPO_KEY = @"ATZRepoPath";
 static NSString *const PROGRESS = @"progress";
 static NSString *const COMPLETION = @"completion";
@@ -39,9 +39,9 @@ static NSString *const COMPLETION = @"completion";
 - (id)init {
     self = [super init];
     if (!self) return nil;
-    
+
     _callbacks = [NSMutableDictionary new];
-    
+
     return self;
 }
 
@@ -49,7 +49,7 @@ static NSString *const COMPLETION = @"completion";
     [self downloadFileFromPath:[ATZDownloader packageRepoPath]
                       progress:^(CGFloat progress) {}
                     completion:^(NSData *data, NSError *error) {
-                        
+
         if (error) { completion(nil, error); return; }
 
         NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
@@ -70,7 +70,7 @@ static NSString *const COMPLETION = @"completion";
         callbacks[PROGRESS] = progress;
 
     self.callbacks[task] = callbacks;
-    
+
     [task resume];
 }
 
@@ -128,7 +128,7 @@ static NSString *const COMPLETION = @"completion";
  */
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(NSError *)error {
-    
+
 }
 
 
@@ -136,7 +136,7 @@ didCompleteWithError:(NSError *)error {
 
 - (NSURLSession *)urlSession {
     if (_urlSession) return _urlSession;
-    
+
     _urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                                 delegate:self
                                            delegateQueue:[NSOperationQueue mainQueue]];

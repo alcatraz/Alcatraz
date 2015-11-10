@@ -2,9 +2,9 @@
 
 Alcatraz is an open-source package manager for Xcode 5+. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.
 
-[![Stories in Ready](https://badge.waffle.io/supermarin/Alcatraz.svg?label=ready)](https://waffle.io/supermarin/Alcatraz)
-[![Build Status](https://travis-ci.org/supermarin/Alcatraz.svg?branch=master)](https://travis-ci.org/supermarin/Alcatraz)
-[![Alcatraz chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/supermarin/alcatraz)
+[![Stories in Ready](https://badge.waffle.io/alcatraz/Alcatraz.svg?label=ready)](https://waffle.io/alcatraz/Alcatraz)
+[![Build Status](https://travis-ci.org/alcatraz/Alcatraz.svg?branch=master)](https://travis-ci.org/alcatraz/Alcatraz)
+[![Alcatraz chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alcatraz/alcatraz)
 ![Package Manager UI](http://alcatraz.io/images/screenshot@2x.png)
 
 ## Installation
@@ -12,7 +12,7 @@ Alcatraz is an open-source package manager for Xcode 5+. It lets you discover an
 To install, open up your terminal and paste this:
 
 ``` bash
-curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh | sh
+curl -fsSL https://raw.github.com/alcatraz/Alcatraz/master/Scripts/install.sh | sh
 ```
 or download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
 
@@ -30,11 +30,11 @@ Select `Package Manager` from the `Window` menu, then check or uncheck packages 
 
 ## I want to submit my package!
 
-Fork the [Alcatraz package repository](https://github.com/supermarin/alcatraz-packages) and include your package with `name`, `description`, `URL`, and optional `screenshot`. Don't forget to submit a pull request. Further instructions are included in the package repository documentation.
+Fork the [Alcatraz package repository](https://github.com/alcatraz/alcatraz-packages) and include your package with `name`, `description`, `URL`, and optional `screenshot`. Don't forget to submit a pull request. Further instructions are included in the package repository documentation.
 
 ## Development
 
-Alcatraz has a few [contribution guidelines](https://github.com/supermarin/Alcatraz/blob/master/CONTRIBUTING.md), for anyone looking to make it more awesome.
+Alcatraz has a few [contribution guidelines](https://github.com/alcatraz/Alcatraz/blob/master/CONTRIBUTING.md), for anyone looking to make it more awesome.
 
 ## Troubleshooting
 
@@ -46,7 +46,7 @@ If "nothing" happens when installing packages, try the following self-help steps
 
 ## Uninstall
 
-Open up your terminal and paste this: 
+Open up your terminal and paste this:
 
 ```bash
 rm -rf ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin
