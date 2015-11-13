@@ -52,24 +52,22 @@ static Alcatraz *sharedPlugin;
 - (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
         self.bundle = plugin;
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-
-                [[NSNotificationCenter defaultCenter] addObserver:self
-                                                         selector:@selector(xcodeDidFinishLaunching:)
-                                                             name:NSApplicationDidFinishLaunchingNotification
-    object:nil];
-        }];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(xcodeDidFinishLaunching:)
+                                                     name:NSApplicationDidFinishLaunchingNotification
+                                                   object:nil];
         [self updateAlcatraz];
     }
     return self;
 }
 
-- (void) xcodeDidFinishLaunching: (NSNotification *) notification {
-    [self createMenuItem];
-	
+- (void)xcodeDidFinishLaunching: (NSNotification *) notification {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:NSApplicationDidFinishLaunchingNotification
                                                   object:nil];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self createMenuItem];
+    }];
 }
 
 #pragma mark - Private
