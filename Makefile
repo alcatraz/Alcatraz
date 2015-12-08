@@ -9,7 +9,7 @@ default: test
 
 ci: clean ci_test
 
-shipit: update_install_url tag push_master_and_tags build github_release push_deploy_branch
+shipit: build update_install_url tag push_master_and_tags github_release push_deploy_branch
 
 clean:
 	$(XCODEBUILD) clean | xcpretty -c
