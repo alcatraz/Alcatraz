@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-DOWNLOAD_URI=https://github.com/alcatraz/Alcatraz/releases/download/1.1.13/Alcatraz.tar.gz
+DOWNLOAD_URI=https://github.com/alcatraz/Alcatraz/releases/download/1.1.14/Alcatraz.tar.gz
 PLUGINS_DIR="${HOME}/Library/Application Support/Developer/Shared/Xcode/Plug-ins"
 XCODE_VERSION="$(xcrun xcodebuild -version | head -n1 | awk '{ print $2 }')"
 PLIST_PLUGINS_KEY="DVTPlugInManagerNonApplePlugIns-Xcode-${XCODE_VERSION}"
