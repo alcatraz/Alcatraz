@@ -65,9 +65,9 @@ static NSString *const COMPLETION = @"completion";
 
     NSMutableDictionary* callbacks = [[NSMutableDictionary alloc] initWithCapacity:2];
     if (completion)
-        callbacks[COMPLETION] = completion;
+        callbacks[COMPLETION] = Block_copy(completion);
     if (progress)
-        callbacks[PROGRESS] = progress;
+        callbacks[PROGRESS] = Block_copy(progress);
 
     self.callbacks[task] = callbacks;
 
