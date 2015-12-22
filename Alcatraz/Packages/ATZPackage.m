@@ -23,7 +23,6 @@
 #import "ATZPackage.h"
 #import "ATZInstaller.h"
 #import "ATZGit.h"
-#import "Alcatraz.h"
 
 @implementation ATZPackage
 @dynamic isInstalled, type, website, extension;
