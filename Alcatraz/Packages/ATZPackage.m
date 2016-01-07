@@ -22,6 +22,7 @@
 
 #import "ATZPackage.h"
 #import "ATZInstaller.h"
+#import "ATZXcodePrefsManager.h"
 #import "ATZGit.h"
 
 @implementation ATZPackage
@@ -73,8 +74,11 @@
     else return self.remotePath;
 }
 
-
 #pragma mark - Abstract
+
+- (BOOL)isBlacklisted {
+    return [[ATZXcodePrefsManager sharedManager] isPackageBlacklisted:self];
+}
 
 - (BOOL)isInstalled {
     return [[self installer] isPackageInstalled:self];
@@ -94,6 +98,10 @@
 
 - (void)removeWithCompletion:(void (^)(NSError *))completion {
     [[self installer] removePackage:self completion:completion];
+}
+
+- (void)whitelistWithCompletion:(void(^)(NSError *failure))completion {
+    [[ATZXcodePrefsManager sharedManager] whitelistPackage:self completion:completion];
 }
 
 - (ATZInstaller *)installer {

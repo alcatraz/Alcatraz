@@ -41,6 +41,7 @@ typedef NS_ENUM(NSUInteger, ATZPackageWebsiteType) {
 @property (strong, nonatomic) NSString *screenshotPath;
 @property (nonatomic, readonly) NSString *website;
 @property (nonatomic, readonly) NSString *extension;
+@property (nonatomic, readonly) BOOL isBlacklisted;
 @property (nonatomic, readonly) BOOL isInstalled;
 @property (nonatomic, assign)   BOOL requiresRestart;
 @property (nonatomic, readonly) ATZPackageWebsiteType websiteType;
@@ -54,6 +55,8 @@ typedef NS_ENUM(NSUInteger, ATZPackageWebsiteType) {
                 completion:(void(^)(NSError *failure))completion;
 
 - (void)removeWithCompletion:(void(^)(NSError *failure))completion;
+
+- (void)whitelistWithCompletion:(void(^)(NSError *failure))completion;
 
 
 #pragma mark - Abstract

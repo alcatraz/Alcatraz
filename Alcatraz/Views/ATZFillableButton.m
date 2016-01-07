@@ -23,8 +23,12 @@
 #import "ATZFillableButton.h"
 #import "ATZStyleKit.h"
 
-NSString* const ATZFillableButtonTypeInstall = @"install";
-NSString* const ATZFillableButtonTypeNormal = @"normal";
+@interface ATZFillableButton ()
+
+@property (nonatomic, strong) NSColor *backgroundColor;
+@property (nonatomic, strong) NSColor *fillColor;
+
+@end
 
 @implementation ATZFillableButton
 
@@ -37,14 +41,13 @@ NSString* const ATZFillableButtonTypeNormal = @"normal";
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-    [ATZStyleKit drawFillableButtonWithButtonText:self.title
-                                        fillRatio:self.fillRatio
-                                      buttonWidth:CGRectGetWidth(self.bounds)
-                                       buttonType:self.buttonBorderStyle?:ATZFillableButtonTypeNormal];
+    [ATZStyleKit drawFillableButtonWithText:self.title fillColor:self.fillColor backgroundColor:self.backgroundColor fillRatio:self.fillRatio size:self.bounds.size];
 }
 
-- (void)setButtonBorderStyle:(NSString *)buttonBorderStyle {
-    _buttonBorderStyle = buttonBorderStyle;
+- (void)setButtonStyle:(ATZFillableButtonStyle)buttonStyle {
+    _buttonStyle = buttonStyle;
+
+    [self updateButtonColorsMatchingStyle:buttonStyle];
     [self setNeedsDisplay];
 }
 
@@ -59,6 +62,25 @@ NSString* const ATZFillableButtonTypeNormal = @"normal";
     } else {
         self.fillRatio = fillRatio;
     }
+}
+
+- (void)updateButtonColorsMatchingStyle:(ATZFillableButtonStyle)buttonStyle {
+    NSColor *installGreen = [NSColor colorWithCalibratedRed:0.311 green:0.699 blue:0.37 alpha:1];
+    NSColor *removeRed = [NSColor colorWithCalibratedRed:0.845 green:0.236 blue:0.362 alpha:1];
+    NSColor *blockedOrange = [NSColor colorWithCalibratedRed:0.869 green:0.413 blue:0.106 alpha:1];
+
+    switch (buttonStyle) {
+        case ATZFillableButtonStyleInstall:
+            self.fillColor = installGreen;
+            break;
+        case ATZFillableButtonStyleRemove:
+            self.fillColor = removeRed;
+            break;
+        case ATZFillableButtonStyleBlocked:
+            self.fillColor = blockedOrange;
+            break;
+    }
+    self.backgroundColor = [NSColor whiteColor];
 }
 
 @end

@@ -39,9 +39,7 @@ static NSString *const UPDATING_FORMAT = @"Updating %@...";
                                            completion:(void(^)(NSError *error))completion;
 - (void)updatePackage:(ATZPackage *)package progress:(void(^)(NSString *progressMessage, CGFloat progress))progress
                                           completion:(void(^)(NSError *error))completion;
-- (void)removePackage:(ATZPackage *)package
-           completion:(void(^)(NSError *error))completion;
-
+- (void)removePackage:(ATZPackage *)package completion:(void(^)(NSError *error))completion;
 
 - (BOOL)isPackageInstalled:(ATZPackage *)package;
 - (NSString *)pathForDownloadedPackage:(ATZPackage *)package;

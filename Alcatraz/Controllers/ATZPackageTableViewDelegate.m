@@ -31,6 +31,7 @@
 #import "ATZTemplate.h"
 #import "ATZColorScheme.h"
 #import "ATZDownloader.h"
+#import "ATZStyleKit.h"
 #import "NSColor+Alcatraz.h"
 
 @interface ATZPackageTableViewDelegate ()
@@ -81,11 +82,12 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     ATZPackage* package = [self tableView:tableView objectValueForTableColumn:tableColumn row:row];
     ATZPackageListTableCellView* view = [tableView makeViewWithIdentifier:packageCellIdentifier owner:self.tableViewOwner];
+    ATZFillableButton* installButton = (ATZFillableButton*)view.installButton;
+    [ATZStyleKit updateButton:installButton forPackageState:package animated:NO];
     [view.titleField setStringValue:package.name];
     [view.descriptionField setStringValue:package.summary];
     [view.linkButton setImage:[self tableView:tableView websiteImageForTableColumn:tableColumn row:row]];
     [view.linkButton setTitle:[self tableView:tableView displayWebsiteForTableColumn:tableColumn row:row]];
-    [view.installButton setTitle:([package isInstalled] ? @"REMOVE" : @"INSTALL")];
     BOOL hasImage = package.screenshotPath != nil;
     [view.previewButton setFullSize:hasImage];
     [view.previewButton setHidden:!hasImage];
@@ -102,10 +104,6 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     } else {
         [view.previewButton setImage:nil];
     }
-    
-    ATZFillableButton* installButton = (ATZFillableButton*)view.installButton;
-    [installButton setButtonBorderStyle:ATZFillableButtonTypeInstall];
-    [installButton setFillRatio:([package isInstalled] ? 100 : 0) animated:NO];
 
     return view;
 }

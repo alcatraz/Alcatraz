@@ -24,10 +24,15 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
+@class ATZFillableButton;
+@class ATZPackage;
 
 @interface ATZStyleKit : NSObject
 
+// Fillable buttons style helper
++ (void)updateButton:(ATZFillableButton *)fillableButton forPackageState:(ATZPackage *)package animated:(BOOL)animated;
+
 // Drawing Methods
-+ (void)drawFillableButtonWithButtonText: (NSString*)buttonText fillRatio: (CGFloat)fillRatio buttonWidth: (CGFloat)buttonWidth buttonType: (NSString*)buttonType;
++ (void)drawFillableButtonWithText:(NSString*)text fillColor:(NSColor *)fillColor backgroundColor:(NSColor *)backgroundColor fillRatio:(float)fillRatio size:(CGSize)size;
 
 @end

@@ -113,7 +113,6 @@ const CGFloat ATZFakeInstallProgress = 0.66;
                                    reason:@"Abstract Installer doesn't know how to install" userInfo:nil];
 }
 
-
 - (NSString *)pathForInstalledPackage:(ATZPackage *)package {
     @throw [NSException exceptionWithName:@"Abstract Installer"
                                    reason:@"Install path is different for every package type" userInfo:nil];
