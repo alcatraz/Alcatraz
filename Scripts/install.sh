@@ -10,7 +10,7 @@ BUNDLE_ID="com.mneorr.Alcatraz"
 TMP_FILE="$(mktemp -t ${BUNDLE_ID})"
 
 # Remove Alcatraz from Xcode's skipped plugins list if needed
-defaults read -app Xcode "$PLIST_PLUGINS_KEY" > "$TMP_FILE" && {
+defaults read -app Xcode-beta "$PLIST_PLUGINS_KEY" > "$TMP_FILE" && {
     /usr/libexec/PlistBuddy -c "delete skipped:$BUNDLE_ID" "$TMP_FILE" > /dev/null 2>&1 && {
 	pgrep Xcode > /dev/null && {
             echo 'An instance of Xcode is currently running.' \
@@ -30,4 +30,3 @@ curl -L $DOWNLOAD_URI | tar xvz -C "${PLUGINS_DIR}"
 # the 1 is not a typo!
 echo 'Alcatraz successfully installed!!1!🍻 ' \
      "Please restart your Xcode ($XCODE_VERSION)."
-
