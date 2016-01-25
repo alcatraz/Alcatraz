@@ -22,7 +22,6 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString *const GIT = @"/usr/bin/git";
 static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
 static NSString *const CLONE = @"clone";
 static NSString *const FETCH = @"fetch";

@@ -48,22 +48,37 @@
 }
 
 + (BOOL)areCommandLineToolsAvailable {
-    BOOL areAvailable = YES;
-    @try {
-        [NSTask launchedTaskWithLaunchPath:@"/usr/bin/git" arguments:@[@"--version"]];
-    }
-    @catch (NSException *exception) {
-        areAvailable = NO;
-    }
-    return areAvailable;
+    return [self gitExecutablePath] != nil;
+}
+
++ (NSString *)gitExecutablePath {
+    static dispatch_once_t onceToken;
+    static NSString *gitPath;
+    dispatch_once(&onceToken, ^{
+        NSArray *gitPathOptions = @[
+            @"/usr/bin/git",
+            @"/usr/local/bin/git"
+        ];
+        for (NSString *path in gitPathOptions) {
+            @try {
+                [NSTask launchedTaskWithLaunchPath:path arguments:@[@"--version"]];
+            }
+            @catch (NSException *exception) {
+                continue;
+            }
+            gitPath = path;
+            break;
+        }
+    });
+    return gitPath;
 }
 
 #pragma mark - Private
 
 + (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
     ATZShell *shell = [ATZShell new];
-    
-    [shell executeCommand:GIT withArguments:@[CLONE, remotePath, localPath, IGNORE_PUSH_CONFIG]
+
+    [shell executeCommand:[self gitExecutablePath] withArguments:@[CLONE, remotePath, localPath, IGNORE_PUSH_CONFIG]
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git Clone output: %@", output);
@@ -89,7 +104,7 @@
 + (void)fetch:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
     
     ATZShell *shell = [ATZShell new];
-    [shell executeCommand:GIT withArguments:@[FETCH, ORIGIN] inWorkingDirectory:localPath
+    [shell executeCommand:[self gitExecutablePath] withArguments:@[FETCH, ORIGIN] inWorkingDirectory:localPath
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git fetch output: %@", output);
@@ -102,8 +117,8 @@
     
     ATZShell *shell = [ATZShell new];
     NSArray *resetArguments = @[RESET, HARD, revision ?: ORIGIN_MASTER];
-    
-    [shell executeCommand:GIT withArguments:resetArguments inWorkingDirectory:localPath
+
+    [shell executeCommand:[self gitExecutablePath] withArguments:resetArguments inWorkingDirectory:localPath
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git reset output: %@", output);
