@@ -13,13 +13,13 @@ TMP_FILE="$(mktemp -t ${BUNDLE_ID})"
 if defaults read com.apple.dt.Xcode "$PLIST_PLUGINS_KEY" > "$TMP_FILE"; then
     # We read the prefs successfully, delete Alcatraz from the skipped list if needed
     /usr/libexec/PlistBuddy -c "delete skipped:$BUNDLE_ID" "$TMP_FILE" > /dev/null 2>&1 && {
-	pgrep Xcode > /dev/null && {
+        pgrep Xcode > /dev/null && {
             echo 'An instance of Xcode is currently running.' \
-		 'Please close Xcode before installing Alcatraz.'
+                 'Please close Xcode before installing Alcatraz.'
             exit 1
-	}
-	defaults write com.apple.dt.Xcode "$PLIST_PLUGINS_KEY" "$(cat "$TMP_FILE")"
-	echo 'Alcatraz was removed from Xcode'\''s skipped plugins list.' \
+        }
+        defaults write com.apple.dt.Xcode "$PLIST_PLUGINS_KEY" "$(cat "$TMP_FILE")"
+        echo 'Alcatraz was removed from Xcode'\''s skipped plugins list.' \
              'Next time you start Xcode select "Load Bundle" when prompted.'
     }
 else
