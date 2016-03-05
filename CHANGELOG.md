@@ -1,3 +1,6 @@
+## Unreleased
+- Support GIF image on screenshot preview (#432)
+
 ## 1.2.0
 
 - Plugins are no longer required to have a .xcodeproj filename matching their `name` in `packages.json` (#471)

@@ -57,8 +57,9 @@
 		8AD5249F174102F9008B451F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD524A2174102F9008B451F /* Localizable.strings */; };
 		8ADC22341A2AD5B800DB7BCA /* ATZPreviewImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADC22331A2AD5B800DB7BCA /* ATZPreviewImageButton.m */; };
 		8AF670C919C2DE8A00E1C168 /* ATZSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */; };
-		F0DF961E1B40416400DF68CC /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */; };
 		F07E55521B551BA800161E61 /* ATZXcodePrefsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F07E55511B551BA800161E61 /* ATZXcodePrefsManager.m */; };
+		F0DF961E1B40416400DF68CC /* ATZSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */; };
+		FE4405531D6E3635000C58A4 /* NSImage+Alcatraz.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4405521D6E3635000C58A4 /* NSImage+Alcatraz.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,10 +145,12 @@
 		8ADC22331A2AD5B800DB7BCA /* ATZPreviewImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZPreviewImageButton.m; path = Views/ATZPreviewImageButton.m; sourceTree = "<group>"; };
 		8AF670C719C2DE8A00E1C168 /* ATZSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATZSegmentedControl.h; path = Views/ATZSegmentedControl.h; sourceTree = "<group>"; };
 		8AF670C819C2DE8A00E1C168 /* ATZSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATZSegmentedControl.m; path = Views/ATZSegmentedControl.m; sourceTree = "<group>"; };
-		F0DF961C1B40416300DF68CC /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZSegmentedCell.h; sourceTree = "<group>"; };
-		F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZSegmentedCell.m; sourceTree = "<group>"; };
 		F07E55501B551BA800161E61 /* ATZXcodePrefsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZXcodePrefsManager.h; sourceTree = "<group>"; };
 		F07E55511B551BA800161E61 /* ATZXcodePrefsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZXcodePrefsManager.m; sourceTree = "<group>"; };
+		F0DF961C1B40416300DF68CC /* ATZSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATZSegmentedCell.h; sourceTree = "<group>"; };
+		F0DF961D1B40416400DF68CC /* ATZSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATZSegmentedCell.m; sourceTree = "<group>"; };
+		FE4405511D6E3635000C58A4 /* NSImage+Alcatraz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Alcatraz.h"; sourceTree = "<group>"; };
+		FE4405521D6E3635000C58A4 /* NSImage+Alcatraz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Alcatraz.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +292,8 @@
 				8917DA0C1726B57B00F0B2D2 /* NSFileManager+Alcatraz.m */,
 				8A1732A61A2694BB002033D6 /* NSColor+Alcatraz.h */,
 				8A1732A71A2694BB002033D6 /* NSColor+Alcatraz.m */,
+				FE4405511D6E3635000C58A4 /* NSImage+Alcatraz.h */,
+				FE4405521D6E3635000C58A4 /* NSImage+Alcatraz.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 				8AF670C919C2DE8A00E1C168 /* ATZSegmentedControl.m in Sources */,
 				8A6025C419C29B0C00D47F3F /* ATZPackageTableViewDelegate.m in Sources */,
 				8917DA071726B53000F0B2D2 /* ATZPluginInstaller.m in Sources */,
+				FE4405531D6E3635000C58A4 /* NSImage+Alcatraz.m in Sources */,
 				8917DA081726B53000F0B2D2 /* ATZProjectTemplateInstaller.m in Sources */,
 				8917DA091726B53000F0B2D2 /* ATZTemplateInstaller.m in Sources */,
 				8AA0F57D19C2225A00556AAF /* ATZStyleKit.m in Sources */,

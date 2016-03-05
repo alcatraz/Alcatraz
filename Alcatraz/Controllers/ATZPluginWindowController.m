@@ -37,6 +37,8 @@
 #import "ATZFillableButton.h"
 #import "ATZPackageTableViewDelegate.h"
 
+#import "NSImage+Alcatraz.h"
+
 static NSString *const CLASS_PREDICATE_FORMAT = @"(self isKindOfClass: %@)";
 static NSString *const SEARCH_PREDICATE_FORMAT = @"(name contains[cd] %@ OR summary contains[cd] %@)";
 static NSString *const INSTALLED_PREDICATE_FORMAT = @"(installed == YES)";
@@ -266,15 +268,26 @@ BOOL hasPressedCommandF(NSEvent *event) {
 - (void)displayScreenshotForPackage:(ATZPackage *)package {
 
     [self.previewPanel.animator setAlphaValue:0.f];
-    self.previewPanel.title = package.name;
 
     [self.tableViewDelegate fetchAndCacheImageForPackage:package progress:NULL completion:^(NSImage *image) {
-        [self displayImage:image withTitle:package.name];
+        [self displayImage:image forPackage:package];
     }];
 }
 
-- (void)displayImage:(NSImage *)image withTitle:(NSString*)title {
+- (void)displayImage:(NSImage *)image forPackage:(ATZPackage*)package {
+    self.previewPanel.title = package.name;
+    if (image.frameCount > 1) {
+        self.previewImageView.imageScaling = NSImageScaleNone;
+        self.previewImageView.animates = YES;
+        self.previewImageView.canDrawSubviewsIntoLayer = YES;
+        self.previewPanel.title = [self.previewPanel.title stringByAppendingString:@" [GIF]"];
+    } else {
+        self.previewImageView.imageScaling = NSImageScaleProportionallyDown;
+        self.previewImageView.animates = NO;
+        self.previewImageView.canDrawSubviewsIntoLayer = NO;
+    }
     self.previewImageView.image = image;
+    
     [NSAnimationContext beginGrouping];
 
     [self.previewImageView.animator setFrame:(CGRect){ .origin = CGPointMake(0, 0), .size = image.size }];
