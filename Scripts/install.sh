@@ -10,7 +10,7 @@ BUNDLE_ID="com.mneorr.Alcatraz"
 TMP_FILE="$(mktemp -t ${BUNDLE_ID})"
 
 # Remove Alcatraz from Xcode's skipped plugins list if needed
-if defaults read com.apple.dt.Xcode "$PLIST_PLUGINS_KEY" > "$TMP_FILE"; then
+if defaults read com.apple.dt.Xcode "$PLIST_PLUGINS_KEY" &> "$TMP_FILE"; then
     # We read the prefs successfully, delete Alcatraz from the skipped list if needed
     /usr/libexec/PlistBuddy -c "delete skipped:$BUNDLE_ID" "$TMP_FILE" > /dev/null 2>&1 && {
         pgrep Xcode > /dev/null && {
