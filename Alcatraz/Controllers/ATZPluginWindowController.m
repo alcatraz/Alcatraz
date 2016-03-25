@@ -170,6 +170,48 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     }
 }
 
+- (IBAction)exportPluginsSnapshot:(id)sender {
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = [Alcatraz localizedStringForKey:@"export-snapshot.message"];
+    [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.save"]];
+    [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.cancel"]];
+    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 500, 24)];
+    alert.accessoryView = input;
+    
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        NSString *snapshotDir = [input.stringValue stringByStandardizingPath];
+        NSArray *installedPackages = [self installedPackages];
+        NSString *filePath = [[NSString stringWithFormat:@"%@/alcatraz_snapshot_file", snapshotDir] stringByStandardizingPath];
+        [NSKeyedArchiver archiveRootObject:installedPackages toFile:filePath];
+    }
+}
+
+- (IBAction)importPluginsSnapshot:(id)sender {
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = [Alcatraz localizedStringForKey:@"import-snapshot.message"];
+    [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.import"]];
+    [alert addButtonWithTitle:[Alcatraz localizedStringForKey:@"actions.cancel"]];
+    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 500, 24)];
+    alert.accessoryView = input;
+    
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        NSString *snapshotDir = [input.stringValue stringByStandardizingPath];
+        NSString *filePath = [[NSString stringWithFormat:@"%@/alcatraz_snapshot_file", snapshotDir] stringByStandardizingPath];
+        NSArray *packagesToInstall = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+        
+        for (ATZPackage *package in packagesToInstall) {
+            [package installWithProgress:^(NSString *progressMessage, CGFloat progress) {
+                NSLog(@"installing %@ - progress %.2f", package.name, progress);
+            } completion:^(NSError *failure) {
+                NSLog(@"finished installing %@", package.name);
+                if (package.requiresRestart) {
+                    [self postNotificationForInstalledPackage:package];
+                }
+            }];
+        }
+    }
+}
+
 - (IBAction)resetPackageRepoPath:(id)sender {
     [ATZDownloader resetPackageRepoPath];
     [self reloadPackages:nil];
@@ -317,6 +359,11 @@ BOOL hasPressedCommandF(NSEvent *event) {
 
     [self.tableViewDelegate filterUsingPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicates]];
     [self.tableView reloadData];
+}
+
+- (NSArray *)installedPackages {
+    NSArray *installedPackages = [self.packages filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:INSTALLED_PREDICATE_FORMAT]];
+    return installedPackages;
 }
 
 @end

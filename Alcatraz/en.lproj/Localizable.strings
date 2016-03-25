@@ -15,3 +15,7 @@ Command Line Tools are available for installation in the Downloads section of Pr
 "change-path.title" = "Change Package Repo Path";
 "actions.cancel" = "Cancel";
 "actions.save" = "Save";
+"actions.import" = "Import";
+
+"export-snapshot.message" = "Enter the local directory to save the Alcatraz Plugins snapshot file";
+"import-snapshot.message" = "Enter the local directory in which the \"alcatraz_snapshot_file\" is located";
