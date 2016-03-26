@@ -23,7 +23,7 @@
 #import "ATZPbxprojParser.h"
 
 // Xcode plugin extension can be xcplugin or ideplugin
-static NSString *const PLUGIN_NAME_REGEX = @"(\\w[\\w\\s\\.-]*\\w.(xc|ide)plugin\\s)";
+static NSString *const PLUGIN_NAME_REGEX = @"(\\w[\\w\\s\\.-]*\\w\\.(xc|ide)plugin\\s)";
 
 @implementation ATZPbxprojParser
 
