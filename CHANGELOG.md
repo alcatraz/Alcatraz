@@ -1,3 +1,12 @@
+## 1.1.18
+
+- Fix plugin installation failing if the plugin's name contains `.` dots
+
+## 1.1.17
+
+- Support Xcode 7.3
+
+
 ## 1.1.16
 
 - Display plugins blocked by Xcode with a special orange "blocked" button
