@@ -37,7 +37,7 @@ static NSString *const PLUGIN_NAME_REGEX = @"(\\w[\\w\\s\\.-]*\\w\\.(xc|ide)plug
     
     if (error) return nil;
     
-    NSTextCheckingResult *result = [regex firstMatchInString:pbxproj options:0 range:NSMakeRange(0, pbxproj.length - 1)];
+    NSTextCheckingResult *result = [regex firstMatchInString:pbxproj options:0 range:NSMakeRange(0, pbxproj.length)];
     NSString *pluginName = result ? [[pbxproj substringWithRange:result.range] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] : nil;
 
     return pluginName;
