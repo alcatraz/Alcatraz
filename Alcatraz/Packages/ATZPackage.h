@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, ATZPackageWebsiteType) {
     ATZPackageWebsiteTypeOtherGit,
 };
 
-@interface ATZPackage : NSObject
+@interface ATZPackage : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *summary;

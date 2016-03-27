@@ -112,4 +112,27 @@
     @throw [NSException exceptionWithName:@"Not Implemented" reason:@"Each package has a different extension!" userInfo:nil];
 }
 
+#pragma mark - NSCoding
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super init]) {
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.summary = [aDecoder decodeObjectForKey:@"summary"];
+        self.remotePath = [aDecoder decodeObjectForKey:@"remotePath"];
+        self.revision = [aDecoder decodeObjectForKey:@"revision"];
+        self.screenshotPath = [aDecoder decodeObjectForKey:@"screenshotPath"];
+        self.requiresRestart = [aDecoder decodeBoolForKey:@"requiresRestart"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.summary forKey:@"summary"];
+    [aCoder encodeObject:self.remotePath forKey:@"remotePath"];
+    [aCoder encodeObject:self.revision forKey:@"revision"];
+    [aCoder encodeObject:self.screenshotPath forKey:@"screenshotPath"];
+    [aCoder encodeBool:self.requiresRestart forKey:@"requiresRestart"];
+}
+
 @end
