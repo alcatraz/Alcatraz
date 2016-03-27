@@ -85,14 +85,10 @@ static Alcatraz *sharedPlugin;
 }
 
 - (void)checkForCMDLineToolsAndOpenWindow {
-    if ([self hasNSURLSessionAvailable]) {
-        if ([ATZGit areCommandLineToolsAvailable])
-            [self loadWindowAndPutInFront];
-        else
-            [self presentAlertWithMessageKey:@"CMDLineToolsWarning"];
-    } else {
-        [self presentAlertWithMessageKey:@"MavericksOnlyWarning"];
-    }
+    if ([ATZGit areCommandLineToolsAvailable])
+        [self loadWindowAndPutInFront];
+    else
+        [self presentAlertWithMessageKey:@"CMDLineToolsWarning"];
 }
 
 - (void)loadWindowAndPutInFront {
@@ -101,10 +97,6 @@ static Alcatraz *sharedPlugin;
 
     [[self.windowController window] makeKeyAndOrderFront:self];
     [self.windowController reloadPackages:nil];
-}
-
-- (BOOL)hasNSURLSessionAvailable {
-    return NSClassFromString(@"NSURLSession") != nil;
 }
 
 - (void)presentAlertWithMessageKey:(NSString *)messageKey {

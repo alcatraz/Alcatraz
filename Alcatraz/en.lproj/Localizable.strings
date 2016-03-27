@@ -9,8 +9,6 @@
 
 Command Line Tools are available for installation in the Downloads section of Preferences.";
 
-"MavericksOnlyWarning" = "Alcatraz for Xcode 5 only supports OS X 10.9+.";
-
 "change-path.message" = "Enter a new package repo URL path:";
 "change-path.title" = "Change Package Repo Path";
 "actions.cancel" = "Cancel";
