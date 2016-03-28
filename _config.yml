@@ -1,8 +1,8 @@
 name: Alcatraz.io
 author: Marin Usalj
-markdown: redcarpet
+markdown: kramdown
 permalink: /blog/:title/
-pygments: true
+highlighter: rouge
 exclude: ['Gemfile', 'Rakefile', 'Gemfile.lock', 'Guardfile', 'Alcatraz.io.sketch']
 
 description: Package manager for Xcode that lets you discover and install Plugins, Color Schemes and Templates.

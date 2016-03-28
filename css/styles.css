@@ -54,6 +54,10 @@ a:link, a:visited {
   width: 12em;
 }
 
+.center {
+  text-align: center;
+}
+
 .landing {
   background-position: 50% 20em;
   background-size: 1000px;

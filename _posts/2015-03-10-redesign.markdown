@@ -21,9 +21,8 @@ This doesn't mean we've abandoned Alcatraz, we just can’t dedicate as much tim
 ### Relaunch
 As planned, we wanted to launch 2.0 with all the shiny features. In reality, we can only do so much and have decided to release the UI part separately. You can download the beautiful, redesigned version for OS X Yosemite using the installation script on our [homepage](http://alcatraz.io) today.
 
-<center>
-    <img src=/images/screenshot@2x.png width=687>
-</center>
+{: .center}
+![image](/images/screenshot@2x.png){: width="687"}
 
 The UI work was a [collaborative effort](https://github.com/supermarin/Alcatraz/pull/154) by [many people](https://github.com/supermarin/Alcatraz/pull/205) including @orta, @tonyarnold, @kattrali, and more.
 Alcatraz no longer looks like a stranger in Yosemite, contains inline images previews, big install/remove buttons, github attributions, and it's way more pleasant to use.
