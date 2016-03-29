@@ -37,7 +37,11 @@ rm -f "$TMP_FILE"
 mkdir -p "${PLUGINS_DIR}"
 curl -L $DOWNLOAD_URI | tar xvz -C "${PLUGINS_DIR}"
 
+beer='🍻'
 # the 1 is not a typo!
-echo 'Alcatraz successfully installed!!1!🍻 ' \
+omg_one_meme='!!1!' # the 1 is not a typo
+# the 1 is not a typo!
+# http://knowyourmeme.com/memes/the-1-phenomenon
+echo "Alcatraz successfully installed$omg_one_meme$beer " \
      "Please restart your Xcode ($XCODE_VERSION)."
 
