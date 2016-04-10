@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <objects>
@@ -176,37 +175,34 @@
                             </connections>
                         </searchField>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="0E874535-2646-4349-9596-0C449229E817" label="Options" paletteLabel="Options" image="NSActionTemplate" id="Glg-dB-iSd">
+                    <toolbarItem implicitItemIdentifier="70CAB597-64B8-4DF6-8FF2-2CA2FE2B693D" label="Options" paletteLabel="Options" image="NSActionTemplate" id="3yj-6F-IVu">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="24" height="20"/>
-                        <size key="maxSize" width="35" height="39"/>
-                        <popUpButton key="view" id="YLN-Se-Z4c">
-                            <rect key="frame" x="12" y="14" width="30" height="28"/>
+                        <size key="minSize" width="40" height="24"/>
+                        <size key="maxSize" width="40" height="26"/>
+                        <popUpButton key="view" verticalHuggingPriority="750" id="nOd-hy-BMA">
+                            <rect key="frame" x="5" y="14" width="40" height="26"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="u6i-O7-Ddv"/>
-                            </constraints>
-                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" imagePosition="below" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" arrowPosition="noArrow" preferredEdge="maxY" altersStateOfSelectedItem="NO" id="GAy-JH-6Fr">
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" imagePosition="left" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="XPC-Wj-xZq">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
-                                <menu key="menu" showsStateColumn="NO" id="gCj-Sg-VLj">
+                                <menu key="menu" id="52b-Ei-k7f">
                                     <items>
-                                        <menuItem image="NSActionTemplate" hidden="YES" id="Mki-6q-Srm"/>
-                                        <menuItem title="Reload Packages" id="FEX-wb-X1U">
+                                        <menuItem state="on" image="NSActionTemplate" hidden="YES" id="vB7-GN-5IN"/>
+                                        <menuItem title="Reload Packages" id="e04-3U-hR5">
                                             <connections>
-                                                <action selector="reloadPackages:" target="-2" id="CE0-pW-r7C"/>
+                                                <action selector="reloadPackages:" target="-2" id="zmd-mi-Rcp"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="vFc-SV-EtA"/>
-                                        <menuItem title="Load Default Repository" id="bPi-Qr-GWZ">
+                                        <menuItem isSeparatorItem="YES" id="VoE-5R-IVf"/>
+                                        <menuItem title="Load Default Repository" id="mJy-b9-aDJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="resetPackageRepoPath:" target="-2" id="k1i-Nk-qOH"/>
+                                                <action selector="resetPackageRepoPath:" target="-2" id="pyp-NY-pMz"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Load Custom Repository..." id="VFq-69-wpd">
+                                        <menuItem title="Load Custom Repository..." id="SR2-lA-ckQ">
                                             <connections>
-                                                <action selector="updatePackageRepoPath:" target="-2" id="Cp9-H4-4ZG"/>
+                                                <action selector="updatePackageRepoPath:" target="-2" id="GKe-hE-JDF"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -217,9 +213,10 @@
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="8Xt-Wm-M1g"/>
+                    <toolbarItem reference="WiE-jh-Iy2"/>
                     <toolbarItem reference="Xrf-3e-xgb"/>
                     <toolbarItem reference="8Xt-Wm-M1g"/>
-                    <toolbarItem reference="Glg-dB-iSd"/>
+                    <toolbarItem reference="3yj-6F-IVu"/>
                 </defaultToolbarItems>
             </toolbar>
             <point key="canvasLocation" x="290.5" y="360.5"/>
