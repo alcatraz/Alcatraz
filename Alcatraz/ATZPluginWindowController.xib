@@ -12,7 +12,7 @@
                 <outlet property="previewPanel" destination="4vQ-3a-fNb" id="3Ez-xU-2v3"/>
                 <outlet property="searchField" destination="UNr-70-Qql" id="pQP-eA-7N3"/>
                 <outlet property="tableView" destination="Xmj-hd-CPE" id="AV4-2C-87K"/>
-                <outlet property="versionTextField" destination="hsV-nN-jHO" id="sOR-F4-Ibr"/>
+                <outlet property="versionMenuItem" destination="ZsI-Jz-bMQ" id="6NX-eb-4rv"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="2B8-Td-gLY"/>
             </connections>
         </customObject>
@@ -57,21 +57,11 @@
                                     <action selector="segmentedControlPressed:" target="-2" id="dQL-wu-Ruf"/>
                                 </connections>
                             </segmentedControl>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hsV-nN-jHO">
-                                <rect key="frame" x="502" y="11" width="31" height="15"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Or1-bZ-rS2">
-                                    <font key="font" size="11" name="HelveticaNeue"/>
-                                    <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" id="2rj-TD-hfT"/>
-                            <constraint firstAttribute="centerY" secondItem="hsV-nN-jHO" secondAttribute="centerY" constant="2" id="4if-cW-Xnv"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="centerY" secondItem="reu-CB-C0i" secondAttribute="centerY" id="D5D-79-kC3"/>
                             <constraint firstItem="reu-CB-C0i" firstAttribute="leading" secondItem="0Fa-9p-0gT" secondAttribute="leading" constant="16" id="ELF-J2-Y4x"/>
-                            <constraint firstAttribute="trailing" secondItem="hsV-nN-jHO" secondAttribute="trailing" constant="14" id="J89-aJ-Yya"/>
                             <constraint firstAttribute="height" constant="32" id="Yci-xm-ezL"/>
                             <constraint firstItem="Wxk-Va-YMt" firstAttribute="leading" secondItem="reu-CB-C0i" secondAttribute="trailing" constant="16" id="eMS-g8-tnJ"/>
                         </constraints>
@@ -182,10 +172,10 @@
                         <popUpButton key="view" verticalHuggingPriority="750" id="nOd-hy-BMA">
                             <rect key="frame" x="5" y="14" width="40" height="26"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" imagePosition="left" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="XPC-Wj-xZq">
+                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" imagePosition="left" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" id="XPC-Wj-xZq">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
-                                <menu key="menu" id="52b-Ei-k7f">
+                                <menu key="menu" autoenablesItems="NO" id="52b-Ei-k7f">
                                     <items>
                                         <menuItem state="on" image="NSActionTemplate" hidden="YES" id="vB7-GN-5IN"/>
                                         <menuItem title="Reload Packages" id="e04-3U-hR5">
@@ -204,6 +194,10 @@
                                             <connections>
                                                 <action selector="updatePackageRepoPath:" target="-2" id="GKe-hE-JDF"/>
                                             </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="YMW-h0-fdS"/>
+                                        <menuItem title="Version" enabled="NO" id="ZsI-Jz-bMQ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                     </items>
                                 </menu>
