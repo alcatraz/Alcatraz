@@ -32,7 +32,7 @@
 @property (assign) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSSegmentedControl *packageTypeSegmentedControl;
 @property (weak) IBOutlet NSSegmentedControl *installationStateSegmentedControl;
-@property (weak) IBOutlet NSTextField *versionTextField;
+@property (weak) IBOutlet NSMenuItem *versionMenuItem;
 
 - (id)initWithBundle:(NSBundle *)bundle;
 

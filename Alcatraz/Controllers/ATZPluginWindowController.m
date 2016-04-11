@@ -275,7 +275,8 @@ BOOL hasPressedCommandF(NSEvent *event) {
 }
 
 - (void)addVersionToWindow {
-    self.versionTextField.stringValue = [[[Alcatraz sharedPlugin] bundle] infoDictionary][@"CFBundleShortVersionString"];
+    NSString *version = [[[Alcatraz sharedPlugin] bundle] infoDictionary][@"CFBundleShortVersionString"];
+    self.versionMenuItem.title = [NSString stringWithFormat:@"Version %@", version];
 }
 
 #pragma mark - Packages filtering
