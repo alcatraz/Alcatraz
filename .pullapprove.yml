@@ -1,0 +1,18 @@
+approve_by_comment: true
+approve_regex: '^:?(\+1):?'
+reject_regex: '^:?(\-1):?'
+reject_value: -1
+reset_on_push: true
+author_approval: ignored
+reviewers:
+    -
+        name: owners
+        required: 2
+        members:
+            - kattrali
+            - jurre
+            - supermarin
+            - guillaume-algis
+        conditions:
+            branches:
+                - master  # only need to approve if merging to master
