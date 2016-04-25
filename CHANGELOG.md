@@ -1,3 +1,7 @@
+## 1.2.0
+
+- Plugins are no longer required to have a .xcodeproj filename matching their `name` in `packages.json`
+
 ## 1.1.18
 
 - Fix plugin installation failing if the plugin's name contains `.` dots
