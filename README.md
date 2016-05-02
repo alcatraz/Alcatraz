@@ -59,3 +59,4 @@ To remove all packages installed via Alcatraz, run `rm -rf ~/Library/Application
 [Marin Usalj](http://supermar.in) ([@supermarin](https://github.com/supermarin))<br>
 [Delisa Mason](http://delisa.me) ([@kattrali](https://github.com/kattrali))<br>
 Jurre Stender ([@jurre](https://github.com/jurre))<br>
+[Guillaume Algis](https://twitter.com/guillaumealgis) ([@guillaume-algis](https://github.com/guillaume-algis))<br>
