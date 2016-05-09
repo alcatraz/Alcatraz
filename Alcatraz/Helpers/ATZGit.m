@@ -78,7 +78,7 @@
 + (void)clone:(NSString *)remotePath to:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
     ATZShell *shell = [ATZShell new];
 
-    [shell executeCommand:[self gitExecutablePath] withArguments:@[CLONE, remotePath, localPath, IGNORE_PUSH_CONFIG]
+    [shell executeCommand:[self gitExecutablePath] withArguments:@[CLONE, RECURSIVE, remotePath, localPath, IGNORE_PUSH_CONFIG]
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git Clone output: %@", output);
