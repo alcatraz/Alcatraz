@@ -52,7 +52,7 @@
 {
     if ([URLPath rangeOfString:@"github.com"].location != NSNotFound || [URLPath rangeOfString:@"githubusercontent.com"].location != NSNotFound) {
         _websiteType = ATZPackageWebsiteTypeGithub;
-    } else if ([URLPath rangeOfString:@"bitbucket.com"].location != NSNotFound) {
+    } else if ([URLPath rangeOfString:@"bitbucket.com"].location != NSNotFound || [URLPath rangeOfString:@"bitbucket.org"].location != NSNotFound) {
         _websiteType = ATZPackageWebsiteTypeBitbucket;
     } else {
         _websiteType = ATZPackageWebsiteTypeOtherGit;
