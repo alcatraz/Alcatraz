@@ -25,7 +25,7 @@
 
 @interface ATZDownloader()
 @property (strong, nonatomic) NSMutableDictionary *callbacks;
-@property (strong, nonatomic) NSURLSession *urlSession;
+@property (strong, nonatomic, readonly) NSURLSession *urlSession;
 @end
 
 
@@ -135,16 +135,14 @@ didCompleteWithError:(NSError *)error {
 #pragma mark - Private
 
 - (NSURLSession *)urlSession {
-    if (_urlSession) return _urlSession;
-
-    _urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-                                                delegate:self
-                                           delegateQueue:[NSOperationQueue mainQueue]];
-    return _urlSession;
+    static dispatch_once_t onceToken;
+    static NSURLSession *session = nil;
+    dispatch_once(&onceToken, ^{
+        session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                    delegate:self
+                                               delegateQueue:[NSOperationQueue mainQueue]];
+    });
+    return session;
 }
-
-
-
-
 
 @end
