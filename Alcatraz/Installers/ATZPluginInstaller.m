@@ -169,9 +169,7 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 }
 
 - (NSString *)installNameFromPbxproj:(ATZPackage *)package {
-    NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
-                               stringByAppendingPathComponent:package.name] stringByAppendingPathExtension:XCODEPROJ]
-                             stringByAppendingPathComponent:PROJECT_PBXPROJ];
+    NSString *pbxprojPath = [[self findXcodeprojPathForPackage:package error:NULL] stringByAppendingPathComponent:PROJECT_PBXPROJ];
 
     return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
 }
