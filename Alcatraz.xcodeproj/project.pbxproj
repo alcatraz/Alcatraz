@@ -188,7 +188,10 @@
 				890A4B41171F031300AFE577 /* Frameworks */,
 				890A4B40171F031300AFE577 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
 		};
 		890A4B40171F031300AFE577 /* Products */ = {
 			isa = PBXGroup;
