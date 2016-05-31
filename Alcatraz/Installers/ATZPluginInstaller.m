@@ -35,7 +35,7 @@ static NSString *const XCODE_BUILD = @"/usr/bin/xcodebuild";
 static NSString *const PROJECT = @"-project";
 static NSString *const CLEAN = @"clean";
 static NSString *const BUILD = @"build";
-static NSString *const XCODEPROJ = @".xcodeproj";
+static NSString *const XCODEPROJ = @"xcodeproj";
 static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 @implementation ATZPluginInstaller
@@ -132,22 +132,35 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 
 - (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
     NSString *clonedDirectory = [self pathForDownloadedPackage:plugin];
-    NSString *xcodeProjFilename = [plugin.name stringByAppendingString:XCODEPROJ];
+    NSString *xcodeProjFilename = [plugin.name stringByAppendingPathExtension:XCODEPROJ];
+    NSMutableArray *allXcodeProjFilenames = [NSMutableArray new];
 
     NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];
-    NSString *directoryEntry;
-
-    while (directoryEntry = [enumerator nextObject])
-        if ([directoryEntry.pathComponents.lastObject isEqualToString:xcodeProjFilename])
+    for (NSString *directoryEntry in enumerator)
+    {
+        NSString *fileName = directoryEntry.pathComponents.lastObject;
+        if ([fileName isEqualToString:xcodeProjFilename]) {
             return [clonedDirectory stringByAppendingPathComponent:directoryEntry];
+        } else if ([fileName.pathExtension isEqualToString:XCODEPROJ]) {
+            [allXcodeProjFilenames addObject:directoryEntry];
+        }
 
-    NSLog(@"Wasn't able to find: %@ in %@", xcodeProjFilename, clonedDirectory);
+        if ([directoryEntry isEqualToString:@".git"]) {
+            [enumerator skipDescendants];
+        }
+    }
+
+    if (allXcodeProjFilenames.count == 1) {
+        return [clonedDirectory stringByAppendingPathComponent:allXcodeProjFilenames[0]];
+    }
+
+    NSLog(@"Wasn't able to find: %@ in %@\nFound {%@}", xcodeProjFilename, clonedDirectory, [allXcodeProjFilenames componentsJoinedByString:@","]);
     @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
 }
 
 - (NSString *)installNameFromPbxproj:(ATZPackage *)package {
     NSString *pbxprojPath = [[[[self pathForDownloadedPackage:package]
-                               stringByAppendingPathComponent:package.name] stringByAppendingString:XCODEPROJ]
+                               stringByAppendingPathComponent:package.name] stringByAppendingPathExtension:XCODEPROJ]
                              stringByAppendingPathComponent:PROJECT_PBXPROJ];
 
     return [ATZPbxprojParser xcpluginNameFromPbxproj:pbxprojPath];
