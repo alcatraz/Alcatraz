@@ -92,7 +92,9 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     NSLog(@"Trying to reload plugin: %@ with bundle: %@", plugin.name, pluginBundle);
 
     if (!pluginBundle) {
-        completion([NSError errorWithDomain:@"Bundle was not found" code:669 userInfo:nil]);
+        NSString *description = [NSString stringWithFormat:@"Bundle for %@ was not found", plugin.name];
+        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: description };
+        completion([NSError errorWithDomain:ATZInstallerErrorDomain code:ATZInstallerBundleNotFoundError userInfo:userInfo]);
         return;
     }
     else if ([pluginBundle isLoaded]) {
@@ -116,7 +118,6 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     NSError *xcodeProjError;
     NSString *xcodeProjPath = [self findXcodeprojPathForPackage:plugin error:&xcodeProjError];
     if (!xcodeProjPath) {
-        NSLog(@"%@", xcodeProjError.localizedDescription);
         completion(xcodeProjError);
         return;
     }
@@ -154,8 +155,15 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     }
 
     if (error) {
-        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Wasn't able to find: %@ in %@\nFound {%@}", xcodeProjFilename, clonedDirectory, [allXcodeProjFilenames componentsJoinedByString:@","]] };
-        *error = [NSError errorWithDomain:@".xcodeproj was not found" code:666 userInfo:userInfo];
+        NSString *description = [NSString stringWithFormat:@"No .xcodeproj file was found for %@", package.name];
+        NSString *recoverySuggestion;
+        if (allXcodeProjFilenames.count == 0) {
+            recoverySuggestion = [NSString stringWithFormat:@"No .xcodeproj file was found in \"%@\"", clonedDirectory];
+        } else {
+            recoverySuggestion = [NSString stringWithFormat:@"Found several .xcodeproj files in \"%@\" {%@}", clonedDirectory, [allXcodeProjFilenames componentsJoinedByString:@","]];
+        }
+        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: description, NSLocalizedRecoverySuggestionErrorKey: recoverySuggestion };
+        *error = [NSError errorWithDomain:ATZInstallerErrorDomain code:ATZInstallerXcodeProjectNotFoundError userInfo:userInfo];
     }
     return nil;
 }

@@ -209,7 +209,9 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
         [button setFillRatio:progress animated:YES];
     } completion:^(NSError *failure) {
         [ATZStyleKit updateButton:button forPackageState:package animated:YES];
-        if (package.requiresRestart) {
+        if (failure) {
+            [self presentError:failure];
+        } else if (package.requiresRestart) {
             [self postNotificationForInstalledPackage:package];
         }
     }];

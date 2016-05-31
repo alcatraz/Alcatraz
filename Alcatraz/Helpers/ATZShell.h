@@ -22,6 +22,13 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *const ATZShellErrorDomain = @"ATZShellErrorDomain";
+NS_ENUM(NSInteger)
+{
+    ATZShellTerminationStatusError = 666,
+    ATZShellLaunchError = 667
+};
+
 @interface ATZShell : NSObject
 
 - (void)executeCommand:(NSString *)command withArguments:(NSArray *)arguments

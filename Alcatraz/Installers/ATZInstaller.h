@@ -31,6 +31,13 @@ static NSString *const DOWNLOADING_FORMAT = @"Downloading %@...";
 static NSString *const INSTALLING_FORMAT = @"Installing %@...";
 static NSString *const UPDATING_FORMAT = @"Updating %@...";
 
+static NSString *const ATZInstallerErrorDomain = @"ATZInstallerErrorDomain";
+NS_ENUM(NSInteger)
+{
+    ATZInstallerXcodeProjectNotFoundError = 666,
+    ATZInstallerBundleNotFoundError = 669
+};
+
 @interface ATZInstaller : NSObject
 
 + (instancetype)sharedInstaller;
