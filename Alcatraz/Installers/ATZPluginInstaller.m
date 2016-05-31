@@ -113,12 +113,11 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
 #pragma mark - Private
 
 - (void)buildPlugin:(ATZPlugin *)plugin completion:(void (^)(NSError *))completion {
-
-    NSString *xcodeProjPath;
-
-    @try { xcodeProjPath = [self findXcodeprojPathForPlugin:plugin]; }
-    @catch (NSException *exception) {
-        completion([NSError errorWithDomain:exception.reason code:666 userInfo:nil]);
+    NSError *xcodeProjError;
+    NSString *xcodeProjPath = [self findXcodeprojPathForPackage:plugin error:&xcodeProjError];
+    if (!xcodeProjPath) {
+        NSLog(@"%@", xcodeProjError.localizedDescription);
+        completion(xcodeProjError);
         return;
     }
 
@@ -130,9 +129,9 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     }];
 }
 
-- (NSString *)findXcodeprojPathForPlugin:(ATZPlugin *)plugin {
-    NSString *clonedDirectory = [self pathForDownloadedPackage:plugin];
-    NSString *xcodeProjFilename = [plugin.name stringByAppendingPathExtension:XCODEPROJ];
+- (NSString *)findXcodeprojPathForPackage:(ATZPackage *)package error:(NSError **)error {
+    NSString *clonedDirectory = [self pathForDownloadedPackage:package];
+    NSString *xcodeProjFilename = [package.name stringByAppendingPathExtension:XCODEPROJ];
     NSMutableArray *allXcodeProjFilenames = [NSMutableArray new];
 
     NSDirectoryEnumerator *enumerator = [[NSFileManager sharedManager] enumeratorAtPath:clonedDirectory];
@@ -154,8 +153,11 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
         return [clonedDirectory stringByAppendingPathComponent:allXcodeProjFilenames[0]];
     }
 
-    NSLog(@"Wasn't able to find: %@ in %@\nFound {%@}", xcodeProjFilename, clonedDirectory, [allXcodeProjFilenames componentsJoinedByString:@","]);
-    @throw [NSException exceptionWithName:@"Not found" reason:@".xcodeproj was not found" userInfo:nil];
+    if (error) {
+        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [NSString stringWithFormat:@"Wasn't able to find: %@ in %@\nFound {%@}", xcodeProjFilename, clonedDirectory, [allXcodeProjFilenames componentsJoinedByString:@","]] };
+        *error = [NSError errorWithDomain:@".xcodeproj was not found" code:666 userInfo:userInfo];
+    }
+    return nil;
 }
 
 - (NSString *)installNameFromPbxproj:(ATZPackage *)package {
