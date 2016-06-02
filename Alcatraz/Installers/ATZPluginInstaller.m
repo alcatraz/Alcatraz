@@ -144,10 +144,6 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
         } else if ([fileName.pathExtension isEqualToString:XCODEPROJ]) {
             [allXcodeProjFilenames addObject:directoryEntry];
         }
-
-        if ([directoryEntry isEqualToString:@".git"]) {
-            [enumerator skipDescendants];
-        }
     }
 
     if (allXcodeProjFilenames.count == 1) {
