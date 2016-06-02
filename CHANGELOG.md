@@ -1,3 +1,7 @@
+## 1.2.0
+
+- Plugins are no longer required to have a .xcodeproj filename matching their `name` in `packages.json` (#471)
+
 ## 1.1.19
 
 - Fix a crash caused by invalid downloaded image data being displayed anyway. #320 #334 #335 #479
