@@ -85,6 +85,18 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
     return YES;
 }
 
+- (NSError *)willPresentError:(NSError *)error
+{
+    const NSUInteger maxLength = 500;
+    NSString *recoverySuggestion = error.userInfo[NSLocalizedRecoverySuggestionErrorKey];
+    if (recoverySuggestion.length > maxLength) {
+        NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
+        userInfo[NSLocalizedRecoverySuggestionErrorKey] = [[recoverySuggestion substringToIndex:MIN(maxLength, recoverySuggestion.length)] stringByAppendingString:@"…"];
+        return [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo];
+    }
+    return error;
+}
+
 #pragma mark - Bindings
 
 - (IBAction)installPressed:(ATZFillableButton *)button {

@@ -77,10 +77,8 @@
             if (task.terminationStatus == 0) {
                 completion(output, nil);
             } else {
-                const NSUInteger maxLength = 500;
-                NSString *truncatedOutput = [[output substringToIndex:MIN(maxLength, output.length)] stringByAppendingString:output.length > maxLength ? @"…" : @""];
                 NSString *description = [NSString stringWithFormat:@"Task exited with status %d\n\n%@ %@", task.terminationStatus, task.launchPath, [task.arguments componentsJoinedByString:@" "]];
-                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: description, NSLocalizedRecoverySuggestionErrorKey: truncatedOutput };
+                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: description, NSLocalizedRecoverySuggestionErrorKey: output };
                 completion(output, [NSError errorWithDomain:ATZShellErrorDomain code:ATZShellTerminationStatusError userInfo:userInfo]);
             }
         }];
