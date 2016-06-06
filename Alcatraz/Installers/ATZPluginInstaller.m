@@ -112,14 +112,6 @@ static NSString *const PROJECT_PBXPROJ = @"project.pbxproj";
     [shell executeCommand:XCODE_BUILD withArguments:@[PROJECT, xcodeProjPath] completion:^(NSString *output, NSError *error) {
         NSLog(@"Xcodebuild output: %@", output);
         completion(error);
-		
-		if (!error) {
-			[[NSFileManager sharedManager] removeItemAtPath:[[self pathForDownloadedPackage:plugin] stringByAppendingPathComponent:@"build"] completion:^(NSError *error) {
-				if (error) {
-					NSLog(@"error: %@", error);
-				}
-			}];
-		}
     }];
 }
 
