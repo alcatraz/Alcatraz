@@ -193,7 +193,7 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
                                   return;
 
                               NSImage *image = [[NSImage alloc] initWithData:responseData];
-                              if (!image)
+                              if (!image.isValid)
                                   return;
                               
                               [self cacheImage:image forPackage:package];
