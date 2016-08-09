@@ -1,3 +1,8 @@
+## 1.1.19
+
+- Fix a crash caused by invalid downloaded image data being displayed anyway. #320 #334 #335 #479
+  Thanks @piv199 for the help diagnosing the issue.
+
 ## 1.1.18
 
 - Fix plugin installation failing if the plugin's name contains `.` dots
