@@ -27,7 +27,14 @@ typedef void(^ATZJSONDownloadCompletion)(NSDictionary *json, NSError *error);
 typedef void(^ATZDataDownloadCompletion)(NSData *data, NSError *error);
 typedef void(^ATZDownloadProgress)(CGFloat progress);
 
-@interface ATZDownloader : NSObject<NSURLSessionDownloadDelegate, NSURLSessionTaskDelegate>
+static NSString *const ATZDownloaderErrorDomain = @"ATZDownloaderErrorDomain";
+NS_ENUM(NSInteger)
+{
+    ATZDownloaderInvalidHTTPStatusCode = 670,
+    ATZDownloaderEmptyContent = 671,
+};
+
+@interface ATZDownloader : NSObject<NSURLSessionDataDelegate>
 
 + (NSString*)packageRepoPath;
 + (void)setPackagesRepoPath:(NSString*)path;
