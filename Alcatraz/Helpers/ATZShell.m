@@ -77,8 +77,9 @@
             if (task.terminationStatus == 0) {
                 completion(output, nil);
             } else {
-                NSString* reason = [NSString stringWithFormat:@"Task exited with status %d", task.terminationStatus];
-                completion(output, [NSError errorWithDomain:reason code:666 userInfo:@{ NSLocalizedDescriptionKey: reason }]);
+                NSString *description = [NSString stringWithFormat:@"Task exited with status %d\n\n%@ %@", task.terminationStatus, task.launchPath, [task.arguments componentsJoinedByString:@" "]];
+                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: description, NSLocalizedRecoverySuggestionErrorKey: output };
+                completion(output, [NSError errorWithDomain:ATZShellErrorDomain code:ATZShellTerminationStatusError userInfo:userInfo]);
             }
         }];
         
@@ -92,8 +93,9 @@
         [shellTask launch];
     }
     @catch (NSException *exception) {
-        NSLog(@"Shell command execution failed! %@", exception);
-        completion(nil, [NSError errorWithDomain:exception.reason code:667 userInfo:nil]);
+        NSLog(@"Shell command execution failed! %@ (%@)", exception, shellTask.launchPath);
+        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: exception.reason, NSLocalizedRecoverySuggestionErrorKey: shellTask.launchPath };
+        completion(nil, [NSError errorWithDomain:ATZShellErrorDomain code:ATZShellLaunchError userInfo:userInfo]);
     }
 }
 
