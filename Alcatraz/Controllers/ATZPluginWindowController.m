@@ -27,6 +27,7 @@
 #import "Alcatraz.h"
 #import "ATZPackageFactory.h"
 #import "ATZStyleKit.h"
+#import "ATZCache.h"
 
 #import "ATZPlugin.h"
 #import "ATZColorScheme.h"
@@ -153,17 +154,28 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 }
 
 - (IBAction)reloadPackages:(id)sender {
+    if (!self.packages) {
+        // No packages loaded yet, display from cache in the meantime
+        NSDictionary *packageList = [ATZCache loadPackagesFromCache];
+        [self displayPackages:packageList];
+    }
+
     ATZDownloader *downloader = [ATZDownloader new];
     [downloader downloadPackageListWithCompletion:^(NSDictionary *packageList, NSError *error) {
 
         if (error) {
             NSLog(@"Error while downloading packages! %@", error);
         } else {
-            self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
-            [self reloadTableView];
+            [self displayPackages:packageList];
+            [ATZCache cachePackages:packageList];
             [self updatePackages];
         }
     }];
+}
+
+- (void)displayPackages:(NSDictionary *)packageList {
+    self.packages = [ATZPackageFactory createPackagesFromDicts:packageList];
+    [self reloadTableView];
 }
 
 - (IBAction)updatePackageRepoPath:(id)sender {
@@ -188,12 +200,19 @@ typedef NS_ENUM(NSInteger, ATZFilterSegment) {
 }
 
 - (void)reloadTableView {
-    self.tableViewDelegate = [[ATZPackageTableViewDelegate alloc] initWithPackages:self.packages tableViewOwner:self];
-    self.tableView.delegate = self.tableViewDelegate;
-    self.tableView.dataSource = self.tableViewDelegate;
-    [self.tableViewDelegate configureTableView:self.tableView];
+    if (!self.tableViewDelegate) {
+        self.tableViewDelegate = [[ATZPackageTableViewDelegate alloc] initWithPackages:self.packages
+                                                                        tableViewOwner:self];
+        self.tableView.delegate = self.tableViewDelegate;
+        self.tableView.dataSource = self.tableViewDelegate;
+
+        [self.tableViewDelegate configureTableView:self.tableView];
+    }
+    else {
+        [self.tableViewDelegate updatePackages:self.packages];
+    }
+    
     [self updatePredicate];
-    [self.tableView reloadData];
 }
 
 #pragma mark - Private

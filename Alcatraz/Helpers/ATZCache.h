@@ -1,5 +1,5 @@
 //
-// ATZPackageTableViewDelegate.h
+// ATZCache.h
 //
 // Copyright (c) 2014 Marin Usalj | supermar.in
 //
@@ -21,20 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
-@class ATZPackage;
+@interface ATZCache : NSObject
 
-@interface ATZPackageTableViewDelegate : NSObject <NSTableViewDelegate, NSTableViewDataSource>
++ (NSDictionary *)loadPackagesFromCache;
++ (BOOL)cachePackages:(NSDictionary *)packages;
 
-- (instancetype)initWithPackages:(NSArray*)packages tableViewOwner:(id)owner;
-
-- (void)updatePackages:(NSArray*)packages;
-
-- (void)configureTableView:(NSTableView*)tableView;
-- (void)filterUsingPredicate:(NSPredicate*)predicate;
-
-- (void)fetchAndCacheImageForPackage:(ATZPackage*)package progress:(void(^)(CGFloat))progress completion:(void(^)(NSImage *))completion;
-
-@property (nonatomic, strong, readonly) NSArray* packages;
 @end
