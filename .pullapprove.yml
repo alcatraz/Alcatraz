@@ -12,7 +12,7 @@ reviewers:
             - kattrali
             - jurre
             - supermarin
-            - guillaume-algis
+            - guillaumealgis
         conditions:
             branches:
                 - master  # only need to approve if merging to master
