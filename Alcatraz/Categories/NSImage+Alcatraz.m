@@ -24,13 +24,12 @@
 #import "NSImage+Alcatraz.h"
 
 @implementation NSImage (Alcatraz)
--(NSInteger)frameCount{
-    // Find the NSBitmapImageRep representation to check frame count GIF-specific value
-    // returns 1 for common image
+-(NSInteger)frameCount {
+    // Based on NSImage+GIF.m from https://gist.github.com/keefo/5344890
     
-    for (NSImageRep * rep in self.representations){
-        if ([rep isKindOfClass:[NSBitmapImageRep class]]){
-            NSBitmapImageRep * bitmapRep = (NSBitmapImageRep *)rep;
+    for (NSImageRep *representation in self.representations) {
+        if ([representation isKindOfClass:[NSBitmapImageRep class]]) {
+            NSBitmapImageRep *bitmapRep = (NSBitmapImageRep *)representation;
             NSInteger numFrame = [[bitmapRep valueForProperty:NSImageFrameCount] integerValue];
             return numFrame;
         }

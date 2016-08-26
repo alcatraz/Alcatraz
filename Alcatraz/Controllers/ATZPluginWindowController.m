@@ -274,7 +274,7 @@ BOOL hasPressedCommandF(NSEvent *event) {
     }];
 }
 
-- (void)displayImage:(NSImage *)image forPackage:(ATZPackage*)package {
+- (void)displayImage:(NSImage *)image forPackage:(ATZPackage *)package {
     self.previewPanel.title = package.name;
     if (image.frameCount > 1) {
         self.previewImageView.imageScaling = NSImageScaleNone;
