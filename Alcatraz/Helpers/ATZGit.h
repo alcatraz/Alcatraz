@@ -26,6 +26,7 @@ static NSString *const IGNORE_PUSH_CONFIG = @"-c push.default=matching";
 static NSString *const CLONE = @"clone";
 static NSString *const RECURSIVE = @"--recursive";
 static NSString *const FETCH = @"fetch";
+static NSString *const RECURSE_SUBMODULES_ON_DEMAND = @"--recurse-submodules=on-demand";
 static NSString *const ORIGIN = @"origin";
 static NSString *const BRANCH = @"branch";
 static NSString *const COMMIT = @"commit";
@@ -33,6 +34,8 @@ static NSString *const TAG = @"tag";
 static NSString *const ORIGIN_MASTER = @"origin/master";
 static NSString *const RESET = @"reset";
 static NSString *const HARD = @"--hard";
+static NSString *const SUBMODULE = @"submodule";
+static NSString *const UPDATE = @"update";
 
 @interface ATZGit : NSObject
 
