@@ -1,5 +1,6 @@
 ## Unreleased
 - Support GIF image on screenshot preview (#432)
+- Git submodules are now updated when fetching plugins updates (#484)
 
 ## 1.2.0
 

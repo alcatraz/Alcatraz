@@ -86,25 +86,42 @@
     }];
 }
 
+/// This will:
+/// - fetch new commits from the remote;
+/// - hard reset HEAD to `revision`;
+/// - update submodules to match what the superproject expects at `revision`
 // TODO: refactor, make less shell instances (maybe?)
 + (void)updateLocalProject:(NSString *)localPath revision:(NSString *)revision
                 completion:(void (^)(NSString *, NSError *))completion {
     
     [self fetch:localPath completion:^(NSString *fetchOutput, NSError *error) {
-        
-        if (error)
+        if (error) {
             completion(fetchOutput, error);
-        else
-            [self resetHard:localPath revision:revision completion:^(NSString *resetOutput, NSError *error) {
+            return;
+        }
+
+        [self resetHard:localPath revision:revision completion:^(NSString *resetOutput, NSError *error) {
+            if (error) {
+                completion(resetOutput, error);
+                return;
+            }
+
+            [self submoduleUpdate:localPath completion:^(NSString *submoduleUpdateOutput, NSError *error) {
+                if (error) {
+                    completion(submoduleUpdateOutput, error);
+                    return;
+                }
+
                 completion(fetchOutput, error);
             }];
+        }];
     }];
 }
 
 + (void)fetch:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
     
     ATZShell *shell = [ATZShell new];
-    [shell executeCommand:[self gitExecutablePath] withArguments:@[FETCH, ORIGIN] inWorkingDirectory:localPath
+    [shell executeCommand:[self gitExecutablePath] withArguments:@[FETCH, RECURSE_SUBMODULES_ON_DEMAND, ORIGIN] inWorkingDirectory:localPath
                completion:^(NSString *output, NSError *error) {
                    
         NSLog(@"Git fetch output: %@", output);
@@ -124,6 +141,18 @@
         NSLog(@"Git reset output: %@", output);
         completion(output, error);
     }];
+}
+
++ (void)submoduleUpdate:(NSString *)localPath completion:(void (^)(NSString *, NSError *))completion {
+
+    ATZShell *shell = [ATZShell new];
+
+    [shell executeCommand:[self gitExecutablePath] withArguments:@[SUBMODULE, UPDATE] inWorkingDirectory:localPath
+               completion:^(NSString *output, NSError *error) {
+
+       NSLog(@"Git submodule update output: %@", output);
+       completion(output, error);
+   }];
 }
 
 
