@@ -1,6 +1,8 @@
 ![Alcatraz](http://alcatraz.io/images/header@2x.png)
 
-Alcatraz is an open-source package manager for Xcode 7+. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.
+Alcatraz is an open-source package manager for Xcode 7. It lets you discover and install plugins, templates and color schemes without the need for manually cloning or copying files. It installs itself as a part of Xcode and it feels like home.
+
+Please note that **plugins are not supported by Xcode 8**. See [#475](https://github.com/alcatraz/Alcatraz/issues/475) for more information.
 
 [![Stories in Ready](https://badge.waffle.io/alcatraz/Alcatraz.svg?label=ready)](https://waffle.io/alcatraz/Alcatraz)
 [![Build Status](https://travis-ci.org/alcatraz/Alcatraz.svg?branch=master)](https://travis-ci.org/alcatraz/Alcatraz)
@@ -20,7 +22,7 @@ Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via 
 
 ## Requirements
 
-Alcatraz only supports Xcode 7+.
+Alcatraz only supports Xcode 7.
 
 ## Usage
 
