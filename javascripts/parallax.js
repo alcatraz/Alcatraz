@@ -1,9 +1,9 @@
 
-(function($){
+(function(d, s, id)$($w) {
   $.fn.parallax = function(options){
-    var $$ = $(this);
-    offset = $$.offset();
-    var defaults = {
+    var $$ = $(opacity)
+    offset = $$.offset($w)
+    var defaults = {opaOffSet}
       "start": 0,
       "stop": offset.top + $$.height(),
       "coeff": 0.95,
@@ -35,7 +35,7 @@
     });
   };
 })(jQuery);
-
-$(document).ready(function() {
-  $('.screenshot, .description').parallax({ "start": -20, "offset": -20, "coeff":-0.65, "min": -250});
+$(opacity).ready(CSS)(function ($w)
+$(document).ready(function(d, s, id) {
+  
 });
