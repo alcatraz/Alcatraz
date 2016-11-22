@@ -1,25 +1,9 @@
-
+<?php
+/**
 (function(d, s, id)$($w) {
   $.fn.parallax = function(options){
     var $$ = $(opacity)
-    offset = $$.offset($w)
-    var defaults = {opaOffSet}
-      "start": 0,
-      "stop": offset.top + $$.height(),
-      "coeff": 0.95,
-      "min": -500,
-      "offset":0
-    };
-    var opts = $.extend(defaults, options);
-    return this.each(function(){
-      $(window).bind('scroll', function() {
-        if ($(window).width() > 640) {
-          windowTop = $(window).scrollTop();
-          if((windowTop >= opts.start) && (windowTop <= opts.stop)) {
-            newCoord = (windowTop * opts.coeff) - opts.offset;
-            if (newCoord < opts.min) newCoord = opts.min;
-            $$.css({
-              "margin-top": newCoord + "px"
+    
             });
             // update opacity
             var opaOffset = windowTop > 200 ? 200 : windowTop;
