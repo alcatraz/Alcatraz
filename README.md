@@ -46,6 +46,10 @@ If "nothing" happens when installing packages, try the following self-help steps
 2. Make sure you're running a recent version of git (`git --version`).
 3. If you've used Xcode developer preview releases in the past, make certain Xcode isn't stuck using an inappropriate developer path by resetting it (`sudo xcode-select --reset`).
 
+If Xcode prompts about unexpected bundles and you clicked `Skip Bundles`, you can reset this setting by running:
+
+`defaults delete com.apple.dt.Xcode DVTPlugInManagerNonApplePlugIns-Xcode-$(xcodebuild -version | grep Xcode | cut -d ' ' -f 2)`
+
 ## Uninstall
 
 Open up your terminal and paste this:
