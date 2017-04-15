@@ -16,7 +16,7 @@ To install, open up your terminal and paste this:
 ``` bash
 curl -fsSL https://raw.github.com/alcatraz/Alcatraz/master/Scripts/install.sh | sh
 ```
-or download the repository from Github and build it in Xcode. You'll need to restart Xcode after the installation.
+or clone this repo / download the zip, run 'pod install' in the terminal, open the workspace file in Xcode and compile. After restarting Xcode you'll have a 'Package Manager' Menu Item in the Windows menu.
 
 Alcatraz requires Xcode Command Line Tools, which can be installed in Xcode via `Preferences > Downloads`.
 
