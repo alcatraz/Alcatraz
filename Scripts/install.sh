@@ -7,7 +7,7 @@ PLUGINS_DIR="${HOME}/Library/Application Support/Developer/Shared/Xcode/Plug-ins
 XCODE_VERSION="$(xcrun xcodebuild -version | head -n1 | awk '{ print $2 }')"
 PLIST_PLUGINS_KEY="DVTPlugInManagerNonApplePlugIns-Xcode-${XCODE_VERSION}"
 BUNDLE_ID="com.mneorr.Alcatraz"
-TMP_FILE="$(mktemp -t ${BUNDLE_ID})"
+TMP_FILE="$(/usr/bin/mktemp -t ${BUNDLE_ID})"
 
 # Remove Alcatraz from Xcode's skipped plugins list if needed
 if defaults read com.apple.dt.Xcode "$PLIST_PLUGINS_KEY" &> "$TMP_FILE"; then
