@@ -99,6 +99,7 @@ static NSString *const BUTTON_TITLE_BLOCKED = @"BLOCKED";
     CGPathRef clippingPath = CGPathCreateWithRect(clippingRect, NULL);
     CGContextAddPath(context, clippingPath);
     CGContextClip(context);
+    CFRelease(clippingPath);
 
     NSMutableParagraphStyle* textStyle = NSMutableParagraphStyle.defaultParagraphStyle.mutableCopy;
     textStyle.alignment = NSCenterTextAlignment;
