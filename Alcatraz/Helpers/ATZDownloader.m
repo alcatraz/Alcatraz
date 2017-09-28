@@ -24,7 +24,9 @@
 #import "ATZDownloader.h"
 
 @interface ATZDownloader()
-@property (strong, nonatomic) NSMutableDictionary *callbacks;
+@property (strong, nonatomic) NSMutableDictionary<NSNumber *, NSDictionary *> *callbacks;
+@property (strong, nonatomic) NSMutableDictionary<NSNumber *, NSNumber *> *reponsesExpectedDataLength;
+@property (strong, nonatomic) NSMutableDictionary<NSNumber *, NSMutableData *> *responsesData;
 @property (strong, nonatomic) NSURLSession *urlSession;
 @end
 
@@ -41,6 +43,8 @@ static NSString *const COMPLETION = @"completion";
     if (!self) return nil;
 
     _callbacks = [NSMutableDictionary new];
+    _reponsesExpectedDataLength = [NSMutableDictionary new];
+    _responsesData = [NSMutableDictionary new];
 
     return self;
 }
@@ -61,7 +65,7 @@ static NSString *const COMPLETION = @"completion";
                                                   completion:(ATZDataDownloadCompletion)completion {
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:remotePath]];
-    NSURLSessionTask *task = [[self urlSession] downloadTaskWithRequest:request];
+    NSURLSessionDataTask *task = [[self urlSession] dataTaskWithRequest:request];
 
     NSMutableDictionary* callbacks = [[NSMutableDictionary alloc] initWithCapacity:2];
     if (completion)
@@ -69,7 +73,7 @@ static NSString *const COMPLETION = @"completion";
     if (progress)
         callbacks[PROGRESS] = progress;
 
-    self.callbacks[task] = callbacks;
+    self.callbacks[@(task.taskIdentifier)] = callbacks;
 
     [task resume];
 }
@@ -92,31 +96,41 @@ static NSString *const COMPLETION = @"completion";
     [[NSUserDefaults standardUserDefaults] setObject:path forKey:ATZ_REPO_KEY];
 }
 
+#pragma mark - NSURLSessionDataDelegate
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
+    
+    long long expectedContentLength = response.expectedContentLength;
+    if (expectedContentLength != NSURLResponseUnknownLength) {
+        self.reponsesExpectedDataLength[@(dataTask.taskIdentifier)] = @(response.expectedContentLength);
+    }
+    
+    self.responsesData[@(dataTask.taskIdentifier)] = [NSMutableData new];
+    
+    completionHandler(NSURLSessionResponseAllow);
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
+    
+    NSMutableData *partialData = self.responsesData[@(dataTask.taskIdentifier)];
+    [partialData appendData:data];
+    
+    NSNumber *reponsesExpectedDataLength = self.reponsesExpectedDataLength[@(dataTask.taskIdentifier)];
+    ATZDownloadProgress progressBlock =  self.callbacks[@(dataTask.taskIdentifier)][PROGRESS];
+    if (progressBlock && reponsesExpectedDataLength) {
+        CGFloat progress = partialData.length / [reponsesExpectedDataLength doubleValue];
+        
+        // response.expectedContentLength might have returned a smaller number of bytes than the actual data length
+        progress = fmax(progress, 1.0);
+        
+        progressBlock(progress);
+    }
+}
+
 #pragma mark - NSURLSessionDelegate
 
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
-                              didFinishDownloadingToURL:(NSURL *)location {
-
-    ATZDataDownloadCompletion completionBlock = self.callbacks[downloadTask][COMPLETION];
-    if (completionBlock)
-        completionBlock([NSData dataWithContentsOfURL:location], nil);
-}
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
-                                           didWriteData:(int64_t)bytesWritten
-                                      totalBytesWritten:(int64_t)totalBytesWritten
-                              totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
-
-    CGFloat progress = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
-
-    ATZDownloadProgress progressBlock =  self.callbacks[downloadTask][PROGRESS];
-    if (progressBlock)
-        progressBlock(progress);
-}
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes {}
-
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler {
+    
     completionHandler(request);
 }
 
@@ -126,9 +140,40 @@ static NSString *const COMPLETION = @"completion";
 /* Sent as the last message related to a specific task.  Error may be
  * nil, which implies that no error occurred and this task is complete.
  */
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
-didCompleteWithError:(NSError *)error {
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    
+    ATZDataDownloadCompletion completionBlock = self.callbacks[@(task.taskIdentifier)][COMPLETION];
+    if (completionBlock) {
+        if (error) {
+            // Client error
+            completionBlock(nil, error);
+        }
+        else {
+            NSData *data = self.responsesData[@(task.taskIdentifier)];
+            NSHTTPURLResponse *httpResponse;
+            if ([task.response isKindOfClass:[NSHTTPURLResponse class]]) {
+                httpResponse = (NSHTTPURLResponse *)task.response;
+            }
 
+            if (httpResponse && httpResponse.statusCode != 200) {
+                NSString *description = [NSString stringWithFormat:@"Download task failed with status code %ld : %@", httpResponse.statusCode, [NSHTTPURLResponse localizedStringForStatusCode:httpResponse.statusCode]];
+                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: description };
+                error = [NSError errorWithDomain:ATZDownloaderErrorDomain code:ATZDownloaderInvalidHTTPStatusCode userInfo:userInfo];
+                completionBlock(nil, error);
+            }
+            else if (!data) {
+                NSString *description = [NSString stringWithFormat:@"Download task returned empty content (%@)", task.originalRequest.URL.absoluteString];
+                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: description };
+                error = [NSError errorWithDomain:ATZDownloaderErrorDomain code:ATZDownloaderEmptyContent userInfo:userInfo];
+                completionBlock(nil, error);
+            }
+            else {
+                completionBlock(data, nil);
+            }
+        }
+    }
+    
+    [self cleanupDataRelatedToTask:task];
 }
 
 
@@ -143,8 +188,12 @@ didCompleteWithError:(NSError *)error {
     return _urlSession;
 }
 
-
-
-
+- (void)cleanupDataRelatedToTask:(NSURLSessionTask *)task
+{
+    NSNumber *taskIdentifier = @(task.taskIdentifier);
+    [self.callbacks removeObjectForKey:taskIdentifier];
+    [self.reponsesExpectedDataLength removeObjectForKey:taskIdentifier];
+    [self.responsesData removeObjectForKey:taskIdentifier];
+}
 
 @end

@@ -189,12 +189,16 @@ static CGFloat const ATZPackageCellBaseHeight = 116.f;
     [downloader downloadFileFromPath:package.screenshotPath
                             progress:progress
                           completion:^(NSData *responseData, NSError *error) {
-                              if (error)
+                              if (error) {
+                                  NSLog(@"[Alcatraz] Failed to load screenshot of package \"%@\": %@", package.name, error);
                                   return;
+                              }
 
                               NSImage *image = [[NSImage alloc] initWithData:responseData];
-                              if (!image.isValid)
+                              if (!image.isValid) {
+                                  NSLog(@"[Alcatraz] Invalid image data for screenshot of package \"%@\"", package.name);
                                   return;
+                              }
                               
                               [self cacheImage:image forPackage:package];
                               if (completion)
